@@ -1,58 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Ainara Unamunzaga Coaching - Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Ainara's Brand Colors */
+    --primary: 218 60% 23%; /* Azul Profundo #1B365D */
+    --primary-foreground: 45 33% 96%; /* Blanco Nieve #FAFAFA */
+    
+    --secondary: 129 17% 54%; /* Verde Sage #7A9B7F */
+    --secondary-foreground: 218 60% 23%;
+    
+    --accent: 45 79% 52%; /* Dorado Cálido #D4AF37 */
+    --accent-foreground: 218 60% 23%;
+    
+    --background: 45 33% 96%; /* Blanco Nieve #FAFAFA */
+    --foreground: 218 60% 23%;
+    
+    --muted: 0 0% 96%; /* Gris Perla #F5F5F5 */
+    --muted-foreground: 218 20% 40%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 218 60% 23%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 218 60% 23%;
+    
+    --border: 218 20% 85%;
+    --input: 218 20% 90%;
+    --ring: 45 79% 52%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --radius: 15px;
+    
+    /* Brand Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-gift: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--accent)), hsl(45 79% 60%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 4px 20px -5px hsl(var(--primary) / 0.1);
+    --shadow-gold: 0 0 20px hsl(var(--accent) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
   }
 
   .dark {
@@ -100,6 +99,137 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Brand Typography Classes */
+  .font-heading {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .font-accent {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  /* Brand Specific Components */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .gift-gradient {
+    background: var(--gradient-gift);
+  }
+  
+  .accent-gradient {
+    background: var(--gradient-accent);
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+  
+  /* Coaching Brand Animations */
+  .pulse-gentle {
+    animation: pulse-gentle 3s ease-in-out infinite;
+  }
+  
+  .float-up {
+    animation: float-up 0.6s ease-out forwards;
+  }
+  
+  .slide-in-up {
+    animation: slide-in-up 0.5s ease-out forwards;
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-smooth hover:-translate-y-2 hover:shadow-card;
+  }
+  
+  .hover-gold {
+    @apply transition-smooth hover:shadow-gold;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-primary/90 hover:-translate-y-1 shadow-card hover:shadow-elegant;
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-accent/90 hover:-translate-y-1 shadow-gold;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-secondary/90 hover:-translate-y-1 shadow-card;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframe Animations */
+  @keyframes pulse-gentle {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.3);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 0 10px hsl(var(--accent) / 0);
+    }
+  }
+  
+  @keyframes float-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Section Spacing */
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-12;
+  }
+  
+  .container-custom {
+    @apply max-w-6xl mx-auto;
   }
 }
