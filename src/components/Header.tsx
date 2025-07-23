@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,12 +14,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
+  const isActivePage = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -30,62 +32,74 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 
-              className="text-2xl font-heading font-bold text-primary-foreground cursor-pointer"
-              onClick={() => scrollToSection('hero')}
+            <Link 
+              to="/"
+              className="text-2xl font-heading font-bold text-primary-foreground hover:text-accent transition-fast"
             >
               AINARA
-            </h1>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('hero')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            <Link 
+              to="/"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/') ? 'text-accent' : ''
+              }`}
             >
               Inicio
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            </Link>
+            <Link 
+              to="/sobre-mi"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/sobre-mi') ? 'text-accent' : ''
+              }`}
             >
               Sobre Mí
-            </button>
-            <button 
-              onClick={() => scrollToSection('services')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            </Link>
+            <Link 
+              to="/servicios"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/servicios') ? 'text-accent' : ''
+              }`}
             >
               Servicios
-            </button>
-            <button 
-              onClick={() => scrollToSection('process')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            </Link>
+            <Link 
+              to="/mi-proceso"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/mi-proceso') ? 'text-accent' : ''
+              }`}
             >
               Mi Proceso
-            </button>
-            <button 
-              onClick={() => scrollToSection('testimonials')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            </Link>
+            <Link 
+              to="/testimonios"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/testimonios') ? 'text-accent' : ''
+              }`}
             >
               Testimonios
-            </button>
-            <button 
-              onClick={() => scrollToSection('gift')}
-              className="text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+            </Link>
+            <Link 
+              to="/regalo"
+              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                isActivePage('/regalo') ? 'text-accent' : ''
+              }`}
             >
               Regalo
-            </button>
+            </Link>
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button 
-              onClick={() => scrollToSection('contact')}
+            <Link 
+              to="/contacto"
               className="btn-accent"
             >
               Contactar
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,48 +122,60 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-primary-foreground/20">
             <div className="flex flex-col space-y-4 pt-4">
-              <button 
-                onClick={() => scrollToSection('hero')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              <Link 
+                to="/"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/') ? 'text-accent' : ''
+                }`}
               >
                 Inicio
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              </Link>
+              <Link 
+                to="/sobre-mi"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/sobre-mi') ? 'text-accent' : ''
+                }`}
               >
                 Sobre Mí
-              </button>
-              <button 
-                onClick={() => scrollToSection('services')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              </Link>
+              <Link 
+                to="/servicios"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/servicios') ? 'text-accent' : ''
+                }`}
               >
                 Servicios
-              </button>
-              <button 
-                onClick={() => scrollToSection('process')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              </Link>
+              <Link 
+                to="/mi-proceso"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/mi-proceso') ? 'text-accent' : ''
+                }`}
               >
                 Mi Proceso
-              </button>
-              <button 
-                onClick={() => scrollToSection('testimonials')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              </Link>
+              <Link 
+                to="/testimonios"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/testimonios') ? 'text-accent' : ''
+                }`}
               >
                 Testimonios
-              </button>
-              <button 
-                onClick={() => scrollToSection('gift')}
-                className="text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium"
+              </Link>
+              <Link 
+                to="/regalo"
+                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                  isActivePage('/regalo') ? 'text-accent' : ''
+                }`}
               >
                 Regalo
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
+              </Link>
+              <Link 
+                to="/contacto"
                 className="btn-accent mt-4"
               >
                 Contactar
-              </button>
+              </Link>
             </div>
           </div>
         )}
