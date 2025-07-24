@@ -6,7 +6,6 @@ const Contact = () => {
     <>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-<<<<<<< HEAD
         <div className="container-custom px-4">
           <div className="content-center mb-20">
             <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
@@ -14,15 +13,6 @@ const Contact = () => {
             </h1>
             <p className="text-body-large leading-relaxed content-balanced opacity-90 text-sophisticated text-shadow-soft">
               Estoy aquí para ayudarte a alcanzar tu máximo potencial. Contáctame para comenzar tu viaje de transformación consciente
-=======
-        <div className="container-custom">
-          <div className="content-center mb-20">
-            <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
-              Contacta Conmigo
-            </h1>
-            <p className="text-body-large opacity-90 content-balanced text-sophisticated text-shadow-soft">
-              Estoy aquí para acompañarte en tu proceso de transformación. Elige la opción que mejor se adapte a tus necesidades
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </p>
           </div>
         </div>
@@ -33,7 +23,6 @@ const Contact = () => {
       {/* Información de Contacto Adicional */}
       <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4">
-<<<<<<< HEAD
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <h2 className="title-section text-card-foreground mb-12">
@@ -162,59 +151,6 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
-=======
-          <div className="grid-elegant md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div className="card-elegant p-8 text-center hover-lift">
-              <div className="text-4xl mb-4">📞</div>
-              <h3 className="title-card text-card-foreground mb-4">
-                Llamada Directa
-              </h3>
-              <p className="text-body-elegant text-sophisticated mb-6">
-                Para consultas urgentes o información inmediata sobre mis servicios
-              </p>
-              <a href="tel:+34123456789" className="btn-outline text-sm">
-                +34 123 456 789
-              </a>
-            </div>
-
-            <div className="card-elegant p-8 text-center hover-lift">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="title-card text-card-foreground mb-4">
-                Sesión Diagnóstico
-              </h3>
-              <p className="text-body-elegant text-sophisticated mb-6">
-                Evaluación gratuita de 30 minutos para conocer tu situación actual
-              </p>
-              <Link to="/comenzar" className="btn-primary text-sm">
-                Agendar Sesión
-              </Link>
-            </div>
-
-            <div className="card-elegant p-8 text-center hover-lift">
-              <div className="text-4xl mb-4">🏢</div>
-              <h3 className="title-card text-card-foreground mb-4">
-                Consultoría Empresarial
-              </h3>
-              <p className="text-body-elegant text-sophisticated mb-6">
-                Programas de desarrollo organizacional y liderazgo para equipos
-              </p>
-              <a href="mailto:ainara@transformmindset.com?subject=Consultoría Empresarial" className="btn-outline text-sm">
-                Más Información
-              </a>
-            </div>
-
-            <div className="card-elegant p-8 text-center hover-lift">
-              <div className="text-4xl mb-4">🎤</div>
-              <h3 className="title-card text-card-foreground mb-4">
-                Conferencias
-              </h3>
-              <p className="text-body-elegant text-sophisticated mb-6">
-                Charlas inspiradoras sobre liderazgo e inteligencia emocional
-              </p>
-              <a href="mailto:ainara@transformmindset.com?subject=Solicitud de Conferencia" className="btn-outline text-sm">
-                Solicitar Charla
-              </a>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </div>
           </div>
         </div>
@@ -223,76 +159,6 @@ const Contact = () => {
       {/* FAQ de Contacto */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4">
-<<<<<<< HEAD
-          <div className="content-center mb-20">
-            <h2 className="title-section text-foreground mb-8">
-              Mi Ubicación
-            </h2>
-            <p className="text-body-large text-sophisticated content-balanced">
-              Atiendo presencialmente en Bilbao y online para cualquier ubicación
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="title-card text-foreground mb-8">
-                Sesiones Presenciales
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-6">
-                  <div className="text-primary text-2xl">📍</div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Dirección</h4>
-                    <p className="text-body-elegant text-sophisticated">Zaratamo 48480, Bilbao, España</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-6">
-                  <div className="text-primary text-2xl">🚇</div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Transporte</h4>
-                    <p className="text-body-elegant text-sophisticated">Fácil acceso en transporte público y privado</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-6">
-                  <div className="text-primary text-2xl">🅿️</div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Parking</h4>
-                    <p className="text-body-elegant text-sophisticated">Parking gratuito disponible</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-6">
-                  <div className="text-primary text-2xl">☕</div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Ambiente</h4>
-                    <p className="text-body-elegant text-sophisticated">Espacio cómodo y privado diseñado para la transformación</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="card-elegant p-10 text-center">
-              <div className="text-6xl mb-6">🗺️</div>
-              <h3 className="title-card text-card-foreground mb-6">
-                Bilbao, España
-              </h3>
-              <p className="text-body-elegant text-sophisticated mb-8">
-                Ubicación estratégica en el corazón del País Vasco, con excelentes conexiones.
-              </p>
-              <div className="space-y-4 text-base text-sophisticated">
-                <div className="flex justify-between">
-                  <span>Madrid</span>
-                  <span className="text-accent">5h en coche</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>San Sebastián</span>
-                  <span className="text-accent">1h en coche</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Barcelona</span>
-                  <span className="text-accent">6h en coche</span>
-                </div>
-              </div>
-=======
           <div className="content-center mb-16">
             <h2 className="title-section text-foreground mb-8">
               Preguntas Frecuentes sobre el Contacto
@@ -343,7 +209,6 @@ const Contact = () => {
               <p className="text-body-elegant text-sophisticated">
                 Para la primera consulta, solo necesito conocer tu situación actual, los desafíos que enfrentas y qué objetivos te gustaría alcanzar. Toda la información se maneja con absoluta confidencialidad.
               </p>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </div>
           </div>
         </div>
@@ -352,76 +217,6 @@ const Contact = () => {
       {/* Ubicación */}
       <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4">
-<<<<<<< HEAD
-          <div className="content-center mb-20">
-            <h2 className="title-section text-card-foreground mb-8">
-              Horarios y Disponibilidad
-            </h2>
-          </div>
-
-          <div className="grid-elegant grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <div className="card-elegant p-8 text-center">
-              <div className="text-4xl mb-6">🕘</div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Horario Presencial
-              </h3>
-              <div className="space-y-3 text-body-elegant text-sophisticated">
-                <p>Lunes a Viernes: 9:00 - 19:00</p>
-                <p>Sábados: 10:00 - 14:00</p>
-                <p>Domingos: Cerrado</p>
-              </div>
-            </div>
-
-            <div className="card-elegant p-8 text-center">
-              <div className="text-4xl mb-6">💻</div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Sesiones Online
-              </h3>
-              <div className="space-y-3 text-body-elegant text-sophisticated">
-                <p>Lunes a Viernes: 8:00 - 21:00</p>
-                <p>Sábados: 9:00 - 15:00</p>
-                <p>Flexibilidad horaria para clientes internacionales</p>
-              </div>
-            </div>
-
-            <div className="card-elegant p-8 text-center">
-              <div className="text-4xl mb-6">⚡</div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Urgencias
-              </h3>
-              <div className="space-y-3 text-body-elegant text-sophisticated">
-                <p>Sesiones de emergencia disponibles</p>
-                <p>24h previo aviso</p>
-                <p>Para crisis empresariales o personales</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container-custom mx-auto px-4 text-center">
-          <h2 className="title-section mb-8">
-            El Primer Paso es Siempre el Más Importante
-          </h2>
-          <p className="text-body-large mb-10 opacity-90 text-sophisticated">
-            No esperes más para comenzar tu transformación. Tu futuro yo te lo agradecerá.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/regalo"
-              className="btn-accent"
-            >
-              🎁 Comenzar con la Guía Gratuita
-            </Link>
-            <a
-              href="mailto:ainaraunamunzagacoach@gmail.com"
-              className="btn-secondary"
-            >
-              Escribir Email Ahora
-            </a>
-=======
           <div className="grid-elegant lg:grid-cols-2 gap-20 items-center">
             <div>
               <h2 className="title-section text-card-foreground mb-8">
@@ -497,7 +292,6 @@ const Contact = () => {
                 </a>
               </div>
             </div>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
           </div>
         </div>
       </section>

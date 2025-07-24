@@ -201,42 +201,16 @@ const Process = () => {
             </div>
             <div className="p-8">
               <div className="text-5xl font-bold text-secondary mb-4">92%</div>
-<<<<<<< HEAD
               <p className="text-body-elegant text-muted-foreground">Mejora en comunicación con equipos</p>
             </div>
             <div className="p-8">
               <div className="text-5xl font-bold text-primary mb-4">6</div>
-=======
-              <p className="text-body-elegant text-muted-foreground">Mejora en comunicación interpersonal</p>
-            </div>
-            <div className="p-8">
-              <div className="text-5xl font-bold text-muted-foreground mb-4">6</div>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
               <p className="text-body-elegant text-muted-foreground">Meses promedio para transformación completa</p>
             </div>
           </div>
         </div>
       </section>
 
-<<<<<<< HEAD
-      {/* CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container-custom">
-          <div className="content-center">
-            <h2 className="title-section mb-8">
-              ¿Listo para Comenzar tu Proceso de Transformación?
-            </h2>
-            <p className="text-body-large mb-10 opacity-90">
-              Inicia tu evaluación gratuita y descubre cómo puedo ayudarte a alcanzar tu máximo potencial
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/regalo"
-              className="btn-accent"
-            >
-              🎁 Comenzar Evaluación Gratuita
-=======
       {/* CTA Final */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4 text-center">
@@ -249,7 +223,6 @@ const Process = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/contacto" className="btn-primary hover-lift">
               Agenda tu Consulta Gratuita
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </Link>
             <Link to="/regalo" className="btn-outline hover-lift">
               Descarga la Guía Gratuita

@@ -4,54 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Olivia Mental Health - Elegant Design System */
+/* Automatización Empresarial - Paleta Tierra Profesional */
 
 @layer base {
   :root {
-    /* Sophisticated Green & Neutral Palette */
-    --primary: 158 25% 35%; /* Deep Forest Green #4a6741 */
-    --primary-foreground: 0 0% 98%; /* Pure White #fafafa */
+    /* Paleta de Colores Tierra Profesional */
+    --primary: 120 15% 29%; /* Verde Oscuro Profesional #4a5d4a */
+    --primary-foreground: 0 0% 94%; /* Blanco Nieve #f0f0f0 */
     
-    --secondary: 158 15% 85%; /* Soft Sage #d4e0d1 */
-    --secondary-foreground: 158 25% 25%;
+    --secondary: 120 10% 54%; /* Verde Sage #8a9a8a */
+    --secondary-foreground: 120 15% 20%;
     
-    --accent: 158 35% 45%; /* Vibrant Green #5a7c50 */
-    --accent-foreground: 0 0% 98%;
+    --accent: 30 45% 27%; /* Marrón Cálido #6b4423 */
+    --accent-foreground: 0 0% 94%;
     
-    --background: 0 0% 100%; /* Pure White */
-    --foreground: 158 25% 25%; /* Dark Green Text */
+    --background: 0 0% 94%; /* Blanco Nieve #f0f0f0 */
+    --foreground: 120 15% 20%; /* Texto Oscuro */
     
-    --muted: 158 10% 95%; /* Very Light Sage #f8faf8 */
-    --muted-foreground: 158 15% 45%; /* Medium Green Gray */
+    --muted: 40 20% 76%; /* Beige Suave #c4b5a0 */
+    --muted-foreground: 0 0% 54%; /* Gris Medio #8a8a8a */
     
-    --card: 0 0% 100%;
-    --card-foreground: 158 25% 25%;
+    --card: 0 0% 100%; /* Blanco Puro */
+    --card-foreground: 120 15% 20%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 158 25% 25%;
+    --popover-foreground: 120 15% 20%;
     
-    --border: 158 15% 90%; /* Light Green Border #e8f0e6 */
-    --input: 158 15% 90%;
-    --ring: 158 35% 45%;
+    --border: 40 20% 85%; /* Beige Claro */
+    --input: 40 20% 85%;
+    --ring: 120 15% 29%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     
     --radius: 16px;
     
-    /* Elegant Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(158 25% 35%), hsl(158 30% 40%));
-    --gradient-accent: linear-gradient(135deg, hsl(158 35% 45%), hsl(158 40% 50%));
-    --gradient-soft: linear-gradient(135deg, hsl(158 10% 95%), hsl(0 0% 100%));
-    --gradient-sage: linear-gradient(135deg, hsl(158 15% 85%), hsl(158 20% 90%));
+    /* Gradientes Tierra Elegantes */
+    --gradient-hero: linear-gradient(135deg, hsl(120 15% 29%), hsl(120 10% 54%));
+    --gradient-accent: linear-gradient(135deg, hsl(30 45% 27%), hsl(40 20% 76%));
+    --gradient-soft: linear-gradient(135deg, hsl(40 20% 76%), hsl(0 0% 94%));
+    --gradient-sage: linear-gradient(135deg, hsl(120 10% 54%), hsl(210 15% 60%));
     
-    /* Sophisticated Shadows */
-    --shadow-soft: 0 2px 8px 0 hsl(158 25% 35% / 0.08), 0 1px 3px 0 hsl(158 25% 35% / 0.04);
-    --shadow-medium: 0 8px 16px -4px hsl(158 25% 35% / 0.12), 0 4px 8px -2px hsl(158 25% 35% / 0.08);
-    --shadow-large: 0 24px 32px -8px hsl(158 25% 35% / 0.16), 0 12px 16px -4px hsl(158 25% 35% / 0.08);
-    --shadow-accent: 0 12px 20px -4px hsl(158 35% 45% / 0.15), 0 6px 12px -2px hsl(158 35% 45% / 0.08);
+    /* Sombras Sofisticadas */
+    --shadow-soft: 0 2px 8px 0 hsl(120 15% 29% / 0.08), 0 1px 3px 0 hsl(120 15% 29% / 0.04);
+    --shadow-medium: 0 8px 16px -4px hsl(120 15% 29% / 0.12), 0 4px 8px -2px hsl(120 15% 29% / 0.08);
+    --shadow-large: 0 24px 32px -8px hsl(120 15% 29% / 0.16), 0 12px 16px -4px hsl(120 15% 29% / 0.08);
+    --shadow-accent: 0 12px 20px -4px hsl(30 45% 27% / 0.15), 0 6px 12px -2px hsl(30 45% 27% / 0.08);
     
-    /* Fluid Animations */
+    /* Animaciones Fluidas */
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-fast: all 0.2s ease-out;
     --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -106,7 +106,12 @@
     @apply bg-background text-foreground font-body;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
+    @apply font-heading;
+    font-size: 5rem;
+  }
+  
+  h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
 }
@@ -143,7 +148,8 @@
   
   /* Enhanced Typography Sizes */
   .title-hero {
-    @apply text-7xl md:text-8xl lg:text-9xl font-display;
+    font-size: 5rem;
+    @apply font-display;
   }
   
   .title-section {
@@ -396,6 +402,46 @@
     }
   }
   
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-up {
+     from {
+       opacity: 0;
+       transform: translateY(20px);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+
+   @keyframes float {
+     0%, 100% {
+       transform: translateY(0px);
+     }
+     50% {
+       transform: translateY(-10px);
+     }
+   }
+
+   @keyframes glow {
+     0%, 100% {
+       box-shadow: 0 0 20px rgba(120, 113, 108, 0.3);
+     }
+     50% {
+       box-shadow: 0 0 30px rgba(120, 113, 108, 0.6);
+     }
+   }
+  
   /* Elegant Section Spacing */
   .section-padding {
     @apply py-20 md:py-28 lg:py-32;
@@ -517,7 +563,7 @@
   
   /* Enhanced Typography Styles */
   .title-gradient {
-    background: linear-gradient(135deg, hsl(158 35% 45%), hsl(158 45% 55%), hsl(158 25% 35%));
+    background: linear-gradient(135deg, hsl(120 15% 29%), hsl(30 45% 27%), hsl(120 10% 54%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -526,23 +572,39 @@
   
   .title-elegant {
     @apply font-display text-primary;
-    text-shadow: 0 2px 4px hsl(158 25% 35% / 0.1);
+    text-shadow: 0 2px 4px hsl(120 15% 29% / 0.1);
     letter-spacing: -0.025em;
   }
   
   .text-sophisticated {
     @apply font-body text-muted-foreground;
-    color: hsl(158 20% 40%);
+    color: hsl(120 10% 40%);
     line-height: 1.7;
     font-weight: 450;
   }
   
   .text-accent-warm {
-    color: hsl(158 35% 45%);
+    color: hsl(30 45% 27%);
     font-weight: 500;
   }
   
   .text-shadow-soft {
-    text-shadow: 0 1px 2px hsl(158 25% 35% / 0.08);
+    text-shadow: 0 1px 2px hsl(120 15% 29% / 0.08);
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
   }
 }

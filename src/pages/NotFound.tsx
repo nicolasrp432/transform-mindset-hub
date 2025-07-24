@@ -8,15 +8,6 @@ const NotFound = () => {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 title-elegant text-shadow-soft">404 - Página No Encontrada</h1>
-        <p className="text-xl text-sophisticated mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-=======
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="container-custom mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto">
@@ -63,7 +54,6 @@ const NotFound = () => {
             </Link>
           </div>
         </div>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
       </div>
     </div>
   );

@@ -216,7 +216,6 @@ const Testimonials = () => {
       {/* Estadísticas Generales */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4">
-<<<<<<< HEAD
           <div className="content-center mb-20">
             <h2 className="title-section text-foreground mb-8">
               Cómo Mido el Éxito de Mis Clientes
@@ -265,33 +264,6 @@ const Testimonials = () => {
               <p className="text-muted-foreground text-base">
                 Evaluaciones trimestrales durante el primer año post-proceso
               </p>
-=======
-          <div className="text-center mb-16">
-            <h2 className="title-section text-foreground mb-8">
-              Resultados que Hablan por Sí Solos
-            </h2>
-            <p className="text-body-large text-sophisticated content-balanced">
-              Datos recopilados de más de 200 procesos de coaching completados
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div className="p-8">
-              <div className="text-5xl font-bold text-primary mb-4">200+</div>
-              <p className="text-body-elegant text-muted-foreground">Clientes transformados</p>
-            </div>
-            <div className="p-8">
-              <div className="text-5xl font-bold text-accent mb-4">96%</div>
-              <p className="text-body-elegant text-muted-foreground">Tasa de satisfacción</p>
-            </div>
-            <div className="p-8">
-              <div className="text-5xl font-bold text-secondary mb-4">4.9</div>
-              <p className="text-body-elegant text-muted-foreground">Puntuación promedio</p>
-            </div>
-            <div className="p-8">
-              <div className="text-5xl font-bold text-muted-foreground mb-4">85%</div>
-              <p className="text-body-elegant text-muted-foreground">Recomiendan el servicio</p>
->>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </div>
           </div>
         </div>

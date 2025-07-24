@@ -49,14 +49,14 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-6">
               <button 
                 onClick={() => window.location.href = '/regalo'}
-                className="btn-cta scale-in inline-flex items-center gap-3"
+                className="btn-cta scale-in inline-flex items-center gap-3 px-8 py-4"
               >
                 <span className="text-2xl">🎁</span>
                 Recibe tu Guía Gratuita
               </button>
               <button 
                 onClick={scrollToContact}
-                className="btn-outline text-lg px-12 py-5 inline-flex items-center gap-3"
+                className="btn-outline text-lg px-8 py-4 inline-flex items-center gap-3"
               >
                 <span className="icon-medium">💬</span>
                 Trabajemos Juntos
@@ -65,7 +65,7 @@ const HeroSection = () => {
           </div>
 
           {/* Image */}
-          <div className="content-center">
+          <div className="content-center flex items-start pt-8">
             <div className="relative scale-in">
               {/* Professional Certification Badge */}
               <div className="absolute -top-6 -right-6 z-20 animate-bounce">
