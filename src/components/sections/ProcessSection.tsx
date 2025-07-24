@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../ui-elements/Button';
 import Card from '../ui-elements/Card';
 
@@ -66,9 +67,6 @@ const ProcessSection = () => {
             <Card 
               key={index}
               variant="elevated"
-              hover={true}
-              animate={true}
-              delay={index * 200 + 400}
               className="p-8 relative"
             >
               {/* Number Badge */}
@@ -116,7 +114,6 @@ const ProcessSection = () => {
             variant="secondary"
             size="large"
             onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
-            animate={true}
             className="hover-glow"
           >
             Comienza tu Evaluación Gratuita

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Mail, MapPin, Clock, Linkedin, Instagram } from 'lucide-react';
 import Button from '../ui-elements/Button';
 import Card from '../ui-elements/Card';
@@ -132,10 +133,7 @@ const ContactSection = () => {
           {/* CTA Section */}
           <Card 
             variant="glass" 
-            className="p-8 animate-slide-in-right animate-delay-500" 
-            hover={true}
-            animate={true}
-            delay="animate-delay-600"
+            className="p-8 animate-slide-in-right animate-delay-500"
           >
             <div className="text-center space-y-6">
               <h3 className="text-2xl font-heading font-bold text-primary-foreground animate-zoom-in animate-delay-700">
@@ -151,7 +149,6 @@ const ContactSection = () => {
                   size="lg"
                   onClick={() => window.open('mailto:ainaraunamunzagacoach@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
                   className="w-full hover-glow"
-                  animate={true}
                 >
                   Escribir Email Directo
                 </Button>
@@ -160,7 +157,6 @@ const ContactSection = () => {
                   size="lg"
                   onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
                   className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                  animate={true}
                 >
                   Comenzar con la Evaluación Gratuita
                 </Button>

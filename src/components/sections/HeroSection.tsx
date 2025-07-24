@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../ui-elements/Button';
 
 const HeroSection = () => {
@@ -52,20 +53,17 @@ const HeroSection = () => {
               <Button 
                 variant="accent"
                 size="lg"
-                icon="🎁"
                 onClick={() => window.location.href = '/regalo'}
-                animate={true}
                 className="scale-in"
               >
-                Recibe tu Guía Gratuita
+                🎁 Recibe tu Guía Gratuita
               </Button>
               <Button 
                 variant="outline"
                 size="lg"
-                icon="💬"
                 onClick={scrollToContact}
               >
-                Trabajemos Juntos
+                💬 Trabajemos Juntos
               </Button>
             </div>
           </div>

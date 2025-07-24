@@ -202,7 +202,7 @@ const GiftSection = () => {
       <section id="gift" className="gift-gradient section-padding">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <Card variant="default" className="p-12 animate-zoom-in" hover={true} animate={true}>
+            <Card variant="default" className="p-12 animate-zoom-in">
               <div className="text-6xl mb-6 animate-bounce-in animate-delay-200">🎉</div>
               <h2 className="text-3xl font-heading font-bold text-card-foreground mb-4 animate-slide-in-down animate-delay-300">
                 ¡Gracias por tu interés!
@@ -218,7 +218,6 @@ const GiftSection = () => {
                   variant="accent"
                   size="lg"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  animate={true}
                   className="hover-glow"
                 >
                   Contacto Directo
@@ -244,7 +243,7 @@ const GiftSection = () => {
             </p>
           </div>
 
-          <Card variant="default" className="p-8 md:p-12 animate-zoom-in animate-delay-400" hover={true} animate={true}>
+          <Card variant="default" className="p-8 md:p-12 animate-zoom-in animate-delay-400">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Basic Information */}
               <div className="grid md:grid-cols-2 gap-6 animate-slide-in-left animate-delay-500">
@@ -348,7 +347,6 @@ const GiftSection = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={`text-xl px-12 py-5 hover-glow ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  animate={true}
                 >
                   {isSubmitting ? (
                     <span className="flex items-center space-x-2">
