@@ -23,92 +23,88 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-primary/95 backdrop-blur-md shadow-elegant' 
-        : 'bg-primary'
-    }`}>
-      <nav className="container-custom mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <div className="container-custom px-4">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link 
-              to="/"
-              className="text-2xl font-heading font-bold text-primary-foreground hover:text-accent transition-fast"
-            >
-              AINARA
-            </Link>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-xl">
+              T
+            </div>
+            <span className="text-2xl font-heading font-bold text-foreground">
+              Transform Mindset Hub
+            </span>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-10">
             <Link 
               to="/"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
                 isActivePage('/') ? 'text-accent' : ''
               }`}
             >
               Inicio
             </Link>
             <Link 
-              to="/sobre-mi"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                isActivePage('/sobre-mi') ? 'text-accent' : ''
+              to="/about"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                isActivePage('/about') ? 'text-accent' : ''
               }`}
             >
               Sobre Mí
             </Link>
             <Link 
-              to="/servicios"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                isActivePage('/servicios') ? 'text-accent' : ''
+              to="/services"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                isActivePage('/services') ? 'text-accent' : ''
               }`}
             >
               Servicios
             </Link>
             <Link 
-              to="/mi-proceso"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                isActivePage('/mi-proceso') ? 'text-accent' : ''
+              to="/process"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                isActivePage('/process') ? 'text-accent' : ''
               }`}
             >
               Mi Proceso
             </Link>
             <Link 
-              to="/testimonios"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                isActivePage('/testimonios') ? 'text-accent' : ''
+              to="/testimonials"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                isActivePage('/testimonials') ? 'text-accent' : ''
               }`}
             >
               Testimonios
             </Link>
             <Link 
-              to="/regalo"
-              className={`text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                isActivePage('/regalo') ? 'text-accent' : ''
+              to="/gift"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                isActivePage('/gift') ? 'text-accent' : ''
               }`}
             >
               Regalo
             </Link>
-          </div>
+          </nav>
 
           {/* CTA Button */}
           <div className="hidden md:block">
             <Link 
-              to="/contacto"
-              className="btn-accent"
+              to="/comenzar"
+              className="btn-cta px-8 py-3 text-lg hover-lift"
             >
-              Contactar
+              Comenzar Ahora
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-primary-foreground p-2"
+          {/* Mobile menu button */}
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Abrir menú"
+            className="md:hidden p-3 text-sophisticated hover:text-accent transition-colors"
+            aria-label="Toggle menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="icon-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -118,68 +114,84 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-primary-foreground/20">
-            <div className="flex flex-col space-y-4 pt-4">
+          <div className="md:hidden bg-background border-b border-border">
+            <nav className="container-custom px-4 py-6 space-y-6">
               <Link 
                 to="/"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
                   isActivePage('/') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Inicio
               </Link>
               <Link 
-                to="/sobre-mi"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                  isActivePage('/sobre-mi') ? 'text-accent' : ''
+                to="/about"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/about') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Sobre Mí
               </Link>
               <Link 
-                to="/servicios"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                  isActivePage('/servicios') ? 'text-accent' : ''
+                to="/services"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/services') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Servicios
               </Link>
               <Link 
-                to="/mi-proceso"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                  isActivePage('/mi-proceso') ? 'text-accent' : ''
+                to="/process"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/process') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Mi Proceso
               </Link>
               <Link 
-                to="/testimonios"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                  isActivePage('/testimonios') ? 'text-accent' : ''
+                to="/testimonials"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/testimonials') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Testimonios
               </Link>
               <Link 
-                to="/regalo"
-                className={`text-left text-primary-foreground hover:text-accent transition-fast font-body font-medium ${
-                  isActivePage('/regalo') ? 'text-accent' : ''
+                to="/gift"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/gift') ? 'text-accent' : ''
                 }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Regalo
               </Link>
               <Link 
-                to="/contacto"
-                className="btn-accent mt-4"
+                to="/contact"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
+                  isActivePage('/contact') ? 'text-accent' : ''
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contactar
+                Contacto
               </Link>
-            </div>
+              <Link 
+                to="/comenzar"
+                className="block btn-cta px-8 py-3 text-lg mt-6 text-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Comenzar Ahora
+              </Link>
+            </nav>
           </div>
         )}
-      </nav>
+      </div>
     </header>
   );
 };
