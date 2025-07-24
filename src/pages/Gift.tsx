@@ -200,7 +200,11 @@ const Gift = () => {
             <div className="card-elegant p-8 hover-lift">
               <div className="text-accent text-2xl mb-4">"⭐⭐⭐⭐⭐"</div>
               <p className="text-body-elegant text-sophisticated mb-6 italic">
+<<<<<<< HEAD
                 "Increíble el nivel de detalle del análisis. Me sorprendió lo preciso que fue en identificar mis patrones emocionales."
+=======
+                "Increíble la precisión del análisis. Me dio una perspectiva completamente nueva sobre mis fortalezas y áreas de mejora como líder."
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
               </p>
               <cite className="text-card-foreground font-semibold">- Carlos R., CEO</cite>
             </div>
@@ -208,14 +212,19 @@ const Gift = () => {
             <div className="card-elegant p-8 hover-lift">
               <div className="text-accent text-2xl mb-4">"⭐⭐⭐⭐⭐"</div>
               <p className="text-body-elegant text-sophisticated mb-6 italic">
+<<<<<<< HEAD
                 "El plan de 90 días es oro puro. Cada semana veo mejoras en cómo manejo las situaciones difíciles con mi equipo."
+=======
+                "El plan de 90 días es oro puro. Cada semana veo mejoras en mi capacidad de gestionar mi equipo y mis propias emociones."
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
               </p>
-              <cite className="text-card-foreground font-semibold">- Laura S., Gerente General</cite>
+              <cite className="text-card-foreground font-semibold">- Laura S., Directora de Operaciones</cite>
             </div>
           </div>
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Formulario */}
       <div id="gift-form">
         <GiftSection />
@@ -272,6 +281,9 @@ const Gift = () => {
           </Link>
         </div>
       </section>
+=======
+      <GiftSection />
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
     </>
   );
 };

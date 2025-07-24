@@ -1,5 +1,7 @@
 import ServicesSection from '../components/ServicesSection';
-import { Link } from 'react-router-dom';
+import ModalitiesSection from '../components/ModalitiesSection';
+import IncludesSection from '../components/IncludesSection';
+import FAQSection from '../components/FAQSection';
 
 const Services = () => {
   return (
@@ -8,18 +10,27 @@ const Services = () => {
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
         <div className="container-custom">
           <div className="content-center mb-20">
+<<<<<<< HEAD
             <h1 className="title-hero text-foreground mb-10 title-gradient text-shadow-soft">
             Servicios de Coaching
           </h1>
             <p className="text-body-large leading-relaxed content-balanced text-sophisticated text-shadow-soft">
               Programas personalizados de coaching diseñados para transformar tu liderazgo 
               y potenciar tu inteligencia emocional desde la raíz.
+=======
+            <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
+              Servicios de Coaching
+            </h1>
+            <p className="text-body-large opacity-90 content-balanced text-sophisticated text-shadow-soft">
+              Programas personalizados que combinan Coaching, PNL e Inteligencia Emocional para tu crecimiento integral
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </p>
           </div>
         </div>
       </section>
 
       <ServicesSection />
+<<<<<<< HEAD
 
       {/* Información Adicional sobre Servicios */}
       <section className="py-20 bg-card">
@@ -185,6 +196,11 @@ const Services = () => {
           </div>
         </div>
       </section>
+=======
+      <ModalitiesSection />
+      <IncludesSection />
+      <FAQSection />
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
     </>
   );
 };

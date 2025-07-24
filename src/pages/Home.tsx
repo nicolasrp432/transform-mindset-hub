@@ -1,11 +1,13 @@
 import HeroSection from '../components/HeroSection';
-import CertificationsBar from '../components/CertificationsBar';
-import { Link } from 'react-router-dom';
+import AssessmentSection from '../components/AssessmentSection';
+import HowItWorksSection from '../components/HowItWorksSection';
+import CTASection from '../components/CTASection';
 
 const Home = () => {
   return (
     <>
       <HeroSection />
+<<<<<<< HEAD
       
       {/* Mental Health Assessment Section */}
       <section className="section-padding bg-soft-gradient">
@@ -174,6 +176,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+=======
+      <AssessmentSection />
+      <HowItWorksSection />
+      <CTASection />
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
     </>
   );
 };

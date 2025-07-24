@@ -198,12 +198,12 @@ const Testimonials = () => {
                       <p className="text-sm text-muted-foreground">Aumento en ventas</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-primary mb-1">85%</div>
-                      <p className="text-sm text-muted-foreground">Tasa de cierre mejorada</p>
+                      <div className="text-3xl font-bold text-primary mb-1">€500K</div>
+                      <p className="text-sm text-muted-foreground">Nuevos contratos cerrados</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-secondary mb-1">#1</div>
-                      <p className="text-sm text-muted-foreground">Directora comercial del año</p>
+                      <div className="text-3xl font-bold text-secondary mb-1">95%</div>
+                      <p className="text-sm text-muted-foreground">Tasa de éxito en presentaciones</p>
                     </div>
                   </div>
                 </div>
@@ -213,9 +213,10 @@ const Testimonials = () => {
         </div>
       </section>
 
-      {/* Metodología de Seguimiento */}
+      {/* Estadísticas Generales */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4">
+<<<<<<< HEAD
           <div className="content-center mb-20">
             <h2 className="title-section text-foreground mb-8">
               Cómo Mido el Éxito de Mis Clientes
@@ -264,32 +265,53 @@ const Testimonials = () => {
               <p className="text-muted-foreground text-base">
                 Evaluaciones trimestrales durante el primer año post-proceso
               </p>
+=======
+          <div className="text-center mb-16">
+            <h2 className="title-section text-foreground mb-8">
+              Resultados que Hablan por Sí Solos
+            </h2>
+            <p className="text-body-large text-sophisticated content-balanced">
+              Datos recopilados de más de 200 procesos de coaching completados
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div className="p-8">
+              <div className="text-5xl font-bold text-primary mb-4">200+</div>
+              <p className="text-body-elegant text-muted-foreground">Clientes transformados</p>
+            </div>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-accent mb-4">96%</div>
+              <p className="text-body-elegant text-muted-foreground">Tasa de satisfacción</p>
+            </div>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-secondary mb-4">4.9</div>
+              <p className="text-body-elegant text-muted-foreground">Puntuación promedio</p>
+            </div>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-muted-foreground mb-4">85%</div>
+              <p className="text-body-elegant text-muted-foreground">Recomiendan el servicio</p>
+>>>>>>> ab5ec508cd7e68798cad2ab23e1219f6ab0a7a5c
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* CTA Final */}
+      <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4 text-center">
-          <h2 className="text-3xl font-heading font-bold mb-6">
-            ¿Quieres Ser el Próximo Caso de Éxito?
+          <h2 className="title-section text-card-foreground mb-8">
+            ¿Listo para Ser el Próximo Caso de Éxito?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Únete a los profesionales que ya han transformado su liderazgo y alcanzado resultados extraordinarios
+          <p className="text-body-large text-sophisticated mb-12 content-balanced">
+            Únete a los profesionales que ya han transformado su liderazgo y vida personal
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/regalo"
-              className="btn-accent"
-            >
-              🎁 Comenzar Evaluación Gratuita
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link to="/contacto" className="btn-primary hover-lift">
+              Comienza tu Transformación
             </Link>
-            <Link
-              to="/contacto"
-              className="btn-secondary"
-            >
-              Conversemos sobre tu Caso
+            <Link to="/proceso" className="btn-outline hover-lift">
+              Conoce el Proceso
             </Link>
           </div>
         </div>

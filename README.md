@@ -1,73 +1,116 @@
-# Welcome to your Lovable project
+# Transform Mindset Hub - Ainara Coach
 
-## Project info
+## 🌟 Descripción del Proyecto
 
-**URL**: https://lovable.dev/projects/dace00c8-95c3-440c-8864-c8af47d585af
+Sitio web profesional para **Ainara Unamunzaga**, Coach especializada en Inteligencia Emocional y PNL. Una plataforma elegante y moderna que refleja la transformación consciente y el crecimiento personal.
 
-## How can I edit this code?
+## 🚀 Características Principales
 
-There are several ways of editing your application.
+- **Diseño Elegante**: Interfaz moderna con paleta de colores sofisticada (verde sage, azul profundo, dorado cálido)
+- **Responsive Design**: Optimizado para todos los dispositivos (mobile-first)
+- **Formularios Interactivos**: Sistema de evaluación y contacto integrado
+- **Animaciones Fluidas**: Transiciones suaves y efectos visuales elegantes
+- **SEO Optimizado**: Meta tags, Schema.org y Open Graph implementados
+- **Accesibilidad**: Cumple con estándares WCAG
 
-**Use Lovable**
+## 🛠️ Tecnologías Utilizadas
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dace00c8-95c3-440c-8864-c8af47d585af) and start prompting.
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + CSS Custom Properties
+- **UI Components**: Radix UI + shadcn/ui
+- **Routing**: React Router DOM
+- **Build Tool**: Vite
+- **Forms**: React Hook Form + Zod
+- **Icons**: Lucide React
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📦 Instalación y Desarrollo
 
-**Use your preferred IDE**
+```bash
+# Clonar el repositorio
+git clone https://github.com/nicolasrp432/transform-mindset-hub.git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+# Navegar al directorio
+cd transform-mindset-hub
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Instalar dependencias
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Iniciar servidor de desarrollo
 npm run dev
+
+# Construir para producción
+npm run build
+
+# Vista previa de producción
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 🎨 Sistema de Diseño
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Paleta de Colores
+- **Primary**: Deep Forest Green (#4a6741)
+- **Secondary**: Soft Sage (#d4e0d1)
+- **Accent**: Vibrant Green (#5a7c50)
+- **Background**: Pure White (#ffffff)
+- **Muted**: Very Light Sage (#f8faf8)
 
-**Use GitHub Codespaces**
+### Tipografía
+- **Heading**: Playfair Display (serif)
+- **Body**: Inter (sans-serif)
+- **Accent**: Lora (serif italic)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📱 Estructura del Proyecto
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Componentes reutilizables
+│   ├── ui/             # Componentes base de shadcn/ui
+│   ├── Header.tsx      # Navegación principal
+│   ├── Footer.tsx      # Pie de página
+│   └── Layout.tsx      # Layout principal
+├── pages/              # Páginas de la aplicación
+│   ├── Home.tsx        # Página principal
+│   ├── AboutMe.tsx     # Sobre Ainara
+│   ├── Services.tsx    # Servicios ofrecidos
+│   ├── Process.tsx     # Proceso de coaching
+│   ├── Testimonials.tsx # Testimonios
+│   ├── Gift.tsx        # Regalo/Evaluación
+│   ├── Contact.tsx     # Contacto
+│   └── Comenzar.tsx    # Página de inicio del proceso
+├── hooks/              # Custom hooks
+├── lib/                # Utilidades
+└── assets/             # Recursos estáticos
+```
 
-This project is built with:
+## 🌐 Páginas Principales
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. **Home** (`/`) - Página principal con hero section
+2. **Sobre Mí** (`/sobre-mi`) - Información sobre Ainara
+3. **Servicios** (`/servicios`) - Servicios de coaching
+4. **Mi Proceso** (`/mi-proceso`) - Metodología de trabajo
+5. **Testimonios** (`/testimonios`) - Experiencias de clientes
+6. **Regalo** (`/regalo`) - Evaluación gratuita
+7. **Contacto** (`/contacto`) - Información de contacto
+8. **Comenzar** (`/comenzar`) - Inicio del proceso
 
-## How can I deploy this project?
+## 🎯 Funcionalidades Clave
 
-Simply open [Lovable](https://lovable.dev/projects/dace00c8-95c3-440c-8864-c8af47d585af) and click on Share -> Publish.
+- **Formulario de Evaluación**: Sistema interactivo de autoevaluación
+- **Navegación Intuitiva**: Menú responsive con enlaces directos
+- **Call-to-Actions**: Botones estratégicamente ubicados
+- **Testimonios Dinámicos**: Carrusel de experiencias reales
+- **Información de Contacto**: Múltiples canales de comunicación
 
-## Can I connect a custom domain to my Lovable project?
+## 📧 Contacto
 
-Yes, you can!
+- **Email**: ainaraunamunzagacoach@gmail.com
+- **Ubicación**: Zaratamo 48480, Bilbao, España
+- **Especialidades**: Coaching Personal, Coaching Ejecutivo, PNL, Inteligencia Emocional, Reiki
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📄 Licencia
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Este proyecto es privado y pertenece a Ainara Unamunzaga Coach.
+
+---
+
+**Desarrollado con ❤️ para transformar vidas a través del coaching consciente**
