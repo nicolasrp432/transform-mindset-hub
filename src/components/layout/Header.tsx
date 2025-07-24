@@ -31,11 +31,6 @@ const Header = () => {
         <div className="flex items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-4">
-            <img 
-              src="/Recurso 5-8.png" 
-              alt="Ainara Coach Logo" 
-              className="h-12 w-auto object-contain"
-            />
             <span className="text-2xl font-heading font-bold text-foreground">
               Ainara Coach
             </span>

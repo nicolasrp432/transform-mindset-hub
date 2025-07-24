@@ -127,7 +127,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border pt-10 mt-12 text-center">
-          <p className="text-body-elegant text-sophisticated">
+          <p className="text-body-elegant text-accent">
             © 2024 Transform Mindset Hub. Todos los derechos reservados.
           </p>
         </div>

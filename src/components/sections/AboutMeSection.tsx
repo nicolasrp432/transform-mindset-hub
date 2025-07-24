@@ -1,5 +1,6 @@
 import { Heart, Users, Award, BookOpen, Lightbulb, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const AboutMeSection = () => {
   const journey = [
@@ -144,7 +145,13 @@ const AboutMeSection = () => {
         </div>
 
         {/* Journey Timeline */}
-        <div className="mb-20">
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="content-center mb-16">
             <h3 className="title-card font-semibold text-foreground mb-4">
               Mi Camino hacia la Transformación Consciente
@@ -156,27 +163,59 @@ const AboutMeSection = () => {
           
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary to-accent h-full hidden lg:block"></div>
+            <motion.div 
+              className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary to-accent h-full hidden lg:block"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
+              style={{ transformOrigin: "top" }}
+            ></motion.div>
             
             <div className="space-y-12">
               {journey.map((item, index) => (
-                <div key={index} className={`flex items-center gap-8 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                <motion.div 
+                  key={index} 
+                  className={`flex items-center gap-8 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: "easeOut", 
+                    delay: index * 0.2 + 0.5 
+                  }}
+                  viewport={{ once: true, amount: 0.5 }}
+                >
                   <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                    <div className="card-elegant p-6">
+                    <motion.div 
+                      className="card-elegant p-6"
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <div className="text-primary font-bold text-lg mb-2">{item.year}</div>
                       <h4 className="font-semibold text-foreground mb-3">{item.title}</h4>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </div>
+                    </motion.div>
                   </div>
                   
-                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg flex-shrink-0 hidden lg:block"></div>
+                  <motion.div 
+                    className="w-4 h-4 bg-primary rounded-full border-4 border-white shadow-lg flex-shrink-0 hidden lg:block"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      ease: "easeOut", 
+                      delay: index * 0.2 + 0.7 
+                    }}
+                    viewport={{ once: true, amount: 0.5 }}
+                  ></motion.div>
                   
                   <div className="flex-1 hidden lg:block"></div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Values */}
         <div className="mb-20">
