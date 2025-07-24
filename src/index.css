@@ -1,57 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Ainara Unamunzaga Coaching - Design System */
+/* Olivia Mental Health - Elegant Design System */
 
 @layer base {
   :root {
-    /* Ainara's Brand Colors */
-    --primary: 218 60% 23%; /* Azul Profundo #1B365D */
-    --primary-foreground: 45 33% 96%; /* Blanco Nieve #FAFAFA */
+    /* Sophisticated Green & Neutral Palette */
+    --primary: 158 25% 35%; /* Deep Forest Green #4a6741 */
+    --primary-foreground: 0 0% 98%; /* Pure White #fafafa */
     
-    --secondary: 129 17% 54%; /* Verde Sage #7A9B7F */
-    --secondary-foreground: 218 60% 23%;
+    --secondary: 158 15% 85%; /* Soft Sage #d4e0d1 */
+    --secondary-foreground: 158 25% 25%;
     
-    --accent: 45 79% 52%; /* Dorado Cálido #D4AF37 */
-    --accent-foreground: 218 60% 23%;
+    --accent: 158 35% 45%; /* Vibrant Green #5a7c50 */
+    --accent-foreground: 0 0% 98%;
     
-    --background: 45 33% 96%; /* Blanco Nieve #FAFAFA */
-    --foreground: 218 60% 23%;
+    --background: 0 0% 100%; /* Pure White */
+    --foreground: 158 25% 25%; /* Dark Green Text */
     
-    --muted: 0 0% 96%; /* Gris Perla #F5F5F5 */
-    --muted-foreground: 218 20% 40%;
+    --muted: 158 10% 95%; /* Very Light Sage #f8faf8 */
+    --muted-foreground: 158 15% 45%; /* Medium Green Gray */
     
     --card: 0 0% 100%;
-    --card-foreground: 218 60% 23%;
+    --card-foreground: 158 25% 25%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 218 60% 23%;
+    --popover-foreground: 158 25% 25%;
     
-    --border: 218 20% 85%;
-    --input: 218 20% 90%;
-    --ring: 45 79% 52%;
+    --border: 158 15% 90%; /* Light Green Border #e8f0e6 */
+    --input: 158 15% 90%;
+    --ring: 158 35% 45%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     
-    --radius: 15px;
+    --radius: 16px;
     
-    /* Brand Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
-    --gradient-gift: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
-    --gradient-accent: linear-gradient(45deg, hsl(var(--accent)), hsl(45 79% 60%));
+    /* Elegant Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(158 25% 35%), hsl(158 30% 40%));
+    --gradient-accent: linear-gradient(135deg, hsl(158 35% 45%), hsl(158 40% 50%));
+    --gradient-soft: linear-gradient(135deg, hsl(158 10% 95%), hsl(0 0% 100%));
+    --gradient-sage: linear-gradient(135deg, hsl(158 15% 85%), hsl(158 20% 90%));
     
-    /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.15);
-    --shadow-card: 0 4px 20px -5px hsl(var(--primary) / 0.1);
-    --shadow-gold: 0 0 20px hsl(var(--accent) / 0.3);
+    /* Sophisticated Shadows */
+    --shadow-soft: 0 2px 8px 0 hsl(158 25% 35% / 0.08), 0 1px 3px 0 hsl(158 25% 35% / 0.04);
+    --shadow-medium: 0 8px 16px -4px hsl(158 25% 35% / 0.12), 0 4px 8px -2px hsl(158 25% 35% / 0.08);
+    --shadow-large: 0 24px 32px -8px hsl(158 25% 35% / 0.16), 0 12px 16px -4px hsl(158 25% 35% / 0.08);
+    --shadow-accent: 0 12px 20px -4px hsl(158 35% 45% / 0.15), 0 6px 12px -2px hsl(158 35% 45% / 0.08);
     
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: all 0.15s ease-out;
+    /* Fluid Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-fast: all 0.2s ease-out;
+    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-elegant: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .dark {
@@ -108,42 +112,118 @@
 }
 
 @layer components {
-  /* Brand Typography Classes */
+  /* Elegant Typography Classes */
   .font-heading {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
   
   .font-body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.6;
   }
   
   .font-accent {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.01em;
   }
   
-  /* Brand Specific Components */
+  .font-display {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  
+  /* Enhanced Typography Sizes */
+  .title-hero {
+    @apply text-7xl md:text-8xl lg:text-9xl font-display;
+  }
+  
+  .title-section {
+    @apply text-5xl md:text-6xl lg:text-7xl font-heading;
+  }
+  
+  .title-card {
+    @apply text-2xl md:text-3xl lg:text-4xl font-heading;
+  }
+  
+  .text-body-large {
+    @apply text-lg md:text-xl lg:text-2xl font-body;
+  }
+  
+  .text-body-elegant {
+    @apply text-base md:text-lg font-body leading-relaxed;
+  }
+  
+  /* Icon Sizes */
+  .icon-small {
+    @apply w-4 h-4;
+  }
+  
+  .icon-medium {
+    @apply w-5 h-5;
+  }
+  
+  .icon-large {
+    @apply w-6 h-6;
+  }
+  
+  .icon-hero {
+    @apply w-8 h-8;
+  }
+  
+  /* Elegant Component Styles */
   .hero-gradient {
     background: var(--gradient-hero);
-  }
-  
-  .gift-gradient {
-    background: var(--gradient-gift);
   }
   
   .accent-gradient {
     background: var(--gradient-accent);
   }
   
-  .shadow-elegant {
-    box-shadow: var(--shadow-elegant);
+  .soft-gradient {
+    background: var(--gradient-soft);
   }
   
-  .shadow-card {
-    box-shadow: var(--shadow-card);
+  .sage-gradient {
+    background: var(--gradient-sage);
   }
   
-  .shadow-gold {
-    box-shadow: var(--shadow-gold);
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .card-elegant {
+    @apply bg-card rounded-2xl border border-border shadow-soft hover:shadow-medium transition-elegant;
+  }
+  
+  .section-elegant {
+    @apply py-24 px-6 md:px-12 lg:px-16;
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .shadow-large {
+    box-shadow: var(--shadow-large);
+  }
+  
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
   }
   
   .transition-smooth {
@@ -154,55 +234,96 @@
     transition: var(--transition-fast);
   }
   
-  /* Coaching Brand Animations */
-  .pulse-gentle {
-    animation: pulse-gentle 3s ease-in-out infinite;
+  .transition-elegant {
+    transition: var(--transition-elegant);
   }
   
-  .float-up {
-    animation: float-up 0.6s ease-out forwards;
+  /* Elegant Animations */
+  .pulse-gentle {
+    animation: pulse-gentle 5s ease-in-out infinite;
+  }
+  
+  .fade-in {
+    animation: fade-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
   
   .slide-in-up {
-    animation: slide-in-up 0.5s ease-out forwards;
+    animation: slide-in-up 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
   
-  /* Hover Effects */
+  .scale-in {
+    animation: scale-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .glow {
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  .slide-in-left {
+    animation: slide-in-left 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  .slide-in-right {
+    animation: slide-in-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  
+  /* Elegant Hover Effects */
   .hover-lift {
-    @apply transition-smooth hover:-translate-y-2 hover:shadow-card;
+    @apply transition-elegant hover:-translate-y-2 hover:shadow-medium;
   }
   
-  .hover-gold {
-    @apply transition-smooth hover:shadow-gold;
+  .hover-accent {
+    @apply transition-elegant hover:shadow-accent;
   }
   
+  .hover-glow {
+    @apply transition-elegant hover:shadow-accent hover:scale-105;
+  }
+  
+  /* Sophisticated Button Styles */
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-primary/90 hover:-translate-y-1 shadow-card hover:shadow-elegant;
+    @apply bg-primary text-primary-foreground px-10 py-4 rounded-2xl font-body font-medium text-base transition-elegant hover:bg-primary/90 hover:-translate-y-1 shadow-soft hover:shadow-medium;
   }
   
   .btn-accent {
-    @apply bg-accent text-accent-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-accent/90 hover:-translate-y-1 shadow-gold;
+    @apply bg-accent text-accent-foreground px-10 py-4 rounded-2xl font-body font-medium text-base transition-elegant hover:bg-accent/90 hover:-translate-y-1 shadow-accent hover:shadow-large;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-2xl font-heading font-semibold text-lg transition-smooth hover:bg-secondary/90 hover:-translate-y-1 shadow-card;
+    @apply bg-secondary text-secondary-foreground px-10 py-4 rounded-2xl font-body font-medium text-base transition-elegant hover:bg-secondary/80 hover:-translate-y-1 shadow-soft hover:shadow-medium border border-border;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent text-primary border-2 border-primary px-10 py-4 rounded-2xl font-body font-medium text-base transition-elegant hover:bg-primary hover:text-primary-foreground hover:-translate-y-1 shadow-soft hover:shadow-medium;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-primary px-8 py-3 rounded-xl font-body font-medium text-base transition-elegant hover:bg-muted hover:-translate-y-0.5;
+  }
+  
+  .btn-cta {
+    @apply bg-gradient-to-r from-accent to-primary text-white px-12 py-5 rounded-2xl font-body font-semibold text-lg transition-elegant hover:scale-105 hover:-translate-y-1 shadow-accent hover:shadow-large;
   }
 }
 
 @layer utilities {
-  /* Custom Keyframe Animations */
+  /* Elegant Keyframe Animations */
   @keyframes pulse-gentle {
     0%, 100% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.3);
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.15);
     }
     50% {
       transform: scale(1.02);
-      box-shadow: 0 0 0 10px hsl(var(--accent) / 0);
+      box-shadow: 0 0 0 20px hsl(var(--accent) / 0);
     }
   }
   
-  @keyframes float-up {
+  @keyframes fade-in {
     from {
       opacity: 0;
       transform: translateY(30px);
@@ -224,12 +345,204 @@
     }
   }
   
-  /* Section Spacing */
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--accent) / 0.2);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--accent) / 0.4);
+    }
+  }
+  
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Elegant Section Spacing */
   .section-padding {
-    @apply py-20 px-4 md:px-8 lg:px-12;
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  
+  .section-padding-small {
+    @apply py-12 md:py-16 lg:py-20;
   }
   
   .container-custom {
-    @apply max-w-6xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 md:px-6 lg:px-8;
+  }
+  
+  /* Elegant Grid Layouts */
+  .grid-elegant {
+    @apply grid gap-8 md:gap-12 lg:gap-16;
+  }
+  
+  .grid-cards {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10;
+  }
+  
+  .grid-features {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center;
+  }
+  
+  .grid-testimonials {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+  
+  .grid-services {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16;
+  }
+  
+  /* Image Alignment */
+  .image-elegant {
+    @apply rounded-2xl shadow-soft object-cover;
+  }
+  
+  .image-hero {
+    @apply rounded-3xl shadow-large object-cover;
+  }
+  
+  /* Content Alignment */
+  .content-center {
+    @apply flex flex-col items-center text-center;
+  }
+  
+  .content-left {
+    @apply flex flex-col items-start text-left;
+  }
+  
+  .content-balanced {
+    @apply max-w-4xl mx-auto;
+  }
+  
+  /* Spacing Utilities */
+  .space-elegant > * + * {
+    @apply mt-6 md:mt-8;
+  }
+  
+  .space-tight > * + * {
+    @apply mt-3 md:mt-4;
+  }
+  
+  .space-loose > * + * {
+    @apply mt-8 md:mt-12;
+  }
+  .section-padding {
+    @apply py-24 px-6 md:px-12 lg:px-16;
+  }
+  
+  .section-hero {
+    @apply py-32 px-6 md:px-12 lg:px-16;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .container-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+  
+  .container-wide {
+    @apply max-w-8xl mx-auto;
+  }
+  
+  /* Elegant Spacing Utilities */
+  .space-elegant {
+    @apply space-y-8 md:space-y-12 lg:space-y-16;
+  }
+  
+  .gap-elegant {
+    @apply gap-8 md:gap-12 lg:gap-16;
+  }
+  
+  /* Text Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-elegant {
+    @apply text-lg leading-relaxed text-muted-foreground;
+  }
+  
+  /* Modern Grid Layouts */
+  .grid-elegant {
+    @apply grid gap-8 md:gap-12 lg:gap-16;
+  }
+  
+  .grid-cards {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+  
+  .grid-features {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16;
+  }
+  
+  /* Enhanced Typography Styles */
+  .title-gradient {
+    background: linear-gradient(135deg, hsl(158 35% 45%), hsl(158 45% 55%), hsl(158 25% 35%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .title-elegant {
+    @apply font-display text-primary;
+    text-shadow: 0 2px 4px hsl(158 25% 35% / 0.1);
+    letter-spacing: -0.025em;
+  }
+  
+  .text-sophisticated {
+    @apply font-body text-muted-foreground;
+    color: hsl(158 20% 40%);
+    line-height: 1.7;
+    font-weight: 450;
+  }
+  
+  .text-accent-warm {
+    color: hsl(158 35% 45%);
+    font-weight: 500;
+  }
+  
+  .text-shadow-soft {
+    text-shadow: 0 1px 2px hsl(158 25% 35% / 0.08);
   }
 }
