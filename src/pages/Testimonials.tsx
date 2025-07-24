@@ -6,13 +6,15 @@ const Testimonials = () => {
     <>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-        <div className="container-custom mx-auto px-4 text-center">
-          <h1 className="text-5xl font-heading font-bold mb-6">
-            Testimonios de Transformación
-          </h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
-            Historias reales de profesionales que han transformado su liderazgo y vida personal a través de mi metodología
-          </p>
+        <div className="container-custom">
+          <div className="content-center mb-20">
+            <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
+              Testimonios de Transformación
+            </h1>
+            <p className="text-body-large leading-relaxed content-balanced text-sophisticated text-shadow-soft opacity-90">
+              Historias reales de profesionales que han transformado su liderazgo y vida personal a través de mi metodología
+            </p>
+          </div>
         </div>
       </section>
 
@@ -21,18 +23,18 @@ const Testimonials = () => {
       {/* Casos de Éxito Detallados */}
       <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-card-foreground mb-6">
+          <div className="content-center mb-20">
+            <h2 className="title-section text-card-foreground mb-8">
               Casos de Éxito Detallados
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body-large text-muted-foreground content-balanced">
               Profundiza en las transformaciones reales que mis clientes han experimentado
             </p>
           </div>
 
           <div className="space-y-12">
             {/* Caso 1 */}
-            <div className="bg-background p-8 rounded-3xl border border-border">
+            <div className="card-elegant p-10 hover-lift">
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <div className="flex items-center space-x-4 mb-6">
@@ -65,7 +67,7 @@ const Testimonials = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-card p-6 rounded-2xl border border-border">
+                <div className="bg-card p-8 rounded-2xl border border-border">
                   <h4 className="font-semibold text-card-foreground mb-4">Métricas de Transformación</h4>
                   <div className="space-y-3">
                     <div>
@@ -101,7 +103,7 @@ const Testimonials = () => {
             </div>
 
             {/* Caso 2 */}
-            <div className="bg-background p-8 rounded-3xl border border-border">
+            <div className="card-elegant p-10 hover-lift">
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <div className="flex items-center space-x-4 mb-6">
@@ -134,7 +136,7 @@ const Testimonials = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-card p-6 rounded-2xl border border-border">
+                <div className="bg-card p-8 rounded-2xl border border-border">
                   <h4 className="font-semibold text-card-foreground mb-4">Resultados Empresariales</h4>
                   <div className="space-y-4">
                     <div className="text-center">
@@ -155,7 +157,7 @@ const Testimonials = () => {
             </div>
 
             {/* Caso 3 */}
-            <div className="bg-background p-8 rounded-3xl border border-border">
+            <div className="card-elegant p-10 hover-lift">
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <div className="flex items-center space-x-4 mb-6">
@@ -188,7 +190,7 @@ const Testimonials = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-card p-6 rounded-2xl border border-border">
+                <div className="bg-card p-8 rounded-2xl border border-border">
                   <h4 className="font-semibold text-card-foreground mb-4">Impacto Comercial</h4>
                   <div className="space-y-4">
                     <div className="text-center">
@@ -214,52 +216,52 @@ const Testimonials = () => {
       {/* Metodología de Seguimiento */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-foreground mb-6">
+          <div className="content-center mb-20">
+            <h2 className="title-section text-foreground mb-8">
               Cómo Mido el Éxito de Mis Clientes
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body-large text-muted-foreground content-balanced">
               Utilizo métricas objetivas y evaluaciones 360° para garantizar transformaciones reales y medibles
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6">
+            <div className="text-center p-8">
               <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4">
                 📊
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Evaluaciones Pre/Post</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-3">Evaluaciones Pre/Post</h3>
+              <p className="text-muted-foreground text-base">
                 Medición objetiva de competencias antes y después del proceso
               </p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="text-center p-8">
               <div className="w-16 h-16 bg-accent text-accent-foreground rounded-full flex items-center justify-center mx-auto mb-4">
                 360°
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Feedback 360°</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-3">Feedback 360°</h3>
+              <p className="text-muted-foreground text-base">
                 Evaluación de colegas, supervisores y equipos sobre el progreso
               </p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="text-center p-8">
               <div className="w-16 h-16 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center mx-auto mb-4">
                 📈
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">KPIs Específicos</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-3">KPIs Específicos</h3>
+              <p className="text-muted-foreground text-base">
                 Indicadores personalizados según objetivos profesionales
               </p>
             </div>
 
-            <div className="text-center p-6">
+            <div className="text-center p-8">
               <div className="w-16 h-16 bg-muted text-muted-foreground rounded-full flex items-center justify-center mx-auto mb-4">
                 📝
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">Seguimiento Continuo</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-3">Seguimiento Continuo</h3>
+              <p className="text-muted-foreground text-base">
                 Evaluaciones trimestrales durante el primer año post-proceso
               </p>
             </div>

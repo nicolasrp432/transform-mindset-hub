@@ -6,13 +6,15 @@ const Process = () => {
     <>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-        <div className="container-custom mx-auto px-4 text-center">
-          <h1 className="text-5xl font-heading font-bold mb-6">
+        <div className="container-custom">
+          <div className="content-center mb-20">
+            <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
             Mi Proceso de Transformación Consciente
           </h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+            <p className="text-body-large opacity-90 content-balanced text-sophisticated text-shadow-soft">
             Una metodología probada que integra Coaching, PNL e Inteligencia Emocional para generar cambios profundos y duraderos
           </p>
+          </div>
         </div>
       </section>
 
@@ -21,25 +23,25 @@ const Process = () => {
       {/* Metodología Detallada */}
       <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-card-foreground mb-6">
+          <div className="content-center mb-20">
+            <h2 className="title-section text-card-foreground mb-8">
               La Ciencia Detrás del Proceso
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body-large text-sophisticated content-balanced">
               Mi metodología combina las últimas investigaciones en neurociencia, psicología positiva e inteligencia emocional
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="p-8 bg-background rounded-2xl border border-border">
+          <div className="grid-elegant grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="card-elegant p-10 bg-background rounded-2xl border border-border hover-lift">
               <div className="text-4xl mb-4">🧠</div>
-              <h3 className="text-2xl font-heading font-semibold text-foreground mb-4">
+              <h3 className="title-card text-foreground mb-6">
                 Neuroplasticidad
               </h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-body-elegant text-sophisticated mb-6">
                 Aprovechamos la capacidad del cerebro para formar nuevas conexiones neuronales, creando patrones de pensamiento más efectivos.
               </p>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-4 text-body-elegant text-muted-foreground">
                 <li className="flex items-start space-x-2">
                   <span className="text-accent">•</span>
                   <span>Reprogramación de creencias limitantes</span>
@@ -57,10 +59,10 @@ const Process = () => {
 
             <div className="p-8 bg-background rounded-2xl border border-border">
               <div className="text-4xl mb-4">❤️</div>
-              <h3 className="text-2xl font-heading font-semibold text-foreground mb-4">
+              <h3 className="title-card text-foreground mb-6">
                 Inteligencia Emocional
               </h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-body-elegant text-sophisticated mb-6">
                 Desarrollamos las cinco competencias fundamentales para la gestión emocional efectiva y el liderazgo auténtico.
               </p>
               <ul className="space-y-2 text-muted-foreground">
@@ -81,10 +83,10 @@ const Process = () => {
 
             <div className="p-8 bg-background rounded-2xl border border-border">
               <div className="text-4xl mb-4">🔄</div>
-              <h3 className="text-2xl font-heading font-semibold text-foreground mb-4">
+              <h3 className="title-card text-foreground mb-6">
                 PNL Aplicada
               </h3>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-body-elegant text-sophisticated mb-6">
                 Utilizamos técnicas de Programación Neurolingüística para acelerar el cambio y asegurar la integración de nuevos patrones.
               </p>
               <ul className="space-y-2 text-muted-foreground">
@@ -109,11 +111,11 @@ const Process = () => {
       {/* Timeline del Proceso */}
       <section className="py-20 bg-background">
         <div className="container-custom mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-foreground mb-6">
+          <div className="content-center mb-20">
+            <h2 className="title-section text-foreground mb-8">
               Cronograma Típico de Transformación
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body-large text-sophisticated content-balanced">
               Cada proceso es único, pero aquí tienes una guía general de lo que puedes esperar en tu viaje de transformación
             </p>
           </div>
@@ -125,8 +127,8 @@ const Process = () => {
                   1
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Semanas 1-2: Diagnóstico y Conexión</h3>
-                  <p className="text-muted-foreground mb-3">
+                  <h3 className="title-card text-foreground mb-3">Semanas 1-2: Diagnóstico y Conexión</h3>
+                  <p className="text-body-elegant text-sophisticated mb-4">
                     Evaluación completa, establecimiento de rapport y definición de objetivos específicos.
                   </p>
                   <div className="text-sm text-accent">✓ Evaluación 360° • ✓ Plan personalizado • ✓ Primeras herramientas</div>
@@ -138,8 +140,8 @@ const Process = () => {
                   2
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Semanas 3-8: Desarrollo Intensivo</h3>
-                  <p className="text-muted-foreground mb-3">
+                  <h3 className="title-card text-foreground mb-3">Semanas 3-8: Desarrollo Intensivo</h3>
+                  <p className="text-body-elegant text-sophisticated mb-4">
                     Trabajo profundo en patrones limitantes, desarrollo de nuevas competencias y práctica intensiva.
                   </p>
                   <div className="text-sm text-accent">✓ Sesiones semanales • ✓ Ejercicios prácticos • ✓ Seguimiento continuo</div>
@@ -151,8 +153,8 @@ const Process = () => {
                   3
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Semanas 9-16: Implementación Activa</h3>
-                  <p className="text-muted-foreground mb-3">
+                  <h3 className="title-card text-foreground mb-3">Semanas 9-16: Implementación Activa</h3>
+                  <p className="text-body-elegant text-sophisticated mb-4">
                     Aplicación real en tu entorno profesional y personal, con ajustes y optimización continua.
                   </p>
                   <div className="text-sm text-accent">✓ Práctica real • ✓ Feedback constante • ✓ Resolución de desafíos</div>
@@ -164,8 +166,8 @@ const Process = () => {
                   4
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Semanas 17-24: Integración y Autonomía</h3>
-                  <p className="text-muted-foreground mb-3">
+                  <h3 className="title-card text-foreground mb-3">Semanas 17-24: Integración y Autonomía</h3>
+                  <p className="text-body-elegant text-sophisticated mb-4">
                     Consolidación de cambios, desarrollo de autonomía y plan de mantenimiento a largo plazo.
                   </p>
                   <div className="text-sm text-accent">✓ Consolidación • ✓ Plan de mantenimiento • ✓ Evaluación final</div>
@@ -179,31 +181,31 @@ const Process = () => {
       {/* Casos de Éxito */}
       <section className="py-20 bg-card">
         <div className="container-custom mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-card-foreground mb-6">
+          <div className="content-center mb-20">
+            <h2 className="title-section text-card-foreground mb-8">
               Resultados Reales de Mi Proceso
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body-large text-sophisticated content-balanced">
               Datos y testimonios que demuestran la efectividad del proceso de Transformación Consciente
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div className="p-6">
-              <div className="text-4xl font-bold text-primary mb-2">95%</div>
-              <p className="text-muted-foreground">Mejora en liderazgo reportada por clientes</p>
+          <div className="grid-elegant grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+            <div className="p-8">
+              <div className="text-5xl font-bold text-primary mb-4">95%</div>
+              <p className="text-body-elegant text-muted-foreground">Mejora en liderazgo reportada por clientes</p>
             </div>
-            <div className="p-6">
-              <div className="text-4xl font-bold text-accent mb-2">87%</div>
-              <p className="text-muted-foreground">Reducción significativa en niveles de estrés</p>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-accent mb-4">87%</div>
+              <p className="text-body-elegant text-muted-foreground">Reducción significativa en niveles de estrés</p>
             </div>
-            <div className="p-6">
-              <div className="text-4xl font-bold text-secondary mb-2">92%</div>
-              <p className="text-muted-foreground">Mejora en comunicación con equipos</p>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-secondary mb-4">92%</div>
+              <p className="text-body-elegant text-muted-foreground">Mejora en comunicación con equipos</p>
             </div>
-            <div className="p-6">
-              <div className="text-4xl font-bold text-primary mb-2">6</div>
-              <p className="text-muted-foreground">Meses promedio para transformación completa</p>
+            <div className="p-8">
+              <div className="text-5xl font-bold text-primary mb-4">6</div>
+              <p className="text-body-elegant text-muted-foreground">Meses promedio para transformación completa</p>
             </div>
           </div>
         </div>
@@ -211,13 +213,15 @@ const Process = () => {
 
       {/* CTA */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container-custom mx-auto px-4 text-center">
-          <h2 className="text-3xl font-heading font-bold mb-6">
-            ¿Listo para Comenzar tu Proceso de Transformación?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Inicia tu evaluación gratuita y descubre cómo puedo ayudarte a alcanzar tu máximo potencial
-          </p>
+        <div className="container-custom">
+          <div className="content-center">
+            <h2 className="title-section mb-8">
+              ¿Listo para Comenzar tu Proceso de Transformación?
+            </h2>
+            <p className="text-body-large mb-10 opacity-90">
+              Inicia tu evaluación gratuita y descubre cómo puedo ayudarte a alcanzar tu máximo potencial
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/regalo"
