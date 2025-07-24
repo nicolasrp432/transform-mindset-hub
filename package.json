@@ -1,8 +1,9 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "transform-mindset-hub",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Sitio web profesional para Ainara Coach - Transform Mindset Hub. Plataforma de coaching y desarrollo personal con diseño elegante y moderno.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
