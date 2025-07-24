@@ -1,22 +1,15 @@
-import ContactSection from '../components/ContactSection';
+import ContactSection from '../components/sections/ContactSection';
+import PageHero from '../components/ui-elements/PageHero';
 import { Link } from 'react-router-dom';
 
 const Contact = () => {
   return (
     <>
-      {/* Hero de la página */}
-      <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
-        <div className="container-custom px-4">
-          <div className="content-center mb-20">
-            <h1 className="title-hero text-primary-foreground mb-10 title-gradient text-shadow-soft">
-              Conversemos Sobre tu Transformación
-            </h1>
-            <p className="text-body-large leading-relaxed content-balanced opacity-90 text-sophisticated text-shadow-soft">
-              Estoy aquí para ayudarte a alcanzar tu máximo potencial. Contáctame para comenzar tu viaje de transformación consciente
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        title="Conversemos Sobre tu Transformación"
+        subtitle="Estoy aquí para ayudarte a alcanzar tu máximo potencial. Contáctame para comenzar tu viaje de transformación consciente"
+        backgroundVariant="primary"
+      />
 
       <ContactSection />
 

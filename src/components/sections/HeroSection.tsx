@@ -1,3 +1,5 @@
+import Button from '../ui-elements/Button';
+
 const HeroSection = () => {
   const scrollToGift = () => {
     const element = document.getElementById('gift');
@@ -47,20 +49,24 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6">
-              <button 
+              <Button 
+                variant="accent"
+                size="lg"
+                icon="🎁"
                 onClick={() => window.location.href = '/regalo'}
-                className="btn-cta scale-in inline-flex items-center gap-3 px-8 py-4"
+                animate={true}
+                className="scale-in"
               >
-                <span className="text-2xl">🎁</span>
                 Recibe tu Guía Gratuita
-              </button>
-              <button 
+              </Button>
+              <Button 
+                variant="outline"
+                size="lg"
+                icon="💬"
                 onClick={scrollToContact}
-                className="btn-outline text-lg px-8 py-4 inline-flex items-center gap-3"
               >
-                <span className="icon-medium">💬</span>
                 Trabajemos Juntos
-              </button>
+              </Button>
             </div>
           </div>
 

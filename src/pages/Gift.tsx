@@ -1,22 +1,16 @@
-import GiftSection from '../components/GiftSection';
+import GiftSection from '../components/sections/GiftSection';
+import PageHero from '../components/ui-elements/PageHero';
 import { Link } from 'react-router-dom';
 
 const Gift = () => {
   return (
     <>
-      {/* Hero de la página */}
-      <section className="pt-32 pb-20 bg-gradient-accent text-primary-foreground">
-        <div className="container-custom px-4">
-          <div className="content-center mb-20">
-            <h1 className="title-hero font-heading font-bold mb-10 title-gradient text-shadow-soft">
-              🎁 Tu Guía Gratuita de Autoevaluación Emocional
-            </h1>
-            <p className="text-body-large opacity-90 content-balanced text-sophisticated text-shadow-soft">
-              Descubre tu nivel actual de Inteligencia Emocional y recibe un plan personalizado para potenciar tu liderazgo
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero 
+        title="Tu Guía Gratuita de Autoevaluación Emocional"
+        subtitle="Descubre tu nivel actual de Inteligencia Emocional y recibe un plan personalizado para potenciar tu liderazgo"
+        backgroundVariant="accent"
+        icon="🎁"
+      />
 
       {/* Información sobre la Guía */}
       <section className="py-20 bg-background">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import AboutMeSection from '../components/AboutMeSection';
-import CertificationsSection from '../components/CertificationsSection';
-import PhilosophySection from '../components/PhilosophySection';
+import AboutMeSection from '../components/sections/AboutMeSection';
+import CertificationsSection from '../components/sections/CertificationsSection';
+import PhilosophySection from '../components/sections/PhilosophySection';
 
 const AboutMe = () => {
   const [isVisible, setIsVisible] = useState(false);

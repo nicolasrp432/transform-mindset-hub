@@ -1,4 +1,4 @@
-import ProcessSection from '../components/ProcessSection';
+import ProcessSection from '../components/sections/ProcessSection';
 import { Link } from 'react-router-dom';
 
 const Process = () => {

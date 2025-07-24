@@ -1,7 +1,7 @@
-import HeroSection from '../components/HeroSection';
-import AssessmentSection from '../components/AssessmentSection';
-import HowItWorksSection from '../components/HowItWorksSection';
-import CTASection from '../components/CTASection';
+import HeroSection from '../components/sections/HeroSection';
+import AssessmentSection from '../components/sections/AssessmentSection';
+import HowItWorksSection from '../components/sections/HowItWorksSection';
+import CTASection from '../components/sections/CTASection';
 
 const Home = () => {
   return (

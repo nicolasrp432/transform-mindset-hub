@@ -1,4 +1,4 @@
-import TestimonialsSection from '../components/TestimonialsSection';
+import TestimonialsSection from '../components/sections/TestimonialsSection';
 import { Link } from 'react-router-dom';
 
 const Testimonials = () => {

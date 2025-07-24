@@ -1,3 +1,6 @@
+import Button from '../ui-elements/Button';
+import Card from '../ui-elements/Card';
+
 const ServicesSection = () => {
   const services = [
     {
@@ -72,60 +75,67 @@ const ServicesSection = () => {
     <section id="services" className="bg-background section-padding">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center space-x-4 mb-6">
-            <div className="h-1 w-16 bg-accent rounded-full"></div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+          <div className="flex items-center justify-center space-x-4 mb-6 animate-slide-in-down">
+            <div className="h-1 w-16 bg-accent rounded-full animate-slide-in-left"></div>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-800 animate-fade-in-up">
               Mis Servicios
             </h2>
-            <div className="h-1 w-16 bg-accent rounded-full"></div>
+            <div className="h-1 w-16 bg-accent rounded-full animate-slide-in-right"></div>
           </div>
-          <p className="text-xl font-body text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl font-body text-gray-700 max-w-3xl mx-auto animate-zoom-in animate-delay-300">
             Servicios especializados diseñados para transformar tu liderazgo desde la raíz emocional hacia resultados tangibles y duraderos.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div 
+            <Card 
               key={index}
-              className="bg-card p-8 rounded-3xl shadow-card hover-lift group"
+              variant="feature"
+              hover={true}
+              animate={true}
+              delay={index * 100 + 400}
+              className="group"
             >
-              <div className="text-5xl mb-6 group-hover:scale-110 transition-smooth">
+              <div className="text-5xl mb-6 group-hover:scale-110 transition-smooth hover-rotate">
                 {service.icon}
               </div>
               
-              <h3 className="text-xl font-heading font-bold text-card-foreground mb-4">
+              <h3 className="text-xl font-heading font-bold text-gray-800 mb-4">
                 {service.title}
               </h3>
               
-              <p className="text-muted-foreground font-body mb-6 leading-relaxed">
+              <p className="text-gray-700 font-body mb-6 leading-relaxed">
                 {service.description}
               </p>
               
               <div className="space-y-3">
-                <h4 className="font-heading font-semibold text-card-foreground text-sm uppercase tracking-wide">
+                <h4 className="font-heading font-semibold text-gray-800 text-sm uppercase tracking-wide">
                   Beneficios Clave:
                 </h4>
                 <ul className="space-y-2">
                   {service.benefits.map((benefit, idx) => (
                     <li key={idx} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm font-body text-muted-foreground">{benefit}</span>
+                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0 animate-pulse"></div>
+                      <span className="text-sm font-body text-gray-600">{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <button 
+          <Button 
+            variant="primary"
+            size="lg"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-primary"
+            animate={true}
+            className="animate-delay-800"
           >
             Consulta tu Caso Específico
-          </button>
+          </Button>
         </div>
       </div>
     </section>
