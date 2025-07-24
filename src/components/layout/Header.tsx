@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '../ui-elements/Button';
+import { useNavigation } from '@/hooks/use-navigation';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const { isActivePath, navigateWithTransition, currentPath } = useNavigation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +18,11 @@ const Header = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location]);
+  }, [currentPath]);
 
-  const isActivePage = (path: string) => {
-    return location.pathname === path;
+  const handleNavigation = (path: string) => {
+    setIsMobileMenuOpen(false);
+    navigateWithTransition(path);
   };
 
   return (
@@ -43,49 +45,49 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-10 mx-auto">
             <Link 
               to="/"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Inicio
             </Link>
             <Link 
               to="/sobre-mi"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/sobre-mi') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/sobre-mi') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Sobre Mí
             </Link>
             <Link 
               to="/servicios"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/servicios') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/servicios') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Servicios
             </Link>
             <Link 
               to="/mi-proceso"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/mi-proceso') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/mi-proceso') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Mi Proceso
             </Link>
             <Link 
               to="/testimonios"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/testimonios') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/testimonios') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Testimonios
             </Link>
             <Link 
               to="/regalo"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                isActivePage('/regalo') ? 'text-accent' : ''
-              }`}
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/regalo') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
               Regalo
             </Link>
@@ -96,8 +98,8 @@ const Header = () => {
             <Button 
               variant="primary"
               size="lg"
-              className=""
-              onClick={() => window.location.href = '/comenzar'}
+              className="transform hover:scale-105 transition-all duration-300"
+              onClick={() => handleNavigation('/comenzar')}
             >
               Comenzar Ahora
             </Button>
@@ -125,64 +127,64 @@ const Header = () => {
             <nav className="container-custom px-4 py-6 space-y-6">
               <Link 
                 to="/"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/')}
               >
                 Inicio
               </Link>
               <Link 
                 to="/sobre-mi"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/sobre-mi') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/sobre-mi') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/sobre-mi')}
               >
                 Sobre Mí
               </Link>
               <Link 
                 to="/servicios"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/servicios') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/servicios') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/servicios')}
               >
                 Servicios
               </Link>
               <Link 
                 to="/mi-proceso"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/mi-proceso') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/mi-proceso') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/mi-proceso')}
               >
                 Mi Proceso
               </Link>
               <Link 
                 to="/testimonios"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/testimonios') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/testimonios') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/testimonios')}
               >
                 Testimonios
               </Link>
               <Link 
                 to="/regalo"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/regalo') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/regalo') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/regalo')}
               >
                 Regalo
               </Link>
               <Link 
                 to="/contacto"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-colors font-medium ${
-                  isActivePage('/contacto') ? 'text-accent' : ''
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/contacto') ? 'text-accent bg-accent/10' : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavigation('/contacto')}
               >
                 Contacto
               </Link>
@@ -190,11 +192,8 @@ const Header = () => {
                 <Button 
                   variant="primary"
                   size="lg"
-                  className="w-full"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    window.location.href = '/comenzar';
-                  }}
+                  className="w-full transform hover:scale-105 transition-all duration-300"
+                  onClick={() => handleNavigation('/comenzar')}
                 >
                   Comenzar Ahora
                 </Button>

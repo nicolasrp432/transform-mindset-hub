@@ -1,9 +1,11 @@
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import { Link } from 'react-router-dom';
+import PageTransition from '@/components/ui/page-transition';
 
 const Testimonials = () => {
   return (
-    <>
+    <PageTransition>
+      <>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
         <div className="container-custom">
@@ -288,7 +290,8 @@ const Testimonials = () => {
           </div>
         </div>
       </section>
-    </>
+      </>
+    </PageTransition>
   );
 };
 

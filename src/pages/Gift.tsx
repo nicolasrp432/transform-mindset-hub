@@ -1,10 +1,12 @@
 import GiftSection from '../components/sections/GiftSection';
 import PageHero from '../components/ui-elements/PageHero';
 import { Link } from 'react-router-dom';
+import PageTransition from '@/components/ui/page-transition';
 
 const Gift = () => {
   return (
-    <>
+    <PageTransition>
+      <>
       <PageHero 
         title="Tu Guía Gratuita de Autoevaluación Emocional"
         subtitle="Descubre tu nivel actual de Inteligencia Emocional y recibe un plan personalizado para potenciar tu liderazgo"
@@ -266,7 +268,8 @@ const Gift = () => {
           </Link>
         </div>
       </section>
-    </>
+      </>
+    </PageTransition>
   );
 };
 

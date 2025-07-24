@@ -1,9 +1,11 @@
 import ProcessSection from '../components/sections/ProcessSection';
 import { Link } from 'react-router-dom';
+import PageTransition from '@/components/ui/page-transition';
 
 const Process = () => {
   return (
-    <>
+    <PageTransition>
+      <>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
         <div className="container-custom">
@@ -230,7 +232,8 @@ const Process = () => {
           </div>
         </div>
       </section>
-    </>
+      </>
+    </PageTransition>
   );
 };
 

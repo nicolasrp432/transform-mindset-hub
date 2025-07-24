@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import PageTransition from '@/components/ui/page-transition';
 
 const NotFound = () => {
   useEffect(() => {
@@ -8,7 +9,8 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <PageTransition>
+      <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="container-custom mx-auto px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <div className="text-8xl font-bold text-primary mb-8">404</div>
@@ -55,7 +57,8 @@ const NotFound = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

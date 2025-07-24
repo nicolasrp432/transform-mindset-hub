@@ -1,10 +1,12 @@
 import ContactSection from '../components/sections/ContactSection';
 import PageHero from '../components/ui-elements/PageHero';
 import { Link } from 'react-router-dom';
+import PageTransition from '@/components/ui/page-transition';
 
 const Contact = () => {
   return (
-    <>
+    <PageTransition>
+      <>
       <PageHero 
         title="Conversemos Sobre tu Transformación"
         subtitle="Estoy aquí para ayudarte a alcanzar tu máximo potencial. Contáctame para comenzar tu viaje de transformación consciente"
@@ -288,7 +290,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </>
+      </>
+    </PageTransition>
   );
 };
 

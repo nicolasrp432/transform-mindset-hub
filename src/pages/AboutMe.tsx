@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AboutMeSection from '../components/sections/AboutMeSection';
 import CertificationsSection from '../components/sections/CertificationsSection';
 import PhilosophySection from '../components/sections/PhilosophySection';
+import PageTransition from '@/components/ui/page-transition';
 
 const AboutMe = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +12,7 @@ const AboutMe = () => {
   }, []);
 
   return (
-    <>
+    <PageTransition>
       {/* Hero de la página */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground relative overflow-hidden">
         {/* Animated background elements */}
@@ -54,7 +55,7 @@ const AboutMe = () => {
       }`}>
         <PhilosophySection />
       </div>
-    </>
+    </PageTransition>
   );
 };
 

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Star, Users, Target, Heart } from 'lucide-react';
+import PageTransition from '@/components/ui/page-transition';
 
 const Comenzar = () => {
   return (
-    <>
+    <PageTransition>
+      <>
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-primary text-primary-foreground">
         <div className="container-custom mx-auto px-4 text-center">
@@ -297,7 +299,8 @@ const Comenzar = () => {
           </div>
         </div>
       </section>
-    </>
+      </>
+    </PageTransition>
   );
 };
 
