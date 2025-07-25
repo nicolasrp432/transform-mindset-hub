@@ -42,10 +42,6 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index }) => {
   return (
     <Card 
-      variant="default"
-      hover={true}
-      animate={true}
-      delay={index * 200}
       className="p-8 relative"
     >
       {/* Quote Mark */}
@@ -90,8 +86,6 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ stat }) => {
   return (
     <Card 
-      variant="default" 
-      hover={true} 
       className={`text-center p-6 ${stat.bgColor} animate-slide-in-left animate-delay-${stat.delay}`}
     >
       <div className={`text-4xl font-heading font-bold ${stat.color} mb-2 animate-zoom-in animate-delay-${stat.delay + 100}`}>
@@ -187,9 +181,8 @@ const TestimonialsSection = () => {
         <div className="text-center mt-12 animate-fade-in-up animate-delay-1300">
           <Button 
             variant="default"
-            size="large"
+            size="lg"
             onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
-            animate={true}
             className="hover-glow"
           >
             Únete a estas Historias de Éxito

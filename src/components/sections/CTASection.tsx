@@ -129,7 +129,7 @@ const CTASection = () => {
           </div>
 
           {/* Urgency factors */}
-          <Card variant="default" className="bg-white/10 backdrop-blur-sm p-8 mb-12 animate-slide-in-up animate-delay-1000">
+          <Card className="bg-white/10 backdrop-blur-sm p-8 mb-12 animate-slide-in-up animate-delay-1000">
             <h3 className="text-xl font-semibold mb-6 text-gray-800 animate-fade-in-up animate-delay-1100">
               Oferta Especial - Tiempo Limitado
             </h3>
@@ -143,28 +143,28 @@ const CTASection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12 animate-fade-in-up animate-delay-1500">
-            <Button
-              variant="default"
-              size="large"
-              href="/contacto"
-              animate={true}
-              className="text-lg px-8 py-4 hover-glow animate-pulse"
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              Agendar Mi Consulta Gratuita
-              <ArrowRight className="w-6 h-6 ml-2" />
-            </Button>
+            <Link to="/contacto">
+              <Button
+                variant="default"
+                size="lg"
+                className="text-lg px-8 py-4 hover-glow animate-pulse"
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Agendar Mi Consulta Gratuita
+                <ArrowRight className="w-6 h-6 ml-2" />
+              </Button>
+            </Link>
             
-            <Button
-              variant="secondary"
-              size="large"
-              href="/regalo"
-              animate={true}
-              className="text-lg px-8 py-4 border-2 border-gray-600 text-gray-800 hover:bg-gray-100"
-            >
-              <Gift className="w-5 h-5 mr-2" />
-              Descargar Guía Gratuita
-            </Button>
+            <Link to="/regalo">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="text-lg px-8 py-4 border-2 border-gray-600 text-gray-800 hover:bg-gray-100"
+              >
+                <Gift className="w-5 h-5 mr-2" />
+                Descargar Guía Gratuita
+              </Button>
+            </Link>
           </div>
 
           {/* Social proof */}

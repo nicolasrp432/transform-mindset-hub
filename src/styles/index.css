@@ -462,6 +462,25 @@
       transform: translateY(0);
     }
   }
+r   @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   @keyframes fade-in-up {
      from {
@@ -708,6 +727,14 @@
     animation: fade-in-up 1s ease-out;
   }
 
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
@@ -891,5 +918,10 @@
   .hover-glow:hover {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
     transition: box-shadow 0.3s ease;
+  }
+
+  /* Custom bg-muted override */
+  .bg-muted {
+    background-color: hsl(0deg 0% 100%);
   }
 }

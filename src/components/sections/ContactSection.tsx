@@ -132,7 +132,6 @@ const ContactSection = () => {
 
           {/* CTA Section */}
           <Card 
-            variant="default" 
             className="p-8 animate-slide-in-right animate-delay-500"
           >
             <div className="text-center space-y-6">
@@ -155,10 +154,10 @@ const ContactSection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('assessment')?.scrollIntoView({ behavior: 'smooth' })}
                   className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
                 >
-                  Comenzar con la Evaluación Gratuita
+                  Hacer Evaluación Inicial
                 </Button>
               </div>
             </div>

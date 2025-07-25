@@ -91,10 +91,6 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              variant="default"
-              hover={true}
-              animate={true}
-              delay={index * 100 + 400}
               className="group"
             >
               <div className="text-5xl mb-6 group-hover:scale-110 transition-smooth hover-rotate">
@@ -131,7 +127,6 @@ const ServicesSection = () => {
             variant="default"
             size="lg"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            animate={true}
             className="animate-delay-800"
           >
             Consulta tu Caso Específico

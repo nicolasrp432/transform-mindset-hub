@@ -31,9 +31,11 @@ const Header = () => {
         <div className="flex items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-4">
-            <span className="text-2xl font-heading font-bold text-foreground">
-              Ainara Coach
-            </span>
+            <img 
+              src="/logo header-8.png" 
+              alt="Ainara Coach Logo" 
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Navigation - Desktop only */}
@@ -63,20 +65,12 @@ const Header = () => {
               Servicios
             </Link>
             <Link 
-              to="/mi-proceso"
+              to="/contacto"
               className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/mi-proceso') ? 'text-accent after:w-full' : 'after:w-0'
+                isActivePath('/contacto') ? 'text-accent after:w-full' : 'after:w-0'
               } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
             >
-              Mi Proceso
-            </Link>
-            <Link 
-              to="/testimonios"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/testimonios') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Testimonios
+              Contacto
             </Link>
             <Link 
               to="/regalo"
@@ -147,24 +141,7 @@ const Header = () => {
               >
                 Servicios
               </Link>
-              <Link 
-                to="/mi-proceso"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/mi-proceso') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/mi-proceso')}
-              >
-                Mi Proceso
-              </Link>
-              <Link 
-                to="/testimonios"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/testimonios') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/testimonios')}
-              >
-                Testimonios
-              </Link>
+
               <Link 
                 to="/regalo"
                 className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
