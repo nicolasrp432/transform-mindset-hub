@@ -54,7 +54,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index })
         <StarRating rating={testimonial.rating} />
 
         {/* Quote */}
-        <blockquote className="text-muted-foreground font-body leading-relaxed mb-6 font-accent italic animate-fade-in-up animate-delay-600">
+        <blockquote className="text-muted-foreground font-accent leading-relaxed mb-6 italic animate-fade-in-up animate-delay-600">
           "{testimonial.quote}"
         </blockquote>
 
