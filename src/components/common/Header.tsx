@@ -31,11 +31,9 @@ const Header = () => {
         <div className="flex items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-4">
-            <img 
-              src="/logo header-8.png" 
-              alt="Ainara Coach Logo" 
-              className="h-12 w-auto"
-            />
+            <span className="text-2xl font-sans font-medium mt-2">
+              Ainara Coach
+            </span>
           </Link>
 
           {/* Navigation - Desktop only */}

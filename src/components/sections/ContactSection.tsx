@@ -1,5 +1,5 @@
-import React from 'react';
-import { Mail, MapPin, Clock, Linkedin, Instagram } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, MapPin, Phone, Linkedin, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -51,10 +51,10 @@ const ContactSection = () => {
       title: "Email Directo",
       content: (
         <a 
-          href="mailto:ainaraunamunzagacoach@gmail.com" 
+          href="mailto:ainaracoaching@gmail.com" 
           className="text-accent hover:text-accent/90 transition-fast hover-glow"
         >
-          ainaraunamunzagacoach@gmail.com
+          ainaracoaching@gmail.com
         </a>
       ),
       delay: 500
@@ -64,20 +64,22 @@ const ContactSection = () => {
       title: "Ubicación",
       content: (
         <>
-          Zaratamo 48480<br />
-          Bilbao, España
+          Zaratamo, Bilbao<br />
+          España
         </>
       ),
       delay: 700
     },
     {
-      icon: Clock,
-      title: "Modalidad de Trabajo",
+      icon: Phone,
+      title: "Teléfono",
       content: (
-        <>
-          Presencial en Bilbao<br />
-          Online en toda España
-        </>
+        <a 
+          href="tel:+34665535485" 
+          className="text-accent hover:text-accent/90 transition-fast hover-glow"
+        >
+          +34 665 535 485
+        </a>
       ),
       delay: 900
     }
@@ -130,41 +132,185 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* CTA Section */}
+          {/* Formulario de Contacto */}
           <Card 
             className="p-8 animate-slide-in-right animate-delay-500"
           >
-            <div className="text-center space-y-6">
-              <h3 className="text-2xl font-heading font-bold text-primary-foreground animate-zoom-in animate-delay-700">
-                ¿Hablamos de tu Proyecto?
-              </h3>
-              <p className="text-primary-foreground/90 font-body animate-fade-in-up animate-delay-800">
-                Cada proceso de transformación es único. Contacta conmigo para una conversación inicial gratuita donde evaluaremos tu situación y diseñaremos el mejor camino para alcanzar tus objetivos.
-              </p>
+            <div className="space-y-6">
+              <h3 className="text-2xl font-heading font-bold text-gray-800 animate-zoom-in animate-delay-700 text-center">
+              Envíame un Mensaje
+            </h3>
               
-              <div className="space-y-4">
-                <Button
-                  variant="default"
-                  size="lg"
-                  onClick={() => window.open('mailto:ainaraunamunzagacoach@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
-                  className="w-full hover-glow"
-                >
-                  Escribir Email Directo
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => document.getElementById('assessment')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                >
-                  Hacer Evaluación Inicial
-                </Button>
+              <ContactForm />
+              
+              <div className="pt-6 border-t border-primary-foreground/20">
+                <div className="flex space-x-4">
+                  <Button
+                    variant="default"
+                    size="lg"
+                    onClick={() => window.open('mailto:ainaracoaching@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
+                    className="flex-1 hover-glow"
+                  >
+                    Email Directo
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => window.open('tel:+34665535485')}
+                    className="flex-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                  >
+                    Llamar Ahora
+                  </Button>
+                </div>
               </div>
             </div>
           </Card>
         </div>
       </div>
     </section>
+  );
+};
+
+const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simular envío del formulario
+    setTimeout(() => {
+      const mailtoLink = `mailto:ainaracoaching@gmail.com?subject=${encodeURIComponent(formData.subject || 'Consulta sobre Coaching')}&body=${encodeURIComponent(
+        `Nombre: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Teléfono: ${formData.phone}\n\n` +
+        `Mensaje:\n${formData.message}`
+      )}`;
+      
+      window.open(mailtoLink);
+      setIsSubmitting(false);
+      
+      // Limpiar formulario
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    }, 1000);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-800 mb-2">
+              Nombre *
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              placeholder="Tu nombre completo"
+            />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-2">
+              Email *
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              placeholder="tu@email.com"
+            />
+        </div>
+      </div>
+      
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-800 mb-2">
+              Teléfono
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              placeholder="+34 600 000 000"
+            />
+        </div>
+        <div>
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-800 mb-2">
+              Asunto
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+            >
+            <option value="">Selecciona un tema</option>
+            <option value="Consulta General">Consulta General</option>
+            <option value="Coaching Personal">Coaching Personal</option>
+            <option value="Coaching Empresarial">Coaching Empresarial</option>
+            <option value="Conferencias y Talleres">Conferencias y Talleres</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+      
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-gray-800 mb-2">
+            Mensaje *
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={4}
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-vertical"
+            placeholder="Cuéntame sobre tu situación actual y qué objetivos te gustaría alcanzar..."
+          />
+      </div>
+      
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold py-3 px-6 rounded-lg transition-all hover-glow disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+      </Button>
+    </form>
   );
 };
 

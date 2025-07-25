@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, className = ''
       />
       
       {/* Modal Content */}
-      <div className={`sticky top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto z-10 ${className}`}>
+      <div className={`sticky top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 translate-x-[1px] bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto z-10 ${className}`}>
         {/* Close Button */}
         <Button
           variant="ghost"
