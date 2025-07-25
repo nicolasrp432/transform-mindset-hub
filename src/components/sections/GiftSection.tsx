@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 interface FormData {
   fullName: string;
@@ -215,7 +215,7 @@ const GiftSection = () => {
               </p>
               <div className="mt-8 animate-zoom-in animate-delay-600">
                 <Button
-                  variant="accent"
+                  variant="default"
                   size="lg"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   className="hover-glow"
@@ -342,7 +342,7 @@ const GiftSection = () => {
               {/* Submit Button */}
               <div className="text-center pt-6 animate-zoom-in animate-delay-1800">
                 <Button
-                  variant="accent"
+                  variant="default"
                   size="xl"
                   type="submit"
                   disabled={isSubmitting}

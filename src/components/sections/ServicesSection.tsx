@@ -1,5 +1,5 @@
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 const ServicesSection = () => {
   const services = [
@@ -91,7 +91,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              variant="feature"
+              variant="default"
               hover={true}
               animate={true}
               delay={index * 100 + 400}
@@ -128,7 +128,7 @@ const ServicesSection = () => {
 
         <div className="text-center mt-12">
           <Button 
-            variant="primary"
+            variant="default"
             size="lg"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             animate={true}

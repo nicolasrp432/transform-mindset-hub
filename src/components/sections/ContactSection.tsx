@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, MapPin, Clock, Linkedin, Instagram } from 'lucide-react';
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 interface ContactInfoProps {
   icon: React.ComponentType<{ className?: string }>;
@@ -132,7 +132,7 @@ const ContactSection = () => {
 
           {/* CTA Section */}
           <Card 
-            variant="glass" 
+            variant="default" 
             className="p-8 animate-slide-in-right animate-delay-500"
           >
             <div className="text-center space-y-6">
@@ -145,7 +145,7 @@ const ContactSection = () => {
               
               <div className="space-y-4">
                 <Button
-                  variant="accent"
+                  variant="default"
                   size="lg"
                   onClick={() => window.open('mailto:ainaraunamunzagacoach@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
                   className="w-full hover-glow"

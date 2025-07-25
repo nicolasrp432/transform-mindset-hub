@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, Gift, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 interface BenefitItemProps {
   benefit: string;
@@ -129,7 +129,7 @@ const CTASection = () => {
           </div>
 
           {/* Urgency factors */}
-          <Card variant="glass" className="bg-white/10 backdrop-blur-sm p-8 mb-12 animate-slide-in-up animate-delay-1000">
+          <Card variant="default" className="bg-white/10 backdrop-blur-sm p-8 mb-12 animate-slide-in-up animate-delay-1000">
             <h3 className="text-xl font-semibold mb-6 text-gray-800 animate-fade-in-up animate-delay-1100">
               Oferta Especial - Tiempo Limitado
             </h3>
@@ -144,7 +144,7 @@ const CTASection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12 animate-fade-in-up animate-delay-1500">
             <Button
-              variant="accent"
+              variant="default"
               size="large"
               href="/contacto"
               animate={true}

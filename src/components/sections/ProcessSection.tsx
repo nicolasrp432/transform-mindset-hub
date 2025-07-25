@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 const ProcessSection = () => {
   const steps = [
@@ -66,7 +66,7 @@ const ProcessSection = () => {
           {steps.map((step, index) => (
             <Card 
               key={index}
-              variant="elevated"
+              variant="default"
               className="p-8 relative"
             >
               {/* Number Badge */}

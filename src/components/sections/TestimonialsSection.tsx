@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../ui-elements/Button';
-import Card from '../ui-elements/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 // Interfaces
 interface Testimonial {
@@ -42,7 +42,7 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index }) => {
   return (
     <Card 
-      variant="elevated"
+      variant="default"
       hover={true}
       animate={true}
       delay={index * 200}
@@ -90,7 +90,7 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ stat }) => {
   return (
     <Card 
-      variant="subtle" 
+      variant="default" 
       hover={true} 
       className={`text-center p-6 ${stat.bgColor} animate-slide-in-left animate-delay-${stat.delay}`}
     >
@@ -186,7 +186,7 @@ const TestimonialsSection = () => {
 
         <div className="text-center mt-12 animate-fade-in-up animate-delay-1300">
           <Button 
-            variant="primary"
+            variant="default"
             size="large"
             onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
             animate={true}

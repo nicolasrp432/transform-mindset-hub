@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../ui-elements/Button';
+import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   const scrollToGift = () => {
@@ -51,7 +51,7 @@ const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-6">
               <Button 
-                variant="accent"
+                variant="default"
                 size="lg"
                 onClick={() => window.location.href = '/regalo'}
                 className="scale-in"
