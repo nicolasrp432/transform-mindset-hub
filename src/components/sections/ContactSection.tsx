@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Linkedin, Instagram } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -51,10 +51,10 @@ const ContactSection = () => {
       title: "Email Directo",
       content: (
         <a 
-          href="mailto:ainaracoaching@gmail.com" 
+          href="mailto:ainaracoachpnl@gmail.com" 
           className="text-accent hover:text-accent/90 transition-fast hover-glow"
         >
-          ainaracoaching@gmail.com
+          ainaracoachpnl@gmail.com
         </a>
       ),
       delay: 500
@@ -74,12 +74,20 @@ const ContactSection = () => {
       icon: Phone,
       title: "Teléfono",
       content: (
-        <a 
-          href="tel:+34665535485" 
-          className="text-accent hover:text-accent/90 transition-fast hover-glow"
-        >
-          +34 665 535 485
-        </a>
+        <>
+          <a 
+            href="tel:+34692627353" 
+            className="text-accent hover:text-accent/90 transition-fast hover-glow block"
+          >
+            Móvil: +34 692 627 353
+          </a>
+          <a 
+            href="tel:946523217" 
+            className="text-accent hover:text-accent/90 transition-fast hover-glow block"
+          >
+            Fijo: 946 523 217
+          </a>
+        </>
       ),
       delay: 900
     }
@@ -87,13 +95,13 @@ const ContactSection = () => {
 
   const socialLinks = [
     {
-      href: "https://linkedin.com/in/ainaraunamunzaga",
-      icon: Linkedin,
+      href: "https://www.instagram.com/ainaracoach/",
+      icon: Instagram,
       delay: 1300
     },
     {
-      href: "https://instagram.com/ainaraunamunzaga",
-      icon: Instagram,
+      href: "https://www.facebook.com/ainaracoach",
+      icon: Facebook,
       delay: 1400
     }
   ];
@@ -144,22 +152,30 @@ const ContactSection = () => {
               <ContactForm />
               
               <div className="pt-6 border-t border-primary-foreground/20">
-                <div className="flex space-x-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Button
                     variant="default"
                     size="lg"
-                    onClick={() => window.open('mailto:ainaracoaching@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
-                    className="flex-1 hover-glow"
+                    onClick={() => window.open('mailto:ainaracoachpnl@gmail.com?subject=Consulta sobre Coaching&body=Hola Ainara, me interesa conocer más sobre tus servicios de coaching...')}
+                    className="hover-glow"
                   >
                     Email Directo
                   </Button>
                   <Button
                     variant="outline"
                     size="lg"
-                    onClick={() => window.open('tel:+34665535485')}
-                    className="flex-1 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                    onClick={() => window.open('tel:+34692627353')}
+                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
                   >
-                    Llamar Ahora
+                    Llamar Móvil
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    onClick={() => window.open('https://wa.me/34692627353?text=Hola Ainara, me interesa conocer más sobre tus servicios de coaching')}
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    WhatsApp
                   </Button>
                 </div>
               </div>
@@ -195,7 +211,7 @@ const ContactForm: React.FC = () => {
     
     // Simular envío del formulario
     setTimeout(() => {
-      const mailtoLink = `mailto:ainaracoaching@gmail.com?subject=${encodeURIComponent(formData.subject || 'Consulta sobre Coaching')}&body=${encodeURIComponent(
+      const mailtoLink = `mailto:ainaracoachpnl@gmail.com?subject=${encodeURIComponent(formData.subject || 'Consulta sobre Coaching')}&body=${encodeURIComponent(
         `Nombre: ${formData.name}\n` +
         `Email: ${formData.email}\n` +
         `Teléfono: ${formData.phone}\n\n` +

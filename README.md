@@ -103,7 +103,9 @@ src/
 
 ## 📧 Contacto
 
-- **Email**: ainaraunamunzagacoach@gmail.com
+- **Email**: ainaracoachpnl@gmail.com
+- **Teléfono**: +34 692 627 353
+- **WhatsApp**: +34 692 627 353
 - **Ubicación**: Zaratamo 48480, Bilbao, España
 - **Especialidades**: Coaching Personal, Coaching Ejecutivo, PNL, Inteligencia Emocional, Reiki
 

@@ -30,10 +30,12 @@ const Header = () => {
       <div className="container-custom px-4">
         <div className="flex items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4">
-            <span className="text-2xl font-sans font-medium mt-2">
-              Ainara Coach
-            </span>
+          <Link to="/" className="flex items-center space-x-4 md:mt-0 mt-[23px]">
+            <img 
+              src="/public/logoainaratr.png" 
+              alt="Ainara Coach Logo" 
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Navigation - Desktop only */}
