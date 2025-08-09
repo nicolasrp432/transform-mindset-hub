@@ -32,7 +32,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-4 md:mt-0 mt-[23px]">
             <img 
-              src="/public/logoainaratr.png" 
+              src="/logoainaratr.png" 
               alt="Ainara Coach Logo" 
               className="h-12 w-auto"
             />

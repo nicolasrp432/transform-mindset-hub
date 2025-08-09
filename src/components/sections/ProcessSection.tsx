@@ -47,7 +47,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="bg-muted section-padding">
+    <section id="process" className="bg-muted section-padding relative">
       <div className="container-custom">
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="flex items-center justify-center space-x-4 mb-6 animate-slide-in-down animate-delay-200">
@@ -66,7 +66,6 @@ const ProcessSection = () => {
           {steps.map((step, index) => (
             <Card 
               key={index}
-              variant="default"
               className="p-8 relative"
             >
               {/* Number Badge */}
@@ -112,7 +111,7 @@ const ProcessSection = () => {
           </p>
           <Button 
             variant="secondary"
-            size="large"
+            size="lg"
             onClick={() => document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth' })}
             className="hover-glow"
           >
