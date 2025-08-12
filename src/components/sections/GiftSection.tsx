@@ -7,17 +7,38 @@ const GiftSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+
   const handleFormSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Store form data (in a real app, this would be sent to a server)
-    console.log('Form Data Submitted:', formData);
+    try {
+      const response = await fetch(`${API_BASE}/api/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'assessment',
+          ...formData
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      const result = await response.json();
+      console.log('Email sent successfully:', result);
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Show error message to user
+      alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {

@@ -1,5 +1,5 @@
 import ContactSection from '../components/sections/ContactSection';
-import PageHero from '../components/ui-elements/PageHero';
+// Removed PageHero import to avoid duplicate title
 import PageTransition from '@/components/ui/page-transition';
 import { MapPin, Globe, Clock } from 'lucide-react';
 
@@ -7,12 +7,7 @@ const Contact = () => {
   return (
     <PageTransition>
       <>
-        <PageHero 
-          title="Conversemos Sobre tu Transformación"
-          subtitle="Estoy aquí para ayudarte a alcanzar tu máximo potencial. Contáctame para comenzar tu viaje de transformación consciente"
-          backgroundVariant="primary"
-        />
-
+        {/* Single page title using PageHero typography */}
         <ContactSection />
 
         {/* Mapa de Ubicación */}
@@ -21,6 +16,9 @@ const Contact = () => {
             {/* Section title */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">Mi Ubicación</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Basauri, Calle Uribarri, 2 Entreplanta 2-Dpto.C
+              </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">

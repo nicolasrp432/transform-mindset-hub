@@ -225,20 +225,26 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simular envío del formulario
-    setTimeout(() => {
-      const mailtoLink = `mailto:ainaracoachpnl@gmail.com?subject=${encodeURIComponent(formData.subject || 'Consulta sobre Coaching')}&body=${encodeURIComponent(
-        `Nombre: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `Teléfono: ${formData.phone}\n\n` +
-        `Mensaje:\n${formData.message}`
-      )}`;
-      
-      window.open(mailtoLink);
-      setIsSubmitting(false);
-      
-      // Limpiar formulario
+
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
+
+    try {
+      const response = await fetch(`${API_BASE}/api/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'contact',
+          ...formData,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar el formulario');
+      }
+
+      // Reset form after success
       setFormData({
         name: '',
         email: '',
@@ -246,7 +252,13 @@ const ContactForm: React.FC = () => {
         subject: '',
         message: ''
       });
-    }, 1000);
+      alert('Mensaje enviado con éxito. ¡Gracias por contactarme!');
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      alert('Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
