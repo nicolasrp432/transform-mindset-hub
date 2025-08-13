@@ -3,11 +3,28 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Enable CORS - Configuración más robusta
+  const origin = req.headers.origin;
+  const allowedOrigins = [
+    'https://ainaracoaching.com',
+    'https://www.ainaracoaching.com',
+    'https://api.ainaracoaching.com',
+    'https://transform-mindset-cgz2u0ypf-nicolasrp432s-projects.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:4173',
+    'http://localhost:4174'
+  ];
 
+  if (allowedOrigins.includes(origin) || !origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
+  }
+  
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '86400'); // 24 horas
+
+  // Manejar preflight OPTIONS
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
