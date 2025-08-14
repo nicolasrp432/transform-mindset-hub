@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import AssessmentForm, { FormData } from '@/components/forms/AssessmentForm';
 import { CheckCircle, Mail, Download, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const GiftSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -73,11 +74,13 @@ const GiftSection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  onClick={() => window.location.href = '/'}
+                  asChild
                   className="border-accent text-accent hover:bg-accent/10"
                 >
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Volver al Inicio
+                  <Link to="/">
+                    <ArrowRight className="w-4 h-4 mr-2" />
+                    Volver al Inicio
+                  </Link>
                 </Button>
               </div>
             </Card>
