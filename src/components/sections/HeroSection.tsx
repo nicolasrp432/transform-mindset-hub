@@ -51,10 +51,12 @@ const HeroSection = () => {
               <Button 
                 variant="default"
                 size="lg"
-                onClick={() => window.location.href = '/regalo'}
+                asChild
                 className="scale-in hover:scale-110 hover:shadow-xl hover:bg-accent/90 transition-all duration-300 group"
               >
-                <span className="group-hover:animate-bounce">🎁</span> Recibe tu Guía Gratuita
+                <Link to="/regalo">
+                  <span className="group-hover:animate-bounce">🎁</span> Recibe tu Guía Gratuita
+                </Link>
               </Button>
               <Button 
                 variant="outline"
