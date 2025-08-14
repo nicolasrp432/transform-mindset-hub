@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, MapPin, Phone, Instagram, Facebook, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -62,9 +63,9 @@ const Footer = () => {
             <p className="text-muted-foreground">Reserva una sesión de descubrimiento y da el primer paso hacia tu transformación.</p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-                <a href="/contacto">
+                <Link to="/contacto">
                   Reserva tu sesión
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-accent text-accent hover:bg-accent hover:text-white">
                 <a href="https://wa.me/34692627353" target="_blank" rel="noopener noreferrer">
