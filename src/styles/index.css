@@ -567,7 +567,6 @@ r   @keyframes fadeIn {
     }
     
     .flex {
-      flex-direction: column;
       align-items: center;
     }
     

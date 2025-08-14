@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       subject = `Nuevo mensaje de contacto de ${formData.name}`;
       emailContent = `
         <div style="max-width: 600px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333;">
-          <div style="background: linear-gradient(135deg, #4A5D4A 0%, #878778 100%); padding: 32px 20px; text-align: center; border-radius: 10px 10px 0 0;">
+          <div style="background: #ffffff; padding: 32px 20px; text-align: center; border-radius: 10px 10px 0 0; border-bottom: 3px solid #4A5D4A;">
             <img src="https://ainaracoaching.com/logoainaratr.png" alt="Ainara Coaching" style="height: 36px; display: inline-block;"/>
             <p style="color: #E0C4B0; margin: 6px 0 0 0; font-size: 13px;">Coaching en Inteligencia Emocional • PNL • Reiki</p>
           </div>
@@ -151,7 +151,7 @@ export default async function handler(req, res) {
       subject = `Nueva evaluación emocional de ${formData.fullName}`;
       emailContent = `
         <div style=\"max-width: 600px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333;\">
-          <div style=\"background: linear-gradient(135deg, #4A5D4A 0%, #878778 100%); padding: 40px 20px; text-align: center; border-radius: 10px 10px 0 0;\">
+          <div style=\"background: #ffffff; padding: 40px 20px; text-align: center; border-radius: 10px 10px 0 0; border-bottom: 3px solid #4A5D4A;\">
             <img src=\"https://ainaracoaching.com/logoainaratr.png\" alt=\"Ainara Coaching\" style=\"height: 40px; display: inline-block;\"/>
             <p style=\"color: #E0C4B0; margin: 8px 0 0 0; font-size: 14px; font-weight: 500;\">Coaching en Inteligencia Emocional • PNL • Reiki</p>
           </div>
@@ -285,7 +285,7 @@ export default async function handler(req, res) {
 
       const userHtml = `
         <div style="max-width: 600px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333;">
-          <div style="background: linear-gradient(135deg, #4A5D4A 0%, #878778 100%); padding: 32px 20px; text-align: center; border-radius: 10px 10px 0 0;">
+          <div style="background: #ffffff; padding: 32px 20px; text-align: center; border-radius: 10px 10px 0 0; border-bottom: 3px solid #4A5D4A;">
             <img src="https://ainaracoaching.com/logoainaratr.png" alt="Ainara Coaching" style="height: 36px; display: inline-block;"/>
             <p style="color: #E0C4B0; margin: 6px 0 0 0; font-size: 13px;">Coaching en Inteligencia Emocional • PNL • Reiki</p>
           </div>

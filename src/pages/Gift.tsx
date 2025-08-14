@@ -1,21 +1,27 @@
 import GiftSection from '../components/sections/GiftSection';
 // Removed PageHero import to avoid duplicate title
 import PageTransition from '@/components/ui/page-transition';
+import { Gift as GiftIcon, CheckCircle, Star, Clock, Users, Target, Send, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Gift = () => {
   return (
     <PageTransition>
       <>
-        {/* Single page title using PageHero typography */}
-        <section className="pt-0 pb-10 bg-background">
-          <div className="container-custom px-4">
-            <div className="content-center mb-6 text-center-mobile">
-              <h1 className="title-hero text-gray-800 mb-2 title-gradient text-shadow-soft">
-                Tu Guía Gratuita de Autoevaluación Emocional
+        {/* Hero Section with Contact.tsx styling */}
+        <section className="py-20 bg-gradient-to-br from-background via-muted/30 to-background">
+          <div className="container-custom">
+            <div className="text-center mb-16 animate-fade-in-up">
+              <div className="inline-flex items-center space-x-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <GiftIcon className="w-4 h-4" />
+                <span>Regalo Exclusivo</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 leading-tight">
+                Tu Guía Gratuita de 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/70"> Autoevaluación Emocional</span>
               </h1>
-              <p className="text-body-large leading-relaxed content-balanced text-gray-700 text-sophisticated text-shadow-soft">
-                Descubre tu nivel actual de Inteligencia Emocional y recibe un plan personalizado para potenciar tu liderazgo
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Descubre tu nivel actual de Inteligencia Emocional y recibe un plan personalizado para potenciar tu liderazgo con técnicas probadas de coaching y PNL.
               </p>
             </div>
           </div>
@@ -183,42 +189,7 @@ const Gift = () => {
         </section>
 
         {/* Testimonios sobre la Guía */}
-        <section className="py-20 bg-background">
-          <div className="container-custom mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading font-bold text-foreground mb-6">
-                Lo Que Dicen Sobre la Guía
-              </h2>
-            </div>
-
-            <div className="grid-elegant md:grid-cols-2 lg:grid-cols-3 gap-10">
-              <div className="card-elegant p-8 hover-lift">
-                <div className="text-accent text-2xl mb-4">"⭐⭐⭐⭐⭐"</div>
-                <p className="text-body-elegant text-sophisticated mb-6 italic">
-                  "La guía me ayudó a identificar exactamente dónde necesitaba trabajar. Los ejercicios son prácticos y los pude aplicar inmediatamente en mi trabajo."
-                </p>
-                <cite className="text-card-foreground font-semibold">- Ana M., Directora de Marketing</cite>
-              </div>
-
-              <div className="card-elegant p-8 hover-lift">
-                <div className="text-accent text-2xl mb-4">"⭐⭐⭐⭐⭐"</div>
-                <p className="text-body-elegant text-sophisticated mb-6 italic">
-                  "Increíble la precisión del análisis. Me dio una perspectiva completamente nueva sobre mis fortalezas y áreas de mejora como líder."
-                </p>
-                <cite className="text-card-foreground font-semibold">- Carlos R., CEO</cite>
-              </div>
-
-              <div className="card-elegant p-8 hover-lift">
-                <div className="text-accent text-2xl mb-4">"⭐⭐⭐⭐⭐"</div>
-                <p className="text-body-elegant text-sophisticated mb-6 italic">
-                  "El plan de 90 días es oro puro. Cada semana veo mejoras en mi capacidad de gestionar mi equipo y mis propias emociones."
-                </p>
-                <cite className="text-card-foreground font-semibold">- Laura S., Directora de Operaciones</cite>
-              </div>
-            </div>
-          </div>
-        </section>
-
+        
         {/* Formulario */}
         <div id="gift-form">
           <GiftSection />

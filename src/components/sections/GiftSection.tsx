@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import AssessmentForm, { FormData } from '@/components/forms/AssessmentForm';
+import { CheckCircle, Mail, Download, ArrowRight } from 'lucide-react';
 
 const GiftSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -43,28 +44,40 @@ const GiftSection = () => {
 
   if (isSubmitted) {
     return (
-      <section id="gift" className="gift-gradient section-padding">
+      <section id="gift" className="py-20 bg-background">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <Card className="p-12 animate-zoom-in">
-              <div className="text-6xl mb-6 animate-bounce-in animate-delay-200">🎉</div>
-              <h2 className="text-3xl font-heading font-bold text-card-foreground mb-4 animate-slide-in-down animate-delay-300">
+            <Card className="p-12 border border-border bg-card shadow-lg">
+              <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-accent" />
+              </div>
+              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">
                 ¡Gracias por tu interés!
               </h2>
-              <p className="text-lg font-body text-muted-foreground mb-6 animate-fade-in-up animate-delay-400">
-                He recibido tu información y pronto recibirás tu <strong>Guía de Autoevaluación Emocional personalizada</strong> en tu correo electrónico.
+              <p className="text-lg text-muted-foreground mb-6">
+                He recibido tu información y pronto recibirás tu <strong className="text-accent">Guía de Autoevaluación Emocional personalizada</strong> en tu correo electrónico.
               </p>
-              <p className="text-muted-foreground font-body animate-slide-in-up animate-delay-500">
+              <p className="text-muted-foreground mb-8">
                 Mientras tanto, te contactaré personalmente para conocer mejor tus objetivos y cómo puedo ayudarte en tu proceso de transformación.
               </p>
-              <div className="mt-8 animate-zoom-in animate-delay-600">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   variant="default"
                   size="lg"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="hover-glow"
+                  className="bg-accent hover:bg-accent/90 text-white"
                 >
+                  <Mail className="w-4 h-4 mr-2" />
                   Contacto Directo
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => window.location.href = '/'}
+                  className="border-accent text-accent hover:bg-accent/10"
+                >
+                  <ArrowRight className="w-4 h-4 mr-2" />
+                  Volver al Inicio
                 </Button>
               </div>
             </Card>
@@ -75,14 +88,18 @@ const GiftSection = () => {
   }
 
   return (
-    <section id="gift" className="gift-gradient section-padding">
+    <section id="gift" className="py-20 bg-background">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-6 animate-slide-in-down animate-delay-200">
-              🎁 Recibe GRATIS tu Guía de Autoevaluación Emocional
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center space-x-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Download className="w-4 h-4" />
+              <span>Descarga Gratuita</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Recibe <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/70">GRATIS</span> tu Guía de Autoevaluación Emocional
             </h2>
-            <p className="text-xl font-body text-primary-foreground/90 max-w-3xl mx-auto animate-slide-in-up animate-delay-300">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Descubre tu nivel actual de Inteligencia Emocional y crea tu plan personalizado de crecimiento
             </p>
           </div>

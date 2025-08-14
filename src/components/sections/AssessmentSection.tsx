@@ -184,7 +184,7 @@ const AssessmentSection = () => {
               );
             })()}
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col gap-4 justify-center">
               <Link
                 to="/contacto"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 text-gray-900 font-semibold rounded-full hover:bg-amber-400 transition-colors"

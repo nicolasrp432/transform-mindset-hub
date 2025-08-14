@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const scrollToGift = () => {
@@ -7,10 +8,6 @@ const HeroSection = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const scrollToContact = () => {
-    window.location.href = '/contacto';
   };
 
   return (
@@ -38,15 +35,15 @@ const HeroSection = () => {
               </p>
               
               <div className="flex flex-wrap gap-3 animate-slide-up" style={{animationDelay: '0.4s'}}>
-                <span className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                <Link to="/servicios" className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300">
                   Coaching Especializado
-                </span>
-                <span className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                </Link>
+                <Link to="/servicios" className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300">
                   PNL Certificada
-                </span>
-                <span className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                </Link>
+                <Link to="/servicios" className="bg-secondary text-secondary-foreground px-6 py-3 rounded-full text-base font-body font-medium shadow-soft hover:bg-accent hover:text-accent-foreground hover:scale-110 hover:shadow-lg transition-all duration-300">
                   Reiki Master
-                </span>
+                </Link>
               </div>
             </div>
 
@@ -62,10 +59,12 @@ const HeroSection = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                onClick={scrollToContact}
+                asChild
                 className="hover:scale-105 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 group"
               >
-                <span className="group-hover:animate-pulse">💬</span> Trabajemos Juntos
+                <Link to="/contacto">
+                  <span className="group-hover:animate-pulse">💬</span> Trabajemos Juntos
+                </Link>
               </Button>
             </div>
           </div>

@@ -13,7 +13,7 @@ const Footer = () => {
             <p className="text-muted-foreground max-w-sm">
               Transformación consciente para líderes, equipos y personas que desean vivir con propósito, claridad y coherencia.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-3 items-center md:items-start">
               <a href="https://www.instagram.com/ainaracoach/" target="_blank" rel="noopener noreferrer" className="group w-10 h-10 rounded-lg bg-gradient-to-br from-accent/20 to-accent/40 hover:from-accent hover:to-accent/80 flex items-center justify-center transition-all hover:scale-110">
                 <Instagram className="w-5 h-5 text-accent group-hover:text-white" />
               </a>
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-10 pt-6 border-t border-border/40 flex flex-row items-center justify-between gap-4 flex-wrap">
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Ainara Coach. Todos los derechos reservados.</p>
           <p className="text-xs text-muted-foreground flex items-center gap-1">Hecho con <Heart className="w-3 h-3 text-accent" /> para tu transformación.</p>
         </div>
