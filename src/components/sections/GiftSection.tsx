@@ -11,6 +11,29 @@ const GiftSection = () => {
 
   const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
+  // Automatically download the guide from /public once the form is successfully submitted
+  const triggerGuideDownload = async () => {
+    const pdfPath = '/GUIAINTELIGENCIAEMOCIONALAINARA.pdf';
+    const url = `${window.location.origin}${pdfPath}`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to fetch PDF');
+      const blob = await res.blob();
+      const objectUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.setAttribute('download', 'Guia_Inteligencia_Emocional_Ainara.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 2000);
+    } catch (err) {
+      // Fallback: open in a new tab if download attribute is ignored or fetch fails
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   const handleFormSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
     
@@ -32,6 +55,9 @@ const GiftSection = () => {
 
       const result = await response.json();
       console.log('Email sent successfully:', result);
+
+      // Trigger the guide download for the user
+      await triggerGuideDownload();
       
       setIsSubmitted(true);
     } catch (error) {
