@@ -21,6 +21,23 @@ const ChatWidget = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Resolve API base by environment/domain
+  const API_BASE = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname;
+      // Production on Hostinger -> call Vercel API subdomain
+      if (host.endsWith('ainaracoaching.com') && host !== 'api.ainaracoaching.com') {
+        return 'https://api.ainaracoaching.com';
+      }
+      // Local dev (requires `vercel dev` for serverless functions)
+      if (host === 'localhost' || host === '127.0.0.1') {
+        return 'http://localhost:8080';
+      }
+    }
+    // Fallback to same-origin (useful if frontend also deployed on Vercel)
+    return '';
+  }, []);
+
   useEffect(() => {
     if (open) inputRef.current?.focus();
   }, [open]);
@@ -39,7 +56,7 @@ const ChatWidget = () => {
     setInput('');
     setLoading(true);
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(`${API_BASE}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
