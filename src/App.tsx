@@ -13,6 +13,7 @@ import Gift from "./pages/Gift";
 import Contact from "./pages/Contact";
 import Comenzar from "./pages/Comenzar";
 import NotFound from "./pages/NotFound";
+import ReConectate from "./pages/ReConectate";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="regalo" element={<Gift />} />
             <Route path="contacto" element={<Contact />} />
             <Route path="comenzar" element={<Comenzar />} />
+            <Route path="re-conectate" element={<ReConectate />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

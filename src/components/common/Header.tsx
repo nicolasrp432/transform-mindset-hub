@@ -80,6 +80,14 @@ const Header = () => {
             >
               Regalo
             </Link>
+            <Link 
+              to="/re-conectate"
+              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
+                isActivePath('/re-conectate') ? 'text-accent after:w-full' : 'after:w-0'
+              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
+            >
+              Re-Conéctate
+            </Link>
           </nav>
 
           {/* CTA Button - Desktop only */}
@@ -150,6 +158,15 @@ const Header = () => {
                 onClick={() => handleNavigation('/regalo')}
               >
                 Regalo
+              </Link>
+              <Link 
+                to="/re-conectate"
+                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
+                  isActivePath('/re-conectate') ? 'text-accent bg-accent/10' : ''
+                }`}
+                onClick={() => handleNavigation('/re-conectate')}
+              >
+                Re-Conéctate
               </Link>
               <Link 
                 to="/contacto"

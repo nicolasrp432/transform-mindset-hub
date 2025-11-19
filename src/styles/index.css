@@ -462,7 +462,7 @@
       transform: translateY(0);
     }
   }
-r   @keyframes fadeIn {
+  @keyframes fadeIn {
     from {
       opacity: 0;
     }
