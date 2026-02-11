@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Heart, Award, Target } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import AboutMeSection from '../components/sections/AboutMeSection';
 import PageTransition from '@/components/ui/page-transition';
 
@@ -30,8 +29,13 @@ const AboutMe = () => {
       description: 'Hoy ayudo a profesionales a crear la vida auténtica que realmente desean.',
       color: 'secondary'
     }
-  ];
+  ] as const;
 
+  const storyStyles = {
+    primary: { iconWrapper: 'bg-primary/10', icon: 'text-primary' },
+    accent: { iconWrapper: 'bg-accent/10', icon: 'text-accent' },
+    secondary: { iconWrapper: 'bg-secondary/10', icon: 'text-secondary' },
+  } as const;
   return (
     <PageTransition>
       {/* Hero simplificado */}
@@ -68,11 +72,12 @@ const AboutMe = () => {
             {storyParts.map((part, index) => {
               const IconComponent = part.icon;
               return (
-                <div key={index} className={`text-center transition-all duration-1000 delay-${(index + 1) * 200} transform ${
+                <div key={index} className={`text-center transform transition-all duration-1000 ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                }`}>
-                  <div className={`w-20 h-20 bg-${part.color}/10 rounded-3xl flex items-center justify-center mx-auto mb-6`}>
-                    <IconComponent className={`w-10 h-10 text-${part.color}`} />
+                }`}
+                  style={{ transitionDelay: `${(index + 1) * 120}ms` }}>
+                  <div className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl ${storyStyles[part.color].iconWrapper}`}>
+                    <IconComponent className={`h-10 w-10 ${storyStyles[part.color].icon}`} />
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-4">
                     {part.title}

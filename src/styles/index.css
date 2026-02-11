@@ -462,7 +462,7 @@
       transform: translateY(0);
     }
   }
-r   @keyframes fadeIn {
+  @keyframes fadeIn {
     from {
       opacity: 0;
     }
@@ -566,21 +566,8 @@ r   @keyframes fadeIn {
       gap: 2rem;
     }
     
-    .flex {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .flex.sm\:flex-row {
-      flex-direction: column;
-    }
   }
   
-  @media (min-width: 640px) {
-    .flex.sm\:flex-row {
-      flex-direction: row;
-    }
-  }
   
   /* Elegant Grid Layouts */
   .grid-elegant {
@@ -918,6 +905,18 @@ r   @keyframes fadeIn {
   .hover-glow:hover {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
     transition: box-shadow 0.3s ease;
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* Custom bg-muted override */

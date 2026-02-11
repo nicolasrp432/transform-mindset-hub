@@ -36,10 +36,9 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
-  index: number;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, index }) => {
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   return (
     <Card 
       className="p-8 relative"
@@ -86,9 +85,12 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ stat }) => {
   return (
     <Card 
-      className={`text-center p-6 ${stat.bgColor} animate-slide-in-left animate-delay-${stat.delay}`}
+      className={`text-center p-6 ${stat.bgColor} animate-slide-in-left`}
+      style={{ animationDelay: `${stat.delay}ms` }}
     >
-      <div className={`text-4xl font-heading font-bold ${stat.color} mb-2 animate-zoom-in animate-delay-${stat.delay + 100}`}>
+      <div
+        className={`mb-2 text-4xl font-heading font-bold ${stat.color} animate-zoom-in`}
+        style={{ animationDelay: `${stat.delay + 100}ms` }}>
         {stat.value}
       </div>
       <div className="text-muted-foreground font-body">{stat.label}</div>
@@ -163,11 +165,7 @@ const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard 
-              key={index}
-              testimonial={testimonial}
-              index={index}
-            />
+            <TestimonialCard key={index} testimonial={testimonial} />
           ))}
         </div>
 

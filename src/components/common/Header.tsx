@@ -1,104 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useNavigation } from '@/hooks/use-navigation';
+import { ROUTES } from '@/lib/routes';
+
+const navItems = [
+  { label: 'Inicio', path: ROUTES.home },
+  { label: 'Sobre Mí', path: ROUTES.about },
+  { label: 'Servicios', path: ROUTES.services },
+  { label: 'Contacto', path: ROUTES.contact },
+  { label: 'Regalo', path: ROUTES.gift },
+];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isActivePath, navigateWithTransition, currentPath } = useNavigation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [currentPath]);
-
-  const handleNavigation = (path: string) => {
-    setIsMobileMenuOpen(false);
-    navigateWithTransition(path);
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur-md transition-all duration-300 ${
+        isScrolled ? 'shadow-md' : 'shadow-none'
+      }`}
+    >
       <div className="container-custom px-4">
-        <div className="flex items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4 md:mt-0 mt-[23px]">
-            <img 
-              src="/logoainaratr.png" 
-              alt="Ainara Coach Logo" 
-              className="h-12 w-auto"
-            />
+        <div className={`flex h-20 items-center gap-4 transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+          <Link to={ROUTES.home} className="flex items-center">
+            <img src="/logoainaratr.png" alt="Ainara Coach Logo" className="h-11 w-auto" />
           </Link>
 
-          {/* Navigation - Desktop only */}
-          <nav className="hidden md:flex items-center space-x-10 mx-auto">
-            <Link 
-              to="/"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Inicio
-            </Link>
-            <Link 
-              to="/sobre-mi"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/sobre-mi') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Sobre Mí
-            </Link>
-            <Link 
-              to="/servicios"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/servicios') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Servicios
-            </Link>
-            <Link 
-              to="/contacto"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/contacto') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Contacto
-            </Link>
-            <Link 
-              to="/regalo"
-              className={`text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium relative ${
-                isActivePath('/regalo') ? 'text-accent after:w-full' : 'after:w-0'
-              } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:transition-all after:duration-300 hover:after:w-full`}
-            >
-              Regalo
-            </Link>
+          <nav className="mx-auto hidden items-center gap-8 md:flex">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-body-elegant font-medium relative transition-colors duration-300 hover:text-accent ${
+                    isActive
+                      ? 'text-accent after:w-full'
+                      : 'text-sophisticated after:w-0'
+                  } after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:bg-accent after:content-[''] after:transition-all after:duration-300 hover:after:w-full`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
           </nav>
 
-          {/* CTA Button - Desktop only */}
           <div className="hidden md:block">
-            <Button 
+            <Button
               variant="default"
               size="lg"
-              className="transform hover:scale-105 transition-all duration-300"
-              onClick={() => handleNavigation('/comenzar')}
+              className="transition-transform duration-300 hover:scale-105"
+              onClick={() => navigate(ROUTES.start)}
             >
               Comenzar Ahora
             </Button>
           </div>
 
-          {/* Mobile menu button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-3 text-sophisticated hover:text-accent transition-colors ml-auto"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="ml-auto rounded-md p-3 text-sophisticated transition-colors hover:text-accent md:hidden"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <svg className="icon-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
@@ -110,66 +79,36 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background border-b border-border">
-            <nav className="container-custom px-4 py-6 space-y-6">
-              <Link 
-                to="/"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/')}
-              >
-                Inicio
-              </Link>
-              <Link 
-                to="/sobre-mi"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/sobre-mi') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/sobre-mi')}
-              >
-                Sobre Mí
-              </Link>
-              <Link 
-                to="/servicios"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/servicios') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/servicios')}
-              >
-                Servicios
-              </Link>
-
-              <Link 
-                to="/regalo"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/regalo') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/regalo')}
-              >
-                Regalo
-              </Link>
-              <Link 
-                to="/contacto"
-                className={`block text-body-elegant text-sophisticated hover:text-accent transition-all duration-300 font-medium py-2 px-4 rounded-lg hover:bg-accent/10 ${
-                  isActivePath('/contacto') ? 'text-accent bg-accent/10' : ''
-                }`}
-                onClick={() => handleNavigation('/contacto')}
-              >
-                Contacto
-              </Link>
-              <div className="mt-6">
-                <Button 
-                  variant="default"
-                  size="lg"
-                  className="w-full transform hover:scale-105 transition-all duration-300"
-                  onClick={() => handleNavigation('/comenzar')}
+          <div className="md:hidden border-t border-border/70 bg-background/95 py-4">
+            <nav className="container-custom flex flex-col gap-3 px-4">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `rounded-lg px-4 py-2 text-body-elegant font-medium transition-all duration-300 ${
+                      isActive
+                        ? 'bg-accent/10 text-accent'
+                        : 'text-sophisticated hover:bg-accent/10 hover:text-accent'
+                    }`
+                  }
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Comenzar Ahora
-                </Button>
-              </div>
+                  {item.label}
+                </NavLink>
+              ))}
+              <Button
+                variant="default"
+                size="lg"
+                className="mt-2 w-full"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate(ROUTES.start);
+                }}
+              >
+                Comenzar Ahora
+              </Button>
             </nav>
           </div>
         )}

@@ -284,7 +284,7 @@ const Testimonials = () => {
             <Link to="/contacto" className="btn-primary hover-lift">
               Comienza tu Transformación
             </Link>
-            <Link to="/proceso" className="btn-outline hover-lift">
+            <Link to="/mi-proceso" className="btn-outline hover-lift">
               Conoce el Proceso
             </Link>
           </div>

@@ -13,6 +13,7 @@ import Gift from "./pages/Gift";
 import Contact from "./pages/Contact";
 import Comenzar from "./pages/Comenzar";
 import NotFound from "./pages/NotFound";
+import { ROUTES } from '@/lib/routes';
 
 const queryClient = new QueryClient();
 
@@ -25,13 +26,13 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="sobre-mi" element={<AboutMe />} />
-            <Route path="servicios" element={<Services />} />
-            {<Route path="mi-proceso" element={<Process />} />}
-            {<Route path="testimonios" element={<Testimonials />} />}
-            <Route path="regalo" element={<Gift />} />
-            <Route path="contacto" element={<Contact />} />
-            <Route path="comenzar" element={<Comenzar />} />
+            <Route path={ROUTES.about.slice(1)} element={<AboutMe />} />
+            <Route path={ROUTES.services.slice(1)} element={<Services />} />
+            <Route path={ROUTES.process.slice(1)} element={<Process />} />
+            <Route path={ROUTES.testimonials.slice(1)} element={<Testimonials />} />
+            <Route path={ROUTES.gift.slice(1)} element={<Gift />} />
+            <Route path={ROUTES.contact.slice(1)} element={<Contact />} />
+            <Route path={ROUTES.start.slice(1)} element={<Comenzar />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
