@@ -12,9 +12,9 @@ import { MessageCircle, CalendarDays, X } from "lucide-react";
    de embudo donde se aplica el Ratio 1:1.
    ============================================================ */
 
-const WHATSAPP_NUMBER = "34600000000";
+const WHATSAPP_NUMBER = "34692627353";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Ainara%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tu%20trabajo.`;
-const CALENDLY_URL = "/sesiones";
+const CALENDLY_URL = "https://calendly.com/ainaracoachpnl/reunion-con-ainara";
 
 const springConfig = {
   type: "spring" as const,

@@ -32,7 +32,7 @@ const services: Service[] = [
     href: "/sesiones",
     label: "Reservar sesión",
     className: "md:col-span-2 md:row-span-2 min-h-[400px]",
-    image: "https://images.unsplash.com/photo-1517487881594-2787f0727c23?w=640&q=80&auto=format&fit=crop",
+    image: "/grid.jpg"
   },
   {
     number: "02",
@@ -42,7 +42,6 @@ const services: Service[] = [
     href: "/formaciones",
     label: "Ver programas",
     className: "md:col-span-2 md:row-span-1 min-h-[250px]",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=640&q=80&auto=format&fit=crop",
   },
   {
     number: "03",
@@ -131,7 +130,7 @@ export default function ServiceGrid() {
                   {service.image && (
                     <div className="absolute inset-0 bg-white/70 dark:bg-black/40 z-0 group-hover:bg-white/40 transition-colors duration-700" />
                   )}
-                  
+
                   <div className="relative z-10">
                     <span className="block font-serif text-4xl font-light text-secondary select-none mb-6 leading-none">
                       {service.number}
@@ -143,7 +142,7 @@ export default function ServiceGrid() {
                       {service.description}
                     </p>
                   </div>
-                  
+
                   <div className="relative z-10 flex flex-col items-start gap-6 mt-8">
                     <p className="text-text-subtle text-sm leading-relaxed max-w-[50ch]">
                       {service.detail}
