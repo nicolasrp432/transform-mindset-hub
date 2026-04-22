@@ -42,7 +42,7 @@ export default function TextReveal({
   };
 
   // @ts-ignore (motion component typing workaround)
-  const MotionComponent = motion[Component as keyof typeof motion] || motion.h1;
+  const MotionComponent: any = motion[Component as keyof typeof motion] || motion.h1;
 
   return (
     <MotionComponent

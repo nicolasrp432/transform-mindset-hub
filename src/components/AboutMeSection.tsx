@@ -16,17 +16,25 @@ export default function AboutMeSection() {
             whileInView="visible"
             viewport={viewportOnce}
             variants={fadeUp}
-            className="relative w-full aspect-[4/5] max-w-md mx-auto lg:mx-0 overflow-hidden rounded-2xl"
+            className="relative w-full aspect-[4/5] max-w-md mx-auto lg:mx-0 overflow-hidden rounded-2xl cursor-pointer"
           >
             {/* Using an Unsplash placeholder with CSS filters for aesthetic coherence */}
-            <Image
-              src="/imagen-hero.png"
-              alt="Retrato de Ainara"
-              fill
-              className="object-cover sepia-[0.35] grayscale-[0.5] contrast-[0.9] hover:sepia-0 hover:grayscale-0 hover:contrast-100 transition-all duration-[800ms] ease-in-out"
-              sizes="(max-w-768px) 100vw, 400px"
-              priority
-            />
+            <motion.div
+              whileHover={{ filter: "sepia(0%) grayscale(0%) contrast(100%)" }}
+              whileTap={{ filter: "sepia(0%) grayscale(0%) contrast(100%)" }}
+              style={{ filter: "sepia(35%) grayscale(50%) contrast(90%)" }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src="/ainara-image.jpg"
+                alt="Retrato de Ainara"
+                fill
+                className="object-cover"
+                sizes="(max-w-768px) 100vw, 400px"
+                priority
+              />
+            </motion.div>
             {/* Decorator */}
             <div className="absolute inset-0 border border-primary/20 rounded-2xl mix-blend-overlay pointer-events-none" />
           </motion.div>

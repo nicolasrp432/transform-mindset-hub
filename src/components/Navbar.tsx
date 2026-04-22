@@ -93,7 +93,7 @@ export function Navbar() {
           {/* CTA Desktop */}
           <div className="hidden md:block">
             <Link
-              href="/agendar"
+              href="/sesiones"
               className="px-5 py-2 bg-primary text-white text-xs font-medium tracking-wider uppercase font-sans rounded-full hover:bg-secondary hover:text-text transition-colors duration-300 shadow-sm block"
             >
               Agendar
@@ -165,7 +165,7 @@ export function Navbar() {
                 className="mt-12"
               >
                 <Link
-                  href="/agendar"
+                  href="/sesiones"
                   className="px-8 py-4 bg-primary text-white text-sm font-medium tracking-wider uppercase font-sans rounded-full hover:bg-secondary hover:text-text transition-colors duration-300 inline-block shadow-sm"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

@@ -10,7 +10,38 @@ import { FloatingInput } from "@/components/ui/FloatingInput";
 import TextReveal from "@/components/ui/TextReveal";
 import { submitLeadMagnet } from "@/app/actions/lead";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpen, Calendar, GraduationCap, FileText, ArrowRight } from "lucide-react";
+
+const ecosystemItems = [
+  {
+    title: "Guía Práctica",
+    description: "(Material descargable). Tu primer paso hacia la claridad mental.",
+    icon: FileText,
+    action: "Saber más",
+    href: "#",
+  },
+  {
+    title: "Agenda de Reflexión",
+    description: "(Herramienta de introspección diaria). Un espacio diario para conectar con tu esencia.",
+    icon: Calendar,
+    action: "Explorar",
+    href: "#",
+  },
+  {
+    title: "Plataforma Educativa",
+    description: "(Acceso a los cursos Re-conéctate y Emulsión Energética).",
+    icon: GraduationCap,
+    action: "Explorar",
+    href: "/formaciones",
+  },
+  {
+    title: "Libro / Cuento",
+    description: "(La obra literaria de Ainara). Una historia para silenciar el ruido.",
+    icon: BookOpen,
+    action: "Saber más",
+    href: "#",
+  }
+];
 
 export default function HerramientasPage() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -39,7 +70,7 @@ export default function HerramientasPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--color-base)] flex flex-col md:flex-row relative">
+    <main className="flex flex-col relative w-full bg-[var(--color-base)]">
       {/* Funnel escape — Ratio 1:1: sutil, no compite con el CTA */}
       <Link
         href="/"
@@ -49,12 +80,15 @@ export default function HerramientasPage() {
         Volver a inicio
       </Link>
 
-      {/* Mitad Izquierda (Copy y Dolor) */}
-      <div className="md:w-5/12 bg-[var(--color-surface)] p-8 md:p-16 lg:p-24 flex flex-col justify-center">
+      {/* Sección Superior: Captura de Lead */}
+      <section className="min-h-screen flex flex-col md:flex-row">
+        {/* Mitad Izquierda (Copy y Dolor) */}
+      <div className="md:w-5/12 bg-[var(--color-surface)] p-8 pt-28 md:pt-16 md:p-16 lg:p-24 flex flex-col justify-center text-center md:text-left">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center md:items-start"
         >
           <TextReveal text="¿Sientes que la cabeza no te para?" className="text-4xl md:text-5xl lg:text-6xl mb-6 font-serif" as="h1" />
           <hr className="divider-breath" />
@@ -177,6 +211,69 @@ export default function HerramientasPage() {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+      </section>
+
+      {/* Nueva Sección: Recursos y Materiales */}
+      <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24 bg-[var(--color-surface)] border-t border-border">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-16 md:mb-24 text-center md:text-left flex flex-col items-center md:items-start"
+          >
+            <h2 className="text-3xl md:text-5xl font-serif text-[var(--color-text)] mb-6 text-balance">
+              Recursos Premium
+            </h2>
+            <hr className="divider-breath mb-6 hidden md:block" />
+            <p className="text-[var(--color-text-muted)] text-lg max-w-2xl leading-relaxed">
+              Descubre todo el ecosistema de herramientas diseñadas para acompañarte 
+              en tu proceso de transformación. Desde lecturas reflexivas hasta 
+              nuestra plataforma educativa integral.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+            {ecosystemItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+                  className="group relative bg-white border border-border p-8 md:p-10 flex flex-col gap-6 rounded-2xl hover:shadow-xl transition-shadow duration-500 h-full"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[var(--color-base)] flex items-center justify-center border border-border group-hover:scale-110 transition-transform duration-500">
+                    <Icon className="w-5 h-5 text-[var(--color-primary)]" strokeWidth={1.5} />
+                  </div>
+                  
+                  <div className="flex flex-col flex-1 gap-3">
+                    <h3 className="font-serif text-2xl text-[var(--color-text)]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[var(--color-text-muted)] leading-relaxed flex-1">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-6 border-t border-border/50">
+                    <Link
+                      href={item.href}
+                      className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-subtle)] group-hover:text-[var(--color-primary)] transition-colors duration-300"
+                    >
+                      {item.action}
+                      <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

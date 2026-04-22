@@ -14,7 +14,7 @@ import { MessageCircle, CalendarDays, X } from "lucide-react";
 
 const WHATSAPP_NUMBER = "34600000000";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Ainara%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tu%20trabajo.`;
-const CALENDLY_URL = "https://calendly.com/ainara"; // Reemplazar con URL real
+const CALENDLY_URL = "/sesiones";
 
 const springConfig = {
   type: "spring" as const,
@@ -42,11 +42,13 @@ interface ContactOptionProps {
 }
 
 function ContactOption({ href, icon, label, index }: ContactOptionProps) {
+  const isExternal = href.startsWith('http');
+  const targetProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
   return (
     <motion.a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...targetProps}
       custom={index}
       variants={itemVariants}
       initial="hidden"

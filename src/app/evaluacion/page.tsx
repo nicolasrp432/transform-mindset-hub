@@ -16,7 +16,7 @@ import { submitEvaluacion } from "@/app/actions/evaluacion";
    transiciones fluidas, captura final de lead.
    ============================================================ */
 
-const CALENDLY_URL = "https://calendly.com/ainaracoachpnl/reunion-con-ainara";
+const CALENDLY_URL = "/sesiones";
 const WHATSAPP_URL =
   "https://wa.me/34692627353?text=Hola%20Ainara%2C%20acabo%20de%20hacer%20la%20autoevaluaci%C3%B3n%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n...";
 
@@ -90,7 +90,6 @@ const staggerItem = {
 export default function EvaluacionPage() {
   const [currentStep, setCurrentStep] = useState(0); // 0-4 = questions, 5 = lead capture, 6 = success
   const [answers, setAnswers] = useState<string[]>([]);
-  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -113,16 +112,20 @@ export default function EvaluacionPage() {
   };
 
   const onSubmit = async (data: LeadInput) => {
-    setServerError(null);
-    const result = await submitEvaluacion({
-      name: data.name,
-      email: data.email,
-      answers,
-    });
+    try {
+      const result = await submitEvaluacion({
+        name: data.name,
+        email: data.email,
+        answers,
+      });
 
-    if (!result.success) {
-      setServerError(result.error || "Ocurrió un error inesperado.");
-      return;
+      if (!result.success) {
+        console.error("Error capturando lead de evaluación:", result.error);
+        // Soft Fallback: Si falla la BD, de todas formas mostramos la pantalla de éxito
+        // No bloqueamos al usuario
+      }
+    } catch (err) {
+      console.error("Error inesperado en submitEvaluacion:", err);
     }
 
     setCurrentStep(questions.length + 1); // success
@@ -184,18 +187,18 @@ export default function EvaluacionPage() {
         </motion.div>
       )}
 
-      {/* Step counter */}
-      {currentStep < questions.length && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-28 left-1/2 -translate-x-1/2 text-[var(--color-text-subtle)] text-xs uppercase tracking-[0.25em] font-medium"
-        >
-          Pregunta {currentStep + 1} de {questions.length}
-        </motion.div>
-      )}
-
       <div className="w-full max-w-xl relative z-10">
+        {/* Step counter */}
+        {currentStep < questions.length && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center text-[var(--color-text-subtle)] text-xs uppercase tracking-[0.25em] font-medium mb-8 md:mb-12"
+          >
+            Pregunta {currentStep + 1} de {questions.length}
+          </motion.div>
+        )}
+
         <AnimatePresence mode="wait">
           {/* === QUESTION STEPS === */}
           {currentStep < questions.length && (
@@ -297,16 +300,6 @@ export default function EvaluacionPage() {
                   error={errors.email?.message}
                 />
 
-                {serverError && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded bg-amber-500/10 border border-amber-500/20 text-amber-700 text-sm font-medium text-center"
-                  >
-                    {serverError}
-                  </motion.div>
-                )}
-
                 <div className="pt-4">
                   <button
                     type="submit"
@@ -383,33 +376,34 @@ export default function EvaluacionPage() {
                 className="flex flex-col gap-4 max-w-sm mx-auto"
               >
                 {/* Calendly CTA */}
-                <motion.a
+                <motion.div
                   variants={staggerItem}
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-5 px-8 bg-[var(--color-primary)] text-white hover:opacity-90 transition-all duration-500 flex justify-center items-center gap-4 font-medium tracking-wide uppercase text-sm shadow-lg shadow-[var(--color-primary)]/20"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <Link
+                    href={CALENDLY_URL}
+                    className="w-full py-5 px-8 bg-[var(--color-primary)] text-white hover:opacity-90 transition-all duration-500 flex justify-center items-center gap-4 font-medium tracking-wide uppercase text-sm shadow-lg shadow-[var(--color-primary)]/20"
                   >
-                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                    <line x1="16" x2="16" y1="2" y2="6" />
-                    <line x1="8" x2="8" y1="2" y2="6" />
-                    <line x1="3" x2="21" y1="10" y2="10" />
-                  </svg>
-                  Agendar Sesión en Calendly
-                </motion.a>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                      <line x1="16" x2="16" y1="2" y2="6" />
+                      <line x1="8" x2="8" y1="2" y2="6" />
+                      <line x1="3" x2="21" y1="10" y2="10" />
+                    </svg>
+                    Reservar Sesión
+                  </Link>
+                </motion.div>
 
                 {/* WhatsApp CTA */}
                 <motion.a

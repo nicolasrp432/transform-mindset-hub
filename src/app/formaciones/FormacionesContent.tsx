@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/animations";
 import TextReveal from "@/components/ui/TextReveal";
 import { ArrowUpRight, Sparkles, Zap } from "lucide-react";
+import Link from "next/link";
 
 const courses = [
   {
@@ -15,6 +16,7 @@ const courses = [
       "Un proceso de reconexión profunda contigo misma. Aprende a escuchar tu cuerpo, identificar tus bloqueos emocionales y recuperar el hilo conductor de tu vida desde la calma y la claridad.",
     tags: ["Autoconocimiento", "Emociones", "Presencia"],
     accent: "var(--color-secondary)",
+    href: "/re-conectate",
   },
   {
     id: "emulsion-energetica",
@@ -25,6 +27,7 @@ const courses = [
       "Un programa de transformación energética que te lleva a comprender y trabajar con tus campos de energía personal, alineando cuerpo, mente y propósito para actuar con plenitud.",
     tags: ["Energía", "Propósito", "Transformación"],
     accent: "var(--color-primary)",
+    href: "https://plataforma.ainaracoaching.com",
   },
 ];
 
@@ -32,8 +35,8 @@ export default function FormacionesContent() {
   return (
     <main>
       {/* Header */}
-      <section className="section" aria-labelledby="formaciones-heading">
-        <div className="container-editorial">
+      <section className="section pt-32 lg:pt-40 pb-8 lg:pb-12" aria-labelledby="formaciones-heading">
+        <div className="container-editorial flex flex-col items-center text-center md:items-start md:text-left">
           <p className="text-text-subtle text-sm tracking-widest uppercase mb-4">
             Transformación
           </p>
@@ -64,11 +67,13 @@ export default function FormacionesContent() {
           >
             {courses.map((course) => {
               const Icon = course.icon;
-              return (
+              const isExternal = course.href.startsWith("http");
+              
+              const CardInner = (
                 <motion.article
                   key={course.id}
                   variants={fadeUp}
-                  className="group relative flex flex-col gap-6 rounded-2xl border border-border bg-surface p-8 lg:p-10 overflow-hidden transition-shadow duration-300 hover:shadow-xl"
+                  className="group relative flex flex-col gap-6 rounded-2xl border border-border bg-surface p-8 lg:p-10 overflow-hidden transition-shadow duration-300 hover:shadow-xl h-full"
                 >
                   {/* Accent top bar */}
                   <div
@@ -118,6 +123,16 @@ export default function FormacionesContent() {
                     ))}
                   </div>
                 </motion.article>
+              );
+
+              return isExternal ? (
+                <a key={course.id} href={course.href} target="_blank" rel="noopener noreferrer" className="block outline-none">
+                  {CardInner}
+                </a>
+              ) : (
+                <Link key={course.id} href={course.href} className="block outline-none">
+                  {CardInner}
+                </Link>
               );
             })}
           </motion.div>

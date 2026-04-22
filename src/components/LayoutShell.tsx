@@ -6,24 +6,20 @@ import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 
 /* ============================================================
-   LayoutShell — Ratio de Atención 1:1
-   
-   En rutas de embudo (/herramientas, /evaluacion) se ocultan
-   Navbar y Footer para eliminar fugas de conversión.
-   El usuario solo puede avanzar (submit) o retroceder (← Volver).
+   LayoutShell
    ============================================================ */
 
-const FUNNEL_ROUTES = ["/herramientas", "/evaluacion"];
+const FUNNEL_ROUTES = ["/re-conectate", "/herramientas", "/evaluacion"];
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isFunnel = FUNNEL_ROUTES.includes(pathname);
+  const isFunnel = pathname ? FUNNEL_ROUTES.includes(pathname) : false;
 
   return (
     <>
-      {!isFunnel && <Navbar />}
+      <Navbar />
       {children}
-      {!isFunnel && <Footer />}
+      <Footer />
       {!isFunnel && <FloatingContact />}
     </>
   );

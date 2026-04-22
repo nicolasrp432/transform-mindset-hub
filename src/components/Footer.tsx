@@ -18,7 +18,7 @@ export function Footer() {
               Descubre qué decisiones son auténticamente tuyas y cuáles te mantienen en el ruido.
             </p>
             <Link
-              href="/agendar"
+              href="/sesiones"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white text-xs font-medium tracking-wider uppercase font-sans hover:bg-secondary hover:text-text transition-colors duration-300 rounded-full"
             >
               Agenda una sesión

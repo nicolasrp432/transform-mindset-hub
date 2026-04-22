@@ -123,15 +123,23 @@ export default function Hero() {
             className="relative flex justify-center md:justify-end order-first md:order-last"
           >
             {/* Mobile: círculo compacto; md+: rectángulo editorial */}
-            <div className="w-52 h-52 md:w-[300px] md:h-[390px] lg:w-[340px] lg:h-[440px] rounded-2xl overflow-hidden relative border border-border shadow-lg">
-              <Image
-                src="/imagen-hero.png"
-                alt="Ainara — acompañamiento emocional"
-                fill
-                className="object-cover grayscale opacity-70 hover:opacity-90 hover:grayscale-0 transition-all duration-700"
-                sizes="(max-width: 768px) 208px, (max-width: 1024px) 300px, 340px"
-                priority
-              />
+            <div className="w-52 h-52 md:w-[300px] md:h-[390px] lg:w-[340px] lg:h-[440px] rounded-2xl overflow-hidden relative border border-border shadow-lg cursor-pointer">
+              <motion.div
+                whileHover={{ filter: "grayscale(0%)", opacity: 0.9 }}
+                whileTap={{ filter: "grayscale(0%)", opacity: 0.9 }}
+                style={{ filter: "grayscale(100%)", opacity: 0.7 }}
+                transition={{ duration: 0.7 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="/imagen-hero.png"
+                  alt="Ainara — acompañamiento emocional"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 208px, (max-width: 1024px) 300px, 340px"
+                  priority
+                />
+              </motion.div>
             </div>
             {/* Decorative border accent */}
             <div
