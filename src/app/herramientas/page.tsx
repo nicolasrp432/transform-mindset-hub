@@ -18,7 +18,7 @@ const ecosystemItems = [
     description: "(Material descargable). Tu primer paso hacia la claridad mental.",
     icon: FileText,
     action: "Saber más",
-    href: "#",
+    href: "/guia-practica",
   },
   {
     title: "Agenda de Reflexión",
