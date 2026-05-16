@@ -7,12 +7,14 @@ interface CheckoutButtonProps {
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "inverse";
+  productKey?: string;
 }
 
 export default function CheckoutButton({
   children,
   className = "",
   variant = "primary",
+  productKey = "guia-practica",
 }: CheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +25,7 @@ export default function CheckoutButton({
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productKey }),
       });
 
       const data = await response.json();

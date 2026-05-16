@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 
-export async function POST() {
+export async function POST(req: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   // Ensure the base URL has a protocol
@@ -10,10 +10,57 @@ export async function POST() {
     : `https://${baseUrl}`;
 
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
-      payment_method_types: ["card"],
-      line_items: [
+    const body = await req.json().catch(() => ({}));
+    const productKey = body.productKey || "guia-practica";
+
+    let lineItems = [];
+    let successUrl = "";
+    let cancelUrl = "";
+    let metadata = {};
+
+    if (productKey === "libro-princesa") {
+      lineItems = [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "La Princesa que se le cayó la Corona",
+              description:
+                "Un cuento inspirador sobre el empoderamiento femenino, la sanación y la búsqueda de la autoestima.",
+            },
+            unit_amount: 1500, // $15.00 USD
+          },
+          quantity: 1,
+        },
+      ];
+      successUrl = `${normalizedBaseUrl}/libro-princesa/exito?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/libro-princesa`;
+      metadata = {
+        product: "libro-princesa",
+      };
+    } else if (productKey === "agenda-reflexion") {
+      lineItems = [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "Agenda de Reflexión Diaria",
+              description:
+                "Espacio íntimo de crecimiento personal para reflexionar, practicar gratitud y reconectar contigo.",
+            },
+            unit_amount: 1900, // $19.00 USD
+          },
+          quantity: 1,
+        },
+      ];
+      successUrl = `${normalizedBaseUrl}/agenda-reflexion/exito?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/agenda-reflexion`;
+      metadata = {
+        product: "agenda-reflexion",
+      };
+    } else {
+      // Default to guia-practica
+      lineItems = [
         {
           price_data: {
             currency: "usd",
@@ -26,12 +73,21 @@ export async function POST() {
           },
           quantity: 1,
         },
-      ],
-      success_url: `${normalizedBaseUrl}/guia-practica/exito?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${normalizedBaseUrl}/guia-practica`,
-      metadata: {
+      ];
+      successUrl = `${normalizedBaseUrl}/guia-practica/exito?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/guia-practica`;
+      metadata = {
         product: "guia-practica-transformacion-integral",
-      },
+      };
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      metadata: metadata,
     });
 
     return NextResponse.json({ url: session.url });
