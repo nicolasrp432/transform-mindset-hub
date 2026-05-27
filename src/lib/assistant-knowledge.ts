@@ -30,7 +30,7 @@ export const CHAT_ACTIONS = {
     href: CALENDLY_URL,
     external: true,
   },
-  pagar_productos: {
+  ver_productos: {
     label: "Pagar productos",
     href: "/herramientas",
     external: false,
@@ -88,7 +88,7 @@ export const CHAT_QUICK_ACTION_IDS: ChatActionId[] = [
   "ver_formaciones",
   "ver_herramientas",
   "agendar_cita",
-  "pagar_productos",
+  "ver_productos",
   "acceder_plataforma",
 ];
 

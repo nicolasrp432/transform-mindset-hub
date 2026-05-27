@@ -34,6 +34,8 @@ const panelMotion = {
   exit: { opacity: 0, y: 16, scale: 0.98 },
 };
 
+const MAX_HISTORY = 12;
+
 interface AinaraChatProps {
   open: boolean;
   onClose: () => void;
@@ -91,7 +93,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: nextMessages
-            .slice(-12)
+            .slice(-MAX_HISTORY)
             .map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -122,6 +124,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         },
       ]);
     } catch (error) {
+      console.error("Chat assistant error:", error);
       setHasError(true);
       setMessages((prev) => [...prev, FALLBACK_MESSAGE]);
     } finally {

@@ -90,6 +90,7 @@ export async function POST(req: Request) {
     try {
       parsed = JSON.parse(content);
     } catch (error) {
+      console.warn("OpenRouter JSON parse failed:", error);
       parsed = { message: content };
     }
 
