@@ -12,97 +12,29 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json().catch(() => ({}));
-    const productKey = body.productKey || "guia-practica";
-    const premiumProduct = Object.values(PRODUCTS).find(
-      (product) => product.key === productKey
-    );
+    const productKey = body.productKey || PRODUCTS.GUIA_PRACTICA.key;
+    const selectedProduct =
+      Object.values(PRODUCTS).find((product) => product.key === productKey) ||
+      PRODUCTS.GUIA_PRACTICA;
 
-    let lineItems = [];
-    let successUrl = "";
-    let cancelUrl = "";
-    let metadata = {};
-
-    if (premiumProduct) {
-      lineItems = [
-        {
-          price_data: {
-            currency: premiumProduct.currency,
-            product_data: {
-              name: premiumProduct.name,
-              description: premiumProduct.description,
-            },
-            unit_amount: premiumProduct.unitAmount,
+    const lineItems = [
+      {
+        price_data: {
+          currency: selectedProduct.currency,
+          product_data: {
+            name: selectedProduct.name,
+            description: selectedProduct.description,
           },
-          quantity: 1,
+          unit_amount: selectedProduct.unitAmount,
         },
-      ];
-      successUrl = `${normalizedBaseUrl}/${premiumProduct.key}?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/${premiumProduct.key}`;
-      metadata = {
-        product: premiumProduct.key,
-      };
-    } else if (productKey === "libro-princesa") {
-      lineItems = [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "La Princesa que se le cayó la Corona",
-              description:
-                "Un cuento inspirador sobre el empoderamiento femenino, la sanación y la búsqueda de la autoestima.",
-            },
-            unit_amount: 1500, // $15.00 USD
-          },
-          quantity: 1,
-        },
-      ];
-      successUrl = `${normalizedBaseUrl}/libro-princesa/exito?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/libro-princesa`;
-      metadata = {
-        product: "libro-princesa",
-      };
-    } else if (productKey === "agenda-reflexion") {
-      lineItems = [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "Agenda de Reflexión Diaria",
-              description:
-                "Espacio íntimo de crecimiento personal para reflexionar, practicar gratitud y reconectar contigo.",
-            },
-            unit_amount: 1900, // $19.00 USD
-          },
-          quantity: 1,
-        },
-      ];
-      successUrl = `${normalizedBaseUrl}/agenda-reflexion/exito?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/agenda-reflexion`;
-      metadata = {
-        product: "agenda-reflexion",
-      };
-    } else {
-      // Default to guia-practica
-      lineItems = [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: "Guía Práctica — Transformación Integral",
-              description:
-                "Guía de Ainara: silencia tu mente crítica, gestiona la ansiedad y reconecta con tu autoestima en 21 días.",
-            },
-            unit_amount: 2700, // $27.00 USD
-          },
-          quantity: 1,
-        },
-      ];
-      successUrl = `${normalizedBaseUrl}/guia-practica/exito?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/guia-practica`;
-      metadata = {
-        product: "guia-practica-transformacion-integral",
-      };
-    }
+        quantity: 1,
+      },
+    ];
+    const successUrl = `${normalizedBaseUrl}${selectedProduct.successPath}?session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${normalizedBaseUrl}${selectedProduct.cancelPath}`;
+    const metadata = {
+      product: selectedProduct.key,
+    };
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",

@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, CalendarDays, X } from "lucide-react";
+import { CalendarDays, MessageCircle, Sparkles, X } from "lucide-react";
+import { AinaraChat } from "@/components/AinaraChat";
+import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
 
 /* ============================================================
    FloatingContact — FAB de Contacto Persistente
@@ -12,9 +14,8 @@ import { MessageCircle, CalendarDays, X } from "lucide-react";
    de embudo donde se aplica el Ratio 1:1.
    ============================================================ */
 
-const WHATSAPP_NUMBER = "34692627353";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%20Ainara%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tu%20trabajo.`;
-const CALENDLY_URL = "https://calendly.com/ainaracoachpnl/reunion-con-ainara";
+const WHATSAPP_URL = CONTACT_LINKS.whatsappUrl;
+const CALENDLY_URL = CONTACT_LINKS.calendlyUrl;
 
 const springConfig = {
   type: "spring" as const,
@@ -35,20 +36,40 @@ const itemVariants = {
 };
 
 interface ContactOptionProps {
-  href: string;
+  href?: string;
   icon: React.ReactNode;
   label: string;
   index: number;
+  onClick?: () => void;
 }
 
-function ContactOption({ href, icon, label, index }: ContactOptionProps) {
-  const isExternal = href.startsWith('http');
+function ContactOption({ href, icon, label, index, onClick }: ContactOptionProps) {
+  const isExternal = href ? href.startsWith("http") : false;
   const targetProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        {...targetProps}
+        custom={index}
+        variants={itemVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="fab-option"
+        aria-label={label}
+      >
+        <span className="fab-option__icon">{icon}</span>
+        <span className="fab-option__label">{label}</span>
+      </motion.a>
+    );
+  }
+
   return (
-    <motion.a
-      href={href}
-      {...targetProps}
+    <motion.button
+      type="button"
+      onClick={onClick}
       custom={index}
       variants={itemVariants}
       initial="hidden"
@@ -59,12 +80,13 @@ function ContactOption({ href, icon, label, index }: ContactOptionProps) {
     >
       <span className="fab-option__icon">{icon}</span>
       <span className="fab-option__label">{label}</span>
-    </motion.a>
+    </motion.button>
   );
 }
 
 export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <>
@@ -100,13 +122,22 @@ export function FloatingContact() {
                 href={CALENDLY_URL}
                 icon={<CalendarDays size={17} strokeWidth={1.75} />}
                 label="Agendar Sesión"
+                index={0}
+              />
+              <ContactOption
+                icon={<Sparkles size={17} strokeWidth={1.75} />}
+                label="Hablar con IA"
                 index={1}
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsChatOpen(true);
+                }}
               />
               <ContactOption
                 href={WHATSAPP_URL}
                 icon={<MessageCircle size={17} strokeWidth={1.75} />}
                 label="Enviar WhatsApp"
-                index={0}
+                index={2}
               />
             </motion.div>
           )}
@@ -114,7 +145,10 @@ export function FloatingContact() {
 
         {/* Botón principal */}
         <motion.button
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={() => {
+            if (isChatOpen) setIsChatOpen(false);
+            setIsOpen((prev) => !prev);
+          }}
           className="fab-trigger"
           aria-label={isOpen ? "Cerrar contacto" : "Abrir opciones de contacto"}
           aria-expanded={isOpen}
@@ -293,6 +327,7 @@ export function FloatingContact() {
           }
         }
       `}</style>
+      <AinaraChat open={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </>
   );
 }

@@ -20,6 +20,22 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+Create a `.env.local` file with the following keys:
+
+```bash
+# Base URL for server-side redirects (optional for local dev)
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+
+# OpenRouter (AI assistant)
+OPENROUTER_API_KEY=your_openrouter_key
+# Optional overrides (defaults are applied if omitted)
+OPENROUTER_MODEL=meta-llama/llama-3.1-8b-instruct:free
+OPENROUTER_REFERER=https://your-domain.com
+OPENROUTER_TITLE=Transform Mindset Hub
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
