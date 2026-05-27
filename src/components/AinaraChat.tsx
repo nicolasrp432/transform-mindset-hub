@@ -106,6 +106,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         body: JSON.stringify({
           messages: nextMessages
             .slice(-MAX_HISTORY_MESSAGES)
+            // Enviamos solo role/content para evitar campos locales (id/actions).
             .map(({ role, content }) => ({ role, content })),
         }),
       });

@@ -79,6 +79,6 @@ export const PRODUCTS = {
     cancelPath: "/libro-princesa",
     category: "recurso",
   },
-} as const satisfies Record<string, ProductDefinition>;
+} as const;
 
 export const PRODUCT_LIST = Object.values(PRODUCTS);

@@ -5,7 +5,7 @@ import {
 } from "@/lib/assistant-knowledge";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-// Modelo gratuito con buen rendimiento en español para el asistente.
+// Modelo gratuito con buen rendimiento en español (menos capacidad que modelos premium).
 const DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct:free";
 
 type IncomingMessage = {
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     try {
       parsed = JSON.parse(content);
     } catch (error) {
-      console.warn("OpenRouter JSON parse failed:", error);
+      console.warn("Failed to parse OpenRouter response as JSON:", error);
       parsed = {
         message:
           "Gracias por tu mensaje. ¿Quieres que te guíe hacia alguna sección específica?",
