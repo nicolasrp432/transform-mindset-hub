@@ -84,6 +84,15 @@ export const CHAT_ACTIONS = {
 
 export type ChatActionId = keyof typeof CHAT_ACTIONS;
 
+export const CHAT_ACTION_IDS = Object.keys(CHAT_ACTIONS) as ChatActionId[];
+const CHAT_ACTION_ID_SET = new Set<ChatActionId>(CHAT_ACTION_IDS);
+
+export const isValidActionId = (actionId: string): actionId is ChatActionId =>
+  CHAT_ACTION_ID_SET.has(actionId as ChatActionId);
+
+export const filterActionIds = (actions?: string[]): ChatActionId[] =>
+  Array.isArray(actions) ? actions.filter(isValidActionId) : [];
+
 export const CHAT_QUICK_ACTION_IDS: ChatActionId[] = [
   "ver_formaciones",
   "ver_herramientas",
@@ -124,14 +133,12 @@ export const ASSISTANT_CONTEXT = [
   linksSummary,
 ].join("\n");
 
-const actionIds = Object.keys(CHAT_ACTIONS).join(", ");
-
 export const ASSISTANT_SYSTEM_PROMPT = [
   "Eres el asistente oficial de Ainara. Responde siempre en español con calidez y cercanía.",
   "Usa solo la información del contexto. No inventes precios, enlaces ni servicios.",
   "Si faltan datos o la pregunta es ambigua, pide aclaración de forma amable.",
   "Cuando sea útil, sugiere acciones con botones.",
-  `Solo puedes usar estos action ids: ${actionIds}.`,
+  `Solo puedes usar estos action ids: ${CHAT_ACTION_IDS.join(", ")}.`,
   "Formato de salida estricto en JSON:",
   '{"message":"respuesta al usuario","actions":["action_id","action_id"]}',
   "No incluyas texto fuera del JSON.",

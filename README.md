@@ -30,7 +30,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
 # OpenRouter (AI assistant)
 OPENROUTER_API_KEY=your_openrouter_key
-# Optional overrides
+# Optional overrides (defaults are applied if omitted)
 OPENROUTER_MODEL=meta-llama/llama-3.1-8b-instruct:free
 OPENROUTER_REFERER=https://your-domain.com
 OPENROUTER_TITLE=Transform Mindset Hub

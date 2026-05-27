@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { ASSISTANT_SYSTEM_PROMPT, CHAT_ACTIONS } from "@/lib/assistant-knowledge";
+import {
+  ASSISTANT_SYSTEM_PROMPT,
+  filterActionIds,
+} from "@/lib/assistant-knowledge";
 
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct:free";
@@ -8,14 +11,6 @@ type IncomingMessage = {
   role: "user" | "assistant";
   content: string;
 };
-
-const filterActions = (actions?: string[]) =>
-  Array.isArray(actions)
-    ? actions.filter((actionId) => Object.keys(CHAT_ACTIONS).includes(actionId))
-    : [];
-
-const sanitizeMessage = (message: string) =>
-  message.replace(/<[^>]*>?/gm, "").trim();
 
 export async function POST(req: Request) {
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -97,14 +92,14 @@ export async function POST(req: Request) {
       parsed = { message: content };
     }
 
-    const safeMessage = sanitizeMessage(
+    const safeMessage = String(
       parsed?.message ||
         "Gracias por tu mensaje. ¿Quieres que te ayude a agendar o conocer las formaciones?"
-    );
+    ).trim();
 
     return NextResponse.json({
       message: safeMessage,
-      actions: filterActions(parsed?.actions),
+      actions: filterActionIds(parsed?.actions),
     });
   } catch (error) {
     console.error("OpenRouter request failed:", error);

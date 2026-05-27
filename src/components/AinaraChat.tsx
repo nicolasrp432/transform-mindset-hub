@@ -6,6 +6,7 @@ import { Send, Sparkles, X } from "lucide-react";
 import {
   CHAT_ACTIONS,
   CHAT_QUICK_ACTION_IDS,
+  filterActionIds,
   type ChatActionId,
 } from "@/lib/assistant-knowledge";
 
@@ -44,7 +45,7 @@ const panelMotion = {
   exit: { opacity: 0, y: 16, scale: 0.98 },
 };
 
-const MAX_HISTORY = 12;
+const MAX_HISTORY_MESSAGES = 12;
 
 interface AinaraChatProps {
   open: boolean;
@@ -103,7 +104,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: nextMessages
-            .slice(-MAX_HISTORY)
+            .slice(-MAX_HISTORY_MESSAGES)
             .map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -117,11 +118,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         actions?: string[];
       };
 
-      const safeActions = Array.isArray(data.actions)
-        ? data.actions.filter((actionId) =>
-            Object.keys(CHAT_ACTIONS).includes(actionId)
-          )
-        : [];
+      const safeActions = filterActionIds(data.actions);
 
       setMessages((prev) => [
         ...prev,
