@@ -122,7 +122,7 @@ export function FloatingContact() {
                 href={CALENDLY_URL}
                 icon={<CalendarDays size={17} strokeWidth={1.75} />}
                 label="Agendar Sesión"
-                index={2}
+                index={0}
               />
               <ContactOption
                 icon={<Sparkles size={17} strokeWidth={1.75} />}
@@ -137,7 +137,7 @@ export function FloatingContact() {
                 href={WHATSAPP_URL}
                 icon={<MessageCircle size={17} strokeWidth={1.75} />}
                 label="Enviar WhatsApp"
-                index={0}
+                index={2}
               />
             </motion.div>
           )}

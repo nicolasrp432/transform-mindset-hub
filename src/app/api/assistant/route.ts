@@ -14,6 +14,9 @@ const filterActions = (actions?: string[]) =>
     ? actions.filter((actionId) => Object.keys(CHAT_ACTIONS).includes(actionId))
     : [];
 
+const sanitizeMessage = (message: string) =>
+  message.replace(/<[^>]*>?/gm, "").trim();
+
 export async function POST(req: Request) {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
@@ -94,10 +97,13 @@ export async function POST(req: Request) {
       parsed = { message: content };
     }
 
+    const safeMessage = sanitizeMessage(
+      parsed?.message ||
+        "Gracias por tu mensaje. ¿Quieres que te ayude a agendar o conocer las formaciones?"
+    );
+
     return NextResponse.json({
-      message:
-        parsed?.message ||
-        "Gracias por tu mensaje. ¿Quieres que te ayude a agendar o conocer las formaciones?",
+      message: safeMessage,
       actions: filterActions(parsed?.actions),
     });
   } catch (error) {

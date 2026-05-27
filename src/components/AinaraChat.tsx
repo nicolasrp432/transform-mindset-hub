@@ -10,23 +10,33 @@ import {
 } from "@/lib/assistant-knowledge";
 
 type ChatMessage = {
+  id: string;
   role: "assistant" | "user";
   content: string;
   actions?: ChatActionId[];
 };
 
-const WELCOME_MESSAGE: ChatMessage = {
+const createMessageId = () =>
+  `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+const createMessage = (message: Omit<ChatMessage, "id">): ChatMessage => ({
+  id: createMessageId(),
+  ...message,
+});
+
+const WELCOME_MESSAGE = createMessage({
   role: "assistant",
   content:
     "Hola, soy el asistente de Ainara. Estoy aquí para resolver tus dudas y guiarte hacia la mejor opción para ti. ¿En qué te puedo ayudar hoy?",
-};
+});
 
-const FALLBACK_MESSAGE: ChatMessage = {
-  role: "assistant",
-  content:
-    "Ahora mismo no puedo acceder al chat inteligente. Si lo prefieres, puedes escribirme por WhatsApp o agendar una cita y te atenderemos enseguida.",
-  actions: ["contactar_whatsapp", "agendar_cita"],
-};
+const buildFallbackMessage = () =>
+  createMessage({
+    role: "assistant",
+    content:
+      "Ahora mismo no puedo acceder al chat inteligente. Si lo prefieres, puedes escribirme por WhatsApp o agendar una cita y te atenderemos enseguida.",
+    actions: ["contactar_whatsapp", "agendar_cita"],
+  });
 
 const panelMotion = {
   initial: { opacity: 0, y: 24, scale: 0.98 },
@@ -81,7 +91,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
     setHasError(false);
     const nextMessages: ChatMessage[] = [
       ...messages,
-      { role: "user", content: trimmed },
+      createMessage({ role: "user", content: trimmed }),
     ];
     setMessages(nextMessages);
     setInput("");
@@ -115,18 +125,18 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
 
       setMessages((prev) => [
         ...prev,
-        {
+        createMessage({
           role: "assistant",
           content:
             data.message ||
             "Gracias por compartirlo. ¿Quieres que te guíe a alguna sección específica?",
           actions: safeActions as ChatActionId[],
-        },
+        }),
       ]);
     } catch (error) {
       console.error("Chat assistant error:", error);
       setHasError(true);
-      setMessages((prev) => [...prev, FALLBACK_MESSAGE]);
+      setMessages((prev) => [...prev, buildFallbackMessage()]);
     } finally {
       setIsLoading(false);
     }
@@ -206,9 +216,9 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
             </div>
 
             <div className="chat-messages">
-              {messages.map((message, index) => (
+              {messages.map((message) => (
                 <div
-                  key={`${message.role}-${index}`}
+                  key={message.id}
                   className={`chat-message chat-message--${message.role}`}
                 >
                   <p>{message.content}</p>
