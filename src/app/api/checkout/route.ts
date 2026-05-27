@@ -13,49 +13,33 @@ export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const productKey = body.productKey || "guia-practica";
+    const premiumProduct = Object.values(PRODUCTS).find(
+      (product) => product.key === productKey
+    );
 
     let lineItems = [];
     let successUrl = "";
     let cancelUrl = "";
     let metadata = {};
 
-    if (productKey === PRODUCTS.RE_CONECTATE.key) {
+    if (premiumProduct) {
       lineItems = [
         {
           price_data: {
-            currency: PRODUCTS.RE_CONECTATE.currency,
+            currency: premiumProduct.currency,
             product_data: {
-              name: PRODUCTS.RE_CONECTATE.name,
-              description: PRODUCTS.RE_CONECTATE.description,
+              name: premiumProduct.name,
+              description: premiumProduct.description,
             },
-            unit_amount: PRODUCTS.RE_CONECTATE.unitAmount,
+            unit_amount: premiumProduct.unitAmount,
           },
           quantity: 1,
         },
       ];
-      successUrl = `${normalizedBaseUrl}/re-conectate?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/re-conectate`;
+      successUrl = `${normalizedBaseUrl}/${premiumProduct.key}?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/${premiumProduct.key}`;
       metadata = {
-        product: PRODUCTS.RE_CONECTATE.key,
-      };
-    } else if (productKey === PRODUCTS.EMULSION_ENERGETICA.key) {
-      lineItems = [
-        {
-          price_data: {
-            currency: PRODUCTS.EMULSION_ENERGETICA.currency,
-            product_data: {
-              name: PRODUCTS.EMULSION_ENERGETICA.name,
-              description: PRODUCTS.EMULSION_ENERGETICA.description,
-            },
-            unit_amount: PRODUCTS.EMULSION_ENERGETICA.unitAmount,
-          },
-          quantity: 1,
-        },
-      ];
-      successUrl = `${normalizedBaseUrl}/emulsion-energetica?session_id={CHECKOUT_SESSION_ID}`;
-      cancelUrl = `${normalizedBaseUrl}/emulsion-energetica`;
-      metadata = {
-        product: PRODUCTS.EMULSION_ENERGETICA.key,
+        product: premiumProduct.key,
       };
     } else if (productKey === "libro-princesa") {
       lineItems = [

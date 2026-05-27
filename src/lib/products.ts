@@ -7,6 +7,7 @@ export const PRODUCTS = {
     description:
       "Programa de transformación personal para reconstruir tu seguridad interior y autoestima.",
     currency: "eur",
+    // Stripe usa centavos (p. ej. 6700 = 67,00 EUR).
     unitAmount: 6700,
     displayPrice: "67€",
   },
@@ -16,6 +17,7 @@ export const PRODUCTS = {
     description:
       "Formación premium de leyes universales y regulación emocional para crear una vida alineada.",
     currency: "eur",
+    // Stripe usa centavos (p. ej. 8700 = 87,00 EUR).
     unitAmount: 8700,
     displayPrice: "87€",
   },
