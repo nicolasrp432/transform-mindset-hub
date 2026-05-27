@@ -126,7 +126,7 @@ export default function GuiaPracticaPage() {
   return (
     <main>
       {/* ── Urgency banner ── */}
-      <section className="bg-primary text-white text-center text-xs md:text-sm font-medium tracking-wide py-2.5 px-4">
+      <section className="offer-banner bg-primary text-white text-center text-xs md:text-sm font-medium tracking-wide py-2.5 px-4">
         <span className="inline-flex items-center gap-2">
           🔥 Oferta limitada: acceso inmediato a la Guía Práctica — <strong>$27 USD</strong>
         </span>

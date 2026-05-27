@@ -3,7 +3,6 @@ import AnnouncementBar from "@/components/reconectate/AnnouncementBar";
 import Problem from "@/components/reconectate/Problem";
 import Differentiator from "@/components/reconectate/Differentiator";
 import Authority from "@/components/reconectate/Authority";
-import ModulesAccordion from "@/components/reconectate/ModulesAccordion";
 import Testimonials from "@/components/reconectate/Testimonials";
 import Offer from "@/components/reconectate/Offer";
 import Bonuses from "@/components/reconectate/Bonuses";
@@ -18,7 +17,6 @@ export default function ReConectatePage() {
       <Problem />
       <Differentiator />
       <Authority />
-      <ModulesAccordion />
       <Testimonials />
       <Offer />
       <Bonuses />
