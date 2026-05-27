@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check, Clock, Lock } from "lucide-react";
 import CheckoutButton from "@/components/CheckoutButton";
 import { VisaIcon, MastercardIcon } from "@/components/reconectate/PaymentIcons";
+import { PRODUCTS } from "@/lib/products";
 
 const FinalCTA = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
@@ -39,7 +40,9 @@ const FinalCTA = () => {
           <div className="text-center space-y-4">
             <p className="text-sm uppercase tracking-wider text-brand-mid-green font-semibold">Oferta de lanzamiento</p>
             <div className="space-y-2">
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1 }} className="text-5xl md:text-7xl font-bold text-brand-dark-green">67€</motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1 }} className="text-5xl md:text-7xl font-bold text-brand-dark-green">
+                {PRODUCTS.RE_CONECTATE.displayPrice}
+              </motion.p>
               <p className="text-foreground/70">IVA Incluido - Pago único</p>
             </div>
           </div>
@@ -84,7 +87,7 @@ const FinalCTA = () => {
           </div>
           <div className="text-center pt-6 space-y-6">
             <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-              <CheckoutButton productKey="re-conectate" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 sm:px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
+              <CheckoutButton productKey={PRODUCTS.RE_CONECTATE.key} className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 sm:px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
                 🌸 Sí, quiero mi seguridad interior
               </CheckoutButton>
             </motion.div>

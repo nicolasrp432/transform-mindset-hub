@@ -18,6 +18,7 @@ import {
   Zap,
 } from "lucide-react";
 import CheckoutButton from "@/components/CheckoutButton";
+import { PRODUCTS } from "@/lib/products";
 
 const LESSONS = [
   {
@@ -291,10 +292,12 @@ export default function EmulsionEnergeticaPage() {
             <p className="text-xs uppercase tracking-[0.3em] text-brand-mid-green font-semibold">
               Oferta de lanzamiento
             </p>
-            <p className="text-5xl md:text-6xl font-bold text-brand-dark-green">87€</p>
+            <p className="text-5xl md:text-6xl font-bold text-brand-dark-green">
+              {PRODUCTS.EMULSION_ENERGETICA.displayPrice}
+            </p>
             <p className="text-foreground/70">IVA incluido · pago único</p>
             <motion.div whileHover={{ scale: 1.05, y: -4 }} whileTap={{ scale: 0.95 }}>
-              <CheckoutButton productKey="emulsion-energetica" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
+              <CheckoutButton productKey={PRODUCTS.EMULSION_ENERGETICA.key} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
                 Sí, quiero transformar mi energía
               </CheckoutButton>
             </motion.div>

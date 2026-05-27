@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
+import { PRODUCTS } from "@/lib/products";
 
 export async function POST(req: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -18,17 +19,16 @@ export async function POST(req: Request) {
     let cancelUrl = "";
     let metadata = {};
 
-    if (productKey === "re-conectate") {
+    if (productKey === PRODUCTS.RE_CONECTATE.key) {
       lineItems = [
         {
           price_data: {
-            currency: "eur",
+            currency: PRODUCTS.RE_CONECTATE.currency,
             product_data: {
-              name: "Re-Conéctate",
-              description:
-                "Programa de transformación personal para reconstruir tu seguridad interior y autoestima.",
+              name: PRODUCTS.RE_CONECTATE.name,
+              description: PRODUCTS.RE_CONECTATE.description,
             },
-            unit_amount: 6700,
+            unit_amount: PRODUCTS.RE_CONECTATE.unitAmount,
           },
           quantity: 1,
         },
@@ -36,19 +36,18 @@ export async function POST(req: Request) {
       successUrl = `${normalizedBaseUrl}/re-conectate?session_id={CHECKOUT_SESSION_ID}`;
       cancelUrl = `${normalizedBaseUrl}/re-conectate`;
       metadata = {
-        product: "re-conectate",
+        product: PRODUCTS.RE_CONECTATE.key,
       };
-    } else if (productKey === "emulsion-energetica") {
+    } else if (productKey === PRODUCTS.EMULSION_ENERGETICA.key) {
       lineItems = [
         {
           price_data: {
-            currency: "eur",
+            currency: PRODUCTS.EMULSION_ENERGETICA.currency,
             product_data: {
-              name: "Emulsión Energética",
-              description:
-                "Formación premium de leyes universales y regulación emocional para crear una vida alineada.",
+              name: PRODUCTS.EMULSION_ENERGETICA.name,
+              description: PRODUCTS.EMULSION_ENERGETICA.description,
             },
-            unit_amount: 8700,
+            unit_amount: PRODUCTS.EMULSION_ENERGETICA.unitAmount,
           },
           quantity: 1,
         },
@@ -56,7 +55,7 @@ export async function POST(req: Request) {
       successUrl = `${normalizedBaseUrl}/emulsion-energetica?session_id={CHECKOUT_SESSION_ID}`;
       cancelUrl = `${normalizedBaseUrl}/emulsion-energetica`;
       metadata = {
-        product: "emulsion-energetica",
+        product: PRODUCTS.EMULSION_ENERGETICA.key,
       };
     } else if (productKey === "libro-princesa") {
       lineItems = [
