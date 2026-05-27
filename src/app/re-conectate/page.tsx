@@ -8,7 +8,6 @@ import Testimonials from "@/components/reconectate/Testimonials";
 import Offer from "@/components/reconectate/Offer";
 import Bonuses from "@/components/reconectate/Bonuses";
 import Guarantee from "@/components/reconectate/Guarantee";
-import FAQ from "@/components/reconectate/FAQ";
 import FinalCTA from "@/components/reconectate/FinalCTA";
 
 export default function ReConectatePage() {
@@ -24,7 +23,6 @@ export default function ReConectatePage() {
       <Offer />
       <Bonuses />
       <Guarantee />
-      <FAQ />
       <FinalCTA />
     </main>
   );

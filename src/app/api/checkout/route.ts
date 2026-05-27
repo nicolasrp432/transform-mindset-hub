@@ -18,7 +18,47 @@ export async function POST(req: Request) {
     let cancelUrl = "";
     let metadata = {};
 
-    if (productKey === "libro-princesa") {
+    if (productKey === "re-conectate") {
+      lineItems = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Re-Conéctate",
+              description:
+                "Programa de transformación personal para reconstruir tu seguridad interior y autoestima.",
+            },
+            unit_amount: 6700,
+          },
+          quantity: 1,
+        },
+      ];
+      successUrl = `${normalizedBaseUrl}/re-conectate?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/re-conectate`;
+      metadata = {
+        product: "re-conectate",
+      };
+    } else if (productKey === "emulsion-energetica") {
+      lineItems = [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: "Emulsión Energética",
+              description:
+                "Formación premium de leyes universales y regulación emocional para crear una vida alineada.",
+            },
+            unit_amount: 8700,
+          },
+          quantity: 1,
+        },
+      ];
+      successUrl = `${normalizedBaseUrl}/emulsion-energetica?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/emulsion-energetica`;
+      metadata = {
+        product: "emulsion-energetica",
+      };
+    } else if (productKey === "libro-princesa") {
       lineItems = [
         {
           price_data: {

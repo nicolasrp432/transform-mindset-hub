@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Check, Clock, Lock } from "lucide-react";
-import { VisaIcon, MastercardIcon, PaypalIcon } from "@/components/reconectate/PaymentIcons";
+import CheckoutButton from "@/components/CheckoutButton";
+import { VisaIcon, MastercardIcon } from "@/components/reconectate/PaymentIcons";
 
 const FinalCTA = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
@@ -29,10 +29,6 @@ const FinalCTA = () => {
     "Garantía de satisfacción de 7 días",
   ];
 
-  const handleCTA = () => {
-    window.location.href = "https://pay.hotmart.com/S102673436S";
-  };
-
   return (
     <section id="cta" className="py-16 px-4 bg-white">
       <div className="max-w-4xl mx-auto space-y-12">
@@ -43,7 +39,7 @@ const FinalCTA = () => {
           <div className="text-center space-y-4">
             <p className="text-sm uppercase tracking-wider text-brand-mid-green font-semibold">Oferta de lanzamiento</p>
             <div className="space-y-2">
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1 }} className="text-5xl md:text-7xl font-bold text-brand-dark-green">60,49€</motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1 }} className="text-5xl md:text-7xl font-bold text-brand-dark-green">67€</motion.p>
               <p className="text-foreground/70">IVA Incluido - Pago único</p>
             </div>
           </div>
@@ -88,17 +84,18 @@ const FinalCTA = () => {
           </div>
           <div className="text-center pt-6 space-y-6">
             <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-              <Button onClick={handleCTA} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 sm:px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">🌸 Sí, quiero mi seguridad interior</Button>
+              <CheckoutButton productKey="re-conectate" className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 sm:px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
+                🌸 Sí, quiero mi seguridad interior
+              </CheckoutButton>
             </motion.div>
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2 text-foreground/60 text-sm">
                 <Lock size={14} />
-                <span>Pago 100% seguro y encriptado</span>
+                <span>Pago 100% seguro con Stripe</span>
               </div>
               <div className="flex justify-center items-center gap-4 text-gray-500">
                 <VisaIcon width={32} height={32} />
                 <MastercardIcon width={32} height={32} />
-                <PaypalIcon width={32} height={32} />
               </div>
             </div>
           </div>
