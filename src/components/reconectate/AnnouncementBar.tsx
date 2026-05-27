@@ -28,7 +28,7 @@ const AnnouncementBar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full bg-primary text-primary-foreground py-2.5 px-4 shadow-lg"
+      className="offer-banner w-full bg-primary text-primary-foreground py-2.5 px-4"
     >
       <div className="container-custom flex items-center justify-center gap-2 sm:gap-4 text-center text-xs sm:text-sm">
         <Clock className="w-4 h-4 sm:w-5 sm:h-5" />

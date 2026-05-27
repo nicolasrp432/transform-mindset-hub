@@ -120,7 +120,7 @@ export default function EmulsionEnergeticaPage() {
 
   return (
     <main className="flex flex-col min-h-screen bg-brand-beige">
-      <section className="bg-white text-center text-xs md:text-sm font-medium tracking-wide py-3 px-4 border-b border-brand-beige/60">
+      <section className="offer-banner bg-white text-center text-xs md:text-sm font-medium tracking-wide py-3 px-4 border-b border-brand-beige/60">
         Formación premium · acceso inmediato · cupos limitados
       </section>
 

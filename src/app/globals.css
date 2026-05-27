@@ -150,6 +150,22 @@ p {
   padding-inline: var(--space-4);
 }
 
+.sales-landing {
+  --offer-banner-offset: 3rem;
+}
+
+.sales-landing > header {
+  top: calc(1.5rem + var(--offer-banner-offset));
+}
+
+.offer-banner {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
 @media (min-width: 768px) {
   .section {
     padding-block: var(--space-32);
