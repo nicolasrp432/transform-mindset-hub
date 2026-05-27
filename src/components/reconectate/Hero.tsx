@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 const Hero = () => {
   const handleCTA = () => {
     const ctaSection = document.getElementById("cta");
-    if (ctaSection) ctaSection.scrollIntoView({ behavior: "smooth" });
-    else window.location.href = "https://pay.hotmart.com/S102673436S";
+    if (ctaSection) {
+      ctaSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (

@@ -2,8 +2,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import CheckoutButton from "@/components/CheckoutButton";
 import ModulesAccordion from "@/components/reconectate/ModulesAccordion";
+import { PRODUCTS } from "@/lib/products";
 
 const Offer = () => {
   const benefits = [
@@ -13,10 +14,6 @@ const Offer = () => {
     "Recuperarás tu paz interior y confianza en tus decisiones",
     "Experimentarás una transformación profunda y duradera",
   ];
-
-  const handleCTA = () => {
-    window.location.href = "https://pay.hotmart.com/S102673436S";
-  };
 
   return (
     <section className="py-16 px-4 bg-white">
@@ -41,7 +38,9 @@ const Offer = () => {
         <ModulesAccordion />
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.8, ease: "easeOut" }} className="text-center">
           <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-            <Button onClick={handleCTA} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/30">🌸 Quiero comenzar mi transformación</Button>
+            <CheckoutButton productKey={PRODUCTS.RE_CONECTATE.key} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/30">
+              🌸 Quiero comenzar mi transformación
+            </CheckoutButton>
           </motion.div>
         </motion.div>
       </div>

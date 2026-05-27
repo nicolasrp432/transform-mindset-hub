@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
+import { PRODUCTS } from "@/lib/products";
 
 export async function POST(req: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -12,13 +13,35 @@ export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const productKey = body.productKey || "guia-practica";
+    const premiumProduct = Object.values(PRODUCTS).find(
+      (product) => product.key === productKey
+    );
 
     let lineItems = [];
     let successUrl = "";
     let cancelUrl = "";
     let metadata = {};
 
-    if (productKey === "libro-princesa") {
+    if (premiumProduct) {
+      lineItems = [
+        {
+          price_data: {
+            currency: premiumProduct.currency,
+            product_data: {
+              name: premiumProduct.name,
+              description: premiumProduct.description,
+            },
+            unit_amount: premiumProduct.unitAmount,
+          },
+          quantity: 1,
+        },
+      ];
+      successUrl = `${normalizedBaseUrl}/${premiumProduct.key}?session_id={CHECKOUT_SESSION_ID}`;
+      cancelUrl = `${normalizedBaseUrl}/${premiumProduct.key}`;
+      metadata = {
+        product: premiumProduct.key,
+      };
+    } else if (productKey === "libro-princesa") {
       lineItems = [
         {
           price_data: {

@@ -9,7 +9,13 @@ import { FloatingContact } from "@/components/FloatingContact";
    LayoutShell
    ============================================================ */
 
-const FUNNEL_ROUTES = ["/re-conectate", "/herramientas", "/evaluacion", "/guia-practica"];
+const FUNNEL_ROUTES = [
+  "/re-conectate",
+  "/emulsion-energetica",
+  "/herramientas",
+  "/evaluacion",
+  "/guia-practica",
+];
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

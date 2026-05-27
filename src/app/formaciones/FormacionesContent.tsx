@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/animations";
+import { PLATFORM_LOGIN_URL } from "@/lib/products";
 import TextReveal from "@/components/ui/TextReveal";
 import { ArrowUpRight, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
@@ -27,7 +28,7 @@ const courses = [
       "Un programa de transformación energética que te lleva a comprender y trabajar con tus campos de energía personal, alineando cuerpo, mente y propósito para actuar con plenitud.",
     tags: ["Energía", "Propósito", "Transformación"],
     accent: "var(--color-primary)",
-    href: "https://plataforma.ainaracoaching.com",
+    href: "/emulsion-energetica",
   },
 ];
 
@@ -149,7 +150,7 @@ export default function FormacionesContent() {
               ¿Lista para comenzar?
             </p>
             <a
-              href="https://plataforma.ainaracoaching.com"
+              href={PLATFORM_LOGIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               id="cta-plataforma"

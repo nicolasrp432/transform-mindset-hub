@@ -8,7 +8,7 @@ const FAQ = () => {
     { question: "¿Para quién es este producto?", answer: "Este programa está diseñado para mujeres que se sienten atrapadas en la autocrítica, el perfeccionismo y la duda constante. Si buscas transformar tu diálogo interno, construir una confianza genuina que no dependa de factores externos y sanar tu relación contigo misma, 'Re-Conéctate' es para ti." },
     { question: "¿Cómo funciona el 'Plazo de Garantía'?", answer: "Tienes una garantía de satisfacción total de 7 días a partir de la fecha de compra. Si durante esa primera semana sientes que el programa no es lo que esperabas, puedes solicitar la devolución completa de tu inversión. Lo procesaremos de forma rápida, sin preguntas ni complicaciones." },
     { question: "¿Cómo acceder al producto?", answer: "Inmediatamente después de confirmar tu compra, recibirás un correo electrónico con los datos de acceso a la plataforma del curso. Podrás acceder al contenido desde cualquier dispositivo (ordenador, tablet o móvil) las 24 horas del día, para que avances a tu propio ritmo." },
-    { question: "¿Cómo hago para comprar?", answer: "Es muy sencillo. Haz clic en cualquiera de los botones de compra de esta página. Serás redirigida a la pasarela de pago segura de Hotmart, donde podrás completar tu inscripción con tarjeta de crédito, débito o PayPal. El proceso es 100% seguro y rápido." },
+    { question: "¿Cómo hago para comprar?", answer: "Es muy sencillo. Haz clic en cualquiera de los botones de compra de esta página. Serás redirigida a la pasarela de pago segura de Stripe, donde podrás completar tu inscripción con tarjeta de crédito o débito. El proceso es 100% seguro y rápido." },
   ];
 
   return (
