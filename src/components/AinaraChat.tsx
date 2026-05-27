@@ -45,6 +45,7 @@ const panelMotion = {
   exit: { opacity: 0, y: 16, scale: 0.98 },
 };
 
+// Limitamos el historial para mantener el contexto ligero en OpenRouter.
 const MAX_HISTORY_MESSAGES = 12;
 
 interface AinaraChatProps {
