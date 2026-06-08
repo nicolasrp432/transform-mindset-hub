@@ -49,7 +49,7 @@ export default function CheckoutButton({
     primary:
       "bg-primary text-white shadow-lg shadow-primary/20",
     inverse:
-      "bg-white text-primary",
+      "bg-white text-primary border border-border shadow-none hover:bg-surface",
   };
 
   return (

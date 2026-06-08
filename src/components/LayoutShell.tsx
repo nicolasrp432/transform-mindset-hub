@@ -15,6 +15,7 @@ const FUNNEL_ROUTES = [
   "/herramientas",
   "/evaluacion",
   "/guia-practica",
+  "/libro-princesa",
 ];
 
 const SALES_LANDING_ROUTES = [
