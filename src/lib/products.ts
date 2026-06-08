@@ -66,19 +66,6 @@ export const PRODUCTS = {
     cancelPath: "/agenda-reflexion",
     category: "recurso",
   },
-  LIBRO_PRINCESA: {
-    key: "libro-princesa",
-    name: "La Princesa que perdió su corona — Tapa blanda",
-    description:
-      "Edición física en tapa blanda de La Princesa que perdió su corona.",
-    currency: "eur",
-    unitAmount: 2237,
-    displayPrice: "22,37 €",
-    href: "/libro-princesa",
-    successPath: "/libro-princesa/exito",
-    cancelPath: "/libro-princesa",
-    category: "recurso",
-  },
   LIBRO_PRINCESA_TAPA_BLANDA: {
     key: "libro-princesa-tapa-blanda",
     name: "La Princesa que perdió su corona — Tapa blanda",
