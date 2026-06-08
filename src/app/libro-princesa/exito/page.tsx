@@ -3,8 +3,8 @@ import Link from "next/link";
 import { CheckCircle2, ArrowRight, BookOpenText, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "¡Compra exitosa! | La Princesa que se le cayó la Corona",
-  description: "Tu compra se ha realizado con éxito. Pronto recibirás tu libro.",
+  title: "¡Compra exitosa! | La Princesa que perdió su corona",
+  description: "Tu compra se ha realizado con éxito. Pronto recibirás la confirmación de tu libro físico.",
 };
 
 export default function ExitoPage() {
@@ -23,7 +23,7 @@ export default function ExitoPage() {
 
             <h1 className="text-4xl md:text-5xl mb-4">¡Gracias por tu compra!</h1>
             <p className="text-text-muted text-lg md:text-xl max-w-xl mx-auto">
-              Tu copia de "La Princesa que se le cayó la Corona" ya está en camino. Revisa tu correo electrónico para acceder a tu libro.
+              Tu ejemplar de &ldquo;La Princesa que perdió su corona&rdquo; ya fue confirmado. Revisa tu correo para ver los siguientes pasos.
             </p>
 
             {/* What to expect */}
@@ -40,7 +40,7 @@ export default function ExitoPage() {
                 <BookOpenText className="w-8 h-8 text-primary mb-3" />
                 <h3 className="text-lg mb-2">Disfruta la lectura</h3>
                 <p className="text-sm text-text-muted">
-                  Tu libro digital te espera. Prepárate para un viaje mágico de autodescubrimiento.
+                  Tu libro físico te espera. Prepárate para un viaje mágico de autodescubrimiento.
                 </p>
               </div>
             </div>

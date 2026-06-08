@@ -180,6 +180,21 @@ p {
   padding-inline: var(--space-4);
 }
 
+@keyframes book-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.animate-book-float {
+  animation: book-float 7s ease-in-out infinite;
+}
+
 /* --- Selection Styling --- */
 ::selection {
   background-color: var(--color-secondary);

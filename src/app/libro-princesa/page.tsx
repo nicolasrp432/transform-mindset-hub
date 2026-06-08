@@ -1,46 +1,43 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  BookOpenText,
-  CheckCircle2,
   HeartHandshake,
   Shield,
   Sparkles,
   Star,
   Crown,
+  BookOpenText,
+  Truck,
 } from "lucide-react";
 import CheckoutButton from "@/components/CheckoutButton";
 
-const FEATURED_BENEFITS = [
-  "Descubre una historia inspiradora sobre empoderamiento femenino",
-  "Aprende a sanar las heridas del pasado",
-  "Un viaje de autodescubrimiento para todas las edades",
-  "Encuentra tu propia 'corona de luz' interior",
-];
+const BOOK_IMAGE = encodeURI("/OBTÉN LA GUÍA AHORA EN AINARACOACH.COMGUÍA.png");
 
-const MODULES = [
+const EDITIONS = [
   {
-    title: "El Reino de Candermul",
-    description:
-      "Conoce a la Reina Samira, quien vive atrapada por las expectativas y el peso de su linaje.",
+    title: "Tapa blanda",
+    amazonPrice: "22,37 €",
+    checkoutPrice: "22,37 €",
+    productKey: "libro-princesa-tapa-blanda",
+    description: "Edición estándar para lectura cómoda y ligera.",
   },
   {
-    title: "La llegada del Sabio",
-    description:
-      "Un misterioso forastero trae consigo un relato ancestral que cambiará la perspectiva del reino.",
+    title: "Tapa dura",
+    amazonPrice: "26,84 €",
+    checkoutPrice: "26,84 €",
+    productKey: "libro-princesa-tapa-dura",
+    description: "Edición premium para conservar y regalar.",
   },
-  {
-    title: "La historia de Sanahira",
-    description:
-      "El viaje de una joven princesa que huyó de un matrimonio forzado para encontrar su propia voz como 'la Guerrera'.",
-  },
-  {
-    title: "La Corona de Luz",
-    description:
-      "El descubrimiento de que el verdadero poder no reside en el oro, sino en la libertad de ser uno mismo.",
-  },
+] as const;
+
+const FEATURED_BENEFITS = [
+  "Historia inspiradora sobre empoderamiento y sanación",
+  "Dos ediciones físicas disponibles en esta landing",
+  "Pago seguro con Stripe desde la página de venta",
+  "Envío del mensaje y confirmación tras la compra",
 ];
 
 const TESTIMONIALS = [
@@ -48,72 +45,49 @@ const TESTIMONIALS = [
     quote:
       "Un cuento precioso que me hizo reflexionar sobre mi propio valor. Se lo he leído a mi hija y ambas lo amamos.",
     name: "Laura M.",
-    role: "Encontró su propia voz",
+    role: "Conectó con la historia",
     stars: 5,
   },
   {
     quote:
       "La metáfora de la corona es tan poderosa. Me ayudó a darme cuenta de que mi verdadero valor no está en lo que esperan de mí.",
     name: "Elena S.",
-    role: "Conectó con su fuerza interior",
+    role: "Encontró su fuerza interior",
     stars: 5,
   },
-];
+] as const;
 
 const FAQ = [
   {
-    question: "¿Para qué edades está recomendado?",
+    question: "¿Qué formato puedo comprar aquí?",
     answer:
-      "Es una lectura que invita tanto a niños como a adultos. La historia está escrita de manera accesible pero con un mensaje profundo que resuena en cualquier etapa de la vida.",
+      "En esta landing tienes disponibles las ediciones físicas en tapa blanda y tapa dura.",
   },
   {
-    question: "¿En qué formato recibiré el libro?",
+    question: "¿Los precios son los mismos que Amazon?",
     answer:
-      "Es un producto digital en PDF y ePub, listo para leer en tu móvil, tablet, e-reader o computadora.",
+      "Sí. Los importes mostrados corresponden a los precios publicados en Amazon para cada edición.",
   },
   {
-    question: "¿De qué trata la historia?",
+    question: "¿Cómo se procesa el pago?",
     answer:
-      "Sigue a la Reina Samira, quien descubre a través de un relato ancestral sobre la Princesa Sanahira que el verdadero poder reside en la libertad de ser uno mismo.",
+      "El cobro se realiza de forma segura con Stripe desde esta página de venta.",
   },
   {
-    question: "¿El pago es seguro?",
+    question: "¿Cuándo recibo la confirmación?",
     answer:
-      "Sí. Procesamos todos los pagos a través de Stripe, la plataforma de pagos más segura del mundo, con cifrado SSL y cumplimiento PCI.",
+      "Después de pagar, recibirás la confirmación por correo con los siguientes pasos.",
   },
-];
-
-const INCLUDES = [
-  {
-    icon: BookOpenText,
-    title: "Libro digital completo",
-    text: "Una historia cautivadora de empoderamiento y sanación.",
-  },
-  {
-    icon: Sparkles,
-    title: "Ilustraciones inspiradoras",
-    text: "Un hermoso viaje visual que acompaña la narrativa.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Para todas las edades",
-    text: "Mensajes profundos adaptados para conectar con niños y adultos.",
-  },
-  {
-    icon: Shield,
-    title: "7 días de garantía",
-    text: "Si la historia no te conecta, te devolvemos el 100% de tu inversión.",
-  },
-];
+] as const;
 
 export const metadata: Metadata = {
-  title: "La Princesa que se le cayó la Corona | Libro",
+  title: "La Princesa que perdió su corona | Libro físico",
   description:
-    "Un cuento inspirador sobre el empoderamiento femenino, la sanación de las heridas del pasado y la búsqueda de la autoestima.",
+    "Compra la edición física de La Princesa que perdió su corona en tapa blanda o tapa dura con pago seguro por Stripe.",
   openGraph: {
-    title: "La Princesa que se le cayó la Corona | Libro",
+    title: "La Princesa que perdió su corona | Libro físico",
     description:
-      "Descubre que el verdadero poder no reside en el oro, sino en la libertad de ser uno mismo.",
+      "Tapa blanda y tapa dura con precios de referencia según Amazon y cobro seguro por Stripe.",
     type: "website",
   },
 };
@@ -121,201 +95,173 @@ export const metadata: Metadata = {
 export default function LibroPrincesaPage() {
   return (
     <main>
-      {/* ── Urgency banner ── */}
       <section className="offer-banner bg-primary text-white text-center text-xs md:text-sm font-medium tracking-wide py-2.5 px-4">
         <span className="inline-flex items-center gap-2">
-          ✨ Oferta especial: descarga inmediata del libro — <strong>$15 USD</strong>
+          <Shield className="w-3.5 h-3.5" />
+          Libro físico disponible — pago seguro con Stripe
         </span>
       </section>
 
-      {/* ── Hero ── */}
       <section className="section relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] rounded-full bg-secondary/30 blur-3xl opacity-50" />
         </div>
 
         <div className="container-editorial relative z-10">
-          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center">
             <div className="space-y-8">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white text-xs uppercase tracking-[0.25em] text-text-subtle">
                 <span className="w-2 h-2 rounded-full bg-accent" />
-                Cuento Inspirador
+                Edición física
               </span>
 
               <div className="space-y-5">
-                <h1>¿Qué sucede cuando la corona que llevas pesa más que tus propios sueños?</h1>
+                <h1>La Princesa que perdió su corona</h1>
                 <p className="text-text-muted text-lg md:text-xl max-w-2xl">
                   Un cuento inspirador sobre el empoderamiento femenino, la sanación de las heridas del pasado y la búsqueda de la autoestima.
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <CheckoutButton variant="primary" productKey="libro-princesa">
-                  Descargar ahora — $15
+                <CheckoutButton variant="primary" productKey="libro-princesa-tapa-blanda">
+                  Comprar tapa blanda — 22,37 €
                 </CheckoutButton>
-                <Link
-                  href="#contenido"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border rounded-full font-medium tracking-wide text-text hover:bg-surface transition-colors duration-300"
-                >
-                  Ver de qué trata
-                </Link>
+                <CheckoutButton variant="inverse" productKey="libro-princesa-tapa-dura">
+                  Comprar tapa dura — 26,84 €
+                </CheckoutButton>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-3 text-sm text-text-muted">
                 <div className="flex items-center gap-2">
-                  <BadgeCheck className="w-4 h-4 text-accent" /> Acceso
-                  inmediato
+                  <BadgeCheck className="w-4 h-4 text-accent" /> Tapa blanda
                 </div>
                 <div className="flex items-center gap-2">
-                  <HeartHandshake className="w-4 h-4 text-accent" /> Para todas las edades
+                  <HeartHandshake className="w-4 h-4 text-accent" /> Tapa dura
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-accent" /> 7 días de
-                  garantía
+                  <Shield className="w-4 h-4 text-accent" /> Stripe seguro
                 </div>
+              </div>
+
+              <p className="text-sm text-text-muted">
+                Precios de referencia según Amazon. El cobro final en esta página se procesa con Stripe.
+              </p>
+
+              <div className="grid gap-3 text-sm text-text-muted">
+                {FEATURED_BENEFITS.map((benefit) => (
+                  <div key={benefit} className="flex items-center gap-2">
+                    <BadgeCheck className="w-4 h-4 text-accent shrink-0" />
+                    {benefit}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Product visual */}
-            <div className="bg-white border border-border rounded-[2rem] p-8 shadow-lg">
-              <div className="aspect-[3/4] rounded-[1.5rem] bg-gradient-to-br from-indigo-900 to-purple-800 text-white p-8 flex flex-col justify-between relative overflow-hidden">
-                {/* Subtle decorative ring */}
-                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full border border-white/10" />
-                <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-white/10" />
-
-                <div className="space-y-3 relative z-10">
-                  <Crown className="w-10 h-10 text-yellow-400 opacity-90" />
-                  <p className="text-xs uppercase tracking-[0.3em] opacity-80 text-yellow-200">
-                    Libro Digital
-                  </p>
-                  <h2 className="text-3xl leading-tight text-white font-serif">
-                    La Princesa que se le cayó la Corona
-                  </h2>
+            <div className="bg-white border border-border rounded-[2rem] p-6 md:p-8 shadow-lg">
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-[#d2ad57] p-4 md:p-6 shadow-sm">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.24),transparent_45%)]" />
+                <div className="relative animate-book-float origin-center">
+                  <Image
+                    width={1200}
+                    height={1600}
+                    className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
+                    alt="Portada de La Princesa que perdió su corona"
+                    src={BOOK_IMAGE}
+                  />
                 </div>
-                <p className="text-sm opacity-90 relative z-10 text-purple-200">
-                  Encuentra tu propia corona de luz
-                </p>
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-full bg-black/55 px-4 py-2 text-white backdrop-blur-sm">
+                  <span className="text-sm font-medium">La Princesa que perdió su corona</span>
+                  <span className="text-xs uppercase tracking-[0.2em] text-white/70">Amazon</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Pain points ── */}
       <section className="section bg-surface">
         <div className="container-editorial">
           <div className="max-w-3xl mb-12">
             <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
-              La historia
+              Versiones disponibles
             </p>
-            <h2>Una invitación a reconectar contigo</h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: Crown,
-                title: "El peso de las expectativas",
-                text: "Como la Reina Samira, muchas veces vivimos atrapados por lo que los demás esperan de nosotros.",
-              },
-              {
-                icon: Shield,
-                title: "La fuerza interior",
-                text: "A través de Sanahira, descubre cómo transformar el miedo en fuerza y encontrar tu propia voz.",
-              },
-              {
-                icon: Sparkles,
-                title: "El verdadero poder",
-                text: "El valor real no reside en los títulos ni en el oro, sino en la libertad de ser verdaderamente uno mismo.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <article
-                  key={item.title}
-                  className="bg-white rounded-3xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/8 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="mb-3">{item.title}</h3>
-                  <p className="text-text-muted">{item.text}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Content / Modules ── */}
-      <section id="contenido" className="section">
-        <div className="container-editorial">
-          <div className="max-w-3xl mb-12">
-            <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
-              Argumento
-            </p>
-            <h2>Un viaje a través de Candermul</h2>
+            <h2>Elige tu edición física</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="md:col-span-2 rounded-[2rem] bg-white border border-border p-8 shadow-sm">
-              <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] items-center">
-                <div>
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/40 text-xs uppercase tracking-[0.25em] text-text-subtle">
-                    La esencia del libro
-                  </span>
-                  <h3 className="mt-4">Empoderamiento y sanación</h3>
-                  <p className="mt-3 text-text-muted">
-                    Sumérgete en un relato mágico que actúa como espejo para el alma. Un cuento diseñado para despertar la guerrera interior que todos llevamos dentro.
-                  </p>
-                  <ul className="mt-5 space-y-3 text-sm text-text-muted">
-                    {FEATURED_BENEFITS.map((benefit) => (
-                      <li key={benefit} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />{" "}
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="rounded-[1.5rem] bg-surface p-6 border border-border">
-                  <div className="space-y-4">
-                    {MODULES.map((module, i) => (
-                      <div
-                        key={module.title}
-                        className="pb-4 border-b border-border last:border-b-0 last:pb-0"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center justify-center shrink-0">
-                            {i + 1}
-                          </span>
-                          <h4 className="text-lg">{module.title}</h4>
-                        </div>
-                        <p className="text-sm text-text-muted mt-2 pl-10">
-                          {module.description}
-                        </p>
-                      </div>
-                    ))}
+            {EDITIONS.map((edition) => (
+              <article
+                key={edition.title}
+                className="bg-white rounded-3xl p-6 md:p-8 border border-border shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.25em] text-text-subtle">
+                      Amazon
+                    </p>
+                    <h3 className="mt-2">{edition.title}</h3>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs uppercase tracking-[0.25em] text-text-subtle">
+                      Precio
+                    </p>
+                    <p className="text-2xl md:text-3xl font-semibold text-text">
+                      {edition.amazonPrice}
+                    </p>
                   </div>
                 </div>
-              </div>
-            </article>
+
+                <p className="mt-4 text-text-muted">{edition.description}</p>
+
+                <div className="mt-6 rounded-2xl bg-surface border border-border p-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-medium text-text">Pago por Stripe</p>
+                    <p className="text-sm text-text-muted">
+                      Cobro en la landing con checkout seguro.
+                    </p>
+                  </div>
+                  <CheckoutButton variant="primary" productKey={edition.productKey}>
+                    Pagar {edition.checkoutPrice}
+                  </CheckoutButton>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── What's included ── */}
-      <section className="section bg-surface">
+      <section className="section">
         <div className="container-editorial">
           <div className="max-w-3xl mb-12">
             <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
-              Tu Compra
+              Lo que incluye
             </p>
-            <h2>¿Qué te llevas?</h2>
+            <h2>Todo lo que necesitas saber</h2>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {INCLUDES.map((item) => {
+            {[
+              {
+                icon: BookOpenText,
+                title: "Edición física",
+                text: "Un libro impreso para leer, conservar o regalar.",
+              },
+              {
+                icon: Crown,
+                title: "Dos formatos",
+                text: "Tapa blanda y tapa dura según tu preferencia.",
+              },
+              {
+                icon: Truck,
+                title: "Compra clara",
+                text: "Los precios mostrados corresponden a Amazon.",
+              },
+              {
+                icon: Shield,
+                title: "Stripe",
+                text: "Pago final seguro desde esta página.",
+              },
+            ].map((item) => {
               const Icon = item.icon;
               return (
                 <div
@@ -334,8 +280,7 @@ export default function LibroPrincesaPage() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section className="section">
+      <section className="section bg-surface">
         <div className="container-editorial">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-start">
             <div className="space-y-4">
@@ -344,7 +289,7 @@ export default function LibroPrincesaPage() {
               </p>
               <h2>Lo que dicen los lectores</h2>
               <p className="text-text-muted">
-                Niños y adultos por igual han encontrado en esta historia un mensaje transformador.
+                Una historia para quienes quieren reconectar con su valor y su voz interior.
               </p>
             </div>
 
@@ -365,9 +310,7 @@ export default function LibroPrincesaPage() {
                   <p className="text-text-muted italic">&ldquo;{item.quote}&rdquo;</p>
                   <footer className="mt-6">
                     <strong className="block">{item.name}</strong>
-                    <span className="text-sm text-text-subtle">
-                      {item.role}
-                    </span>
+                    <span className="text-sm text-text-subtle">{item.role}</span>
                   </footer>
                 </blockquote>
               ))}
@@ -376,43 +319,39 @@ export default function LibroPrincesaPage() {
         </div>
       </section>
 
-      {/* ── Pricing CTA ── */}
       <section className="section">
         <div className="container-editorial">
           <div className="rounded-[2rem] bg-primary text-white p-8 md:p-12 relative overflow-hidden">
-            {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3" />
             <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3" />
 
             <div className="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] items-center">
               <div className="space-y-4">
                 <p className="text-xs uppercase tracking-[0.25em] text-white/70">
-                  Oferta
+                  Compra segura
                 </p>
-                <h2 className="text-white">
-                  Descubre tu propia corona hoy
-                </h2>
+                <h2 className="text-white">Elige tu edición y paga con Stripe</h2>
                 <p className="text-white/80 max-w-2xl">
-                  Lleva a casa esta historia mágica y comienza tu viaje hacia el autodescubrimiento y la sanación.
+                  Los precios visibles son los publicados en Amazon para cada formato. Aquí haces el pago final de manera segura.
                 </p>
                 <div className="flex items-center gap-4 text-sm text-white/70">
                   <span className="flex items-center gap-1.5">
-                    <Shield className="w-4 h-4" /> Pago seguro con Stripe
+                    <Shield className="w-4 h-4" /> Stripe
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <HeartHandshake className="w-4 h-4" /> 7 días de garantía
+                    <HeartHandshake className="w-4 h-4" /> Edición física
                   </span>
                 </div>
               </div>
               <div className="text-center lg:text-right">
                 <p className="text-sm uppercase tracking-[0.25em] text-white/70">
-                  Precio
+                  Desde
                 </p>
-                <p className="text-5xl font-serif mt-2 text-white">$15</p>
-                <p className="text-xs text-white/60 mt-1">USD · Pago único</p>
+                <p className="text-5xl font-serif mt-2 text-white">22,37 €</p>
+                <p className="text-xs text-white/60 mt-1">Tapa blanda · pago único</p>
                 <div className="mt-6">
-                  <CheckoutButton variant="inverse" productKey="libro-princesa">
-                    Adquirir el libro
+                  <CheckoutButton variant="inverse" productKey="libro-princesa-tapa-blanda">
+                    Comprar ahora
                   </CheckoutButton>
                 </div>
               </div>
@@ -421,7 +360,6 @@ export default function LibroPrincesaPage() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
       <section className="section bg-surface">
         <div className="container-editorial">
           <div className="max-w-3xl mb-12">
@@ -450,19 +388,27 @@ export default function LibroPrincesaPage() {
         </div>
       </section>
 
-      {/* ── Final CTA ── */}
       <section className="section">
         <div className="container-editorial">
           <div className="rounded-[2rem] border border-border bg-white p-8 md:p-12 text-center">
             <Sparkles className="w-10 h-10 text-accent mx-auto mb-6" />
-            <h2>El verdadero poder no reside en el oro.</h2>
+            <h2>La corona verdadera se elige en voz propia.</h2>
             <p className="mt-4 text-text-muted max-w-2xl mx-auto">
-              Sino en la libertad de ser uno mismo. Acompaña a la Princesa Sanahira en su viaje de empoderamiento.
+              Lleva contigo esta historia en el formato que prefieras y completa tu compra con Stripe.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <CheckoutButton variant="primary" productKey="libro-princesa">
-                Comprar libro digital — $15
+              <CheckoutButton variant="primary" productKey="libro-princesa-tapa-blanda">
+                Tapa blanda — 22,37 €
               </CheckoutButton>
+              <CheckoutButton variant="inverse" productKey="libro-princesa-tapa-dura">
+                Tapa dura — 26,84 €
+              </CheckoutButton>
+            </div>
+            <p className="mt-6 text-xs text-text-subtle flex items-center justify-center gap-1.5">
+              <Shield className="w-3.5 h-3.5" />
+              Precios Amazon · pago seguro con Stripe
+            </p>
+            <div className="mt-8">
               <Link
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border rounded-full font-medium text-text hover:bg-surface transition-colors duration-300"
@@ -470,10 +416,6 @@ export default function LibroPrincesaPage() {
                 Volver al inicio
               </Link>
             </div>
-            <p className="mt-6 text-xs text-text-subtle flex items-center justify-center gap-1.5">
-              <Shield className="w-3.5 h-3.5" />
-              Pago 100% seguro · Stripe · Cifrado SSL
-            </p>
           </div>
         </div>
       </section>
