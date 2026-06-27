@@ -77,7 +77,7 @@ export const CHAT_ACTIONS = {
   },
   ver_libro: {
     label: "Libro: La princesa",
-    href: PRODUCTS.LIBRO_PRINCESA.href,
+    href: PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.href,
     external: false,
   },
 } as const;
