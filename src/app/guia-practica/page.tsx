@@ -199,7 +199,7 @@ export default function GuiaPracticaPage() {
                     priority
                     className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
                     alt="Guía Práctica de Transformación Integral"
-                    src="/guia-practica.jpg"
+                    src="/guia-practica.png"
                   />
                 </div>
               </div>
