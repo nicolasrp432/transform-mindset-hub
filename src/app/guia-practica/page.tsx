@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -16,6 +17,8 @@ import {
   Star,
 } from "lucide-react";
 import CheckoutButton from "@/components/CheckoutButton";
+
+const AMAZON_URL = "https://amzn.eu/d/0g8E9jIm";
 
 const FEATURED_BENEFITS = [
   "Silenciar la mente crítica sin pelear con ella",
@@ -66,9 +69,14 @@ const TESTIMONIALS = [
 
 const FAQ = [
   {
-    question: "¿En qué formato recibiré la guía?",
+    question: "¿En qué formatos puedo conseguir la guía?",
     answer:
-      "Es un producto digital en PDF, listo para leer en móvil, tablet o computadora, con materiales complementarios descargables.",
+      "En PDF digital por 12 € (acceso inmediato para leer en móvil, tablet o computadora) o en edición impresa: 20,50 € en Amazon o 18 € pagando directamente por Stripe en esta página.",
+  },
+  {
+    question: "¿Por qué es más barata por Stripe que en Amazon?",
+    answer:
+      "Al pagar la edición impresa directamente por Stripe te aplicamos un descuento (18 € en lugar de los 20,50 € de Amazon), porque evitamos las comisiones del marketplace.",
   },
   {
     question: "¿Necesito experiencia previa?",
@@ -128,7 +136,7 @@ export default function GuiaPracticaPage() {
       {/* ── Urgency banner ── */}
       <section className="offer-banner bg-primary text-white text-center text-xs md:text-sm font-medium tracking-wide py-2.5 px-4">
         <span className="inline-flex items-center gap-2">
-          🔥 Oferta limitada: acceso inmediato a la Guía Práctica — <strong>$27 USD</strong>
+          🔥 Guía Práctica desde <strong>12 €</strong> — PDF digital o edición impresa
         </span>
       </section>
 
@@ -156,13 +164,13 @@ export default function GuiaPracticaPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <CheckoutButton variant="primary">
-                  Descargar ahora — $27
+                  Descargar PDF — 12 €
                 </CheckoutButton>
                 <Link
-                  href="#contenido"
+                  href="#precios"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border rounded-full font-medium tracking-wide text-text hover:bg-surface transition-colors duration-300"
                 >
-                  Ver qué incluye
+                  Ver opciones (PDF / impresa)
                 </Link>
               </div>
 
@@ -181,25 +189,19 @@ export default function GuiaPracticaPage() {
               </div>
             </div>
 
-            {/* Product visual */}
-            <div className="bg-white border border-border rounded-[2rem] p-8 shadow-lg">
-              <div className="aspect-[3/4] rounded-[1.5rem] bg-gradient-to-br from-primary to-accent text-white p-8 flex flex-col justify-between relative overflow-hidden">
-                {/* Subtle decorative ring */}
-                <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full border border-white/10" />
-                <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-white/10" />
-
-                <div className="space-y-3 relative z-10">
-                  <BookOpenText className="w-10 h-10 opacity-90" />
-                  <p className="text-xs uppercase tracking-[0.3em] opacity-80">
-                    Guía Práctica
-                  </p>
-                  <h2 className="text-3xl leading-tight text-white">
-                    Transformación Integral
-                  </h2>
+            {/* Product visual — foto real de la guía */}
+            <div className="bg-white border border-border rounded-[2rem] p-6 md:p-8 shadow-lg">
+              <div className="relative overflow-hidden rounded-[1.5rem] bg-surface p-4 md:p-6 shadow-sm">
+                <div className="relative animate-book-float origin-center">
+                  <Image
+                    width={1200}
+                    height={1600}
+                    priority
+                    className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
+                    alt="Guía Práctica de Transformación Integral"
+                    src="/guia-practica.jpg"
+                  />
                 </div>
-                <p className="text-sm opacity-90 relative z-10">
-                  Autoestima • Ansiedad • Inteligencia emocional
-                </p>
               </div>
             </div>
           </div>
@@ -383,55 +385,103 @@ export default function GuiaPracticaPage() {
         </div>
       </section>
 
-      {/* ── Pricing CTA ── */}
-      <section className="section">
+      {/* ── Pricing ── */}
+      <section id="precios" className="section bg-surface">
         <div className="container-editorial">
-          <div className="rounded-[2rem] bg-primary text-white p-8 md:p-12 relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3" />
+          <div className="max-w-3xl mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
+              Precios
+            </p>
+            <h2>Elige cómo quieres tu guía</h2>
+            <p className="mt-4 text-text-muted">
+              El mismo contenido en dos formatos. Paga de forma segura con
+              Stripe o consíguela impresa en Amazon.
+            </p>
+          </div>
 
-            <div className="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] items-center">
-              <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.25em] text-white/70">
-                  Oferta
+          <div className="grid gap-6 lg:grid-cols-2 items-stretch">
+            {/* PDF digital */}
+            <article className="relative flex flex-col rounded-[2rem] bg-primary text-white p-8 md:p-10 shadow-lg overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3" />
+              <span className="relative z-10 inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-white/15 text-xs uppercase tracking-[0.25em]">
+                <Sparkles className="w-3.5 h-3.5" /> Más popular
+              </span>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-white">Guía en PDF digital</h3>
+                <p className="mt-2 text-white/80">
+                  Acceso inmediato · descarga al instante tras el pago.
                 </p>
-                <h2 className="text-white">
-                  Empieza tu transformación hoy
-                </h2>
-                <p className="text-white/80 max-w-2xl">
-                  Todo lo que necesitas para sanar, en un solo lugar. Accede
-                  ahora a la guía y comienza tu proceso con una estructura
-                  clara.
-                </p>
-                <div className="flex items-center gap-4 text-sm text-white/70">
-                  <span className="flex items-center gap-1.5">
-                    <Shield className="w-4 h-4" /> Pago seguro con Stripe
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <HeartHandshake className="w-4 h-4" /> 7 días de garantía
-                  </span>
+                <div className="mt-6 flex items-baseline gap-2">
+                  <span className="text-5xl font-serif text-white">12 €</span>
+                  <span className="text-sm text-white/60">pago único</span>
                 </div>
               </div>
-              <div className="text-center lg:text-right">
-                <p className="text-sm uppercase tracking-[0.25em] text-white/70">
-                  Precio
-                </p>
-                <p className="text-5xl font-serif mt-2 text-white">$27</p>
-                <p className="text-xs text-white/60 mt-1">USD · Pago único</p>
-                <div className="mt-6">
-                  <CheckoutButton variant="inverse">
-                    Comprar ahora
-                  </CheckoutButton>
-                </div>
+              <ul className="relative z-10 mt-6 space-y-3 text-sm text-white/85">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" /> +80 páginas en PDF
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" /> Ejercicios y audio de meditación
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" /> 7 días de garantía
+                </li>
+              </ul>
+              <div className="relative z-10 mt-8">
+                <CheckoutButton variant="inverse">
+                  Descargar PDF — 12 €
+                </CheckoutButton>
               </div>
-            </div>
+            </article>
+
+            {/* Edición impresa */}
+            <article className="flex flex-col rounded-[2rem] bg-white border border-border p-8 md:p-10 shadow-sm">
+              <span className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-secondary/40 text-xs uppercase tracking-[0.25em] text-text-subtle">
+                <BookOpenText className="w-3.5 h-3.5" /> Edición impresa
+              </span>
+              <div className="mt-6">
+                <h3>Guía impresa en casa</h3>
+                <p className="mt-2 text-text-muted">
+                  El libro físico para leer, subrayar y conservar.
+                </p>
+                <div className="mt-6 flex items-baseline gap-3">
+                  <span className="text-5xl font-serif text-text">18 €</span>
+                  <span className="text-lg text-text-subtle line-through">20,50 €</span>
+                </div>
+                <p className="mt-1 text-sm text-accent font-medium">
+                  Ahorra pagando directamente por Stripe.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-col gap-3">
+                <CheckoutButton variant="primary" productKey="guia-practica-impresa">
+                  Comprar impresa — 18 €
+                </CheckoutButton>
+                <a
+                  href={AMAZON_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-medium tracking-wide border border-border text-text hover:bg-surface transition-colors duration-300"
+                >
+                  Comprar en Amazon — 20,50 €
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-text-muted">
+            <span className="flex items-center gap-1.5">
+              <Shield className="w-4 h-4 text-accent" /> Pago seguro con Stripe
+            </span>
+            <span className="flex items-center gap-1.5">
+              <HeartHandshake className="w-4 h-4 text-accent" /> 7 días de garantía
+            </span>
           </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="section bg-surface">
+      <section className="section">
         <div className="container-editorial">
           <div className="max-w-3xl mb-12">
             <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
@@ -471,13 +521,13 @@ export default function GuiaPracticaPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <CheckoutButton variant="primary">
-                Acceder a la guía — $27
+                Descargar PDF — 12 €
               </CheckoutButton>
               <Link
-                href="/"
+                href="#precios"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-border rounded-full font-medium text-text hover:bg-surface transition-colors duration-300"
               >
-                Volver al inicio
+                Ver todas las opciones
               </Link>
             </div>
             <p className="mt-6 text-xs text-text-subtle flex items-center justify-center gap-1.5">
