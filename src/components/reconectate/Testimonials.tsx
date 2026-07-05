@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 const Testimonials = () => {
   const testimonials = [
@@ -23,9 +24,9 @@ const Testimonials = () => {
                   <Star key={i} className="w-5 h-5 fill-brand-gold text-brand-gold" />
                 ))}
               </div>
-              <p className="text-foreground/80 leading-relaxed italic text-balance">"{testimonial.text}"</p>
+              <p className="text-foreground/80 leading-relaxed italic text-balance">&ldquo;{testimonial.text}&rdquo;</p>
               <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
-                <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
+                <Image src={testimonial.image} alt={testimonial.name} width={48} height={48} className="rounded-full object-cover" />
                 <p className="font-medium text-brand-dark-green">{testimonial.name}</p>
               </div>
             </motion.div>

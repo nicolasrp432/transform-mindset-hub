@@ -37,13 +37,14 @@ export async function submitLeadMagnet(data: LeadMagnetInput) {
     }
 
     return { success: true };
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorDetails = err as { message?: string; code?: string; status?: string; stack?: string };
     // SOFT FALLBACK: DB down = user still gets download
     console.error("ERROR INSFORGE DETALLADO (soft fallback):", {
-      message: err?.message,
-      code: err?.code,
-      status: err?.status,
-      stack: err?.stack,
+      message: errorDetails?.message,
+      code: errorDetails?.code,
+      status: errorDetails?.status,
+      stack: errorDetails?.stack,
       fullError: JSON.stringify(err, null, 2),
     });
     return { success: true, _warning: "server_error_fallback" };

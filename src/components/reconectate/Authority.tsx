@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Authority = () => {
@@ -20,8 +21,8 @@ const Authority = () => {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-brand-mid-green/20">
-              <img alt="Ainara - Mentora en autoconfianza" className="w-full h-full object-cover" src="/ainara-image.jpg" />
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-brand-mid-green/20">
+              <Image alt="Ainara - Mentora en autoconfianza" fill className="object-cover" src="/ainara-image.jpg" sizes="(max-w-768px) 100vw, 50vw" priority />
             </div>
           </motion.div>
         </div>

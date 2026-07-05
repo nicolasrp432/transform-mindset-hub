@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import TextReveal from "@/components/ui/TextReveal";
-import Link from "next/link";
 
 const CALENDLY_URL = "https://calendly.com/ainaracoachpnl/reunion-con-ainara";
 const WHATSAPP_URL =

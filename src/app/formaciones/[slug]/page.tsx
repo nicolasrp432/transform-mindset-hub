@@ -21,8 +21,6 @@ const FORMACIONES = [
   },
 ] as const;
 
-type FormacionSlug = (typeof FORMACIONES)[number]["slug"];
-
 export async function generateStaticParams() {
   return FORMACIONES.map((f) => ({ slug: f.slug }));
 }

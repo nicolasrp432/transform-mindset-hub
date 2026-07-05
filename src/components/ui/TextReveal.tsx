@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import React, { ComponentType } from "react";
 
 interface TextRevealProps {
   text: string;
@@ -41,8 +42,16 @@ export default function TextReveal({
     },
   };
 
-  // @ts-ignore (motion component typing workaround)
-  const MotionComponent: any = motion[Component as keyof typeof motion] || motion.h1;
+  const Tag = (Component as string) as keyof typeof motion;
+  const MotionComponent = (motion[Tag] || motion.h1) as unknown as ComponentType<{
+    id?: string;
+    variants?: Variants;
+    initial?: string;
+    whileInView?: string;
+    viewport?: { once: boolean; margin?: string };
+    className?: string;
+    children?: React.ReactNode;
+  }>;
 
   return (
     <MotionComponent

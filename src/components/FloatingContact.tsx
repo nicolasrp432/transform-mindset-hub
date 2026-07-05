@@ -1,18 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CalendarDays, MessageCircle, Sparkles, X } from "lucide-react";
+import { CalendarDays, MessageSquare, Sparkles, X } from "lucide-react";
 import { AinaraChat } from "@/components/AinaraChat";
 import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
-
-/* ============================================================
-   FloatingContact — FAB de Contacto Persistente
-   
-   Punto de contacto unificado (WhatsApp + Calendly) siempre
-   visible en la esquina inferior derecha, excepto en rutas
-   de embudo donde se aplica el Ratio 1:1.
-   ============================================================ */
 
 const WHATSAPP_URL = CONTACT_LINKS.whatsappUrl;
 const CALENDLY_URL = CONTACT_LINKS.calendlyUrl;
@@ -47,6 +39,8 @@ function ContactOption({ href, icon, label, index, onClick }: ContactOptionProps
   const isExternal = href ? href.startsWith("http") : false;
   const targetProps = isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
+  const commonClass = "group/option flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#FDFCFB] border border-[#D8D2CC] shadow-md text-[#2E2B28] text-[13px] font-semibold tracking-tight whitespace-nowrap hover:bg-[#6F4E35] hover:text-white hover:border-[#6F4E35] hover:shadow-lg hover:-translate-x-1 transition-all duration-200 cursor-pointer no-underline";
+
   if (href) {
     return (
       <motion.a
@@ -57,11 +51,11 @@ function ContactOption({ href, icon, label, index, onClick }: ContactOptionProps
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="fab-option"
+        className={commonClass}
         aria-label={label}
       >
-        <span className="fab-option__icon">{icon}</span>
-        <span className="fab-option__label">{label}</span>
+        <span className="flex items-center text-[#6F4E35] group-hover/option:text-white transition-colors flex-shrink-0">{icon}</span>
+        <span className="leading-none">{label}</span>
       </motion.a>
     );
   }
@@ -75,11 +69,11 @@ function ContactOption({ href, icon, label, index, onClick }: ContactOptionProps
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="fab-option"
+      className={commonClass}
       aria-label={label}
     >
-      <span className="fab-option__icon">{icon}</span>
-      <span className="fab-option__label">{label}</span>
+      <span className="flex items-center text-[#6F4E35] group-hover/option:text-white transition-colors flex-shrink-0">{icon}</span>
+      <span className="leading-none">{label}</span>
     </motion.button>
   );
 }
@@ -88,26 +82,30 @@ export function FloatingContact() {
   const [isOpen, setIsOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
+  // Hook para cerrar el panel de opciones al hacer click fuera
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".fab-root")) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [isOpen]);
+
   return (
     <>
-      {/* Overlay backdrop al abrir */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="fab-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fab-overlay"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
+      {/* Contenedor principal del FAB con clase group para activar hover del tooltip */}
+      <div className="fab-root group fixed bottom-8 right-8 z-[50] flex flex-col items-end gap-2.5 max-sm:bottom-6 max-sm:right-6" role="region" aria-label="Contacto rápido">
+        {/* Tooltip flotante informativo en hover */}
+        {!isOpen && !isChatOpen && (
+          <div className="absolute right-19 top-1/2 -translate-y-1/2 bg-[#FDFCFB] border border-[#D8D2CC] text-[#2E2B28] px-4 py-2 rounded-full text-[12.5px] font-medium shadow-md whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 max-sm:hidden z-10">
+            ¿Alguna duda? Escríbeme
+          </div>
         )}
-      </AnimatePresence>
 
-      {/* Contenedor principal del FAB */}
-      <div className="fab-root" role="region" aria-label="Contacto rápido">
         {/* Opciones de contacto */}
         <AnimatePresence>
           {isOpen && (
@@ -116,16 +114,16 @@ export function FloatingContact() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fab-options"
+              className="flex flex-col items-end gap-2 mb-1"
             >
               <ContactOption
                 href={CALENDLY_URL}
-                icon={<CalendarDays size={17} strokeWidth={1.75} />}
+                icon={<CalendarDays size={18} strokeWidth={1.5} />}
                 label="Agendar Sesión"
                 index={0}
               />
               <ContactOption
-                icon={<Sparkles size={17} strokeWidth={1.75} />}
+                icon={<Sparkles size={18} strokeWidth={1.5} />}
                 label="Hablar con IA"
                 index={1}
                 onClick={() => {
@@ -135,7 +133,7 @@ export function FloatingContact() {
               />
               <ContactOption
                 href={WHATSAPP_URL}
-                icon={<MessageCircle size={17} strokeWidth={1.75} />}
+                icon={<MessageSquare size={18} strokeWidth={1.5} />}
                 label="Enviar WhatsApp"
                 index={2}
               />
@@ -149,39 +147,44 @@ export function FloatingContact() {
             if (isChatOpen) setIsChatOpen(false);
             setIsOpen((prev) => !prev);
           }}
-          className="fab-trigger"
+          className="flex items-center justify-center w-15 h-15 rounded-full bg-[#25D366] text-white border-none cursor-pointer shadow-lg shadow-[#25D366]/40 relative overflow-visible select-none focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#25D366]"
           aria-label={isOpen ? "Cerrar contacto" : "Abrir opciones de contacto"}
           aria-expanded={isOpen}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.94 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           transition={springConfig}
         >
+          {/* Anillo de pulso concéntrico */}
+          {!isOpen && (
+            <span className="absolute inset-0 rounded-full border-2 border-[#25D366]/40 animate-ping pointer-events-none" />
+          )}
+
           <AnimatePresence mode="wait" initial={false}>
             {isOpen ? (
               <motion.span
                 key="close"
-                initial={{ rotate: -45, opacity: 0 }}
+                initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 45, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="fab-trigger__icon"
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center justify-center z-10"
               >
-                <X size={26} strokeWidth={2} />
+                <X size={24} strokeWidth={2} />
               </motion.span>
             ) : (
               <motion.span
                 key="wa"
-                initial={{ rotate: 45, opacity: 0 }}
+                initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -45, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="fab-trigger__icon"
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center justify-center z-10"
               >
-                {/* WhatsApp SVG */}
+                {/* WhatsApp SVG oficial */}
                 <svg
                   viewBox="0 0 24 24"
-                  width="30"
-                  height="30"
+                  width="28"
+                  height="28"
                   fill="currentColor"
                   aria-hidden="true"
                 >
@@ -193,140 +196,6 @@ export function FloatingContact() {
         </motion.button>
       </div>
 
-      {/* Estilos encapsulados */}
-      <style jsx>{`
-        .fab-overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 49;
-        }
-
-        .fab-root {
-          position: fixed;
-          bottom: 2rem;
-          right: 2rem;
-          z-index: 50;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 0.625rem;
-        }
-
-        .fab-options {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 0.5rem;
-        }
-
-        .fab-option {
-          display: flex;
-          align-items: center;
-          gap: 0.625rem;
-          padding: 0.65rem 1.1rem 0.65rem 0.9rem;
-          border-radius: 9999px;
-          background: #ffffff;
-          border: 1.5px solid rgba(37, 211, 102, 0.35);
-          box-shadow:
-            0 4px 20px rgba(0, 0, 0, 0.18),
-            0 1px 4px rgba(0, 0, 0, 0.12);
-          color: #1a1a1a;
-          font-family: var(--font-inter), sans-serif;
-          font-size: 0.84rem;
-          font-weight: 600;
-          letter-spacing: 0.01em;
-          text-decoration: none;
-          white-space: nowrap;
-          cursor: pointer;
-          transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
-        }
-
-        .fab-option:hover {
-          background: #f0fdf4;
-          box-shadow:
-            0 8px 28px rgba(0, 0, 0, 0.22),
-            0 2px 6px rgba(37, 211, 102, 0.18);
-          transform: translateX(-4px);
-        }
-
-        .fab-option__icon {
-          display: flex;
-          align-items: center;
-          color: var(--color-primary, #b08d6a);
-          flex-shrink: 0;
-        }
-
-        .fab-option__label {
-          line-height: 1;
-        }
-
-        .fab-trigger {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 4.5rem;
-          height: 4.5rem;
-          border-radius: 9999px;
-          background: #25D366;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          box-shadow:
-            0 8px 32px rgba(37, 211, 102, 0.5),
-            0 3px 10px rgba(0, 0, 0, 0.18);
-          outline: none;
-          position: relative;
-          overflow: visible;
-        }
-
-        .fab-trigger::after {
-          content: "";
-          position: absolute;
-          inset: -4px;
-          border-radius: 9999px;
-          border: 3px solid rgba(37, 211, 102, 0.45);
-          animation: fab-pulse 2.2s ease-out infinite;
-          pointer-events: none;
-        }
-
-        @keyframes fab-pulse {
-          0%   { transform: scale(1);   opacity: 0.7; }
-          70%  { transform: scale(1.35); opacity: 0; }
-          100% { transform: scale(1.35); opacity: 0; }
-        }
-
-        .fab-trigger::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: 9999px;
-          background: radial-gradient(
-            circle at 35% 35%,
-            rgba(255, 255, 255, 0.28) 0%,
-            transparent 65%
-          );
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .fab-trigger:focus-visible {
-          outline: 2px solid #25D366;
-          outline-offset: 4px;
-        }
-
-        .fab-trigger__icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        @media (max-width: 640px) {
-          .fab-root {
-            bottom: 1.25rem;
-            right: 1.25rem;
-          }
-        }
-      `}</style>
       <AinaraChat open={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </>
   );

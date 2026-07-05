@@ -26,9 +26,14 @@ export default function CustomCursor() {
   useEffect(() => {
     // Detect if device supports physical pointer/hover
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    setIsTouchDevice(isTouch);
+    const timer = setTimeout(() => {
+      setIsTouchDevice(isTouch);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
-    if (isTouch) return;
+  useEffect(() => {
+    if (isTouchDevice) return;
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16); // Center the 32px ring
@@ -68,7 +73,7 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, innerDotX, innerDotY, isVisible]);
+  }, [cursorX, cursorY, innerDotX, innerDotY, isVisible, isTouchDevice]);
 
   if (isTouchDevice || !isVisible) return <></>;
 

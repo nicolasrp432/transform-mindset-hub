@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Hero = () => {
   const handleCTA = () => {
@@ -21,14 +22,14 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed text-balance">El método paso a paso para transformar tu autocrítica en confianza plena, sin forzarte, sin fingir y sin depender de la aprobación externa.</p>
         </motion.div>
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="relative aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl shadow-brand-mid-green/20 bg-brand-beige group cursor-pointer" onClick={handleCTA}>
-          <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
             <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-white/50 backdrop-blur-sm rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
               <svg className="w-8 h-8 sm:w-10 sm:h-10 text-brand-dark-green" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
               </svg>
             </div>
           </div>
-          <img className="w-full h-full object-cover" alt="Mujer sonriendo con serenidad" src="/imagen-hero.png" />
+          <Image className="w-full h-full object-cover" alt="Mujer sonriendo con serenidad" src="/imagen-hero.png" fill priority sizes="(max-w-768px) 100vw, 80vw" />
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}>
           <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>

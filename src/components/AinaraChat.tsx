@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Send, Sparkles, X } from "lucide-react";
+import { Send, X } from "lucide-react";
+import Image from "next/image";
 import {
   CHAT_ACTIONS,
   CHAT_QUICK_ACTION_IDS,
@@ -39,13 +40,20 @@ const buildFallbackMessage = () =>
     actions: ["contactar_whatsapp", "agendar_cita"],
   });
 
+const SUGGESTIONS = [
+  "¿Quién es Ainara?",
+  "¿Qué es Re-Conéctate?",
+  "¿Cómo agendar una sesión?",
+  "¿Qué recursos tienes?",
+];
+
 const panelMotion = {
-  initial: { opacity: 0, y: 24, scale: 0.98 },
+  initial: { opacity: 0, y: 32, scale: 0.96 },
   animate: { opacity: 1, y: 0, scale: 1 },
-  exit: { opacity: 0, y: 16, scale: 0.98 },
+  exit: { opacity: 0, y: 24, scale: 0.96 },
 };
 
-// Limitamos el historial para mantener el contexto ligero en OpenRouter.
+// Limitamos el historial para mantener el contexto ligero.
 const MAX_HISTORY_MESSAGES = 12;
 
 interface AinaraChatProps {
@@ -106,7 +114,6 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
         body: JSON.stringify({
           messages: nextMessages
             .slice(-MAX_HISTORY_MESSAGES)
-            // Enviamos solo role/content para evitar campos locales (id/actions).
             .map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -157,38 +164,51 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
     <AnimatePresence>
       {open && (
         <>
+          {/* Overlay de fondo - solo se activa en móviles */}
           <motion.div
-            className="chat-overlay"
+            className="fixed inset-0 bg-neutral-900/10 backdrop-blur-xs z-[70] hidden max-sm:block"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           />
+
+          {/* Panel de chat flotante */}
           <motion.section
             role="dialog"
             aria-modal="true"
             aria-labelledby="ainara-chat-title"
-            className="chat-panel"
+            className="fixed bottom-26 right-8 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-10rem)] max-h-[38rem] flex flex-col bg-[#FDFCFB] rounded-3xl border border-[#6F4E35]/15 shadow-2xl z-[80] overflow-hidden max-sm:bottom-0 max-sm:right-0 max-sm:w-full max-sm:h-full max-sm:max-h-full max-sm:rounded-none max-sm:border-none"
             variants={panelMotion}
             initial="initial"
             animate="animate"
             exit="exit"
-            transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <header className="chat-header">
-              <div className="chat-title">
-                <span className="chat-title__icon">
-                  <Sparkles size={18} strokeWidth={1.6} />
-                </span>
+            {/* Cabecera del chat */}
+            <header className="flex items-center justify-between p-4 border-b border-[#6F4E35]/10 bg-[#F5F1EE] flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="relative w-10 h-10 flex-shrink-0">
+                  <Image
+                    src="/ainara-image.jpg"
+                    alt="Ainara"
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover border border-[#D0C4B0] w-full h-full"
+                    priority
+                  />
+                  {/* Indicador de estado online pulsante */}
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#F5F1EE] shadow-[0_0_0_1.5px_rgba(34,197,94,0.25)] animate-pulse" />
+                </div>
                 <div>
-                  <p id="ainara-chat-title">Hablar con IA</p>
-                  <span>Asistente de Ainara</span>
+                  <p id="ainara-chat-title" className="margin-0 font-serif text-base font-semibold text-[#2E2B28] leading-tight">Ainara AI</p>
+                  <span className="block text-[11px] text-[#7C919D] font-medium mt-0.5">Mentora Virtual · En línea</span>
                 </div>
               </div>
               <button
                 type="button"
-                className="chat-close"
+                className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B6560] hover:bg-[#6F4E35]/10 hover:text-[#6F4E35] transition-colors cursor-pointer border-none bg-transparent"
                 onClick={onClose}
                 aria-label="Cerrar chat"
               >
@@ -196,7 +216,8 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
               </button>
             </header>
 
-            <div className="chat-quick-actions" aria-label="Accesos rápidos">
+            {/* Accesos rápidos de navegación */}
+            <div className="flex flex-wrap gap-1.5 px-4 py-3 bg-[#FDFCFB] flex-shrink-0 border-b border-[#6F4E35]/5" aria-label="Accesos rápidos">
               {quickActions.map(({ id, action }) => {
                 const targetProps = action.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
@@ -206,7 +227,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                     key={id}
                     href={action.href}
                     {...targetProps}
-                    className="chat-quick-actions__item"
+                    className="px-3 py-1 rounded-full border border-[#D8D2CC] text-[11px] font-medium text-[#6B6560] no-underline hover:border-[#6F4E35] hover:text-[#6F4E35] hover:bg-[#6F4E35]/5 transition-all cursor-pointer"
                   >
                     {action.label}
                   </a>
@@ -214,15 +235,20 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
               })}
             </div>
 
-            <div className="chat-messages">
+            {/* Listado de mensajes */}
+            <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3.5 bg-[#FDFCFB]">
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`chat-message chat-message--${message.role}`}
+                  className={`max-w-[85%] p-3.5 px-4 rounded-2xl text-[13.5px] leading-relaxed tracking-tight ${
+                    message.role === "assistant"
+                      ? "bg-[#F5F1EE] text-[#2E2B28] self-start rounded-bl-xs border border-[#6F4E35]/5"
+                      : "bg-[#6F4E35] text-white self-end rounded-br-xs shadow-md shadow-[#6F4E35]/10"
+                  }`}
                 >
-                  <p>{message.content}</p>
+                  <p className="m-0 white-space-pre-wrap">{message.content}</p>
                   {message.actions && message.actions.length > 0 && (
-                    <div className="chat-actions">
+                    <div className="flex flex-wrap gap-1.5 mt-2.5">
                       {message.actions.map((actionId) => {
                         const action = CHAT_ACTIONS[actionId];
                         if (!action) return null;
@@ -234,7 +260,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                             key={actionId}
                             href={action.href}
                             {...targetProps}
-                            className="chat-action"
+                            className="px-3 py-1.5 rounded-full bg-white border border-[#6F4E35]/20 text-[11px] font-semibold text-[#6F4E35] no-underline hover:border-[#6F4E35] hover:bg-[#6F4E35]/5 transition-all cursor-pointer"
                           >
                             {action.label}
                           </a>
@@ -245,301 +271,72 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                 </div>
               ))}
               {isLoading && (
-                <div className="chat-message chat-message--assistant">
-                  <span className="chat-typing">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
+                <div className="max-w-[85%] p-3.5 px-4 rounded-2xl text-[13.5px] bg-[#F5F1EE] text-[#2E2B28] self-start rounded-bl-xs border border-[#6F4E35]/5">
+                  <div className="inline-flex gap-1 items-center px-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9C9590] animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9C9590] animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9C9590] animate-bounce" />
+                  </div>
                 </div>
               )}
               <div ref={endRef} />
             </div>
 
-            <form className="chat-input" onSubmit={handleSubmit}>
+            {/* Chips de sugerencias interactivas */}
+            {!isLoading && messages.length <= 3 && (
+              <div className="flex gap-2 px-4 py-2.5 overflow-x-auto bg-[#FDFCFB] border-t border-[#6F4E35]/5 flex-shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" aria-label="Sugerencias rápidas">
+                {SUGGESTIONS.map((suggestion, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className="px-3.5 py-1.5 rounded-full bg-[#F5F1EE] border border-[#D8D2CC] text-[11.5px] font-medium text-[#6B6560] whitespace-nowrap hover:bg-[#6F4E35] hover:text-white hover:border-[#6F4E35] transition-all cursor-pointer flex-shrink-0"
+                    onClick={() => void sendMessage(suggestion)}
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Input y botón de envío */}
+            <form className="flex items-center gap-3 p-4 border-t border-[#6F4E35]/10 bg-white flex-shrink-0" onSubmit={handleSubmit}>
               <textarea
                 ref={inputRef}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 onKeyDown={handleKeyDown}
-                rows={2}
+                rows={1}
                 placeholder="Escribe tu pregunta aquí..."
                 aria-label="Escribe tu mensaje"
                 disabled={isLoading}
+                className="flex-1 border-none resize-none text-[13.5px] leading-normal font-sans text-[#2E2B28] bg-transparent outline-none max-h-16 py-1 placeholder:text-[#9C9590]"
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
                 aria-disabled={!input.trim() || isLoading}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer border-none flex-shrink-0 ${
+                  input.trim()
+                    ? "bg-[#6F4E35] text-white shadow-lg shadow-[#6F4E35]/25 hover:scale-105 active:scale-95"
+                    : "bg-[#F5F1EE] text-[#9C9590]"
+                }`}
               >
-                <Send size={18} />
+                <Send size={15} />
               </button>
             </form>
 
             {hasError && (
-              <p className="chat-error">
+              <p className="px-4 pb-3 m-0 text-[11px] text-[#9C9590] bg-white">
                 Si el chat no responde, puedes contactar por WhatsApp o agendar una
                 cita en un click.
               </p>
             )}
           </motion.section>
+
+          {/* Flecha indicadora que apunta al botón flotante - solo visible en escritorio */}
+          <div className="fixed bottom-[6.1rem] right-[3.45rem] w-3 h-3 bg-white border-r border-b border-[#6F4E35]/15 rotate-45 z-[79] shadow-[2px_2px_5px_rgba(46,43,40,0.03)] max-sm:hidden" />
         </>
       )}
-
-      <style jsx>{`
-        .chat-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(20, 18, 16, 0.35);
-          backdrop-filter: blur(2px);
-          z-index: 70;
-        }
-
-        .chat-panel {
-          position: fixed;
-          bottom: 6.5rem;
-          right: 2rem;
-          width: min(24rem, calc(100vw - 2.5rem));
-          max-height: min(75vh, 42rem);
-          display: flex;
-          flex-direction: column;
-          background: #fff;
-          border-radius: 1.25rem;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          box-shadow: 0 20px 60px rgba(22, 18, 15, 0.22);
-          overflow: hidden;
-          z-index: 80;
-        }
-
-        .chat-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1rem 1.2rem;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-          background: var(--color-surface);
-        }
-
-        .chat-title {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-weight: 600;
-          color: var(--color-text);
-        }
-
-        .chat-title__icon {
-          width: 2.1rem;
-          height: 2.1rem;
-          border-radius: 0.7rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(111, 78, 53, 0.12);
-          color: var(--color-primary);
-        }
-
-        .chat-title p {
-          margin: 0;
-          font-size: 0.95rem;
-        }
-
-        .chat-title span {
-          display: block;
-          font-size: 0.75rem;
-          color: var(--color-text-subtle);
-          font-weight: 500;
-        }
-
-        .chat-close {
-          width: 2rem;
-          height: 2rem;
-          border-radius: 9999px;
-          border: none;
-          background: transparent;
-          color: var(--color-text);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-        }
-
-        .chat-close:hover {
-          background: rgba(0, 0, 0, 0.05);
-        }
-
-        .chat-quick-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          padding: 0.85rem 1.2rem 0.4rem;
-        }
-
-        .chat-quick-actions__item {
-          padding: 0.35rem 0.75rem;
-          border-radius: 9999px;
-          border: 1px solid var(--color-border);
-          font-size: 0.72rem;
-          color: var(--color-text);
-          text-decoration: none;
-          background: #fff;
-          transition: all 0.18s ease;
-        }
-
-        .chat-quick-actions__item:hover {
-          border-color: var(--color-primary);
-          color: var(--color-primary);
-          transform: translateY(-1px);
-        }
-
-        .chat-messages {
-          flex: 1;
-          overflow-y: auto;
-          padding: 0.75rem 1.2rem 1rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .chat-message {
-          max-width: 90%;
-          padding: 0.75rem 1rem;
-          border-radius: 1rem;
-          font-size: 0.85rem;
-          line-height: 1.5;
-        }
-
-        .chat-message p {
-          margin: 0;
-        }
-
-        .chat-message--assistant {
-          background: rgba(111, 78, 53, 0.08);
-          color: var(--color-text);
-          align-self: flex-start;
-        }
-
-        .chat-message--user {
-          background: var(--color-primary);
-          color: #fff;
-          align-self: flex-end;
-        }
-
-        .chat-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-          margin-top: 0.6rem;
-        }
-
-        .chat-action {
-          padding: 0.3rem 0.65rem;
-          border-radius: 9999px;
-          background: #fff;
-          border: 1px solid rgba(111, 78, 53, 0.2);
-          font-size: 0.72rem;
-          text-decoration: none;
-          color: var(--color-primary);
-          font-weight: 600;
-        }
-
-        .chat-action:hover {
-          border-color: var(--color-primary);
-          background: rgba(111, 78, 53, 0.08);
-        }
-
-        .chat-typing {
-          display: inline-flex;
-          gap: 0.3rem;
-          align-items: center;
-        }
-
-        .chat-typing span {
-          width: 6px;
-          height: 6px;
-          border-radius: 9999px;
-          background: var(--color-text-subtle);
-          animation: chat-bounce 1s infinite ease-in-out;
-        }
-
-        .chat-typing span:nth-child(2) {
-          animation-delay: 0.15s;
-        }
-
-        .chat-typing span:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-
-        .chat-input {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          padding: 0.9rem 1.2rem 1.1rem;
-          border-top: 1px solid rgba(0, 0, 0, 0.08);
-          background: #fff;
-        }
-
-        .chat-input textarea {
-          flex: 1;
-          border: none;
-          resize: none;
-          font-size: 0.85rem;
-          line-height: 1.4;
-          font-family: inherit;
-          color: var(--color-text);
-          background: transparent;
-          outline: none;
-        }
-
-        .chat-input button {
-          width: 2.4rem;
-          height: 2.4rem;
-          border-radius: 9999px;
-          border: none;
-          background: var(--color-primary);
-          color: #fff;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .chat-input button:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .chat-input button:not(:disabled):hover {
-          transform: translateY(-1px);
-        }
-
-        .chat-error {
-          padding: 0 1.2rem 1rem;
-          font-size: 0.72rem;
-          color: var(--color-text-subtle);
-        }
-
-        @keyframes chat-bounce {
-          0%,
-          100% {
-            transform: translateY(0);
-            opacity: 0.5;
-          }
-          50% {
-            transform: translateY(-3px);
-            opacity: 1;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .chat-panel {
-            bottom: 6.5rem;
-            right: 1.25rem;
-            width: calc(100vw - 2.5rem);
-          }
-        }
-      `}</style>
     </AnimatePresence>
   );
 }

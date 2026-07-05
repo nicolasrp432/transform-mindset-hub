@@ -32,7 +32,7 @@ export default function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  const Comp: any = asChild ? motion.div : motion.button;
+  const Comp: React.ElementType = asChild ? motion.div : motion.button;
 
   return (
     <Comp
