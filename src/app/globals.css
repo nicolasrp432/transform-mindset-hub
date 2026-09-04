@@ -20,6 +20,20 @@
   --color-border:      #D8D2CC;    /* Borde neutro */
   --color-white:       #FDFCFB;    /* Blanco roto (nunca #FFF puro) */
 
+  /* Paleta extendida — colores que antes vivían como literales sueltos */
+  --color-gold:        #D4AF37;    /* Dorado — agenda de reflexión */
+  --color-verde-deep:  #1F5B45;    /* Verde profundo — bandas */
+  --color-verde:       #3E7C63;    /* Verde medio — iconos */
+  --color-verde-soft:  #EAF3EE;    /* Verde claro — chips */
+
+  /* Slots de acento — se reescriben con [data-accent] en cada landing */
+  --mark:          var(--color-primary);
+  --mark-soft:     color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --mark-on-soft:  var(--color-primary);
+  --band:          var(--color-primary);
+  --band-ink:      var(--color-white);
+  --band-muted:    color-mix(in srgb, var(--color-white) 70%, transparent);
+
   /* Tokens de foreground para componentes */
   --background:    var(--color-base);
   --foreground:    var(--color-text);
@@ -59,6 +73,25 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- Temas de acento --- */
+/* Cada landing declara data-accent en su <main>; el resto hereda el tema por
+   defecto definido arriba. Los componentes usan siempre las mismas clases
+   (mark, mark-soft, mark-on-soft, band, band-ink, band-muted). */
+
+[data-accent="stone"] {
+  --mark:         var(--color-accent);
+  --mark-soft:    color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --mark-on-soft: var(--color-accent);
+}
+
+[data-accent="verde"] {
+  --mark:         var(--color-gold);
+  --mark-soft:    var(--color-verde-soft);
+  --mark-on-soft: var(--color-verde);
+  --band:         var(--color-verde-deep);
+  --band-muted:   color-mix(in srgb, var(--color-white) 72%, transparent);
+}
+
 /* --- Tailwind v4 Theme Injection --- */
 @theme inline {
   /* Colors */
@@ -74,6 +107,13 @@
   --color-text-subtle: var(--color-text-subtle);
   --color-border: var(--color-border);
   --color-white: var(--color-white);
+  --color-gold: var(--color-gold);
+  --color-mark: var(--mark);
+  --color-mark-soft: var(--mark-soft);
+  --color-mark-on-soft: var(--mark-on-soft);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-ink);
+  --color-band-muted: var(--band-muted);
 
   /* Typography */
   --font-serif: var(--font-cormorant), "Georgia", serif;
@@ -104,7 +144,16 @@ h1, h2, h3, h4 {
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.15;
-  color: var(--color-text);
+}
+
+/* El color va dentro de @layer base: las reglas sin capa ganan a TODAS las
+   utilidades de Tailwind, así que aquí fuera `text-white` sobre una banda
+   oscura no se aplicaría y el título saldría en gris carbón. Los tamaños se
+   quedan sin capa a propósito, porque ahí hay que ganarle al preflight. */
+@layer base {
+  :where(h1, h2, h3, h4) {
+    color: var(--color-text);
+  }
 }
 
 h1 {
@@ -144,10 +193,28 @@ p {
   margin: var(--space-8) 0;
 }
 
-/* Contenedor de sección con espaciado rítmico */
-.section {
-  padding-block: var(--space-24);
-  padding-inline: var(--space-4);
+/* Contenedor de sección con espaciado rítmico.
+   Va en @layer components para que las utilidades de Tailwind (pt-*, pb-*…)
+   puedan ajustarlo: sin la capa, esta regla plana gana siempre y los ajustes
+   puntuales de las páginas se pierden en silencio. */
+@layer components {
+  .section {
+    padding-block: var(--space-24);
+    padding-inline: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-block: var(--space-32);
+      padding-inline: var(--space-8);
+    }
+  }
+
+  .container-editorial {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
 }
 
 .sales-landing {
@@ -166,20 +233,6 @@ p {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding-block: var(--space-32);
-    padding-inline: var(--space-8);
-  }
-}
-
-/* Container editorial */
-.container-editorial {
-  max-width: 72rem;
-  margin-inline: auto;
-  padding-inline: var(--space-4);
-}
-
 @keyframes book-float {
   0%,
   100% {
@@ -193,6 +246,13 @@ p {
 
 .animate-book-float {
   animation: book-float 7s ease-in-out infinite;
+}
+
+/* Reserva de espacio para la barra de compra fija en móvil */
+@media (max-width: 767px) {
+  .has-sticky-cta {
+    padding-bottom: 5.5rem;
+  }
 }
 
 /* --- Selection Styling --- */
