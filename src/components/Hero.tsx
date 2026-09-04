@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Background image — very subtle architectural texture */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="/ainara-hero.jpg"
+          src="/ainara-image.jpg"
           alt=""
           aria-hidden="true"
           fill

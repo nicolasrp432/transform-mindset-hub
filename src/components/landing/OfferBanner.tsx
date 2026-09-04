@@ -21,7 +21,11 @@ export default function OfferBanner({
         tone === "primary" ? "bg-primary text-white" : "bg-surface text-text"
       )}
     >
-      <span className="inline-flex items-center gap-2">{children}</span>
+      {/* flex-wrap es necesario: los nodos de texto sueltos se convierten en
+          ítems flex anónimos y sin wrap se comprimen en columnas en móvil. */}
+      <span className="inline-flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5">
+        {children}
+      </span>
     </section>
   );
 }

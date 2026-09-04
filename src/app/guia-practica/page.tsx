@@ -178,8 +178,8 @@ export default function GuiaPracticaPage() {
   return (
     <main data-accent="stone" className="has-sticky-cta">
       <OfferBanner>
-        🔥 Guía Práctica desde <strong>{PDF.displayPrice}</strong> — PDF digital
-        o edición impresa
+        🔥 Guía Práctica desde <strong>{PDF.displayPrice}</strong> · PDF o
+        impresa
       </OfferBanner>
 
       <LandingSection
