@@ -4,45 +4,49 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Crown, CalendarHeart, ArrowLeft, GraduationCap, FileText, ArrowRight } from "lucide-react";
+import { CheckCircle2, Crown, CalendarHeart, ArrowLeft, GraduationCap, FileText, ArrowRight, ArrowUpRight } from "lucide-react";
 import { LeadMagnetSchema, type LeadMagnetInput } from "@/lib/validations";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import TextReveal from "@/components/ui/TextReveal";
 import { submitLeadMagnet } from "@/app/actions/lead";
 import Link from "next/link";
+import {
+  PLATFORM_LOGIN_URL,
+  PLATFORM_NAME,
+  PRODUCTS,
+} from "@/lib/products";
 
 const ecosystemItems = [
   {
     title: "Guía Práctica",
-    description: "Método de 21 días para reducir ansiedad, ordenar tus emociones y reconectar con tu poder interior.",
+    description:
+      "Método de 21 días para reducir ansiedad, ordenar tus emociones y reconectar con tu poder interior.",
     icon: FileText,
     action: "Adquirir guía",
-    href: "/guia-practica",
+    href: PRODUCTS.GUIA_PRACTICA.href,
+    price: `desde ${PRODUCTS.GUIA_PRACTICA.displayPrice}`,
     badge: "Más vendido",
   },
   {
     title: "Agenda de Reflexión",
-    description: "Un espacio diario íntimo de crecimiento personal para practicar gratitud y reconectar contigo misma.",
+    description:
+      "Un espacio diario íntimo de crecimiento personal para practicar gratitud y reconectar contigo misma.",
     icon: CalendarHeart,
     action: "Explorar agenda",
-    href: "/agenda-reflexion",
+    href: PRODUCTS.AGENDA_REFLEXION.href,
+    price: PRODUCTS.AGENDA_REFLEXION.displayPrice,
     badge: "Nuevo",
   },
   {
     title: "Libro: La Princesa...",
-    description: "Un cuento inspirador sobre el empoderamiento femenino y la sanación de heridas del pasado.",
+    description:
+      "Un cuento inspirador sobre el empoderamiento femenino y la sanación de heridas del pasado.",
     icon: Crown,
     action: "Leer historia",
-    href: "/libro-princesa",
-    badge: "Digital",
+    href: PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.href,
+    price: `desde ${PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.displayPrice}`,
+    badge: "Edición física",
   },
-  {
-    title: "Plataforma Educativa",
-    description: "Acceso completo a formaciones profundas como Re-conéctate y Emulsión Energética.",
-    icon: GraduationCap,
-    action: "Ver cursos",
-    href: "/formaciones",
-  }
 ];
 
 export default function HerramientasPage() {
@@ -102,7 +106,7 @@ export default function HerramientasPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ecosystemItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -132,7 +136,7 @@ export default function HerramientasPage() {
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-2 border-t border-border/50">
+                  <div className="pt-6 mt-2 border-t border-border/50 flex items-end justify-between gap-3">
                     <Link
                       href={item.href}
                       className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-primary)] group-hover:text-[var(--color-accent)] transition-colors duration-300"
@@ -140,11 +144,61 @@ export default function HerramientasPage() {
                       {item.action}
                       <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
+                    <span className="font-serif text-2xl text-[var(--color-text)] whitespace-nowrap">
+                      {item.price}
+                    </span>
                   </div>
                 </motion.div>
               );
             })}
           </div>
+
+          {/* Mitra: no es un recurso más, así que sale del grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mt-6 rounded-[2rem] bg-primary text-white p-8 md:p-12 relative overflow-hidden"
+          >
+            <div
+              className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
+              aria-hidden="true"
+            />
+            <div className="relative z-10 grid gap-8 lg:grid-cols-[1.2fr_auto] lg:items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs uppercase tracking-[0.25em]">
+                  <GraduationCap className="w-3.5 h-3.5" aria-hidden="true" />
+                  La plataforma
+                </span>
+                <h2 className="mt-6 text-white font-serif text-4xl md:text-5xl">
+                  {PLATFORM_NAME}
+                </h2>
+                <p className="mt-4 text-white/80 max-w-2xl">
+                  Todas las formaciones de Ainara en un mismo lugar, con sus
+                  materiales y tu progreso. Si vas a hacer más de un programa,
+                  este es el camino completo.
+                </p>
+              </div>
+              <div className="flex flex-col items-start lg:items-end gap-3">
+                <a
+                  href={PLATFORM_LOGIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-5 bg-white text-primary rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
+                >
+                  Solicitar acceso a {PLATFORM_NAME}
+                  <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                </a>
+                <Link
+                  href="/formaciones"
+                  className="text-sm text-white/70 underline underline-offset-4 hover:text-white transition-colors"
+                >
+                  Ver las formaciones incluidas
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
