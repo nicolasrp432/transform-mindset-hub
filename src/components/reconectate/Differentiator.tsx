@@ -11,7 +11,7 @@ const Differentiator = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-brand-beige/30">
+    <section className="py-16 px-4 bg-surface">
       <div className="max-w-5xl mx-auto space-y-12">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }} className="text-center space-y-4">
           <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto text-balance">No es repetir afirmaciones… es reconectarte con tu verdad interior.</h2>
@@ -22,8 +22,8 @@ const Differentiator = () => {
             const Icon = pillar.icon;
             return (
               <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.6, delay: index * 0.2 }} className="text-center space-y-4 p-6">
-                <div className="w-16 h-16 mx-auto rounded-full bg-white flex items-center justify-center shadow-md shadow-brand-mid-green/10">
-                  <Icon className="w-9 h-9 text-brand-gold" />
+                <div className="w-16 h-16 mx-auto rounded-full bg-white flex items-center justify-center shadow-md shadow-primary/10">
+                  <Icon className="w-9 h-9 text-mark" />
                 </div>
                 <h3 className="text-xl font-semibold">{pillar.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{pillar.description}</p>
@@ -31,8 +31,8 @@ const Differentiator = () => {
             );
           })}
         </div>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.8 }} className="text-center bg-white rounded-2xl p-8 md:p-10 shadow-lg shadow-brand-mid-green/10">
-          <p className="text-xl md:text-2xl text-brand-dark-green leading-relaxed max-w-3xl mx-auto text-balance">A diferencia de otros programas, Re-Conéctate te lleva a la raíz de tu autocrítica para transformarla desde dentro.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.8 }} className="text-center bg-white rounded-2xl p-8 md:p-10 shadow-lg shadow-primary/10">
+          <p className="text-xl md:text-2xl text-text leading-relaxed max-w-3xl mx-auto text-balance">A diferencia de otros programas, Re-Conéctate te lleva a la raíz de tu autocrítica para transformarla desde dentro.</p>
         </motion.div>
       </div>
     </section>

@@ -20,6 +20,20 @@
   --color-border:      #D8D2CC;    /* Borde neutro */
   --color-white:       #FDFCFB;    /* Blanco roto (nunca #FFF puro) */
 
+  /* Paleta extendida — colores que antes vivían como literales sueltos */
+  --color-gold:        #D4AF37;    /* Dorado — agenda de reflexión */
+  --color-verde-deep:  #1F5B45;    /* Verde profundo — bandas */
+  --color-verde:       #3E7C63;    /* Verde medio — iconos */
+  --color-verde-soft:  #EAF3EE;    /* Verde claro — chips */
+
+  /* Slots de acento — se reescriben con [data-accent] en cada landing */
+  --mark:          var(--color-primary);
+  --mark-soft:     color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --mark-on-soft:  var(--color-primary);
+  --band:          var(--color-primary);
+  --band-ink:      var(--color-white);
+  --band-muted:    color-mix(in srgb, var(--color-white) 70%, transparent);
+
   /* Tokens de foreground para componentes */
   --background:    var(--color-base);
   --foreground:    var(--color-text);
@@ -59,6 +73,25 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- Temas de acento --- */
+/* Cada landing declara data-accent en su <main>; el resto hereda el tema por
+   defecto definido arriba. Los componentes usan siempre las mismas clases
+   (mark, mark-soft, mark-on-soft, band, band-ink, band-muted). */
+
+[data-accent="stone"] {
+  --mark:         var(--color-accent);
+  --mark-soft:    color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --mark-on-soft: var(--color-accent);
+}
+
+[data-accent="verde"] {
+  --mark:         var(--color-gold);
+  --mark-soft:    var(--color-verde-soft);
+  --mark-on-soft: var(--color-verde);
+  --band:         var(--color-verde-deep);
+  --band-muted:   color-mix(in srgb, var(--color-white) 72%, transparent);
+}
+
 /* --- Tailwind v4 Theme Injection --- */
 @theme inline {
   /* Colors */
@@ -74,6 +107,13 @@
   --color-text-subtle: var(--color-text-subtle);
   --color-border: var(--color-border);
   --color-white: var(--color-white);
+  --color-gold: var(--color-gold);
+  --color-mark: var(--mark);
+  --color-mark-soft: var(--mark-soft);
+  --color-mark-on-soft: var(--mark-on-soft);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-ink);
+  --color-band-muted: var(--band-muted);
 
   /* Typography */
   --font-serif: var(--font-cormorant), "Georgia", serif;
@@ -193,6 +233,13 @@ p {
 
 .animate-book-float {
   animation: book-float 7s ease-in-out infinite;
+}
+
+/* Reserva de espacio para la barra de compra fija en móvil */
+@media (max-width: 767px) {
+  .has-sticky-cta {
+    padding-bottom: 5.5rem;
+  }
 }
 
 /* --- Selection Styling --- */

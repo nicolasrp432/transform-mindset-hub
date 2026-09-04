@@ -11,7 +11,7 @@ import FinalCTA from "@/components/reconectate/FinalCTA";
 
 export default function ReConectatePage() {
   return (
-    <main className="flex flex-col min-h-screen bg-brand-beige">
+    <main className="flex flex-col min-h-screen bg-base">
       <AnnouncementBar />
       <Hero />
       <Problem />

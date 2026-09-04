@@ -119,17 +119,17 @@ export default function EmulsionEnergeticaPage() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen bg-brand-beige">
-      <section className="offer-banner bg-white text-center text-xs md:text-sm font-medium tracking-wide py-3 px-4 border-b border-brand-beige/60">
+    <main className="flex flex-col min-h-screen bg-base">
+      <section className="offer-banner bg-white text-center text-xs md:text-sm font-medium tracking-wide py-3 px-4 border-b border-border">
         Formación premium · acceso inmediato · cupos limitados
       </section>
 
-      <section className="relative py-20 px-4 bg-brand-beige overflow-hidden">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-brand-mid-green/10 rounded-full opacity-60 blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-brand-mid-green/10 rounded-full opacity-60 blur-3xl translate-x-1/2 translate-y-1/2" />
+      <section className="relative py-20 px-4 bg-base overflow-hidden">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-mark-soft rounded-full opacity-60 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-mark-soft rounded-full opacity-60 blur-3xl translate-x-1/2 translate-y-1/2" />
         <div className="max-w-5xl mx-auto text-center space-y-10 relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="space-y-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-brand-dark-green/70">
+            <p className="text-sm uppercase tracking-[0.3em] text-text/70">
               Emulsión Energética
             </p>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight text-balance">
@@ -143,7 +143,7 @@ export default function EmulsionEnergeticaPage() {
             <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
               <button
                 onClick={scrollToCta}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/20 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/30"
+                className="bg-primary text-white hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30"
               >
                 Quiero acceder a la formación
               </button>
@@ -168,15 +168,15 @@ export default function EmulsionEnergeticaPage() {
                 "Integración de neurociencia, psicología y logoterapia.",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-brand-mid-green mt-1" />
+                  <CheckCircle2 className="w-6 h-6 text-mark-on-soft mt-1" />
                   <p className="text-foreground/75">{item}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="rounded-3xl bg-brand-beige/40 p-8 border border-brand-beige/60 shadow-sm space-y-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-brand-mid-green font-semibold">Posicionamiento</p>
-            <p className="text-lg text-brand-dark-green font-semibold">
+          <div className="rounded-3xl bg-surface p-8 border border-border shadow-sm space-y-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-mark-on-soft font-semibold">Posicionamiento</p>
+            <p className="text-lg text-text font-semibold">
               Terapéutico · estructurado · profundo · responsable
             </p>
             <p className="text-foreground/70 leading-relaxed">
@@ -186,7 +186,7 @@ export default function EmulsionEnergeticaPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-brand-beige">
+      <section className="py-16 px-4 bg-base">
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold leading-tight text-balance">Estructura de lecciones</h2>
@@ -199,14 +199,14 @@ export default function EmulsionEnergeticaPage() {
               <AccordionItem
                 key={lesson.title}
                 value={`lesson-${index}`}
-                className="bg-white border-brand-beige/50 rounded-2xl px-6 shadow-sm hover:shadow-lg hover:shadow-brand-mid-green/10 transition-all duration-300"
+                className="bg-white border-border rounded-2xl px-6 shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
               >
                 <AccordionTrigger className="text-left hover:no-underline py-6">
                   <div className="space-y-1">
-                    <p className="text-sm uppercase tracking-[0.2em] text-brand-mid-green">
+                    <p className="text-sm uppercase tracking-[0.2em] text-mark-on-soft">
                       {`Módulo ${index + 1}`}
                     </p>
-                    <p className="text-lg font-semibold text-brand-dark-green">
+                    <p className="text-lg font-semibold text-text">
                       {lesson.title}
                     </p>
                   </div>
@@ -214,7 +214,7 @@ export default function EmulsionEnergeticaPage() {
                 <AccordionContent className="pb-6 pt-2 space-y-3">
                   <p className="text-foreground/75 leading-relaxed">{lesson.focus}</p>
                   <p className="text-foreground/75 leading-relaxed">
-                    <strong className="text-brand-dark-green">Clave emocional:</strong> {lesson.key}
+                    <strong className="text-text">Clave emocional:</strong> {lesson.key}
                   </p>
                 </AccordionContent>
               </AccordionItem>
@@ -239,12 +239,12 @@ export default function EmulsionEnergeticaPage() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-3xl border border-brand-beige/60 bg-brand-beige/30 p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="rounded-3xl border border-border bg-surface p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-4 border border-brand-beige/60">
-                    <Icon className="w-6 h-6 text-brand-mid-green" />
+                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-4 border border-border">
+                    <Icon className="w-6 h-6 text-mark-on-soft" />
                   </div>
-                  <h3 className="text-xl font-semibold text-brand-dark-green mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-text mb-2">{item.title}</h3>
                   <p className="text-foreground/70">{item.text}</p>
                 </div>
               );
@@ -253,7 +253,7 @@ export default function EmulsionEnergeticaPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-brand-beige">
+      <section className="py-16 px-4 bg-base">
         <div className="max-w-5xl mx-auto grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-center">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-balance">
@@ -263,14 +263,14 @@ export default function EmulsionEnergeticaPage() {
               Al finalizar el curso tendrás claridad sobre tus bloqueos. El CTA es directo pero suave: reserva una sesión 1:1 para estructurar tu regulación emocional con el método Ainara.
             </p>
           </div>
-          <div className="rounded-3xl bg-white p-6 shadow-md border border-brand-beige/60 space-y-4">
-            <p className="text-sm uppercase tracking-[0.3em] text-brand-mid-green">CTA de continuidad</p>
+          <div className="rounded-3xl bg-white p-6 shadow-md border border-border space-y-4">
+            <p className="text-sm uppercase tracking-[0.3em] text-mark-on-soft">CTA de continuidad</p>
             <p className="text-foreground/80">
               Si has identificado tus bloqueos en tu Mapa del Alma o en tu Péndulo, agenda tu sesión privada.
             </p>
             <Link
               href="/sesiones"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-brand-mid-green text-brand-dark-green hover:bg-brand-mid-green/10 transition-colors duration-300 font-medium"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-accent text-text hover:bg-mark-soft transition-colors duration-300 font-medium"
             >
               Reservar sesión 1:1
             </Link>
@@ -288,16 +288,16 @@ export default function EmulsionEnergeticaPage() {
               Acceso inmediato a la formación, materiales descargables y seguimiento estructurado.
             </p>
           </div>
-          <div className="rounded-3xl bg-brand-beige/40 p-8 md:p-10 text-center space-y-6 border border-brand-beige/60 shadow-md">
-            <p className="text-xs uppercase tracking-[0.3em] text-brand-mid-green font-semibold">
+          <div className="rounded-3xl bg-surface p-8 md:p-10 text-center space-y-6 border border-border shadow-md">
+            <p className="text-xs uppercase tracking-[0.3em] text-mark-on-soft font-semibold">
               Oferta de lanzamiento
             </p>
-            <p className="text-5xl md:text-6xl font-bold text-brand-dark-green">
+            <p className="text-5xl md:text-6xl font-bold text-text">
               {PRODUCTS.EMULSION_ENERGETICA.displayPrice}
             </p>
             <p className="text-foreground/70">IVA incluido · pago único</p>
             <motion.div whileHover={{ scale: 1.05, y: -4 }} whileTap={{ scale: 0.95 }}>
-              <CheckoutButton productKey={PRODUCTS.EMULSION_ENERGETICA.key} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-brand-dark-green/30 transition-all duration-300 hover:shadow-xl hover:shadow-brand-dark-green/40 w-full">
+              <CheckoutButton productKey={PRODUCTS.EMULSION_ENERGETICA.key} className="bg-primary text-white hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 w-full">
                 Sí, quiero transformar mi energía
               </CheckoutButton>
             </motion.div>

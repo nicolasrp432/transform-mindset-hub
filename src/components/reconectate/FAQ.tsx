@@ -21,8 +21,8 @@ const FAQ = () => {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: 0.2 }}>
           <Accordion type="single" collapsible className="space-y-4">
             {faqData.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-brand-beige/30 border-brand-beige/50 rounded-2xl px-6 shadow-sm hover:shadow-md hover:shadow-brand-mid-green/10 transition-all duration-300">
-                <AccordionTrigger className="text-left hover:no-underline py-6 text-lg font-semibold text-brand-dark-green">{item.question}</AccordionTrigger>
+              <AccordionItem key={index} value={`item-${index}`} className="bg-surface border-border rounded-2xl px-6 shadow-sm hover:shadow-md hover:shadow-primary/10 transition-all duration-300">
+                <AccordionTrigger className="text-left hover:no-underline py-6 text-lg font-semibold text-text">{item.question}</AccordionTrigger>
                 <AccordionContent className="pb-6 pt-2">
                   <p className="text-foreground/80 leading-relaxed">{item.answer}</p>
                 </AccordionContent>

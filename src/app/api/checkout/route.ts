@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
-import { PRODUCTS } from "@/lib/products";
+import { findProduct, PRODUCTS } from "@/lib/products";
 
 export async function POST(req: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -12,10 +12,17 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json().catch(() => ({}));
-    const productKey = body.productKey || PRODUCTS.GUIA_PRACTICA.key;
-    const selectedProduct =
-      Object.values(PRODUCTS).find((product) => product.key === productKey) ||
-      PRODUCTS.GUIA_PRACTICA;
+    const productKey: string = body.productKey || PRODUCTS.GUIA_PRACTICA.key;
+    const selectedProduct = findProduct(productKey);
+
+    // Sin fallback: cobrar otro producto porque la clave no existe es peor que
+    // fallar de forma visible.
+    if (!selectedProduct) {
+      return NextResponse.json(
+        { error: `Producto no disponible: ${productKey}` },
+        { status: 400 }
+      );
+    }
 
     const lineItems = [
       {

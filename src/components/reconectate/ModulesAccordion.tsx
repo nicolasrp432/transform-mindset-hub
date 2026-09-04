@@ -18,11 +18,11 @@ const ModulesAccordion = () => {
       <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">Lo que aprenderás en 6 semanas</h3>
       <Accordion type="single" collapsible className="space-y-4">
         {modules.map((module, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="bg-white border-brand-beige/50 rounded-2xl px-6 shadow-sm hover:shadow-lg hover:shadow-brand-mid-green/10 transition-all duration-300">
+          <AccordionItem key={index} value={`item-${index}`} className="bg-white border-border rounded-2xl px-6 shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
             <AccordionTrigger className="text-left hover:no-underline py-6">
               <div className="space-y-1">
-                <p className="text-lg text-brand-mid-green font-medium">{module.week}</p>
-                <p className="text-lg font-semibold text-brand-dark-green">{module.title}</p>
+                <p className="text-lg text-mark-on-soft font-medium">{module.week}</p>
+                <p className="text-lg font-semibold text-text">{module.title}</p>
               </div>
             </AccordionTrigger>
             <AccordionContent className="pb-6 pt-2">

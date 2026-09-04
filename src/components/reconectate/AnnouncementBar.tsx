@@ -28,9 +28,9 @@ const AnnouncementBar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="offer-banner w-full bg-primary text-primary-foreground py-2.5 px-4"
+      className="offer-banner w-full bg-primary text-white py-2.5 px-4"
     >
-      <div className="container-custom flex items-center justify-center gap-2 sm:gap-4 text-center text-xs sm:text-sm">
+      <div className="container-editorial flex items-center justify-center gap-2 sm:gap-4 text-center text-xs sm:text-sm">
         <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
         <p className="font-semibold">
           <span className="hidden md:inline">¡Oferta de lanzamiento termina en!</span>
@@ -41,7 +41,7 @@ const AnnouncementBar = () => {
           <span>{String(timeLeft.minutes).padStart(2, "0")}</span>:
           <span className="w-8">{String(timeLeft.seconds).padStart(2, "0")}</span>
         </div>
-        <button onClick={handleCTA} className="hidden lg:block ml-4 text-brand-gold font-bold underline underline-offset-4 hover:text-white transition-colors">
+        <button onClick={handleCTA} className="hidden lg:block ml-4 text-mark font-bold underline underline-offset-4 hover:text-white transition-colors">
           ¡Lo quiero ahora!
         </button>
       </div>
