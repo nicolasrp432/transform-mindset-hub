@@ -38,8 +38,8 @@ const Offer = () => {
         <ModulesAccordion />
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.8, ease: "easeOut" }} className="text-center">
           <motion.div whileHover={{ scale: 1.05, y: -5 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-            <CheckoutButton productKey={PRODUCTS.RE_CONECTATE.key} className="bg-primary text-white hover:bg-primary/90 px-8 py-6 text-base sm:text-lg rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30">
-              🌸 Quiero comenzar mi transformación
+            <CheckoutButton productKey={PRODUCTS.RE_CONECTATE.key} className="px-8 py-6 text-base sm:text-lg shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30">
+              🌸 Quiero comenzar mi transformación — {PRODUCTS.RE_CONECTATE.displayPrice}
             </CheckoutButton>
           </motion.div>
         </motion.div>
