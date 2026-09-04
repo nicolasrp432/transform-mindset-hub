@@ -1,34 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/lib/animations";
-import { PLATFORM_LOGIN_URL } from "@/lib/products";
-import TextReveal from "@/components/ui/TextReveal";
-import { ArrowUpRight, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
+import { ArrowRight, Download, Layers, Sparkles, UserCheck, Zap } from "lucide-react";
+import { fadeUp, stagger } from "@/lib/animations";
+import TextReveal from "@/components/ui/TextReveal";
+import PlatformHero from "@/components/landing/PlatformHero";
+import {
+  getProduct,
+  getValueStackTotal,
+  PLATFORM_HIGHLIGHTS,
+  PLATFORM_LOGIN_URL,
+  PLATFORM_NAME,
+  PRODUCTS,
+  type ProductKey,
+} from "@/lib/products";
 
-const courses = [
+const HIGHLIGHT_ICONS = [Layers, Download, UserCheck];
+
+const PLATFORM_FEATURES = PLATFORM_HIGHLIGHTS.map((item, index) => ({
+  ...item,
+  icon: HIGHLIGHT_ICONS[index],
+}));
+
+const courses: readonly {
+  id: string;
+  icon: typeof Sparkles;
+  badge: string;
+  productKey: ProductKey;
+  description: string;
+  tags: readonly string[];
+  accent: string;
+}[] = [
   {
     id: "reconectate",
     icon: Sparkles,
     badge: "Programa 01",
-    title: "Re-conéctate",
+    productKey: PRODUCTS.RE_CONECTATE.key,
     description:
       "Un proceso de reconexión profunda contigo misma. Aprende a escuchar tu cuerpo, identificar tus bloqueos emocionales y recuperar el hilo conductor de tu vida desde la calma y la claridad.",
     tags: ["Autoconocimiento", "Emociones", "Presencia"],
     accent: "var(--color-secondary)",
-    href: "/re-conectate",
   },
   {
     id: "emulsion-energetica",
     icon: Zap,
     badge: "Programa 02",
-    title: "Emulsión Energética",
+    productKey: PRODUCTS.EMULSION_ENERGETICA.key,
     description:
       "Un programa de transformación energética que te lleva a comprender y trabajar con tus campos de energía personal, alineando cuerpo, mente y propósito para actuar con plenitud.",
     tags: ["Energía", "Propósito", "Transformación"],
     accent: "var(--color-primary)",
-    href: "/emulsion-energetica",
   },
 ];
 
@@ -36,7 +58,10 @@ export default function FormacionesContent() {
   return (
     <main>
       {/* Header */}
-      <section className="section pt-32 lg:pt-40 pb-8 lg:pb-12" aria-labelledby="formaciones-heading">
+      <section
+        className="section pt-32 lg:pt-40 pb-8 lg:pb-12"
+        aria-labelledby="formaciones-heading"
+      >
         <div className="container-editorial flex flex-col items-center text-center md:items-start md:text-left">
           <p className="text-text-subtle text-sm tracking-widest uppercase mb-4">
             Transformación
@@ -49,16 +74,45 @@ export default function FormacionesContent() {
           />
           <hr className="divider-breath" />
           <p className="text-text-muted text-lg max-w-[58ch]">
-            Procesos profundos de transformación personal. Cada formación es un
-            viaje diseñado para reconectarte contigo misma y acceder a una
-            comprensión más profunda de tus procesos.
+            Procesos profundos de transformación personal. Todo vive dentro de{" "}
+            {PLATFORM_NAME}, y cada programa también puede adquirirse por
+            separado.
           </p>
         </div>
       </section>
 
-      {/* Bento cards */}
-      <section className="section pt-0" aria-label="Listado de formaciones">
+      {/* Mitra — la oferta principal */}
+      <section className="section pt-0 pb-8" aria-labelledby="mitra-heading">
         <div className="container-editorial">
+          <PlatformHero
+            eyebrow="La plataforma"
+            title={<span id="mitra-heading">{PLATFORM_NAME}</span>}
+            lead="Todas las formaciones de Ainara en un mismo lugar, con sus materiales, tu progreso y lo que se vaya publicando. Es la forma completa de hacer el camino, sin ir comprando pieza a pieza."
+            highlights={PLATFORM_FEATURES}
+            ctaLabel="Solicitar acceso a la plataforma"
+            ctaHref={PLATFORM_LOGIN_URL}
+            ctaId="cta-plataforma"
+            note="Te llevamos al portal oficial para crear tu acceso."
+          />
+        </div>
+      </section>
+
+      {/* Programas sueltos */}
+      <section className="section pt-8" aria-labelledby="programas-heading">
+        <div className="container-editorial">
+          <div className="max-w-3xl mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-4">
+              Programas individuales
+            </p>
+            <h2 id="programas-heading">
+              ¿Prefieres empezar por un programa suelto?
+            </h2>
+            <p className="mt-4 text-text-muted">
+              Cada formación se puede comprar por separado, con acceso de por
+              vida y garantía de 7 días.
+            </p>
+          </div>
+
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -68,22 +122,21 @@ export default function FormacionesContent() {
           >
             {courses.map((course) => {
               const Icon = course.icon;
-              const isExternal = course.href.startsWith("http");
-              
-              const CardInner = (
+              const product = getProduct(course.productKey);
+              const valueTotal = getValueStackTotal(product);
+
+              return (
                 <motion.article
                   key={course.id}
                   variants={fadeUp}
                   className="group relative flex flex-col gap-6 rounded-2xl border border-border bg-surface p-8 lg:p-10 overflow-hidden transition-shadow duration-300 hover:shadow-xl h-full"
                 >
-                  {/* Accent top bar */}
                   <div
                     className="absolute top-0 inset-x-0 h-[2px] rounded-t-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: course.accent }}
                     aria-hidden="true"
                   />
 
-                  {/* Icon + badge */}
                   <div className="flex items-start justify-between">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center"
@@ -102,17 +155,15 @@ export default function FormacionesContent() {
                     </span>
                   </div>
 
-                  {/* Content */}
                   <div className="flex flex-col gap-4 flex-1">
-                    <h2 className="font-serif text-3xl lg:text-4xl text-text leading-tight">
-                      {course.title}
-                    </h2>
+                    <h3 className="font-serif text-3xl lg:text-4xl text-text leading-tight">
+                      {product.shortName}
+                    </h3>
                     <p className="text-text-muted leading-relaxed text-base">
                       {course.description}
                     </p>
                   </div>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {course.tags.map((tag) => (
                       <span
@@ -123,46 +174,30 @@ export default function FormacionesContent() {
                       </span>
                     ))}
                   </div>
+
+                  <div className="pt-6 border-t border-border flex items-end justify-between gap-4">
+                    <div>
+                      {valueTotal && (
+                        <p className="text-sm text-text-subtle line-through">
+                          {valueTotal}
+                        </p>
+                      )}
+                      <p className="font-serif text-4xl text-text">
+                        {product.displayPrice}
+                      </p>
+                      <p className="text-xs text-text-subtle">pago único</p>
+                    </div>
+                    <Link
+                      href={product.href}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary text-primary font-medium text-sm tracking-wide transition-all duration-300 hover:bg-primary hover:text-white hover:gap-3"
+                    >
+                      Ver el programa
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  </div>
                 </motion.article>
               );
-
-              return isExternal ? (
-                <a key={course.id} href={course.href} target="_blank" rel="noopener noreferrer" className="block outline-none">
-                  {CardInner}
-                </a>
-              ) : (
-                <Link key={course.id} href={course.href} className="block outline-none">
-                  {CardInner}
-                </Link>
-              );
             })}
-          </motion.div>
-
-          {/* CTA Principal — external platform */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="mt-16 flex flex-col items-center gap-4 text-center"
-          >
-            <p className="text-text-subtle text-sm tracking-widest uppercase font-sans">
-              ¿Lista para comenzar?
-            </p>
-            <a
-              href={PLATFORM_LOGIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="cta-plataforma"
-              className="inline-flex flex-row items-center justify-center gap-3 whitespace-nowrap px-10 py-5 bg-primary text-white rounded-xl text-sm font-medium tracking-wide shadow-lg shadow-primary/25 transition-all duration-300 hover:opacity-90 hover:shadow-xl hover:gap-4"
-            >
-              Solicitar acceso a la plataforma
-              <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-            </a>
-            <p className="text-text-subtle text-xs max-w-[36ch] leading-relaxed">
-              La plataforma de formaciones está gestionada externamente. Serás
-              redirigida al portal oficial.
-            </p>
           </motion.div>
         </div>
       </section>

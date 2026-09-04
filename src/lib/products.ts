@@ -3,6 +3,22 @@ export const PLATFORM_LOGIN_URL = "https://v0-plataforma-ainara.vercel.app/login
 /** Nombre público de la plataforma que agrupa todas las formaciones. */
 export const PLATFORM_NAME = "Mitra";
 
+/** Lo que incluye el acceso a la plataforma. */
+export const PLATFORM_HIGHLIGHTS = [
+  {
+    title: "Todas las formaciones",
+    text: "Re-Conéctate y Emulsión Energética completas, más lo que se vaya publicando.",
+  },
+  {
+    title: "Materiales descargables",
+    text: "Plantillas, retos y audios de todos los programas en un mismo sitio.",
+  },
+  {
+    title: "Un solo acceso",
+    text: "Tu progreso y tus materiales siempre disponibles, desde cualquier dispositivo.",
+  },
+] as const;
+
 export type ValueStackItem = {
   label: string;
   /** Importe en céntimos. El total siempre se calcula, nunca se escribe. */
