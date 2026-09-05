@@ -27,7 +27,7 @@ export default function PurchaseSuccess({
           <div className="max-w-2xl mx-auto text-center">
             <div className="relative mx-auto mb-8 w-24 h-24">
               <div
-                className="absolute inset-0 rounded-full bg-primary/10 animate-ping"
+                className="pointer-events-none absolute inset-0 rounded-full bg-primary/10 animate-ping"
                 aria-hidden="true"
               />
               <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">

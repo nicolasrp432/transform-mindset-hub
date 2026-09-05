@@ -34,41 +34,41 @@ export default function PlatformHero({
   note,
 }: PlatformHeroProps) {
   return (
-    <div className="rounded-[2rem] bg-band text-band-ink p-8 md:p-14 relative overflow-hidden">
+    <div className="rounded-[2rem] bg-band text-band-ink p-6 sm:p-8 md:p-14 relative overflow-hidden">
       <div
-        className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
+        className="pointer-events-none absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"
+        className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"
         aria-hidden="true"
       />
 
       <div className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_auto] lg:items-end">
-          <div>
+          <div className="min-w-0">
             <p className="text-xs uppercase tracking-[0.25em] text-band-muted mb-4">
               {eyebrow}
             </p>
-            <h2 className="text-white text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
               {title}
             </h2>
             <p className="mt-6 text-band-muted text-lg max-w-2xl">{lead}</p>
           </div>
 
-          <div className="flex flex-col items-start lg:items-end gap-3">
+          <div className="min-w-0 flex flex-col items-stretch sm:items-start lg:items-end gap-3">
             <a
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
               id={ctaId}
-              className="inline-flex items-center justify-center gap-3 whitespace-nowrap px-10 py-5 bg-white text-primary rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-3 text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-primary rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
             >
               {ctaLabel}
               <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
             </a>
             {note && (
-              <p className="text-xs text-band-muted max-w-[32ch] lg:text-right">
+              <p className="text-xs text-band-muted max-w-full sm:max-w-[32ch] lg:text-right">
                 {note}
               </p>
             )}

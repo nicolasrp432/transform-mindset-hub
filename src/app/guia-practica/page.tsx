@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
@@ -196,9 +195,9 @@ export default function GuiaPracticaPage() {
               <CheckoutButton productKey={PDF.key}>
                 Descargar PDF — {PDF.displayPrice}
               </CheckoutButton>
-              <Link href="#precios" className={secondaryLink}>
+              <a href="#precios" className={secondaryLink}>
                 Ver opciones (PDF / impresa)
-              </Link>
+              </a>
             </>
           }
           visual={
@@ -263,7 +262,7 @@ export default function GuiaPracticaPage() {
         <div className="grid gap-6 lg:grid-cols-2 items-stretch">
           <article className="relative flex flex-col rounded-[2rem] bg-primary text-white p-8 md:p-10 shadow-lg overflow-hidden">
             <div
-              className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
+              className="pointer-events-none absolute top-0 right-0 w-72 h-72 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
               aria-hidden="true"
             />
             <span className="relative z-10 inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-white/15 text-xs uppercase tracking-[0.25em]">
@@ -366,9 +365,9 @@ export default function GuiaPracticaPage() {
               <CheckoutButton productKey={PDF.key}>
                 Descargar PDF — {PDF.displayPrice}
               </CheckoutButton>
-              <Link href="#precios" className={secondaryLink}>
+              <a href="#precios" className={secondaryLink}>
                 Ver todas las opciones
-              </Link>
+              </a>
             </>
           }
           footnote={

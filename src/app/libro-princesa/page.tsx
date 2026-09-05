@@ -168,7 +168,7 @@ export default function LibroPrincesaPage() {
           visual={
             <div className="relative overflow-hidden rounded-[1.5rem] bg-[#d2ad57] p-4 md:p-6 shadow-sm">
               <div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.24),transparent_45%)]"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.24),transparent_45%)]"
                 aria-hidden="true"
               />
               <div className="relative animate-book-float origin-center">
