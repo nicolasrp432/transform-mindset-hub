@@ -80,9 +80,9 @@ export default function EmulsionEnergeticaPage() {
               <CheckoutButton productKey={PRODUCT.key}>
                 Acceder a la formación — {PRODUCT.displayPrice}
               </CheckoutButton>
-              <Link href="#lecciones" className={secondaryLink}>
+              <a href="#lecciones" className={secondaryLink}>
                 Ver las 8 lecciones
-              </Link>
+              </a>
             </>
           }
           visual={
@@ -217,9 +217,9 @@ export default function EmulsionEnergeticaPage() {
               <CheckoutButton productKey={PRODUCT.key}>
                 Acceder ahora — {PRODUCT.displayPrice}
               </CheckoutButton>
-              <Link href="#lecciones" className={secondaryLink}>
+              <a href="#lecciones" className={secondaryLink}>
                 Ver el programa
-              </Link>
+              </a>
             </>
           }
           footnote={

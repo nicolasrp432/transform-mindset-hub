@@ -34,11 +34,11 @@ export default function PriceBand({
   return (
     <div className="rounded-[2rem] bg-band text-band-ink p-8 md:p-12 relative overflow-hidden">
       <div
-        className="absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
+        className="pointer-events-none absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"
+        className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"
         aria-hidden="true"
       />
 

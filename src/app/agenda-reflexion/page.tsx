@@ -188,34 +188,34 @@ export default function AgendaReflexionPage() {
               <CheckoutButton productKey={AGENDA.key}>
                 Descargar ahora — {AGENDA.displayPrice}
               </CheckoutButton>
-              <Link href="#contenido" className={secondaryLink}>
+              <a href="#contenido" className={secondaryLink}>
                 Ver qué incluye
-              </Link>
+              </a>
             </>
           }
           visual={
-            <div className="aspect-[3/4] rounded-[1.5rem] bg-gradient-to-br from-[#F5F5DC] to-[#E8E8D8] text-text p-8 flex flex-col justify-between relative overflow-hidden border border-mark/30">
+            <div className="aspect-[3/4] rounded-[1.5rem] bg-gradient-to-br from-surface to-verde-soft text-text p-8 flex flex-col justify-between relative overflow-hidden border border-gold/40 shadow-inner">
               <div
-                className="absolute -top-20 -right-20 w-60 h-60 rounded-full border border-mark/20 bg-mark-soft/40"
+                className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full border border-gold/30"
                 aria-hidden="true"
               />
               <div
-                className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-mark/20 bg-mark-soft/40"
+                className="pointer-events-none absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-gold/30"
                 aria-hidden="true"
               />
               <div className="space-y-3 relative z-10">
                 <CalendarHeart
-                  className="w-10 h-10 text-mark opacity-90"
+                  className="w-10 h-10 text-gold"
                   aria-hidden="true"
                 />
-                <p className="text-xs uppercase tracking-[0.3em] opacity-60">
+                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">
                   Ainara Coaching
                 </p>
-                <p className="text-3xl leading-tight font-serif">
+                <p className="text-3xl leading-tight font-serif text-text">
                   Agenda de Reflexión Diaria
                 </p>
               </div>
-              <p className="text-sm opacity-80 relative z-10">
+              <p className="text-sm text-text-muted relative z-10">
                 Calma mental • Autocompasión • Claridad
               </p>
             </div>

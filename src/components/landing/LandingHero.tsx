@@ -28,13 +28,16 @@ export default function LandingHero({
 }: LandingHeroProps) {
   return (
     <>
+      {/* pointer-events-none es imprescindible: al ser absoluto, este adorno se
+          pinta por encima del contenido estático y si no, se traga los clics de
+          los CTA del hero. */}
       <div
-        className="absolute top-10 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] rounded-full blur-3xl opacity-50 bg-mark-soft"
+        className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] rounded-full blur-3xl opacity-50 bg-mark-soft"
         aria-hidden="true"
       />
       <div
         className={cn(
-          "grid gap-12 items-center",
+          "relative grid gap-12 items-center",
           ratio === "wide-copy"
             ? "lg:grid-cols-[1.15fr_0.85fr]"
             : "lg:grid-cols-[1.05fr_0.95fr]"

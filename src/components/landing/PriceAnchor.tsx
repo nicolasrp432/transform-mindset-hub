@@ -34,7 +34,7 @@ export default function PriceAnchor({
   const total = getValueStackTotal(product);
 
   return (
-    <div className="rounded-[2rem] bg-white border border-border p-8 md:p-10 shadow-lg">
+    <div className="rounded-[2rem] bg-white border border-border p-6 sm:p-8 md:p-10 shadow-lg">
       <p className="text-xs uppercase tracking-[0.25em] text-text-subtle mb-6">
         {eyebrow}
       </p>

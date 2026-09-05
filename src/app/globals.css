@@ -25,6 +25,7 @@
   --color-verde-deep:  #1F5B45;    /* Verde profundo — bandas */
   --color-verde:       #3E7C63;    /* Verde medio — iconos */
   --color-verde-soft:  #EAF3EE;    /* Verde claro — chips */
+  --color-accent-deep: #47606E;    /* Gris-azul oscuro — iconos legibles */
 
   /* Slots de acento — se reescriben con [data-accent] en cada landing */
   --mark:          var(--color-primary);
@@ -78,16 +79,22 @@
    defecto definido arriba. Los componentes usan siempre las mismas clases
    (mark, mark-soft, mark-on-soft, band, band-ink, band-muted). */
 
+/* --mark colorea iconos y checks sobre fondo claro, así que usa la versión
+   oscura del acento: el gris-azul original daba 2,7:1 sobre el pergamino y se
+   veía desvaído. El tono claro sigue disponible como text-accent. */
 [data-accent="stone"] {
-  --mark:         var(--color-accent);
+  --mark:         var(--color-accent-deep);
   --mark-soft:    color-mix(in srgb, var(--color-accent) 12%, transparent);
-  --mark-on-soft: var(--color-accent);
+  --mark-on-soft: var(--color-accent-deep);
 }
 
+/* --mark es el color de iconos y checks de los componentes compartidos, así que
+   tiene que ser legible sobre fondo claro. El oro (#D4AF37) da 1,9:1 y no vale
+   para eso: se queda como color decorativo, disponible vía text-gold. */
 [data-accent="verde"] {
-  --mark:         var(--color-gold);
+  --mark:         var(--color-verde-deep);
   --mark-soft:    var(--color-verde-soft);
-  --mark-on-soft: var(--color-verde);
+  --mark-on-soft: var(--color-verde-deep);
   --band:         var(--color-verde-deep);
   --band-muted:   color-mix(in srgb, var(--color-white) 72%, transparent);
 }
@@ -108,6 +115,10 @@
   --color-border: var(--color-border);
   --color-white: var(--color-white);
   --color-gold: var(--color-gold);
+  --color-verde: var(--color-verde);
+  --color-verde-soft: var(--color-verde-soft);
+  --color-verde-deep: var(--color-verde-deep);
+  --color-accent-deep: var(--color-accent-deep);
   --color-mark: var(--mark);
   --color-mark-soft: var(--mark-soft);
   --color-mark-on-soft: var(--mark-on-soft);
@@ -153,6 +164,12 @@ h1, h2, h3, h4 {
 @layer base {
   :where(h1, h2, h3, h4) {
     color: var(--color-text);
+  }
+
+  /* Los enlaces internos apuntan a secciones. Sin este margen el destino
+     aterriza debajo del banner sticky y del navbar flotante. */
+  :where(section[id]) {
+    scroll-margin-top: 7rem;
   }
 }
 
