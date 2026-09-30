@@ -104,10 +104,10 @@ export default function HerramientasPage() {
         {ecosystemItems.map((item, i) => (
           <article key={item.title} className="resource-card">
             <div className={`resource-cover resource-cover-${i}`}>
-              {i === 0 ? (
+              {i === 0 || i === 2 ? (
                 <Image
-                  src="/guia-practica.png"
-                  alt="Portada de la guía práctica de Ainara"
+                  src={i === 0 ? "/guia-practica.png" : encodeURI("/OBTÉN LA GUÍA AHORA EN AINARACOACH.COMGUÍA.png")}
+                  alt={i === 0 ? "Portada de la guía práctica de Ainara" : "Portada de La Princesa que perdió su corona"}
                   fill
                   sizes="(max-width:760px) 100vw, 30vw"
                 />

@@ -48,7 +48,7 @@ function ContactOption({
     : {};
 
   const commonClass =
-    "group/option flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#FAF7EF] border border-[#C8CCBC] shadow-md text-[#263020] text-[13px] font-semibold tracking-tight whitespace-nowrap hover:bg-[#3D4A35] hover:text-white hover:border-[#3D4A35] hover:shadow-lg hover:-translate-x-1 transition-all duration-200 cursor-pointer no-underline";
+    "group/option flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#FFFFFF] border border-[#DCE5DE] shadow-md text-[#253A32] text-[13px] font-semibold tracking-tight whitespace-nowrap hover:bg-[#284B40] hover:text-white hover:border-[#284B40] hover:shadow-lg hover:-translate-x-1 transition-all duration-200 cursor-pointer no-underline";
 
   if (href) {
     return (
@@ -63,7 +63,7 @@ function ContactOption({
         className={commonClass}
         aria-label={label}
       >
-        <span className="flex items-center text-[#3D4A35] group-hover/option:text-white transition-colors flex-shrink-0">
+        <span className="flex items-center text-[#284B40] group-hover/option:text-white transition-colors flex-shrink-0">
           {icon}
         </span>
         <span className="leading-none">{label}</span>
@@ -83,7 +83,7 @@ function ContactOption({
       className={commonClass}
       aria-label={label}
     >
-      <span className="flex items-center text-[#3D4A35] group-hover/option:text-white transition-colors flex-shrink-0">
+      <span className="flex items-center text-[#284B40] group-hover/option:text-white transition-colors flex-shrink-0">
         {icon}
       </span>
       <span className="leading-none">{label}</span>
@@ -118,7 +118,7 @@ export function FloatingContact() {
       >
         {/* Tooltip flotante informativo en hover */}
         {!isOpen && !isChatOpen && (
-          <div className="absolute right-19 top-1/2 -translate-y-1/2 bg-[#FAF7EF] border border-[#C8CCBC] text-[#263020] px-4 py-2 rounded-full text-[12.5px] font-medium shadow-md whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 max-sm:hidden z-10">
+          <div className="absolute right-19 top-1/2 -translate-y-1/2 bg-[#FFFFFF] border border-[#DCE5DE] text-[#253A32] px-4 py-2 rounded-full text-[12.5px] font-medium shadow-md whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 max-sm:hidden z-10">
             ¿Alguna duda? Escríbeme
           </div>
         )}
@@ -164,7 +164,7 @@ export function FloatingContact() {
             if (isChatOpen) setIsChatOpen(false);
             setIsOpen((prev) => !prev);
           }}
-          className="flex items-center justify-center w-15 h-15 rounded-full bg-[#3D4A35] text-white border-none cursor-pointer shadow-lg shadow-[#3D4A35]/40 relative overflow-visible select-none focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3D4A35]"
+          className="flex items-center justify-center w-15 h-15 rounded-full bg-[#284B40] text-white border-none cursor-pointer shadow-lg shadow-[#284B40]/40 relative overflow-visible select-none focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#284B40]"
           aria-label={isOpen ? "Cerrar contacto" : "Abrir opciones de contacto"}
           aria-expanded={isOpen}
           whileHover={{ scale: 1.05 }}

@@ -2,6 +2,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { fadeUp, stagger } from "@/lib/animations";
+import InteractiveSurface from "@/components/ui/InteractiveSurface";
 import Image from "next/image";
 import Link from "next/link";
 export default function Hero() {
@@ -39,7 +40,7 @@ export default function Hero() {
             </p>
           </div>
         </motion.div>
-        <motion.figure className="hero-portrait" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+        <InteractiveSurface className="hero-image-surface"><motion.figure className="hero-portrait" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
           <Image
             src="/ainara-image.jpg"
             alt="Ainara sonriendo en su espacio de trabajo"
@@ -58,7 +59,7 @@ export default function Hero() {
           <span className="portrait-index" aria-hidden="true">
             01 / UN ESPACIO PARA TI
           </span>
-        </motion.figure>
+        </motion.figure></InteractiveSurface>
       </div>
       <div className="expertise-strip editorial-wrap">
         <span>Inteligencia emocional</span>

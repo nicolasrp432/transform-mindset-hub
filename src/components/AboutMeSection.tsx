@@ -1,6 +1,7 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
+import InteractiveSurface from "@/components/ui/InteractiveSurface";
 import Image from "next/image";
 import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
 const chapters = [
@@ -27,7 +28,7 @@ export default function AboutMeSection() {
       aria-labelledby="about-heading"
     >
       <div className="editorial-wrap about-grid">
-        <div className="about-photo">
+        <InteractiveSurface className="about-photo">
           <Image
             src="/imagen-hero.png"
             alt="Ainara sentada, preparada para escuchar"
@@ -37,7 +38,7 @@ export default function AboutMeSection() {
           <span className="photo-caption">
             AINARA, AL OTRO LADO DE LA CONVERSACIÓN.
           </span>
-        </div>
+        </InteractiveSurface>
         <div className="about-copy">
           <p className="eyebrow">02 / CONOCE A AINARA</p>
           <h2 id="about-heading">

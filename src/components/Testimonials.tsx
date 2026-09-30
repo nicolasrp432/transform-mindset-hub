@@ -1,4 +1,5 @@
 "use client";
+import TestimonialAvatar from "@/components/TestimonialAvatar";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -8,6 +9,7 @@ interface ProcessCase {
   name: string;
   role: string;
   initials: string;
+  photo?: string;
 }
 const processCases: ProcessCase[] = [
   {
@@ -124,7 +126,7 @@ export default function Testimonials() {
                   {processCases.slice(column * 2, column * 2 + 2).map((story) => <article className="testimonial-moving-card" key={story.name}>
                     <p className="eyebrow">SU PUNTO DE PARTIDA</p><p>{story.before}</p>
                     <p className="eyebrow">SU PROCESO</p><blockquote>“{story.after}”</blockquote>
-                    <cite>{story.name}<span>{story.role}</span></cite>
+                    <div className="testimonial-author"><TestimonialAvatar name={story.name} photo={story.photo} /><cite>{story.name}<span>{story.role}</span></cite></div>
                   </article>)}
                 </div>)}
               </div>
@@ -146,10 +148,10 @@ export default function Testimonials() {
           <div>
             <p className="eyebrow">LO QUE COMPARTE DE SU PROCESO</p>
             <blockquote>“{item.after}”</blockquote>
-            <cite>
+            <div className="testimonial-author"><TestimonialAvatar name={item.name} photo={item.photo} /><cite>
               {item.name}
               <span>{item.role}</span>
-            </cite>
+            </cite></div>
           </div>
         </motion.div>}
       </div>

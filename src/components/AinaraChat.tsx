@@ -211,7 +211,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="ainara-chat-title"
-            className="fixed bottom-26 right-8 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-10rem)] max-h-[38rem] flex flex-col bg-[#FAF7EF] rounded-3xl border border-[#3D4A35]/15 shadow-2xl z-[80] overflow-hidden max-sm:bottom-0 max-sm:right-0 max-sm:w-full max-sm:h-full max-sm:max-h-full max-sm:rounded-none max-sm:border-none"
+            className="fixed bottom-26 right-8 w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-10rem)] max-h-[38rem] flex flex-col bg-[#FFFFFF] rounded-3xl border border-[#284B40]/15 shadow-2xl z-[80] overflow-hidden max-sm:bottom-0 max-sm:right-0 max-sm:w-full max-sm:h-full max-sm:max-h-full max-sm:rounded-none max-sm:border-none"
             variants={panelMotion}
             initial="initial"
             animate="animate"
@@ -219,7 +219,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Cabecera del chat */}
-            <header className="flex items-center justify-between p-4 border-b border-[#3D4A35]/10 bg-[#F5F0E3] flex-shrink-0">
+            <header className="flex items-center justify-between p-4 border-b border-[#284B40]/10 bg-[#F5F0E3] flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative w-10 h-10 flex-shrink-0">
                   <Image
@@ -235,7 +235,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                 <div>
                   <p
                     id="ainara-chat-title"
-                    className="margin-0 font-serif text-base font-semibold text-[#263020] leading-tight"
+                    className="margin-0 font-serif text-base font-semibold text-[#253A32] leading-tight"
                   >
                     Asistente de Ainara
                   </p>
@@ -246,7 +246,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
               </div>
               <button
                 type="button"
-                className="w-9 h-9 rounded-full flex items-center justify-center text-[#52594A] hover:bg-[#3D4A35]/10 hover:text-[#3D4A35] transition-colors cursor-pointer border-none bg-transparent"
+                className="w-9 h-9 rounded-full flex items-center justify-center text-[#52594A] hover:bg-[#284B40]/10 hover:text-[#284B40] transition-colors cursor-pointer border-none bg-transparent"
                 onClick={onClose}
                 aria-label="Cerrar chat"
               >
@@ -256,7 +256,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
 
             {/* Accesos rápidos de navegación */}
             <div
-              className="flex flex-wrap gap-1.5 px-4 py-3 bg-[#FAF7EF] flex-shrink-0 border-b border-[#3D4A35]/5"
+              className="flex flex-wrap gap-1.5 px-4 py-3 bg-[#FFFFFF] flex-shrink-0 border-b border-[#284B40]/5"
               aria-label="Accesos rápidos"
             >
               {quickActions.map(({ id, action }) => {
@@ -268,7 +268,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                     key={id}
                     href={action.href}
                     {...targetProps}
-                    className="px-3 py-1 rounded-full border border-[#C8CCBC] text-[12px] font-medium text-[#52594A] no-underline hover:border-[#3D4A35] hover:text-[#3D4A35] hover:bg-[#3D4A35]/5 transition-all cursor-pointer"
+                    className="px-3 py-1 rounded-full border border-[#DCE5DE] text-[12px] font-medium text-[#52594A] no-underline hover:border-[#284B40] hover:text-[#284B40] hover:bg-[#284B40]/5 transition-all cursor-pointer"
                   >
                     {action.label}
                   </a>
@@ -277,14 +277,14 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
             </div>
 
             {/* Listado de mensajes */}
-            <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3.5 bg-[#FAF7EF]">
+            <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3.5 bg-[#FFFFFF]">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`max-w-[85%] p-3.5 px-4 rounded-2xl text-[14px] leading-relaxed tracking-tight ${
                     message.role === "assistant"
-                      ? "bg-[#F5F0E3] text-[#263020] self-start rounded-bl-xs border border-[#3D4A35]/5"
-                      : "bg-[#3D4A35] text-white self-end rounded-br-xs shadow-md shadow-[#3D4A35]/10"
+                      ? "bg-[#F5F0E3] text-[#253A32] self-start rounded-bl-xs border border-[#284B40]/5"
+                      : "bg-[#284B40] text-white self-end rounded-br-xs shadow-md shadow-[#284B40]/10"
                   }`}
                 >
                   <p className="m-0 whitespace-pre-wrap">{message.content}</p>
@@ -301,7 +301,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                             key={actionId}
                             href={action.href}
                             {...targetProps}
-                            className="px-3 py-1.5 rounded-full bg-white border border-[#3D4A35]/20 text-[12px] font-semibold text-[#3D4A35] no-underline hover:border-[#3D4A35] hover:bg-[#3D4A35]/5 transition-all cursor-pointer"
+                            className="px-3 py-1.5 rounded-full bg-white border border-[#284B40]/20 text-[12px] font-semibold text-[#284B40] no-underline hover:border-[#284B40] hover:bg-[#284B40]/5 transition-all cursor-pointer"
                           >
                             {action.label}
                           </a>
@@ -312,7 +312,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                 </div>
               ))}
               {isLoading && (
-                <div className="max-w-[85%] p-3.5 px-4 rounded-2xl text-[14px] bg-[#F5F0E3] text-[#263020] self-start rounded-bl-xs border border-[#3D4A35]/5">
+                <div className="max-w-[85%] p-3.5 px-4 rounded-2xl text-[14px] bg-[#F5F0E3] text-[#253A32] self-start rounded-bl-xs border border-[#284B40]/5">
                   <div className="inline-flex gap-1 items-center px-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#656B5D] animate-bounce [animation-delay:-0.3s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-[#656B5D] animate-bounce [animation-delay:-0.15s]" />
@@ -326,14 +326,14 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
             {/* Chips de sugerencias interactivas */}
             {!isLoading && messages.length <= 3 && (
               <div
-                className="flex gap-2 px-4 py-2.5 overflow-x-auto bg-[#FAF7EF] border-t border-[#3D4A35]/5 flex-shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="flex gap-2 px-4 py-2.5 overflow-x-auto bg-[#FFFFFF] border-t border-[#284B40]/5 flex-shrink-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
                 aria-label="Sugerencias rápidas"
               >
                 {SUGGESTIONS.map((suggestion, idx) => (
                   <button
                     key={idx}
                     type="button"
-                    className="px-3.5 py-1.5 rounded-full bg-[#F5F0E3] border border-[#C8CCBC] text-[12px] font-medium text-[#52594A] whitespace-nowrap hover:bg-[#3D4A35] hover:text-white hover:border-[#3D4A35] transition-all cursor-pointer flex-shrink-0"
+                    className="px-3.5 py-1.5 rounded-full bg-[#F5F0E3] border border-[#DCE5DE] text-[12px] font-medium text-[#52594A] whitespace-nowrap hover:bg-[#284B40] hover:text-white hover:border-[#284B40] transition-all cursor-pointer flex-shrink-0"
                     onClick={() => void sendMessage(suggestion)}
                   >
                     {suggestion}
@@ -344,7 +344,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
 
             {/* Input y botón de envío */}
             <form
-              className="flex items-center gap-3 p-4 border-t border-[#3D4A35]/10 bg-white flex-shrink-0"
+              className="flex items-center gap-3 p-4 border-t border-[#284B40]/10 bg-white flex-shrink-0"
               onSubmit={handleSubmit}
             >
               <textarea
@@ -356,7 +356,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                 placeholder="Escribe tu pregunta aquí..."
                 aria-label="Escribe tu mensaje"
                 disabled={isLoading}
-                className="flex-1 border-none resize-none text-[14px] leading-normal font-sans text-[#263020] bg-transparent outline-none max-h-16 py-1 placeholder:text-[#656B5D]"
+                className="flex-1 border-none resize-none text-[14px] leading-normal font-sans text-[#253A32] bg-transparent outline-none max-h-16 py-1 placeholder:text-[#656B5D]"
               />
               <button
                 type="submit"
@@ -365,7 +365,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
                 aria-disabled={!input.trim() || isLoading}
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer border-none flex-shrink-0 ${
                   input.trim()
-                    ? "bg-[#3D4A35] text-white shadow-lg shadow-[#3D4A35]/25 hover:scale-105 active:scale-95"
+                    ? "bg-[#284B40] text-white shadow-lg shadow-[#284B40]/25 hover:scale-105 active:scale-95"
                     : "bg-[#F5F0E3] text-[#656B5D]"
                 }`}
               >
@@ -382,7 +382,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
           </motion.section>
 
           {/* Flecha indicadora que apunta al botón flotante - solo visible en escritorio */}
-          <div className="fixed bottom-[6.1rem] right-[3.45rem] w-3 h-3 bg-white border-r border-b border-[#3D4A35]/15 rotate-45 z-[79] shadow-[2px_2px_5px_rgba(46,43,40,0.03)] max-sm:hidden" />
+          <div className="fixed bottom-[6.1rem] right-[3.45rem] w-3 h-3 bg-white border-r border-b border-[#284B40]/15 rotate-45 z-[79] shadow-[2px_2px_5px_rgba(46,43,40,0.03)] max-sm:hidden" />
         </>
       )}
     </AnimatePresence>

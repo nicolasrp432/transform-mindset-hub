@@ -1,3 +1,4 @@
+import ApproachExplorer from "@/components/ApproachExplorer";
 import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import AboutMeSection from "@/components/AboutMeSection";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <Hero />
       <StartingPoint />
       <AboutMeSection />
+      <ApproachExplorer />
       <ServiceGrid />
       <Testimonials />
       <EvaluationCTA />

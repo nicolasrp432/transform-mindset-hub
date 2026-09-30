@@ -21,8 +21,8 @@ export default function EditorialMotion() {
         }));
       }, { margin: "0px 0px -48px 0px" }));
     };
-    document.querySelectorAll(".section-heading-line, .services-heading, .testimonials-heading, .about-copy, .about-photo, .evaluation-invite > div, .page-heading, .landing-visual").forEach((node) => reveal(node));
-    document.querySelectorAll(".service-row, .expertise-strip > *, .resource-card").forEach((node, i) => reveal(node, (i % 4) * 0.08));
+    document.querySelectorAll(".section-heading-line, .services-heading, .testimonials-heading, .about-copy, .about-photo, .evaluation-invite > div, .page-heading, .landing-visual, .approach-explorer, .journey-heading").forEach((node) => reveal(node));
+    document.querySelectorAll(".service-row, .expertise-strip > *, .resource-card, .service-card, .journey-steps article").forEach((node, i) => reveal(node, (i % 4) * 0.08));
     document.querySelectorAll(".note-line").forEach((node) => {
       controls.push(animate(node as HTMLElement, { scaleX: [0, 1] }, { duration: 0.8, ease: [0.16, 1, 0.3, 1] }));
     });

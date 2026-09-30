@@ -32,7 +32,7 @@ export default function PriceBand({
   const product = getProduct(productKey);
 
   return (
-    <div className="rounded-[2rem] bg-band text-band-ink p-8 md:p-12 relative overflow-hidden">
+    <div className="sales-price-band rounded-[2rem] bg-band text-band-ink p-8 md:p-12 relative overflow-hidden">
       <div
         className="pointer-events-none absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
         aria-hidden="true"

@@ -1,3 +1,4 @@
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -210,8 +211,10 @@ export default function LibroPrincesaPage() {
           </ul>
         </LandingHero>
       </LandingSection>
+      <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#contenido">Qué incluye</a><a href="#precios">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+      <ProductJourney kind="resource" />
 
-      <LandingSection tone="surface">
+      <LandingSection tone="surface" id="contenido">
         <SectionHeading
           eyebrow="Versiones disponibles"
           title="Elige tu edición física"
@@ -278,7 +281,7 @@ export default function LibroPrincesaPage() {
         />
       </LandingSection>
 
-      <LandingSection>
+      <LandingSection id="precios">
         <PriceBand
           productKey={BLANDA.key}
           eyebrow="Compra segura"
@@ -294,7 +297,7 @@ export default function LibroPrincesaPage() {
         />
       </LandingSection>
 
-      <LandingSection tone="surface">
+      <LandingSection tone="surface" id="preguntas">
         <SectionHeading eyebrow="Preguntas frecuentes" title="Resuelve tus dudas" />
         <FaqAccordion items={FAQ} />
       </LandingSection>

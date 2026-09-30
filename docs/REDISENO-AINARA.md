@@ -42,3 +42,15 @@ Los testimonios y credenciales proceden del repositorio y requieren validación 
 ## Movimiento restaurado
 
 La rama original utiliza Framer Motion, no GSAP. Se recuperan el cursor con muelles, el CTA magnético, las entradas escalonadas de la portada y los reveals al entrar en el viewport, adaptados a la composición editorial. Los efectos respetan movimiento reducido y limpian sus listeners/observadores al cambiar de ruta. El contenido permanece visible si JavaScript no se ejecuta.
+
+## Revisión visual: base blanca y páginas de venta
+
+Se aclara la base a blanco y se utilizan superficies gris verdosas muy ligeras, con verde profundo reservado a acciones y acentos. La selección inicial pasa a un panel claro con tarjetas blancas. Se recuperan fotografía a color al hover, inclinación suave de imágenes y elevación de tarjetas, respetando movimiento reducido.
+
+La página principal incluye tarjetas visuales de servicios y un explorador de tres preguntas. Las cinco páginas de venta comparten lenguaje de hero, portada, tarjetas, proceso de uso y compra. Los recursos incluyen navegación a contenido, precio y preguntas, con IDs reales. La agenda muestra una ilustración de interfaz expresamente identificada como ejemplo, no una página de su PDF. Se utiliza la portada existente del cuento también en el catálogo.
+
+Referencias de interacción: Presence Card y Hover Testimonial Card de 21st.dev, con implementaciones propias basadas en Framer Motion; no se atribuye una copia exacta de esos componentes.
+
+Los testimonios conservan el contenido del repositorio. El componente admite retratos reales y fallback de iniciales si falta la foto o falla la carga. No hay retratos de clientes en los archivos disponibles, por lo que su integración requiere las fotos correspondientes y la asociación con cada testimonio. No se asignan retratos de stock a las personas citadas.
+
+Validación de esta revisión: TypeScript y ESLint de los componentes nuevos correctos; compilaciones de Next.js y Sites correctas. La aplicación de Next.js devuelve 200 en inicio, herramientas, las cinco páginas de venta y autoevaluación; todos los enlaces internos de esas páginas apuntan a IDs existentes. El navegador bloquea la URL local y la vista remota solicita autenticación, por lo que sigue pendiente la revisión visual en móvil y escritorio.

@@ -16,7 +16,7 @@ const Offer = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section id="contenido" className="py-16 px-4 bg-white">
       <div className="max-w-5xl mx-auto space-y-12">
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8, ease: "easeOut" }} className="text-center space-y-6">
           <h2 className="text-3xl md:text-5xl font-bold text-balance">💫 &apos;Re-Conéctate&apos;</h2>
