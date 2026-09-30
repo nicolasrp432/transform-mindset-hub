@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant, Inter } from "next/font/google";
 import "./globals.css";
 import { LayoutShell } from "@/components/LayoutShell";
-import CustomCursor from "@/components/ui/CustomCursor";
 
 /* ============================================================
    Tipografía: Silencio Arquitectónico
@@ -61,7 +60,6 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        <CustomCursor />
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>

@@ -40,18 +40,17 @@ export default function LandingHero({
           "relative grid gap-12 items-center",
           ratio === "wide-copy"
             ? "lg:grid-cols-[1.15fr_0.85fr]"
-            : "lg:grid-cols-[1.05fr_0.95fr]"
+            : "lg:grid-cols-[1.05fr_0.95fr]",
         )}
       >
         <div className="space-y-8">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white text-xs uppercase tracking-[0.25em] text-text-subtle">
-            <span className="w-2 h-2 rounded-full bg-mark" aria-hidden="true" />
-            {badge}
-          </span>
+          <span className="eyebrow text-text-subtle">{badge}</span>
 
           <div className="space-y-5">
             <h1>{title}</h1>
-            <p className="text-text-muted text-lg md:text-xl max-w-2xl">{lead}</p>
+            <p className="text-text-muted text-lg md:text-xl max-w-2xl">
+              {lead}
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">{actions}</div>
@@ -76,9 +75,7 @@ export default function LandingHero({
           {children}
         </div>
 
-        <div className="bg-white border border-border rounded-[2rem] p-6 md:p-8 shadow-lg">
-          {visual}
-        </div>
+        <div className="landing-visual">{visual}</div>
       </div>
     </>
   );

@@ -34,7 +34,7 @@ export default function PlatformHero({
   note,
 }: PlatformHeroProps) {
   return (
-    <div className="rounded-[2rem] bg-band text-band-ink p-6 sm:p-8 md:p-14 relative overflow-hidden">
+    <div className="platform-editorial bg-band text-band-ink p-6 sm:p-8 md:p-14 relative overflow-hidden">
       <div
         className="pointer-events-none absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
         aria-hidden="true"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import type { ProductKey } from "@/lib/products";
 
 interface CheckoutButtonProps {
@@ -70,10 +70,7 @@ export default function CheckoutButton({
             Procesando…
           </>
         ) : (
-          <>
-            {children}
-            <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </>
+          <>{children}</>
         )}
       </button>
       {failed && (

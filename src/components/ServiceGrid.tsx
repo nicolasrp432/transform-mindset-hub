@@ -1,168 +1,57 @@
-"use client";
-
-import { motion, Variants } from "framer-motion";
-import { fadeUp, stagger, viewportOnce } from "@/lib/animations";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import TextReveal from "@/components/ui/TextReveal";
-
-/* ============================================================
-   ServiceGrid — Embudo de Conversión Visual (Bento Grid)
-   ============================================================ */
-
-interface Service {
-  number: string;
-  title: string;
-  description: string;
-  detail: string;
-  href: string;
-  label: string;
-  className: string;
-  image?: string;
-}
-
-const services: Service[] = [
+const services = [
   {
-    number: "01",
     title: "Sesiones 1:1",
     description:
-      "Un espacio privado donde no tienes que tener todo claro para empezar.",
-    detail:
-      "Trabajamos bloqueos, patrones emocionales y decisiones pendientes con profundidad y sin prisa. Cada sesión es un acto de orden interno.",
+      "Un espacio privado para explorar tus bloqueos, tus patrones y esas decisiones que sigues posponiendo.",
+    detail: "ACOMPAÑAMIENTO PERSONAL",
     href: "/sesiones",
-    label: "Reservar sesión",
-    className: "md:col-span-2 md:row-span-2 min-h-[400px]",
-    image: "/grid.jpg"
+    action: "Conocer las sesiones",
   },
   {
-    number: "02",
     title: "Formaciones",
-    description: "Procesos guiados de transformación en grupo.",
-    detail: "Reconexión Personal, Leyes Universales.",
+    description:
+      "Procesos guiados de autoconocimiento. Explora los programas y la plataforma MITRA.",
+    detail: "APRENDIZAJE A TU RITMO",
     href: "/formaciones",
-    label: "Ver programas",
-    className: "md:col-span-2 md:row-span-1 min-h-[250px]",
+    action: "Ver las formaciones",
   },
   {
-    number: "03",
     title: "Herramientas",
-    description: "Tu primer paso hacia la claridad.",
-    detail: "Guía práctica PDF, agenda de reflexión y cuento simbólico.",
+    description:
+      "Una guía práctica, una agenda de reflexión, una historia. Pequeños espacios para volver a ti.",
+    detail: "RECURSOS PARA EL DÍA A DÍA",
     href: "/herramientas",
-    label: "Explorar recursos",
-    className: "md:col-span-2 md:row-span-1 min-h-[250px]",
+    action: "Explorar los recursos",
   },
 ];
-
-const cardHover: Variants = {
-  rest: { y: 0, scale: 1 },
-  hover: {
-    y: -4,
-    scale: 1.01,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-const imageHover: Variants = {
-  rest: { scale: 1, filter: "grayscale(100%) opacity(30%)" },
-  hover: {
-    scale: 1.05,
-    filter: "grayscale(0%) opacity(80%)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
 export default function ServiceGrid() {
   return (
-    <section className="section bg-surface" aria-labelledby="services-heading">
-      <div className="container-editorial">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="max-w-xl mb-16"
-        >
-          <motion.p
-            variants={fadeUp}
-            className="text-text-subtle text-xs tracking-[0.25em] uppercase mb-4 font-sans"
-          >
-            Cómo puedo acompañarte
-          </motion.p>
-          <TextReveal text="Tres caminos hacia el orden interno" className="font-serif text-3xl md:text-4xl leading-tight mb-8" as="h2" />
-          <motion.div variants={fadeUp}>
-            <hr className="divider-breath" />
-          </motion.div>
-          <motion.p variants={fadeUp} className="text-text-muted leading-relaxed">
-            No ofrezco motivación. Ofrezco estructura, escucha y herramientas
-            para que puedas tomar decisiones conscientes — a tu ritmo.
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="grid gap-4 md:grid-cols-4 auto-rows-fr"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.number}
-              variants={fadeUp}
-              className={`${service.className}`}
-            >
-              <Link href={service.href} className="block h-full cursor-none">
-                <motion.div
-                  variants={cardHover}
-                  initial="rest"
-                  whileHover="hover"
-                  className="group relative h-full p-8 bg-white rounded-2xl border border-transparent hover:border-secondary overflow-hidden shadow-sm flex flex-col justify-between"
-                >
-                  {service.image && (
-                    <motion.img
-                      src={service.image}
-                      alt={service.title}
-                      variants={imageHover}
-                      className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
-                    />
-                  )}
-                  {service.image && (
-                    <div className="absolute inset-0 bg-white/70 dark:bg-black/40 z-0 group-hover:bg-white/40 transition-colors duration-700" />
-                  )}
-
-                  <div className="relative z-10">
-                    <span className="block font-serif text-4xl font-light text-secondary select-none mb-6 leading-none">
-                      {service.number}
-                    </span>
-                    <h3 className="font-serif text-2xl mb-2 text-text group-hover:text-primary transition-colors duration-500">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-muted text-sm leading-relaxed mb-4 font-medium max-w-[40ch]">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="relative z-10 flex flex-col items-start gap-6 mt-8">
-                    <p className="text-text-subtle text-sm leading-relaxed max-w-[50ch]">
-                      {service.detail}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary tracking-wide group-hover:gap-2.5 transition-all duration-[250ms]">
-                      {service.label}
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-
-                  <div
-                    className="absolute top-0 inset-x-0 h-[2px] bg-primary rounded-t-2xl origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 z-20"
-                    style={{ transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)" }}
-                    aria-hidden="true"
-                  />
-                </motion.div>
+    <section className="services-editorial" aria-labelledby="services-heading">
+      <div className="editorial-wrap">
+        <div className="services-heading">
+          <p className="eyebrow">03 / CÓMO PUEDO ACOMPAÑARTE</p>
+          <h2 id="services-heading">
+            Distintas formas de empezar.
+            <br />
+            <em>Un mismo espacio para ti.</em>
+          </h2>
+        </div>
+        <div>
+          {services.map((service, i) => (
+            <article className="service-row" key={service.title}>
+              <span className="service-number">0{i + 1}</span>
+              <div>
+                <p className="eyebrow">{service.detail}</p>
+                <h3>{service.title}</h3>
+              </div>
+              <p>{service.description}</p>
+              <Link href={service.href} className="editorial-link">
+                {service.action}
               </Link>
-            </motion.div>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

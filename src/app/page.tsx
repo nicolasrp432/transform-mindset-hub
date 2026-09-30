@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import AboutMeSection from "@/components/AboutMeSection";
 import Testimonials from "@/components/Testimonials";
+import StartingPoint from "@/components/StartingPoint";
 import EvaluationCTA from "@/components/EvaluationCTA";
 
 /* ============================================================
@@ -19,8 +20,9 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <ServiceGrid />
+      <StartingPoint />
       <AboutMeSection />
+      <ServiceGrid />
       <Testimonials />
       <EvaluationCTA />
     </main>
