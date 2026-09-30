@@ -70,3 +70,9 @@ Se añaden dos versiones WebP de las fotos originales, sin editar su contenido: 
 Validación de navegación y fotografía: TypeScript y ESLint correctos; Next.js (webpack) y Sites compilan. Diez rutas responden 200 en ambos runtimes, sin enlaces internos rotos ni enlaces anidados. Los tres enlaces completos de herramientas llevan a sus landings. Las seis imágenes responden como imágenes válidas en sus rutas estáticas y en solicitudes a 384, 640, 750, 828 y 1080 px (36 solicitudes por runtime). La transparencia se conserva en los WebP de hero y mockups. La revisión visual de tamaños y animaciones sigue pendiente: el navegador no abre la vista local y las vistas remotas solicitan autenticación.
 
 Se añade un fallback `noscript` para que las fotografías y el contenido que usan entradas de Framer Motion permanezcan visibles cuando JavaScript está desactivado. Con JavaScript activo se conservan sus animaciones.
+
+## Ajustes finales del hero y MITRA
+
+El retrato se reduce aproximadamente un 12%, centrado sobre un disco salvia muy suave y dos círculos de trazo fino. El movimiento lento de respiración y un punto que recorre el círculo acompañan la fotografía sin interceptar clics. El adorno `AmbientOrbit` se reutiliza en el hero, el explorador de enfoque y el bloque de plataforma. Respeta movimiento reducido y el contenedor del retrato recorta el desbordamiento de los adornos.
+
+MITRA usa tokens compartidos de dorado `#B8902E` y tinta `#1B1814` en la tarjeta del inicio, el componente `PlatformHero` de Formaciones y la banda de Herramientas. El texto oscuro mantiene contraste sobre el dorado. Se conservan `InteractiveSurface`, `PlatformHero`, botones y componentes de landing existentes.

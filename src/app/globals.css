@@ -22,6 +22,8 @@
 
   /* Paleta extendida — colores que antes vivían como literales sueltos */
   --color-gold: #d4af37; /* Dorado — agenda de reflexión */
+  --mitra-gold: #b8902e;
+  --mitra-ink: #1b1814;
   --color-verde-deep: #284b40; /* Verde profundo — bandas */
   --color-verde: #5c7566; /* Verde medio — iconos */
   --color-verde-soft: #ecf3ed; /* Verde claro — chips */
@@ -2056,9 +2058,6 @@ button:disabled {
 .approach-answer { position: relative; min-height: 260px; padding-top: 40px; }
 .approach-answer h3 { font-size: 2.5rem; line-height: 1.08; margin: 18px 0; max-width: 14ch; }
 .approach-answer > p:last-child { font-size: .95rem; color: var(--color-text-muted); max-width: 38ch; }
-.approach-orbit { position: absolute; width: 350px; height: 350px; right: -120px; top: 60px; }
-.approach-orbit span { position: absolute; inset: 0; border: 1px solid #284b4012; border-radius: 50%; }
-.approach-orbit span:nth-child(2) { inset: 40px; }.approach-orbit span:nth-child(3) { inset: 80px; }
 .testimonial-avatar { position: relative; width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; overflow: hidden; background: #e3eee6; color: var(--forest); border: 3px solid white; box-shadow: 0 0 0 1px var(--color-border); font-family: var(--font-serif); font-size: 1.3rem; }
 .testimonial-avatar.large { width: 96px; height: 96px; font-size: 2rem; }.testimonial-avatar img { object-fit: cover; }
 .testimonial-author { display: flex; gap: 16px; align-items: center; margin-top: 24px; }.testimonial-author cite { margin-top: 0; }
@@ -2141,7 +2140,8 @@ button:disabled {
 .editorial-hero { background: white; padding-top: 116px; }
 .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.22fr); gap: 12px; padding-block: 30px 22px; }
 .hero-cutout-stage { min-width: 0; align-self: end; position: relative; margin: 0; }
-.hero-cutout-image { display: block; width: 100%; height: auto; max-height: 710px; object-fit: contain; object-position: bottom; filter: none; }
+.hero-portrait-composition { position: relative; isolation: isolate; overflow: clip; }
+.hero-cutout-image { position: relative; z-index: 1; display: block; width: 88%; height: auto; max-height: 630px; margin-inline: auto; object-fit: contain; object-position: bottom; filter: none; }
 .hero-cutout-signature { text-align: center; font-family: var(--font-serif); font-size: 1.6rem; line-height: 1.2; padding-top: 16px; color: var(--forest); }
 .hero-cutout-signature span { display: block; font-family: var(--font-sans); font-size: .75rem; color: var(--color-text-muted); padding-top: 8px; }
 .resource-card-link { overflow: hidden; background: white; transition: box-shadow .3s, border-color .3s; }
@@ -2189,3 +2189,25 @@ button:disabled {
   .product-cover-caption { position: static; margin-top: 10px; }
   .princess-product-stage { flex-direction: column; }
 }
+
+/* One decorative component shared by portrait, approach and platform. */
+.ambient-orbit { --orbit-ink: var(--forest); position: absolute; pointer-events: none; aspect-ratio: 1; }
+.ambient-orbit--gold { --orbit-ink: var(--mitra-ink); }
+.ambient-orbit--portrait { top: 8%; left: 4%; width: 92%; z-index: 0; }
+.ambient-orbit--diagram { width: 350px; right: -110px; top: 60px; }
+.ambient-orbit > span { position: absolute; display: block; border-radius: 50%; }
+.ambient-orbit-disc { inset: 10% 5% 5% 10%; background: color-mix(in srgb, var(--orbit-ink) 6%, white); animation: orbit-breathe 9s ease-in-out infinite alternate; }
+.ambient-orbit-ring { inset: 0 12% 12% 0; border: 1px solid color-mix(in srgb, var(--orbit-ink) 20%, transparent); animation: orbit-breathe 11s ease-in-out infinite alternate-reverse; }
+.ambient-orbit-trace { inset: 6% 0 0 6%; border: 1px solid color-mix(in srgb, var(--orbit-ink) 12%, transparent); animation: orbit-turn 36s linear infinite; }
+.ambient-orbit-trace::after { content: ""; position: absolute; top: -4px; left: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--orbit-ink) 40%, white); }
+.ambient-orbit--diagram .ambient-orbit-disc { background: transparent; }
+.mitra-visual, .resource-platform { background: var(--mitra-gold); color: var(--mitra-ink); }
+.mitra-path span { border-color: color-mix(in srgb, var(--mitra-ink) 28%, transparent); }
+.platform-editorial { --band: var(--mitra-gold); --band-ink: var(--mitra-ink); --band-muted: var(--mitra-ink); }
+.platform-editorial::after { color: color-mix(in srgb, var(--mitra-ink) 8%, transparent); }
+.platform-highlights { border-color: color-mix(in srgb, var(--mitra-ink) 20%, transparent); }
+.resource-platform h2, .resource-platform h2 em, .resource-platform p:not(.eyebrow), .resource-platform .eyebrow { color: var(--mitra-ink); }
+.resource-platform .editorial-button.light { color: var(--mitra-ink); }
+@keyframes orbit-breathe { from { transform: translateY(0) scale(1); } to { transform: translateY(-8px) scale(1.025); } }
+@keyframes orbit-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ambient-orbit > span { animation: none; } }
