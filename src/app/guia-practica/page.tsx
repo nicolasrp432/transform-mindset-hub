@@ -202,15 +202,16 @@ export default function GuiaPracticaPage() {
             </>
           }
           visual={
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-surface p-4 md:p-6 shadow-sm">
+            <div className="product-cover-stage guide-product-stage">
               <div className="relative animate-book-float origin-center">
                 <Image
-                  width={1200}
-                  height={1600}
+                  width={1024}
+                  height={1536}
+                  sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1100px) 90vw, 550px"
                   priority
-                  className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
+                  className="product-cover-image"
                   alt="Portada de la Guía Práctica de Transformación Integral"
-                  src="/guia-practica.png"
+                  src="/images/guide-mockup.webp"
                 />
               </div>
             </div>

@@ -121,7 +121,7 @@ export default function EvaluacionPage() {
           </p>
           <div className="evaluation-portrait">
             <Image
-              src="/ainara-image.jpg"
+              src="/images/ainara-portrait.webp"
               alt="Ainara"
               fill
               sizes="(max-width: 760px) 0px, 340px"

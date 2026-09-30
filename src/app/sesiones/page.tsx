@@ -38,7 +38,7 @@ export default function SesionesPage() {
         </div>
         <figure className="sessions-photo">
           <Image
-            src="/ainara-image.jpg"
+            src="/images/ainara-portrait.webp"
             alt="Ainara en su espacio de acompañamiento"
             fill
             priority

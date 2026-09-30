@@ -2115,3 +2115,77 @@ button:disabled {
 
 .testimonial-story { padding: 38px; }.testimonial-story .testimonial-author cite { margin-top: 0; }
 @media (max-width: 760px) { .testimonial-story { padding: 24px; } }
+
+/* Floating navigation and photographic product scenes. */
+.floating-nav { inset: 16px 20px auto; max-width: 1240px; margin-inline: auto; border: 1px solid #284b4014; border-radius: 26px; background: #ffffffed; box-shadow: 0 8px 35px #284b4008; transition: box-shadow .3s, background .3s; }
+.floating-nav.is-scrolled { background: #ffffffef; box-shadow: 0 12px 40px #284b4015; }
+.floating-nav .nav-inner { width: auto; padding: 15px 22px; min-height: 80px; gap: 18px; }
+.floating-nav .wordmark { font-size: 2.7rem; }
+.floating-nav .desktop-nav { gap: 4px; }
+.floating-nav .desktop-nav a { position: relative; padding: 12px 16px; border: 0; border-radius: 999px; white-space: nowrap; transition: background .2s; }
+.floating-nav .desktop-nav a > span:not(.nav-active-pill) { position: relative; z-index: 1; }
+.floating-nav .desktop-nav a:hover { background: #f1f6f2; }
+.nav-active-pill { position: absolute; inset: 0; border-radius: 999px; background: #e7f0e9; }
+.floating-nav .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--forest); color: white; padding: 13px 19px; }
+.floating-nav .nav-cta:hover { background: #1d3e33; }
+.floating-nav .mobile-nav-toggle { border-radius: 50%; background: #eef4ef; }
+.modern-mobile-nav { background: white; color: var(--forest); padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); }
+.modern-mobile-nav .mobile-nav-heading button { border-radius: 50%; background: #eef4ef; padding: 12px; }
+.modern-mobile-nav nav { gap: 0; margin: 28px 0; padding: 0; }
+.modern-mobile-nav nav a { display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--color-border); padding-block: 23px; font-size: clamp(1.75rem, 7vw, 2.5rem); }
+.modern-mobile-nav nav a span { margin-right: 0; color: var(--sage); }
+.modern-mobile-nav nav a svg { margin-left: auto; flex-shrink: 0; }
+.modern-mobile-nav nav a[aria-current="page"] { color: var(--sage); }
+.mobile-nav-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 36px; }
+.modern-mobile-nav > p { margin-top: auto; color: var(--color-text-muted); }
+.editorial-hero { background: white; padding-top: 116px; }
+.hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.22fr); gap: 12px; padding-block: 30px 22px; }
+.hero-cutout-stage { min-width: 0; align-self: end; position: relative; margin: 0; }
+.hero-cutout-image { display: block; width: 100%; height: auto; max-height: 710px; object-fit: contain; object-position: bottom; filter: none; }
+.hero-cutout-signature { text-align: center; font-family: var(--font-serif); font-size: 1.6rem; line-height: 1.2; padding-top: 16px; color: var(--forest); }
+.hero-cutout-signature span { display: block; font-family: var(--font-sans); font-size: .75rem; color: var(--color-text-muted); padding-top: 8px; }
+.resource-card-link { overflow: hidden; background: white; transition: box-shadow .3s, border-color .3s; }
+.resource-card-link:hover { border-color: #a8bdaf; box-shadow: 0 18px 50px #284b4010; }
+.resource-card-link:focus-visible { outline: 3px solid var(--sage); outline-offset: 5px; }
+.resource-cover { background: #eef4ef; padding: 0; }
+.resource-cover-1 { background: #f4f6f3; color: var(--forest); }
+.resource-cover-1 img { object-fit: cover; padding: 0; }
+.resource-cover-2 { background: #f8f5ee; }
+.resource-image-caption { position: absolute; bottom: 16px; left: 16px; padding: 6px 12px; border-radius: 999px; background: #ffffffea; font-size: .65rem; color: var(--color-text-muted); }
+.resource-card-bottom .editorial-link, .resource-card-bottom .editorial-link span { font-family: var(--font-sans); font-size: .85rem; white-space: normal; }
+.product-cover-stage { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; padding: 8px 14px; }
+.product-cover-stage > .animate-book-float { width: 100%; }
+.product-cover-image { display: block; width: 100%; height: auto; max-height: 580px; object-fit: contain; }
+.princess-product-stage { background: #faf7ef; border-radius: 22px; }
+.product-cover-caption { position: absolute; bottom: 10px; inset-inline: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; background: #ffffffeb; color: var(--forest); padding: 10px 16px; border: 1px solid var(--color-border); border-radius: 18px; font-size: .75rem; }
+.product-cover-caption span:last-child { text-transform: uppercase; letter-spacing: .1em; font-size: .65rem; }
+.agenda-product-scene { margin: 0; }
+.agenda-product-scene img { display: block; width: 100%; height: auto; max-height: 580px; object-fit: cover; border-radius: 20px; }
+.agenda-product-scene figcaption { padding: 14px 4px 0; font-size: .75rem; color: var(--color-text-muted); }
+@media (max-width: 1100px) {
+  .floating-nav .desktop-nav a { padding-inline: 11px; }
+  .hero-copy h1 { font-size: clamp(4.5rem, 8vw, 6rem); }
+  .hero-grid { gap: 16px; }
+}
+@media (max-width: 900px) {
+  .floating-nav .desktop-nav { display: none; }
+  .floating-nav .mobile-nav-toggle { display: inline-flex; }
+  .floating-nav .nav-cta { margin-left: auto; }
+}
+@media (max-width: 760px) {
+  .floating-nav { inset: 10px 12px auto; border-radius: 22px; }
+  .floating-nav .nav-inner { padding: 12px 16px; min-height: 72px; }
+  .floating-nav .wordmark { font-size: 2.35rem; }
+  .floating-nav .nav-cta { display: none; }
+  .editorial-hero { padding-top: 106px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 20px 24px; }
+  .hero-copy h1 { font-size: clamp(4rem, 15vw, 7rem); }
+  .hero-cutout-stage { width: 100%; max-width: 540px; justify-self: center; }
+  .hero-cutout-image { max-height: none; }
+  .hero-cutout-signature { padding-top: 10px; font-size: 1.4rem; }
+  .resource-cover { height: auto; aspect-ratio: 1 / 1.05; }
+  .resource-card-bottom { gap: 16px; }
+  .product-cover-stage { padding: 6px; }
+  .product-cover-caption { position: static; margin-top: 10px; }
+  .princess-product-stage { flex-direction: column; }
+}

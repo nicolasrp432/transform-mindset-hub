@@ -30,7 +30,7 @@ export default function AboutMeSection() {
       <div className="editorial-wrap about-grid">
         <InteractiveSurface className="about-photo">
           <Image
-            src="/imagen-hero.png"
+            src="/images/ainara-seated.webp"
             alt="Ainara sentada, preparada para escuchar"
             fill
             sizes="(max-width: 760px) 100vw, 40vw"

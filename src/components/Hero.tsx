@@ -2,7 +2,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { fadeUp, stagger } from "@/lib/animations";
-import InteractiveSurface from "@/components/ui/InteractiveSurface";
 import Image from "next/image";
 import Link from "next/link";
 export default function Hero() {
@@ -40,26 +39,10 @@ export default function Hero() {
             </p>
           </div>
         </motion.div>
-        <InteractiveSurface className="hero-image-surface"><motion.figure className="hero-portrait" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-          <Image
-            src="/ainara-image.jpg"
-            alt="Ainara sonriendo en su espacio de trabajo"
-            fill
-            priority
-            sizes="(max-width: 760px) 100vw, 46vw"
-          />
-          <figcaption>
-            <span>ESCUCHA. PERSPECTIVA. CLARIDAD.</span>
-            <p>
-              Vamos a empezar
-              <br />
-              por lo que <em>sientes.</em>
-            </p>
-          </figcaption>
-          <span className="portrait-index" aria-hidden="true">
-            01 / UN ESPACIO PARA TI
-          </span>
-        </motion.figure></InteractiveSurface>
+        <motion.figure className="hero-cutout-stage" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .2 }}>
+          <Image src="/images/ainara-hero-cutout.webp" alt="Ainara sonriendo" width={1218} height={1291} priority sizes="(max-width: 760px) 100vw, (max-width: 1100px) 54vw, 700px" className="hero-cutout-image" />
+          <figcaption className="hero-cutout-signature">Ainara Unamunzaga<span>Tu espacio empieza con una conversación.</span></figcaption>
+        </motion.figure>
       </div>
       <div className="expertise-strip editorial-wrap">
         <span>Inteligencia emocional</span>

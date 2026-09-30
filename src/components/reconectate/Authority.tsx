@@ -22,7 +22,7 @@ const Authority = () => {
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative">
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl shadow-primary/20">
-              <Image alt="Ainara - Mentora en autoconfianza" fill className="object-cover" src="/ainara-image.jpg" sizes="(max-width: 768px) 100vw, 50vw" priority />
+              <Image alt="Ainara - Mentora en autoconfianza" fill className="object-cover" src="/images/ainara-portrait.webp" sizes="(max-width: 768px) 100vw, 50vw" priority />
             </div>
           </motion.div>
         </div>

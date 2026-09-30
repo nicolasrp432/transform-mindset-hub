@@ -102,42 +102,12 @@ export default function HerramientasPage() {
         aria-label="Recursos de Ainara"
       >
         {ecosystemItems.map((item, i) => (
-          <article key={item.title} className="resource-card">
+          <Link key={item.title} href={item.href} className="resource-card resource-card-link" aria-label={`${item.title}: ver contenido y opciones de compra`}>
             <div className={`resource-cover resource-cover-${i}`}>
-              {i === 0 || i === 2 ? (
-                <Image
-                  src={i === 0 ? "/guia-practica.png" : encodeURI("/OBTÉN LA GUÍA AHORA EN AINARACOACH.COMGUÍA.png")}
-                  alt={i === 0 ? "Portada de la guía práctica de Ainara" : "Portada de La Princesa que perdió su corona"}
-                  fill
-                  sizes="(max-width:760px) 100vw, 30vw"
-                />
-              ) : (
-                <>
-                  <span className="eyebrow">AINARA UNAMUNZAGA</span>
-                  <p>
-                    {i === 1 ? (
-                      <>
-                        Un momento
-                        <br />
-                        <em>para ti.</em>
-                      </>
-                    ) : (
-                      <>
-                        La Princesa
-                        <br />
-                        que Perdió
-                        <br />
-                        <em>su Corona.</em>
-                      </>
-                    )}
-                  </p>
-                  <span className="eyebrow">
-                    {i === 1
-                      ? "AGENDA DE REFLEXIÓN"
-                      : "UN CUENTO PARA REFLEXIONAR"}
-                  </span>
-                </>
-              )}
+              <Image src={i === 0 ? "/images/guide-mockup.webp" : i === 1 ? "/images/reflection-agenda.webp" : "/images/princess-mockup.webp"}
+                alt={i === 0 ? "Guía práctica de Ainara" : i === 1 ? "Visual ilustrativo de la agenda de reflexión" : "La Princesa que perdió su corona"}
+                fill sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 400px" />
+              {i === 1 && <span className="resource-image-caption">Visual ilustrativo</span>}
             </div>
             <div className="resource-card-body">
               <p className="eyebrow">
@@ -153,13 +123,11 @@ export default function HerramientasPage() {
               </h2>
               <p>{item.description}</p>
               <div className="resource-card-bottom">
-                <Link href={item.href} className="editorial-link">
-                  {item.action}
-                </Link>
+                <span className="editorial-link">{item.action}<span aria-hidden="true"> ↗</span></span>
                 <span>{item.price}</span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </section>
       <section className="resource-platform">

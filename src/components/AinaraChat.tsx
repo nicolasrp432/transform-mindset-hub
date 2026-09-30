@@ -223,7 +223,7 @@ export function AinaraChat({ open, onClose }: AinaraChatProps) {
               <div className="flex items-center gap-3">
                 <div className="relative w-10 h-10 flex-shrink-0">
                   <Image
-                    src="/ainara-image.jpg"
+                    src="/images/ainara-portrait.webp"
                     alt="Ainara"
                     width={40}
                     height={40}

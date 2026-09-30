@@ -89,7 +89,7 @@ export default function EmulsionEnergeticaPage() {
           visual={
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[4/5]">
               <Image
-                src="/ainara-image.jpg"
+                src="/images/ainara-portrait.webp"
                 alt="Ainara, autora de la formación Emulsión Energética"
                 fill
                 priority

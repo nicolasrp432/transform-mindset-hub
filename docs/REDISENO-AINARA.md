@@ -4,7 +4,7 @@ Rediseño visual y de experiencia sobre el commit `98030152a30f8a56841a50c1d9128
 
 ## Análisis y dirección
 
-El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo, formaciones, MITRA, asistente y checkout. El rediseño mantiene esa arquitectura y utiliza el sistema visual entregado: Forest Deep #3D4A35, Sage Green #6B7755, Cream Paper #EDE5D4, Off White #F5F0E3; serif editorial e Inter, fotografía real desaturada, líneas y espacio en lugar de efectos decorativos.
+El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo, formaciones, MITRA, asistente y checkout. El rediseño mantiene esa arquitectura sobre una base blanca con superficies verde grisáceo muy ligeras, acentos verde profundo, serif editorial e Inter, fotografías reales y tarjetas redondeadas. Conserva las interacciones originales de Framer Motion y añade imágenes de producto.
 
 - Inicio: composición editorial, retrato de Ainara y selector de necesidades que lleva a las rutas existentes.
 - Conoce a Ainara: información de enfoque, formación y primera conversación, con pestañas accesibles.
@@ -54,3 +54,17 @@ Referencias de interacción: Presence Card y Hover Testimonial Card de 21st.dev,
 Los testimonios conservan el contenido del repositorio. El componente admite retratos reales y fallback de iniciales si falta la foto o falla la carga. No hay retratos de clientes en los archivos disponibles, por lo que su integración requiere las fotos correspondientes y la asociación con cada testimonio. No se asignan retratos de stock a las personas citadas.
 
 Validación de esta revisión: TypeScript y ESLint de los componentes nuevos correctos; compilaciones de Next.js y Sites correctas. La aplicación de Next.js devuelve 200 en inicio, herramientas, las cinco páginas de venta y autoevaluación; todos los enlaces internos de esas páginas apuntan a IDs existentes. El navegador bloquea la URL local y la vista remota solicita autenticación, por lo que sigue pendiente la revisión visual en móvil y escritorio.
+
+## Navegación y fotografía de producto
+
+Navbar flotante blanco, borde redondeado y desenfoque, indicador animado de ruta y CTA. Se oculta al bajar y reaparece al subir; permanece visible con foco o menú abierto. El menú móvil tiene animación, navegación completa, CTA y gestión del foco. Pasa al menú móvil a 900 px para evitar comprimir los enlaces en tablet.
+
+El hero utiliza un recorte generado a partir de la fotografía real de Ainara, conservando sonrisa, ropa y pose, con transparencia y mayor tamaño. Las otras fotografías mantienen el hover a color y la inclinación. Las tarjetas de herramientas son enlaces completos, sin enlaces anidados, con foco visible y navegación a las tres landings.
+
+Nuevos archivos generados en `public/images/`: `ainara-hero-cutout.webp`, `guide-mockup.webp`, `princess-mockup.webp`, `reflection-agenda.webp`. Las portadas del libro y la guía parten de las portadas existentes y se presentan como mockups; la agenda tiene una composición conceptual expresamente etiquetada como ilustrativa, no como captura del PDF.
+
+Indicaciones utilizadas para generar los visuales: extracción transparente de la foto de Ainara sin cambiar identidad/sonrisa/ropa/pose; mockups fotográficos de las portadas de guía y cuento manteniendo títulos, autoría y arte original, con fondo transparente; composición blanca y verde suave con cuaderno abierto, bolígrafo, tablet y rama de olivo, sin texto inventado legible, para ilustrar la agenda.
+
+Se añaden dos versiones WebP de las fotos originales, sin editar su contenido: `ainara-portrait.webp` y `ainara-seated.webp`. Sustituyen en las referencias de interfaz a los originales de 1,4 MB y 6,9 MB. La prueba del runtime Sites confirmó que se entregaban los originales completos en todas las anchuras consultadas, por lo que las variantes estáticas reducen notablemente la transferencia en móvil. No se reprodujo un fallo HTTP de esas fotos.
+
+Validación de navegación y fotografía: TypeScript y ESLint correctos; Next.js (webpack) y Sites compilan. Diez rutas responden 200 en ambos runtimes, sin enlaces internos rotos ni enlaces anidados. Los tres enlaces completos de herramientas llevan a sus landings. Las seis imágenes responden como imágenes válidas en sus rutas estáticas y en solicitudes a 384, 640, 750, 828 y 1080 px (36 solicitudes por runtime). La transparencia se conserva en los WebP de hero y mockups. La revisión visual de tamaños y animaciones sigue pendiente: el navegador no abre la vista local y las vistas remotas solicitan autenticación.
