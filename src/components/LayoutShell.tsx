@@ -39,6 +39,13 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
 
   return (
     <MotionConfig reducedMotion="user">
+      <noscript><style>{`
+        #main-content [style*="opacity:0"],
+        #main-content [style*="opacity: 0"] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      `}</style></noscript>
       <div className={isSalesLanding ? "sales-landing" : undefined}>
         <CustomCursor />
         <EditorialMotion />
