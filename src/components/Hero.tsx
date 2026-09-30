@@ -1,28 +1,35 @@
+"use client";
+import { motion, useReducedMotion } from "framer-motion";
+import MagneticButton from "@/components/ui/MagneticButton";
+import { fadeUp, stagger } from "@/lib/animations";
 import Image from "next/image";
 import Link from "next/link";
 export default function Hero() {
+  const reduced = useReducedMotion();
   return (
     <section className="editorial-hero" aria-labelledby="hero-heading">
       <div className="editorial-wrap hero-grid">
-        <div className="hero-copy">
-          <p className="eyebrow">AINARA UNAMUNZAGA · COACH IE + PNL</p>
-          <h1 id="hero-heading">
+        <motion.div className="hero-copy" variants={stagger} initial={reduced ? false : "hidden"} animate="visible">
+          <motion.p variants={fadeUp} className="eyebrow">AINARA UNAMUNZAGA · COACH IE + PNL</motion.p>
+          <motion.h1 variants={fadeUp} id="hero-heading">
             Menos ruido.
             <br />
             Más <em>tú.</em>
-          </h1>
-          <p className="hero-lead">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="hero-lead">
             Un espacio para escucharte, entender lo que te pasa y volver a
             decidir desde la claridad.
-          </p>
-          <div className="hero-actions">
+          </motion.p>
+          <motion.div variants={fadeUp} className="hero-actions">
+            <MagneticButton asChild>
             <Link className="editorial-button" href="/evaluacion">
               Empieza por escucharte
             </Link>
+            </MagneticButton>
             <a className="editorial-link" href="#conoce-a-ainara">
               Conoce a Ainara
             </a>
-          </div>
+          </motion.div>
           <div className="hero-note">
             <span className="note-line" />
             <p>
@@ -31,8 +38,8 @@ export default function Hero() {
               para empezar a hablar.
             </p>
           </div>
-        </div>
-        <figure className="hero-portrait">
+        </motion.div>
+        <motion.figure className="hero-portrait" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
           <Image
             src="/ainara-image.jpg"
             alt="Ainara sonriendo en su espacio de trabajo"
@@ -51,7 +58,7 @@ export default function Hero() {
           <span className="portrait-index" aria-hidden="true">
             01 / UN ESPACIO PARA TI
           </span>
-        </figure>
+        </motion.figure>
       </div>
       <div className="expertise-strip editorial-wrap">
         <span>Inteligencia emocional</span>

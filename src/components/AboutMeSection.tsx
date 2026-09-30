@@ -1,4 +1,5 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
@@ -17,6 +18,7 @@ const chapters = [
   },
 ];
 export default function AboutMeSection() {
+  const reduced = useReducedMotion();
   const [chapter, setChapter] = useState(0);
   return (
     <section
@@ -80,15 +82,19 @@ export default function AboutMeSection() {
               </button>
             ))}
           </div>
-          <div
+          <motion.div
             id="chapter-panel"
             className="chapter-panel"
+            key={chapter}
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
             role="tabpanel"
             aria-labelledby={`chapter-${chapter}`}
             tabIndex={0}
           >
             <p>{chapters[chapter].text}</p>
-          </div>
+          </motion.div>
           <a
             className="editorial-link"
             href={CONTACT_LINKS.whatsappUrl}

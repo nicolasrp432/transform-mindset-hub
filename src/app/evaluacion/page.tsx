@@ -1,4 +1,5 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -51,6 +52,7 @@ const LeadSchema = z.object({
 type LeadInput = z.infer<typeof LeadSchema>;
 
 export default function EvaluacionPage() {
+  const reduced = useReducedMotion();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -157,7 +159,7 @@ export default function EvaluacionPage() {
             ))}
           </div>
           {step < 5 ? (
-            <div className="question-content">
+            <motion.div key={step} className="question-content" initial={reduced ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
               <p className="eyebrow">{questions[step].topic}</p>
               <h2 ref={heading} tabIndex={-1}>
                 {questions[step].text}
@@ -210,7 +212,7 @@ export default function EvaluacionPage() {
               <p className="question-footnote">
                 Sin respuestas correctas. Sin prisa.
               </p>
-            </div>
+            </motion.div>
           ) : step === 5 ? (
             <div className="evaluation-summary">
               <p className="eyebrow">HAS HECHO ESPACIO PARA TI</p>

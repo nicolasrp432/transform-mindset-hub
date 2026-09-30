@@ -1,4 +1,5 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 interface ProcessCase {
@@ -66,6 +67,9 @@ const processCases: ProcessCase[] = [
 ];
 
 export default function Testimonials() {
+  const reduced = useReducedMotion();
+  const [animated, setAnimated] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [index, setIndex] = useState(0);
   const item = processCases[index];
   return (
@@ -106,8 +110,32 @@ export default function Testimonials() {
             </button>
           </div>
         </div>
-        <div
+        <button className="editorial-link" type="button" onClick={() => setAnimated(!animated)}>
+          {animated && !reduced ? "Leer a mi ritmo" : "Ver testimonios en movimiento"}
+        </button>
+        {animated && !reduced ? <>
+          <button className="editorial-link motion-pause" type="button" aria-pressed={paused} onClick={() => setPaused(!paused)}>
+            {paused ? "Reanudar movimiento" : "Pausar movimiento"}
+          </button>
+          <div className={`testimonial-marquee ${paused ? "is-paused" : ""}`}>
+            {[0, 1, 2].map((column) => <div className="testimonial-column" key={column}>
+              <div className="testimonial-track" style={{ animationDuration: `${[20, 26, 22][column]}s` }}>
+                {[0, 1].map((copy) => <div className="testimonial-group" key={copy} aria-hidden={copy === 1 ? true : undefined}>
+                  {processCases.slice(column * 2, column * 2 + 2).map((story) => <article className="testimonial-moving-card" key={story.name}>
+                    <p className="eyebrow">SU PUNTO DE PARTIDA</p><p>{story.before}</p>
+                    <p className="eyebrow">SU PROCESO</p><blockquote>“{story.after}”</blockquote>
+                    <cite>{story.name}<span>{story.role}</span></cite>
+                  </article>)}
+                </div>)}
+              </div>
+            </div>)}
+          </div>
+        </> : <motion.div
           className="testimonial-story"
+            key={index}
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
           aria-live="polite"
           aria-atomic="true"
         >
@@ -123,7 +151,7 @@ export default function Testimonials() {
               <span>{item.role}</span>
             </cite>
           </div>
-        </div>
+        </motion.div>}
       </div>
     </section>
   );

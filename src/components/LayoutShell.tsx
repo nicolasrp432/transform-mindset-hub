@@ -1,5 +1,7 @@
 "use client";
 
+import CustomCursor from "@/components/ui/CustomCursor";
+import EditorialMotion from "@/components/EditorialMotion";
 import { MotionConfig } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
@@ -38,6 +40,8 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
   return (
     <MotionConfig reducedMotion="user">
       <div className={isSalesLanding ? "sales-landing" : undefined}>
+        <CustomCursor />
+        <EditorialMotion />
         <Navbar />
         <div id="main-content" tabIndex={-1}>
           {children}

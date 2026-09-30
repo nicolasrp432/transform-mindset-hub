@@ -11,9 +11,9 @@ El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo
 - Sesiones: presentación humana, proceso y agenda/WhatsApp originales.
 - Recursos: catálogo, MITRA y formulario de descarga, con etiquetas asociadas y errores claros.
 - Autoevaluación: cinco preguntas, elección explícita y continuación, navegación atrás, edición del resumen, datos opcionales y estado de guardado veraz.
-- Testimonios: textos ya existentes, navegación manual en lugar de desplazamiento automático.
+- Testimonios: textos ya existentes, columnas con desplazamiento continuo original, pausa y opción de lectura manual.
 - Formaciones y páginas de venta: paleta y componentes compartidos coherentes. Catálogo, precios, garantías, rutas, claves de producto y checkout conservados.
-- Menú móvil con cierre Escape y control del foco, enlace para saltar al contenido, movimiento reducido. Se conserva el cursor nativo.
+- Menú móvil con cierre Escape y control del foco, enlace para saltar al contenido, movimiento reducido. Se recupera el cursor animado original en dispositivos con puntero fino; se mantiene el cursor nativo en táctil y con movimiento reducido.
 - Pie de página: número de WhatsApp real de la configuración existente. Se retiran enlaces legales que ya apuntaban a rutas inexistentes; falta incorporar sus documentos reales antes de producción.
 
 ## Integraciones conservadas
@@ -38,3 +38,7 @@ Sites utiliza una copia de la aplicación adaptada a su runtime. Allí el guarda
 ## Pendientes anteriores al rediseño
 
 Los testimonios y credenciales proceden del repositorio y requieren validación editorial por Ainara. La acción de contactos conserva sus retornos de fallback y su tratamiento de duplicados; no se ha cambiado el backend. Antes de producción, comprobar el guardado en InsForge con el entorno real y las condiciones/política de privacidad del negocio. No hay emails automáticos nuevos.
+
+## Movimiento restaurado
+
+La rama original utiliza Framer Motion, no GSAP. Se recuperan el cursor con muelles, el CTA magnético, las entradas escalonadas de la portada y los reveals al entrar en el viewport, adaptados a la composición editorial. Los efectos respetan movimiento reducido y limpian sus listeners/observadores al cambiar de ruta. El contenido permanece visible si JavaScript no se ejecuta.

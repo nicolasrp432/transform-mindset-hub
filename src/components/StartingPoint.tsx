@@ -1,4 +1,5 @@
 "use client";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 const paths = [
@@ -49,6 +50,7 @@ const paths = [
   },
 ];
 export default function StartingPoint() {
+  const reduced = useReducedMotion();
   const [selected, setSelected] = useState(0);
   const path = paths[selected];
   return (
@@ -107,8 +109,12 @@ export default function StartingPoint() {
               ))}
             </div>
           </div>
-          <div
+          <motion.div
             className="path-panel"
+            key={selected}
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
             id="path-panel"
             role="tabpanel"
             aria-labelledby={`path-${selected}`}
@@ -121,7 +127,7 @@ export default function StartingPoint() {
               {path.action}
             </Link>
             <p className="path-detail">{path.detail}</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

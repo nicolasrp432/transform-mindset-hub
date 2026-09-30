@@ -2015,3 +2015,20 @@ button:disabled {
     padding: 28px;
   }
 }
+
+/* Original continuous testimonial scroll, styled for the editorial layout. */
+.testimonial-marquee { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 650px; overflow: hidden; margin-top: 32px; mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent); }
+.testimonial-column { overflow: hidden; }
+.testimonial-track { animation: testimonial-scroll 20s linear infinite; }
+.testimonial-group { display: grid; gap: 24px; padding-bottom: 24px; }
+.testimonial-moving-card { background: var(--color-surface); border: 1px solid var(--color-border); padding: 28px; }
+.testimonial-moving-card .eyebrow { margin: 24px 0 12px; }
+.testimonial-moving-card p, .testimonial-moving-card blockquote { line-height: 1.6; }
+.testimonial-moving-card cite { display: block; margin-top: 28px; font-style: normal; }
+.testimonial-moving-card cite span { display: block; font-size: 12px; margin-top: 8px; }
+.testimonial-marquee:hover .testimonial-track, .testimonial-marquee.is-paused .testimonial-track { animation-play-state: paused; }
+.motion-pause { margin-left: 24px; }
+@keyframes testimonial-scroll { to { transform: translateY(-50%); } }
+@media (max-width: 1000px) { .testimonial-marquee { grid-template-columns: repeat(2, 1fr); } .testimonial-column:nth-child(3) { display: none; } }
+@media (max-width: 760px) { .testimonial-marquee { grid-template-columns: 1fr; height: 600px; } .testimonial-column:nth-child(2) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .testimonial-track { animation: none; } }
