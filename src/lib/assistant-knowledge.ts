@@ -6,6 +6,7 @@ const WHATSAPP_MESSAGE =
 const CALENDLY_URL = "https://calendly.com/ainaracoachpnl/reunion-con-ainara";
 
 export const CONTACT_LINKS = {
+  email: "ainaracoachpnl@gmail.com",
   whatsappNumber: WHATSAPP_NUMBER,
   whatsappMessage: WHATSAPP_MESSAGE,
   whatsappUrl: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -51,7 +52,7 @@ export const CHAT_ACTIONS = {
     external: false,
   },
   evaluacion: {
-    label: "Autoevaluación",
+    label: "Primer contacto",
     href: "/evaluacion",
     external: false,
   },

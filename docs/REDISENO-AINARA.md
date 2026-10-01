@@ -10,7 +10,7 @@ El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo
 - Conoce a Ainara: información de enfoque, formación y primera conversación, con pestañas accesibles.
 - Sesiones: presentación humana, proceso y agenda/WhatsApp originales.
 - Recursos: catálogo, MITRA y formulario de descarga, con etiquetas asociadas y errores claros.
-- Autoevaluación: cinco preguntas, elección explícita y continuación, navegación atrás, edición del resumen, datos opcionales y estado de guardado veraz.
+- Primer contacto: cuatro preguntas sobre relaciones, economía, cuerpo/energía y bienestar personal; edición del resumen, prioridad, datos de contacto y elección de WhatsApp o correo.
 - Testimonios: textos ya existentes, columnas con desplazamiento continuo original, pausa y opción de lectura manual.
 - Formaciones y páginas de venta: paleta y componentes compartidos coherentes. Catálogo, precios, garantías, rutas, claves de producto y checkout conservados.
 - Menú móvil con cierre Escape y control del foco, enlace para saltar al contenido, movimiento reducido. Se recupera el cursor animado original en dispositivos con puntero fino; se mantiene el cursor nativo en táctil y con movimiento reducido.
@@ -20,9 +20,9 @@ El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo
 
 No se modifican `src/app/actions/*`, `src/lib/insforge.ts`, `src/app/api/*`, `src/lib/stripe.ts`, `src/lib/products.ts` ni las variables de entorno. El proyecto sigue en Next.js, React y TypeScript; dependencias y lockfile originales sin cambios.
 
-El formulario original guardaba contactos pero no enviaba un correo. La nueva experiencia evita anunciar un diagnóstico o email automático que ese código no genera. Sus cinco preguntas se presentan como reflexión, sin clasificación clínica.
+El formulario de `/evaluacion` deja de utilizar la acción de guardado como destino principal. Ahora prepara un mensaje completo para el WhatsApp y correo publicados en la web. El cliente elige el canal, revisa el resumen y confirma el envío en su aplicación. No se anuncia entrega automática, almacenamiento ni correo enviado desde el servidor. La acción previa de InsForge permanece conservada, sin modificar.
 
-La acción existente de evaluación omite contactos duplicados; la interfaz lo indica sin asegurar que las nuevas respuestas se guardaron. Sus retornos `_warning` se tratan como fallo de guardado, con reintento y opción de continuar sin compartir datos. En recursos, el PDF sigue disponible si falla el registro, pero el fallo se comunica.
+La acción previa de evaluación conserva su tratamiento de duplicados y errores, aunque el nuevo primer contacto no la invoca. En recursos, el PDF sigue disponible si falla el registro, pero el fallo se comunica.
 
 ## Revisión privada en Sites
 
@@ -76,3 +76,11 @@ Se añade un fallback `noscript` para que las fotografías y el contenido que us
 El retrato se reduce aproximadamente un 12%, centrado sobre un disco salvia muy suave y dos círculos de trazo fino. El movimiento lento de respiración y un punto que recorre el círculo acompañan la fotografía sin interceptar clics. El adorno `AmbientOrbit` se reutiliza en el hero, el explorador de enfoque y el bloque de plataforma. Respeta movimiento reducido y el contenedor del retrato recorta el desbordamiento de los adornos.
 
 MITRA usa tokens compartidos de dorado `#B8902E` y tinta `#1B1814` en la tarjeta del inicio, el componente `PlatformHero` de Formaciones y la banda de Herramientas. El texto oscuro mantiene contraste sobre el dorado. Se conservan `InteractiveSurface`, `PlatformHero`, botones y componentes de landing existentes.
+
+## Primer contacto y favicon
+
+Cuatro preguntas de interés general (relaciones, economía, cuerpo/energía y cómo te sientes contigo), con opción de no responder, prioridad de acompañamiento y comentario opcional. Se valida nombre, correo si el canal elegido es email, teléfono opcional y consentimiento antes de preparar el resumen. Se permite editar respuestas y datos sin perderlos; el resumen se puede copiar si no se abre la aplicación.
+
+Los destinatarios proceden de la configuración existente: +34 692 627 353 y ainaracoachpnl@gmail.com. El mensaje incluye respuestas, prioridad y datos proporcionados. Los enlaces `wa.me` y `mailto` llevan el contenido codificado. Es un borrador: el visitante debe pulsar Enviar en WhatsApp/correo; la web no confirma recepción ni realiza envío automático. No se almacenan respuestas en navegador ni se llama al backend en este flujo.
+
+`AinaraPortrait` comparte la misma imagen transparente y los círculos del hero con el formulario; allí se integra en un panel redondeado, también visible en móvil. Controles y llamadas al primer contacto utilizan los estilos comunes. MITRA mantiene dorado de marca con superficie #94701F y texto blanco (contraste aproximado 4,57:1). Favicon SVG e ICO propios con monograma a en verde profundo y blanco.

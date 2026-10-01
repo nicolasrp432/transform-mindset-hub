@@ -1,9 +1,8 @@
 "use client";
 import { motion, useReducedMotion } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
-import AmbientOrbit from "@/components/ui/AmbientOrbit";
+import AinaraPortrait from "@/components/AinaraPortrait";
 import { fadeUp, stagger } from "@/lib/animations";
-import Image from "next/image";
 import Link from "next/link";
 export default function Hero() {
   const reduced = useReducedMotion();
@@ -41,10 +40,7 @@ export default function Hero() {
           </div>
         </motion.div>
         <motion.figure className="hero-cutout-stage" initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .2 }}>
-          <div className="hero-portrait-composition">
-            <AmbientOrbit variant="portrait" />
-            <Image src="/images/ainara-hero-cutout.webp" alt="Ainara sonriendo" width={1218} height={1291} priority sizes="(max-width: 760px) 85vw, (max-width: 1100px) 47vw, 620px" className="hero-cutout-image" />
-          </div>
+          <AinaraPortrait priority />
           <figcaption className="hero-cutout-signature">Ainara Unamunzaga<span>Tu espacio empieza con una conversación.</span></figcaption>
         </motion.figure>
       </div>

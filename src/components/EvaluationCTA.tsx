@@ -11,12 +11,12 @@ export default function EvaluationCTA() {
         </h2>
         <div className="invite-bottom">
           <p>
-            Cinco preguntas para observar cómo estás.
+            Relaciones, economía, cuerpo y cómo te sientes.
             <br />
-            Una pausa que puedes hacer ahora.
+            Un primer contacto con Ainara, desde tu momento actual.
           </p>
           <Link className="editorial-button" href="/evaluacion">
-            Hacer mi autoevaluación
+            Preparar mi primer contacto
           </Link>
           <span>GRATUITA · SIN PRISA</span>
         </div>
