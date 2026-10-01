@@ -1,181 +1,73 @@
-'use client';
-
-import { useState, useEffect } from "react";
+"use client";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
-
-const navLinks = [
-  { name: "Inicio", href: "/" },
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+const links = [
+  { name: "Conoce a Ainara", href: "/#conoce-a-ainara" },
   { name: "Sesiones", href: "/sesiones" },
-  { name: "Evaluación", href: "/evaluacion" },
   { name: "Herramientas", href: "/herramientas" },
   { name: "Formaciones", href: "/formaciones" },
 ];
-
+const resources = ["/herramientas", "/guia-practica", "/agenda-reflexion", "/libro-princesa"];
+const programs = ["/formaciones", "/re-conectate", "/emulsion-energetica"];
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const pathname = usePathname();
+  const reduced = useReducedMotion();
   const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-
-    // Check if scrolled past initial threshold
-    if (latest > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-
-    // Hide if scrolling down past 150px, show if scrolling up
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+  const last = useRef(0);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
+  useMotionValueEvent(scrollY, "change", (value) => {
+    setScrolled(value > 40);
+    const delta = value - last.current;
+    if (Math.abs(delta) > 6) { setHidden(value > 180 && delta > 0); last.current = value; }
+    if (value < 40) setHidden(false);
   });
-
-  // Prevenir scroll en el body cuando el menú móvil está abierto
+  const active = (href: string) => href === "/herramientas" ? resources.includes(pathname) : href === "/formaciones" ? programs.includes(pathname) : pathname === href;
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    const opener = trigger.current;
+    document.body.style.overflow = "hidden";
+    panel.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+      if (event.key !== "Tab") return;
+      const nodes = panel.current?.querySelectorAll<HTMLElement>("a, button");
+      if (!nodes?.length) return;
+      const first = nodes[0], end = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); end.focus(); }
+      if (!event.shiftKey && document.activeElement === end) { event.preventDefault(); first.focus(); }
     };
-  }, [isMobileMenuOpen]);
-
-  return (
-    <>
-      <motion.header
-        variants={{
-          visible: { y: 0, opacity: 1 },
-          hidden: { y: "-100%", opacity: 0 },
-        }}
-        animate={hidden && !isMobileMenuOpen ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
-      >
-        <div
-          className={`flex items-center justify-between px-6 py-3 w-full max-w-4xl rounded-full transition-all duration-500 border
-            ${scrolled
-              ? "bg-base/70 backdrop-blur-xl border-border/50 shadow-sm"
-              : "bg-surface/50 backdrop-blur-md border-transparent shadow-none"
-            }`}
-        >
-          {/* Logo */}
-          <Link
-            href="/"
-            className="font-serif text-xl font-medium tracking-tight text-text hover:opacity-80 transition-opacity"
-          >
-            Ainara Unamunzaga
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-sans tracking-wide text-text-muted hover:text-primary transition-colors duration-200 relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300" />
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA Desktop */}
-          <div className="hidden md:block">
-            <Link
-              href="/sesiones"
-              className="px-5 py-2 bg-primary text-white text-xs font-medium tracking-wider uppercase font-sans rounded-full hover:bg-secondary hover:text-text transition-colors duration-300 shadow-sm block"
-            >
-              Agendar
-            </Link>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2 -mr-2 text-text focus:outline-none hover:text-primary transition-colors"
-            onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Abrir menú"
-          >
-            <Menu className="w-5 h-5" strokeWidth={1.5} />
-          </button>
-        </div>
-      </motion.header>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: "-10%", scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[60] bg-base/95 backdrop-blur-xl flex flex-col overflow-hidden"
-          >
-            <div className="px-6 py-8 flex items-center justify-between w-full relative z-10">
-              <Link
-                href="/"
-                className="font-serif text-2xl font-medium tracking-tight text-text"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Ainara
-              </Link>
-              <button
-                className="p-2 -mr-2 text-text focus:outline-none hover:text-primary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Cerrar menú"
-              >
-                <X className="w-6 h-6" strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <div className="flex-1 flex flex-col justify-center px-8 pb-20 relative z-10">
-              <nav className="flex flex-col gap-6">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Link
-                      href={link.href}
-                      className="text-4xl sm:text-5xl font-serif font-medium text-text hover:text-primary transition-colors block"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + navLinks.length * 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-12"
-              >
-                <Link
-                  href="/sesiones"
-                  className="px-8 py-4 bg-primary text-white text-sm font-medium tracking-wider uppercase font-sans rounded-full hover:bg-secondary hover:text-text transition-colors duration-300 inline-block shadow-sm"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Comenzar Proceso
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+    document.addEventListener("keydown", close);
+    return () => { document.body.style.overflow = previous; document.removeEventListener("keydown", close); opener?.focus(); };
+  }, [open]);
+  return <>
+    <a className="skip-link" href="#main-content">Saltar al contenido</a>
+    <motion.header className={`editorial-nav floating-nav ${scrolled ? "is-scrolled" : ""}`}
+      initial={false} animate={{ y: hidden && !open && !focused ? "-150%" : 0 }} transition={{ duration: reduced ? 0 : .3, ease: "easeInOut" }}
+      onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}>
+      <div className="editorial-wrap nav-inner">
+        <Link className="wordmark" href="/" aria-label="Ainara Unamunzaga · Inicio">ainara<span>UNAMUNZAGA</span></Link>
+        <nav className="desktop-nav" aria-label="Navegación principal">{links.map((link) => <Link key={link.name} href={link.href} aria-current={active(link.href) ? "page" : undefined}>
+          {active(link.href) && <motion.span className="nav-active-pill" layoutId="ainara-nav-active" transition={{ duration: reduced ? 0 : .25 }} aria-hidden="true" />}<span>{link.name}</span>
+        </Link>)}</nav>
+        <Link className="nav-cta" href="/sesiones">Hablemos <ArrowUpRight size={16} aria-hidden="true" /></Link>
+        <button ref={trigger} className="mobile-nav-toggle" onClick={() => setOpen(true)} aria-label="Abrir menú" aria-expanded={open} aria-controls={open ? "mobile-navigation" : undefined}><Menu size={22} /></button>
+      </div>
+    </motion.header>
+    <AnimatePresence>{open && <motion.div ref={panel} id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Menú de navegación" className="mobile-navigation modern-mobile-nav"
+      initial={{ opacity: 0, y: reduced ? 0 : -16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -10 }} transition={{ duration: reduced ? 0 : .25 }}>
+      <div className="mobile-nav-heading"><Link className="wordmark" href="/" onClick={() => setOpen(false)}>ainara<span>UNAMUNZAGA</span></Link><button onClick={() => setOpen(false)} aria-label="Cerrar menú"><X size={24} /></button></div>
+      <nav aria-label="Navegación móvil">{links.map((link, i) => <motion.div key={link.name} initial={{ opacity: 0, x: reduced ? 0 : -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: reduced ? 0 : i * .04 }}><Link href={link.href} aria-current={active(link.href) ? "page" : undefined} onClick={() => setOpen(false)}><span>0{i + 1}</span>{link.name}<ArrowUpRight size={20} aria-hidden="true" /></Link></motion.div>)}</nav>
+      <div className="mobile-nav-actions"><Link className="editorial-button" href="/sesiones" onClick={() => setOpen(false)}>Agendar una conversación <ArrowUpRight size={18} aria-hidden="true" /></Link><Link className="editorial-link" href="/evaluacion" onClick={() => setOpen(false)}>Todavía no sé por dónde empezar</Link></div>
+      <p>Acompañamiento emocional.<br />A tu ritmo, desde ti.</p>
+    </motion.div>}</AnimatePresence>
+  </>;
 }

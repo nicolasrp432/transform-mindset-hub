@@ -19,7 +19,7 @@ export default function FinalCtaCard({
   children,
 }: FinalCtaCardProps) {
   return (
-    <div className="rounded-[2rem] border border-border bg-white p-8 md:p-12 text-center">
+    <div className="sales-final-card rounded-[2rem] border border-border bg-white p-8 md:p-12 text-center">
       <Icon className="w-10 h-10 text-mark mx-auto mb-6" aria-hidden="true" />
       <h2>{title}</h2>
       <p className="mt-4 text-text-muted max-w-2xl mx-auto">{description}</p>

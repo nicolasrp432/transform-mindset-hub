@@ -1,3 +1,4 @@
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -70,10 +71,10 @@ export default function EmulsionEnergeticaPage() {
         className="relative overflow-hidden"
         containerClassName="relative z-10"
       >
-        <LandingHero
-          badge="Formación premium"
-          title="Deja de luchar contra tus emociones y aprende la arquitectura mental para crear una vida alineada."
-          lead="Una formación terapéutica, estructurada y profunda, libre de espiritualidad exagerada o promesas milagro. Psicología, neurociencia y regulación del sistema nervioso en un solo método."
+        <LandingHero category="program"
+          badge="MITRA / EMULSIÓN ENERGÉTICA"
+          title={<>Entender lo que sientes.<br /><em>Explorar cómo respondes.</em></>}
+          lead="Ocho lecciones y materiales de reflexión para explorar el enfoque de Ainara sobre las emociones, las creencias y las leyes universales. Disponible en MITRA."
           trust={HERO_TRUST}
           actions={
             <>
@@ -88,7 +89,7 @@ export default function EmulsionEnergeticaPage() {
           visual={
             <div className="relative overflow-hidden rounded-[1.5rem] aspect-[4/5]">
               <Image
-                src="/ainara-image.jpg"
+                src="/images/ainara-portrait.webp"
                 alt="Ainara, autora de la formación Emulsión Energética"
                 fill
                 priority
@@ -99,6 +100,8 @@ export default function EmulsionEnergeticaPage() {
           }
         />
       </LandingSection>
+      <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#lecciones">Qué incluye</a><a href="#cta">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+      <ProductJourney kind="program" />
 
       <LandingSection tone="surface">
         <SectionHeading
@@ -202,7 +205,7 @@ export default function EmulsionEnergeticaPage() {
         </GuaranteeBlock>
       </LandingSection>
 
-      <LandingSection>
+      <LandingSection id="preguntas">
         <SectionHeading eyebrow="Preguntas frecuentes" title="Resuelve tus dudas" />
         <FaqAccordion items={FAQ} />
       </LandingSection>

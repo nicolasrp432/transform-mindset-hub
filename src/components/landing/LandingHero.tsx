@@ -1,9 +1,12 @@
+import Link from "next/link";
+import InteractiveSurface from "@/components/ui/InteractiveSurface";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { TrustItem } from "./types";
 
 interface LandingHeroProps {
   badge: string;
+  category?: "resource" | "program";
   title: ReactNode;
   lead: ReactNode;
   /** Fila de CTAs. Va como slot: cada landing combina botones distintos. */
@@ -18,6 +21,7 @@ interface LandingHeroProps {
 
 export default function LandingHero({
   badge,
+  category = "resource",
   title,
   lead,
   actions,
@@ -28,6 +32,7 @@ export default function LandingHero({
 }: LandingHeroProps) {
   return (
     <>
+      <nav className="sales-breadcrumb" aria-label="Ruta de navegación"><Link href="/">Ainara</Link><span>/</span><Link href={category === "program" ? "/formaciones" : "/herramientas"}>{category === "program" ? "Formaciones" : "Herramientas"}</Link><span>/</span><span>{badge}</span></nav>
       {/* pointer-events-none es imprescindible: al ser absoluto, este adorno se
           pinta por encima del contenido estático y si no, se traga los clics de
           los CTA del hero. */}
@@ -37,21 +42,20 @@ export default function LandingHero({
       />
       <div
         className={cn(
-          "relative grid gap-12 items-center",
+          "sales-hero-grid relative grid gap-12 items-center",
           ratio === "wide-copy"
             ? "lg:grid-cols-[1.15fr_0.85fr]"
-            : "lg:grid-cols-[1.05fr_0.95fr]"
+            : "lg:grid-cols-[1.05fr_0.95fr]",
         )}
       >
-        <div className="space-y-8">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-white text-xs uppercase tracking-[0.25em] text-text-subtle">
-            <span className="w-2 h-2 rounded-full bg-mark" aria-hidden="true" />
-            {badge}
-          </span>
+        <div className="sales-hero-copy space-y-8">
+          <span className="eyebrow text-text-subtle">{badge}</span>
 
           <div className="space-y-5">
             <h1>{title}</h1>
-            <p className="text-text-muted text-lg md:text-xl max-w-2xl">{lead}</p>
+            <p className="text-text-muted text-lg md:text-xl max-w-2xl">
+              {lead}
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">{actions}</div>
@@ -76,9 +80,7 @@ export default function LandingHero({
           {children}
         </div>
 
-        <div className="bg-white border border-border rounded-[2rem] p-6 md:p-8 shadow-lg">
-          {visual}
-        </div>
+        <InteractiveSurface className="landing-visual">{visual}</InteractiveSurface>
       </div>
     </>
   );

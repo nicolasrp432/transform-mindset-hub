@@ -1,3 +1,5 @@
+import ResourcePreview from "@/components/landing/ResourcePreview";
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -180,7 +182,7 @@ export default function AgendaReflexionPage() {
       >
         <LandingHero
           badge="Autocuidado Diario"
-          title="Dedicarte unos minutos al día puede cambiar tu vida."
+          title={<>Un momento al día.<br /><em>Para escucharte.</em></>}
           lead="Una herramienta de acompañamiento emocional diseñada para ayudarte a reconectar contigo misma, ordenar tus pensamientos y fortalecer tu autoestima."
           trust={HERO_TRUST}
           actions={
@@ -193,35 +195,11 @@ export default function AgendaReflexionPage() {
               </a>
             </>
           }
-          visual={
-            <div className="aspect-[3/4] rounded-[1.5rem] bg-gradient-to-br from-surface to-verde-soft text-text p-8 flex flex-col justify-between relative overflow-hidden border border-gold/40 shadow-inner">
-              <div
-                className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full border border-gold/30"
-                aria-hidden="true"
-              />
-              <div
-                className="pointer-events-none absolute -bottom-16 -left-16 w-48 h-48 rounded-full border border-gold/30"
-                aria-hidden="true"
-              />
-              <div className="space-y-3 relative z-10">
-                <CalendarHeart
-                  className="w-10 h-10 text-gold"
-                  aria-hidden="true"
-                />
-                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">
-                  Ainara Coaching
-                </p>
-                <p className="text-3xl leading-tight font-serif text-text">
-                  Agenda de Reflexión Diaria
-                </p>
-              </div>
-              <p className="text-sm text-text-muted relative z-10">
-                Calma mental • Autocompasión • Claridad
-              </p>
-            </div>
-          }
+          visual={<ResourcePreview />}
         />
       </LandingSection>
+      <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#contenido">Qué incluye</a><a href="#precios">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+      <ProductJourney kind="resource" />
 
       <LandingSection tone="surface">
         <SectionHeading
@@ -256,7 +234,7 @@ export default function AgendaReflexionPage() {
         />
       </LandingSection>
 
-      <LandingSection>
+      <LandingSection id="precios">
         <PriceBand
           productKey={AGENDA.key}
           eyebrow="Oferta"
@@ -271,7 +249,7 @@ export default function AgendaReflexionPage() {
         />
       </LandingSection>
 
-      <LandingSection tone="surface">
+      <LandingSection tone="surface" id="preguntas">
         <SectionHeading
           eyebrow="Preguntas frecuentes"
           title="Aclaramos tus dudas"

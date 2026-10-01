@@ -1,90 +1,113 @@
-'use client';
-
-import { motion } from "framer-motion";
-import { fadeUp, stagger, viewportOnce } from "@/lib/animations";
+"use client";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import InteractiveSurface from "@/components/ui/InteractiveSurface";
 import Image from "next/image";
-
+import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
+const chapters = [
+  {
+    title: "Mi enfoque",
+    text: "Mi enfoque no consiste en empujarte a hacer más. Se trata de entender por qué no avanzas, qué patrones se repiten y qué necesitas escuchar de ti. Combino estructura y empatía para acompañarte en ese proceso.",
+  },
+  {
+    title: "Mi formación",
+    text: "Mi trabajo se apoya en la Inteligencia Emocional y la PNL Avanzada certificada y avalada por ASESCO. Mi formación también incluye el Nivel 2 de Reiki. En nuestra conversación podemos explorar qué enfoque encaja contigo.",
+  },
+  {
+    title: "Nuestra primera conversación",
+    text: "Puedes empezar contando qué te trae aquí, aunque todavía no sepas explicarlo del todo. Hablaremos de lo que buscas y podrás preguntar por mi forma de trabajar antes de decidir tu siguiente paso.",
+  },
+];
 export default function AboutMeSection() {
+  const reduced = useReducedMotion();
+  const [chapter, setChapter] = useState(0);
   return (
-    <section className="section py-32 bg-base" aria-labelledby="about-heading">
-      <div className="container-editorial">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
-
-          {/* Col 1: Image - Asymmetric & Filtered */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            variants={fadeUp}
-            className="relative w-full aspect-[4/5] max-w-md mx-auto lg:mx-0 overflow-hidden rounded-2xl cursor-pointer"
+    <section
+      id="conoce-a-ainara"
+      className="about-editorial"
+      aria-labelledby="about-heading"
+    >
+      <div className="editorial-wrap about-grid">
+        <InteractiveSurface className="about-photo">
+          <Image
+            src="/images/ainara-seated.webp"
+            alt="Ainara sentada, preparada para escuchar"
+            fill
+            sizes="(max-width: 760px) 100vw, 40vw"
+          />
+          <span className="photo-caption">
+            AINARA, AL OTRO LADO DE LA CONVERSACIÓN.
+          </span>
+        </InteractiveSurface>
+        <div className="about-copy">
+          <p className="eyebrow">02 / CONOCE A AINARA</p>
+          <h2 id="about-heading">
+            Soy Ainara.
+            <br />Y antes de todo,
+            <br />
+            <em>te escucho.</em>
+          </h2>
+          <p className="about-intro">
+            Más que motivación, te ofrezco un espacio para comprenderte y poner
+            orden en lo que sientes.
+          </p>
+          <div
+            className="chapter-tabs"
+            role="tablist"
+            aria-label="Conoce mi forma de trabajar"
           >
-            {/* Using an Unsplash placeholder with CSS filters for aesthetic coherence */}
-            <motion.div
-              whileHover={{ filter: "sepia(0%) grayscale(0%) contrast(100%)" }}
-              whileTap={{ filter: "sepia(0%) grayscale(0%) contrast(100%)" }}
-              style={{ filter: "sepia(35%) grayscale(50%) contrast(90%)" }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <Image
-                src="/ainara-image.jpg"
-                alt="Retrato de Ainara"
-                fill
-                className="object-cover"
-                sizes="(max-w-768px) 100vw, 400px"
-                priority
-              />
-            </motion.div>
-            {/* Decorator */}
-            <div className="absolute inset-0 border border-primary/20 rounded-2xl mix-blend-overlay pointer-events-none" />
-          </motion.div>
-
-          {/* Col 2: Content */}
+            {chapters.map((item, i) => (
+              <button
+                key={item.title}
+                role="tab"
+                id={`chapter-${i}`}
+                aria-selected={chapter === i}
+                aria-controls="chapter-panel"
+                tabIndex={chapter === i ? 0 : -1}
+                onClick={() => setChapter(i)}
+                onKeyDown={(event) => {
+                  let next = i;
+                  if (event.key === "ArrowRight")
+                    next = (i + 1) % chapters.length;
+                  else if (event.key === "ArrowLeft")
+                    next = (i + chapters.length - 1) % chapters.length;
+                  else if (event.key === "Home") next = 0;
+                  else if (event.key === "End") next = chapters.length - 1;
+                  else return;
+                  event.preventDefault();
+                  setChapter(next);
+                  document.getElementById(`chapter-${next}`)?.focus();
+                }}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
           <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="flex flex-col justify-center"
+            id="chapter-panel"
+            className="chapter-panel"
+            key={chapter}
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            role="tabpanel"
+            aria-labelledby={`chapter-${chapter}`}
+            tabIndex={0}
           >
-            <motion.p
-              variants={fadeUp}
-              className="text-text-subtle text-xs tracking-[0.25em] uppercase mb-4 font-sans"
-            >
-              Sobre la mentora
-            </motion.p>
-
-            <motion.h2
-              variants={fadeUp}
-              id="about-heading"
-              className="font-serif text-4xl lg:text-5xl text-text mb-8 text-balance"
-            >
-              Más que motivación, te ofrezco orden y estructura mental.
-            </motion.h2>
-
-            <motion.div variants={fadeUp} className="prose prose-p:text-text-muted prose-p:leading-relaxed max-w-none">
-              <p className="mb-6">
-                Mi enfoque no se trata de empujarte a hacer más, sino de enseñarte a entender <strong>por qué no avanzas</strong>. Combino disciplina y empatía profunda para llegar a la raíz de tus patrones de comportamiento.
-              </p>
-
-              <p className="mb-8">
-                Mi experiencia se fundamenta en la <strong>Inteligencia Emocional</strong>, <strong>PNL Avanzada</strong> certificada y avalada por ASESCO, y el acompañamiento energético a través de mi certificación en el Nivel 2 de <strong>Reiki</strong>. Esta mezcla me permite trabajar no solo desde lo cognitivo, sino desde lo somático y lo sutil.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-border">
-                <div>
-                  <span className="block font-serif text-3xl text-primary mb-1">ASESCO</span>
-                  <span className="text-xs font-medium uppercase tracking-wider text-text-subtle">Aval Certificado</span>
-                </div>
-                <div>
-                  <span className="block font-serif text-3xl text-primary mb-1">+500h</span>
-                  <span className="text-xs font-medium uppercase tracking-wider text-text-subtle">Sesiones de claridad</span>
-                </div>
-              </div>
-            </motion.div>
-
+            <p>{chapters[chapter].text}</p>
           </motion.div>
-
+          <a
+            className="editorial-link"
+            href={CONTACT_LINKS.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Hablemos de lo que necesitas
+          </a>
+          <div className="about-signature">
+            <span>Ainara Unamunzaga</span>
+            <p>INTELIGENCIA EMOCIONAL + PNL</p>
+          </div>
         </div>
       </div>
     </section>

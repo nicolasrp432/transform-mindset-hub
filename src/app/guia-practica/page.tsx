@@ -1,3 +1,4 @@
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Image from "next/image";
 import {
@@ -186,9 +187,9 @@ export default function GuiaPracticaPage() {
         containerClassName="relative z-10"
       >
         <LandingHero
-          badge="Método probado"
-          title="Silencia tu mente crítica y vuelve a creer en ti."
-          lead="Una guía práctica para reducir ansiedad, ordenar tus emociones y reconectar con tu poder interior en menos de 21 días."
+          badge="GUÍA PRÁCTICA / PDF + EDICIÓN IMPRESA"
+          title={<>Menos autocrítica.<br /><em>Más espacio para ti.</em></>}
+          lead="Lecturas, ejercicios y prácticas de reflexión para observar tus emociones y trabajar la relación contigo, a tu ritmo."
           trust={HERO_TRUST}
           actions={
             <>
@@ -201,21 +202,24 @@ export default function GuiaPracticaPage() {
             </>
           }
           visual={
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-surface p-4 md:p-6 shadow-sm">
+            <div className="product-cover-stage guide-product-stage">
               <div className="relative animate-book-float origin-center">
                 <Image
-                  width={1200}
-                  height={1600}
+                  width={1024}
+                  height={1536}
+                  sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1100px) 90vw, 550px"
                   priority
-                  className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
-                  alt="Guía Práctica de Transformación Integral"
-                  src="/guia-practica.png"
+                  className="product-cover-image"
+                  alt="Portada de la Guía Práctica de Transformación Integral"
+                  src="/images/guide-mockup.webp"
                 />
               </div>
             </div>
           }
         />
       </LandingSection>
+      <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#contenido">Qué incluye</a><a href="#precios">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+      <ProductJourney kind="resource" />
 
       <LandingSection tone="surface">
         <SectionHeading
@@ -350,7 +354,7 @@ export default function GuiaPracticaPage() {
         </div>
       </LandingSection>
 
-      <LandingSection>
+      <LandingSection id="preguntas">
         <SectionHeading eyebrow="Preguntas frecuentes" title="Resuelve tus dudas" />
         <FaqAccordion items={FAQ} />
       </LandingSection>

@@ -1,3 +1,4 @@
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Hero from "@/components/reconectate/Hero";
 import AnnouncementBar from "@/components/reconectate/AnnouncementBar";
@@ -30,6 +31,7 @@ export default function ReConectatePage() {
     <main className="flex flex-col min-h-screen bg-base has-sticky-cta">
       <AnnouncementBar />
       <Hero />
+      <ProductJourney kind="program" />
       <Problem />
       <Differentiator />
       <Authority />

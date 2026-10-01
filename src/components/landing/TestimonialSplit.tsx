@@ -1,3 +1,4 @@
+import TestimonialAvatar from "@/components/TestimonialAvatar";
 import { Star } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Testimonial } from "./types";
@@ -45,10 +46,12 @@ export default function TestimonialSplit({
               ))}
             </div>
             <p className="text-text-muted italic">&ldquo;{item.quote}&rdquo;</p>
-            <footer className="mt-6">
+            <footer className="testimonial-author mt-6">
+              <TestimonialAvatar name={item.name} photo={item.photo} />
+              <div>
               <strong className="block">{item.name}</strong>
               <span className="text-sm text-text-subtle">{item.role}</span>
-            </footer>
+            </div></footer>
           </blockquote>
         ))}
       </div>

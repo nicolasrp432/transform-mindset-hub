@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Download, Layers, Sparkles, UserCheck, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  Layers,
+  Sparkles,
+  UserCheck,
+  Zap,
+} from "lucide-react";
 import { fadeUp, stagger } from "@/lib/animations";
 import TextReveal from "@/components/ui/TextReveal";
 import PlatformHero from "@/components/landing/PlatformHero";
@@ -56,7 +63,7 @@ const courses: readonly {
 
 export default function FormacionesContent() {
   return (
-    <main>
+    <main className="formations-page">
       {/* Header */}
       <section
         className="section pt-32 lg:pt-40 pb-8 lg:pb-12"
@@ -64,10 +71,10 @@ export default function FormacionesContent() {
       >
         <div className="container-editorial flex flex-col items-center text-center md:items-start md:text-left">
           <p className="text-text-subtle text-sm tracking-widest uppercase mb-4">
-            Transformación
+            FORMACIONES / AUTOCONOCIMIENTO
           </p>
           <TextReveal
-            text="Formaciones"
+            text="Aprender. Observar. Volver a ti."
             id="formaciones-heading"
             className="font-serif"
             as="h1"
@@ -129,7 +136,7 @@ export default function FormacionesContent() {
                 <motion.article
                   key={course.id}
                   variants={fadeUp}
-                  className="group relative flex flex-col gap-6 rounded-2xl border border-border bg-surface p-8 lg:p-10 overflow-hidden transition-shadow duration-300 hover:shadow-xl h-full"
+                  className="formation-card group relative flex flex-col gap-6 border border-border bg-surface p-8 lg:p-10 overflow-hidden h-full"
                 >
                   <div
                     className="absolute top-0 inset-x-0 h-[2px] rounded-t-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"
@@ -168,7 +175,7 @@ export default function FormacionesContent() {
                     {course.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-3 py-1 rounded-full border border-border text-text-subtle font-sans tracking-wide"
+                        className="text-xs px-3 py-1 rounded-sm border border-border text-text-subtle font-sans tracking-wide"
                       >
                         {tag}
                       </span>
@@ -189,7 +196,7 @@ export default function FormacionesContent() {
                     </div>
                     <Link
                       href={product.href}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary text-primary font-medium text-sm tracking-wide transition-all duration-300 hover:bg-primary hover:text-white hover:gap-3"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-sm border border-primary text-primary font-medium text-sm tracking-wide transition-all duration-300 hover:bg-primary hover:text-white hover:gap-3"
                     >
                       Ver el programa
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />

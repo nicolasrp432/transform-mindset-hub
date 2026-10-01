@@ -1,0 +1,78 @@
+# Ainara · Sage Editorial
+
+Rediseño visual y de experiencia sobre el commit `98030152a30f8a56841a50c1d912891c4443bd87`, en la rama `codex/ainara-sage-editorial`.
+
+## Análisis y dirección
+
+El proyecto ya contiene sesiones, autoevaluación, recursos gratuitos, catálogo, formaciones, MITRA, asistente y checkout. El rediseño mantiene esa arquitectura sobre una base blanca con superficies verde grisáceo muy ligeras, acentos verde profundo, serif editorial e Inter, fotografías reales y tarjetas redondeadas. Conserva las interacciones originales de Framer Motion y añade imágenes de producto.
+
+- Inicio: composición editorial, retrato de Ainara y selector de necesidades que lleva a las rutas existentes.
+- Conoce a Ainara: información de enfoque, formación y primera conversación, con pestañas accesibles.
+- Sesiones: presentación humana, proceso y agenda/WhatsApp originales.
+- Recursos: catálogo, MITRA y formulario de descarga, con etiquetas asociadas y errores claros.
+- Autoevaluación: cinco preguntas, elección explícita y continuación, navegación atrás, edición del resumen, datos opcionales y estado de guardado veraz.
+- Testimonios: textos ya existentes, columnas con desplazamiento continuo original, pausa y opción de lectura manual.
+- Formaciones y páginas de venta: paleta y componentes compartidos coherentes. Catálogo, precios, garantías, rutas, claves de producto y checkout conservados.
+- Menú móvil con cierre Escape y control del foco, enlace para saltar al contenido, movimiento reducido. Se recupera el cursor animado original en dispositivos con puntero fino; se mantiene el cursor nativo en táctil y con movimiento reducido.
+- Pie de página: número de WhatsApp real de la configuración existente. Se retiran enlaces legales que ya apuntaban a rutas inexistentes; falta incorporar sus documentos reales antes de producción.
+
+## Integraciones conservadas
+
+No se modifican `src/app/actions/*`, `src/lib/insforge.ts`, `src/app/api/*`, `src/lib/stripe.ts`, `src/lib/products.ts` ni las variables de entorno. El proyecto sigue en Next.js, React y TypeScript; dependencias y lockfile originales sin cambios.
+
+El formulario original guardaba contactos pero no enviaba un correo. La nueva experiencia evita anunciar un diagnóstico o email automático que ese código no genera. Sus cinco preguntas se presentan como reflexión, sin clasificación clínica.
+
+La acción existente de evaluación omite contactos duplicados; la interfaz lo indica sin asegurar que las nuevas respuestas se guardaron. Sus retornos `_warning` se tratan como fallo de guardado, con reintento y opción de continuar sin compartir datos. En recursos, el PDF sigue disponible si falla el registro, pero el fallo se comunica.
+
+## Revisión privada en Sites
+
+Sites utiliza una copia de la aplicación adaptada a su runtime. Allí el guardado de contactos y los pagos están explícitamente desactivados, sin claves de producción ni respuestas de éxito ficticias. Es una revisión de diseño y navegación; el código de esta rama conserva las integraciones de Next.js para el despliegue original.
+
+## Validación
+
+- `npx tsc --noEmit`: correcto.
+- `npm run build`: correcto; 20 páginas generadas y rutas API conservadas.
+- No se han realizado pagos, enviado contactos reales ni modificado producción.
+- No se dispone de validación visual en navegador en este entorno. Antes de integrar, revisar la vista privada en móvil y escritorio, en especial banners de venta y formularios.
+
+## Pendientes anteriores al rediseño
+
+Los testimonios y credenciales proceden del repositorio y requieren validación editorial por Ainara. La acción de contactos conserva sus retornos de fallback y su tratamiento de duplicados; no se ha cambiado el backend. Antes de producción, comprobar el guardado en InsForge con el entorno real y las condiciones/política de privacidad del negocio. No hay emails automáticos nuevos.
+
+## Movimiento restaurado
+
+La rama original utiliza Framer Motion, no GSAP. Se recuperan el cursor con muelles, el CTA magnético, las entradas escalonadas de la portada y los reveals al entrar en el viewport, adaptados a la composición editorial. Los efectos respetan movimiento reducido y limpian sus listeners/observadores al cambiar de ruta. El contenido permanece visible si JavaScript no se ejecuta.
+
+## Revisión visual: base blanca y páginas de venta
+
+Se aclara la base a blanco y se utilizan superficies gris verdosas muy ligeras, con verde profundo reservado a acciones y acentos. La selección inicial pasa a un panel claro con tarjetas blancas. Se recuperan fotografía a color al hover, inclinación suave de imágenes y elevación de tarjetas, respetando movimiento reducido.
+
+La página principal incluye tarjetas visuales de servicios y un explorador de tres preguntas. Las cinco páginas de venta comparten lenguaje de hero, portada, tarjetas, proceso de uso y compra. Los recursos incluyen navegación a contenido, precio y preguntas, con IDs reales. La agenda muestra una ilustración de interfaz expresamente identificada como ejemplo, no una página de su PDF. Se utiliza la portada existente del cuento también en el catálogo.
+
+Referencias de interacción: Presence Card y Hover Testimonial Card de 21st.dev, con implementaciones propias basadas en Framer Motion; no se atribuye una copia exacta de esos componentes.
+
+Los testimonios conservan el contenido del repositorio. El componente admite retratos reales y fallback de iniciales si falta la foto o falla la carga. No hay retratos de clientes en los archivos disponibles, por lo que su integración requiere las fotos correspondientes y la asociación con cada testimonio. No se asignan retratos de stock a las personas citadas.
+
+Validación de esta revisión: TypeScript y ESLint de los componentes nuevos correctos; compilaciones de Next.js y Sites correctas. La aplicación de Next.js devuelve 200 en inicio, herramientas, las cinco páginas de venta y autoevaluación; todos los enlaces internos de esas páginas apuntan a IDs existentes. El navegador bloquea la URL local y la vista remota solicita autenticación, por lo que sigue pendiente la revisión visual en móvil y escritorio.
+
+## Navegación y fotografía de producto
+
+Navbar flotante blanco, borde redondeado y desenfoque, indicador animado de ruta y CTA. Se oculta al bajar y reaparece al subir; permanece visible con foco o menú abierto. El menú móvil tiene animación, navegación completa, CTA y gestión del foco. Pasa al menú móvil a 900 px para evitar comprimir los enlaces en tablet.
+
+El hero utiliza un recorte generado a partir de la fotografía real de Ainara, conservando sonrisa, ropa y pose, con transparencia y mayor tamaño. Las otras fotografías mantienen el hover a color y la inclinación. Las tarjetas de herramientas son enlaces completos, sin enlaces anidados, con foco visible y navegación a las tres landings.
+
+Nuevos archivos generados en `public/images/`: `ainara-hero-cutout.webp`, `guide-mockup.webp`, `princess-mockup.webp`, `reflection-agenda.webp`. Las portadas del libro y la guía parten de las portadas existentes y se presentan como mockups; la agenda tiene una composición conceptual expresamente etiquetada como ilustrativa, no como captura del PDF.
+
+Indicaciones utilizadas para generar los visuales: extracción transparente de la foto de Ainara sin cambiar identidad/sonrisa/ropa/pose; mockups fotográficos de las portadas de guía y cuento manteniendo títulos, autoría y arte original, con fondo transparente; composición blanca y verde suave con cuaderno abierto, bolígrafo, tablet y rama de olivo, sin texto inventado legible, para ilustrar la agenda.
+
+Se añaden dos versiones WebP de las fotos originales, sin editar su contenido: `ainara-portrait.webp` y `ainara-seated.webp`. Sustituyen en las referencias de interfaz a los originales de 1,4 MB y 6,9 MB. La prueba del runtime Sites confirmó que se entregaban los originales completos en todas las anchuras consultadas, por lo que las variantes estáticas reducen notablemente la transferencia en móvil. No se reprodujo un fallo HTTP de esas fotos.
+
+Validación de navegación y fotografía: TypeScript y ESLint correctos; Next.js (webpack) y Sites compilan. Diez rutas responden 200 en ambos runtimes, sin enlaces internos rotos ni enlaces anidados. Los tres enlaces completos de herramientas llevan a sus landings. Las seis imágenes responden como imágenes válidas en sus rutas estáticas y en solicitudes a 384, 640, 750, 828 y 1080 px (36 solicitudes por runtime). La transparencia se conserva en los WebP de hero y mockups. La revisión visual de tamaños y animaciones sigue pendiente: el navegador no abre la vista local y las vistas remotas solicitan autenticación.
+
+Se añade un fallback `noscript` para que las fotografías y el contenido que usan entradas de Framer Motion permanezcan visibles cuando JavaScript está desactivado. Con JavaScript activo se conservan sus animaciones.
+
+## Ajustes finales del hero y MITRA
+
+El retrato se reduce aproximadamente un 12%, centrado sobre un disco salvia muy suave y dos círculos de trazo fino. El movimiento lento de respiración y un punto que recorre el círculo acompañan la fotografía sin interceptar clics. El adorno `AmbientOrbit` se reutiliza en el hero, el explorador de enfoque y el bloque de plataforma. Respeta movimiento reducido y el contenedor del retrato recorta el desbordamiento de los adornos.
+
+MITRA usa tokens compartidos de dorado `#B8902E` y tinta `#1B1814` en la tarjeta del inicio, el componente `PlatformHero` de Formaciones y la banda de Herramientas. El texto oscuro mantiene contraste sobre el dorado. Se conservan `InteractiveSurface`, `PlatformHero`, botones y componentes de landing existentes.

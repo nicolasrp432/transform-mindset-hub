@@ -1,3 +1,4 @@
+import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,7 @@ import {
 } from "@/components/landing";
 import { getProduct, PRODUCTS, type ProductKey } from "@/lib/products";
 
-const BOOK_IMAGE = encodeURI("/OBTÉN LA GUÍA AHORA EN AINARACOACH.COMGUÍA.png");
+const BOOK_IMAGE = "/images/princess-mockup.webp";
 
 const BLANDA = PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA;
 const DURA = PRODUCTS.LIBRO_PRINCESA_TAPA_DURA;
@@ -166,26 +167,23 @@ export default function LibroPrincesaPage() {
             </>
           }
           visual={
-            <div className="relative overflow-hidden rounded-[1.5rem] bg-[#d2ad57] p-4 md:p-6 shadow-sm">
-              <div
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.24),transparent_45%)]"
-                aria-hidden="true"
-              />
+            <div className="product-cover-stage princess-product-stage">
               <div className="relative animate-book-float origin-center">
                 <Image
-                  width={1200}
-                  height={1600}
+                  width={1100}
+                  height={1375}
+                  sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1100px) 90vw, 550px"
                   priority
-                  className="w-full h-auto rounded-[1.25rem] shadow-2xl shadow-black/20"
+                  className="product-cover-image"
                   alt="Portada de La Princesa que perdió su corona"
                   src={BOOK_IMAGE}
                 />
               </div>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-full bg-black/55 px-4 py-2 text-white backdrop-blur-sm">
+              <div className="product-cover-caption">
                 <span className="text-sm font-medium">
                   La Princesa que perdió su corona
                 </span>
-                <span className="text-xs uppercase tracking-[0.2em] text-white/70">
+                <span className="product-cover-format">
                   Amazon
                 </span>
               </div>
@@ -210,8 +208,10 @@ export default function LibroPrincesaPage() {
           </ul>
         </LandingHero>
       </LandingSection>
+      <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#contenido">Qué incluye</a><a href="#precios">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+      <ProductJourney kind="resource" />
 
-      <LandingSection tone="surface">
+      <LandingSection tone="surface" id="contenido">
         <SectionHeading
           eyebrow="Versiones disponibles"
           title="Elige tu edición física"
@@ -278,7 +278,7 @@ export default function LibroPrincesaPage() {
         />
       </LandingSection>
 
-      <LandingSection>
+      <LandingSection id="precios">
         <PriceBand
           productKey={BLANDA.key}
           eyebrow="Compra segura"
@@ -294,7 +294,7 @@ export default function LibroPrincesaPage() {
         />
       </LandingSection>
 
-      <LandingSection tone="surface">
+      <LandingSection tone="surface" id="preguntas">
         <SectionHeading eyebrow="Preguntas frecuentes" title="Resuelve tus dudas" />
         <FaqAccordion items={FAQ} />
       </LandingSection>

@@ -1,4 +1,5 @@
 "use client";
+import TestimonialAvatar from "@/components/TestimonialAvatar";
 import React from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
@@ -41,12 +42,7 @@ const Testimonials = () => {
               </div>
               <p className="text-foreground/80 leading-relaxed italic text-balance">&ldquo;{testimonial.text}&rdquo;</p>
               <div className="flex items-center gap-4 pt-4 border-t border-border">
-                <span
-                  className="w-12 h-12 rounded-full bg-mark-soft text-mark-on-soft font-serif text-lg flex items-center justify-center shrink-0"
-                  aria-hidden="true"
-                >
-                  {initials(testimonial.name)}
-                </span>
+                <TestimonialAvatar name={testimonial.name} />
                 <p className="font-medium text-text">{testimonial.name}</p>
               </div>
             </motion.div>

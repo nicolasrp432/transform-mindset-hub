@@ -8,6 +8,7 @@ export type Testimonial = {
   name: string;
   role: string;
   stars: number;
+  photo?: string;
 };
 
 export type IconItem = { icon: LucideIcon; title: string; text: string };

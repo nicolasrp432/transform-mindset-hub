@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import AmbientOrbit from "@/components/ui/AmbientOrbit";
 
 interface PlatformHighlight {
   icon: LucideIcon;
@@ -34,15 +35,8 @@ export default function PlatformHero({
   note,
 }: PlatformHeroProps) {
   return (
-    <div className="rounded-[2rem] bg-band text-band-ink p-6 sm:p-8 md:p-14 relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute top-0 right-0 w-80 h-80 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/3"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/5 translate-y-1/2 -translate-x-1/3"
-        aria-hidden="true"
-      />
+    <div className="platform-editorial bg-band text-band-ink p-6 sm:p-8 md:p-14 relative overflow-hidden">
+      <AmbientOrbit tone="gold" />
 
       <div className="relative z-10">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_auto] lg:items-end">
@@ -50,7 +44,7 @@ export default function PlatformHero({
             <p className="text-xs uppercase tracking-[0.25em] text-band-muted mb-4">
               {eyebrow}
             </p>
-            <h2 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="text-band-ink text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
               {title}
             </h2>
             <p className="mt-6 text-band-muted text-lg max-w-2xl">{lead}</p>
@@ -62,7 +56,7 @@ export default function PlatformHero({
               target="_blank"
               rel="noopener noreferrer"
               id={ctaId}
-              className="inline-flex items-center justify-center gap-3 text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-primary rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-3 text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-band-ink rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
             >
               {ctaLabel}
               <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -76,16 +70,16 @@ export default function PlatformHero({
         </div>
 
         {highlights && highlights.length > 0 && (
-          <ul className="mt-12 grid gap-4 sm:grid-cols-3 border-t border-white/15 pt-10">
+          <ul className="platform-highlights mt-12 grid gap-4 sm:grid-cols-3 border-t pt-10">
             {highlights.map((item) => {
               const Icon = item.icon;
               return (
                 <li key={item.title}>
                   <Icon
-                    className="w-6 h-6 text-white/80 mb-3"
+                    className="w-6 h-6 text-band-ink mb-3"
                     aria-hidden="true"
                   />
-                  <h3 className="text-white text-xl">{item.title}</h3>
+                  <h3 className="text-band-ink text-xl">{item.title}</h3>
                   <p className="mt-1 text-sm text-band-muted">{item.text}</p>
                 </li>
               );

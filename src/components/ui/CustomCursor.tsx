@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 export default function CustomCursor() {
+  const reduced = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
@@ -33,7 +34,7 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    if (isTouchDevice) return;
+    if (isTouchDevice || reduced) return;
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16); // Center the 32px ring
@@ -73,24 +74,25 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, innerDotX, innerDotY, isVisible, isTouchDevice]);
+  }, [cursorX, cursorY, innerDotX, innerDotY, isVisible, isTouchDevice, reduced]);
 
-  if (isTouchDevice || !isVisible) return <></>;
+  if (isTouchDevice || reduced || !isVisible) return <></>;
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
         /* Ocultar cursor nativo a nivel global cuando el custom está activo, pero mantener hover effects orgánicos */
-        body { cursor: none; }
-        a, button, [role="button"], input, select, textarea { cursor: none !important; }
+        html, body { cursor: none; }
+        a, button, [role="button"] { cursor: none !important; }
+        input, textarea { cursor: text !important; }
       ` }} />
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
-          backgroundColor: isHovering ? "var(--color-white)" : "transparent",
-          border: isHovering ? "none" : "1px solid var(--color-white)",
+          backgroundColor: isHovering ? "white" : "transparent",
+          border: isHovering ? "none" : "1px solid white",
         }}
         animate={{
           scale: isHovering ? 1.5 : 1,

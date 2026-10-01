@@ -19,7 +19,7 @@ export default function FeatureGrid({ items, columns = 4 }: FeatureGridProps) {
         return (
           <div
             key={item.title}
-            className="bg-white rounded-2xl p-6 border border-border shadow-sm text-center hover:shadow-md transition-shadow duration-300"
+            className="sales-feature-card bg-white rounded-2xl p-6 border border-border shadow-sm text-center hover:shadow-md transition-shadow duration-300"
           >
             <div className="w-14 h-14 rounded-2xl bg-mark-soft flex items-center justify-center mx-auto mb-4">
               <Icon

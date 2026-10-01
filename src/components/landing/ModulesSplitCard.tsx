@@ -18,7 +18,7 @@ export default function ModulesSplitCard({
   modules,
 }: ModulesSplitCardProps) {
   return (
-    <article className="rounded-[2rem] bg-white border border-border p-8 shadow-sm">
+    <article className="sales-module-card rounded-[2rem] bg-white border border-border p-8 shadow-sm">
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] items-center">
         <div>
           <p className="text-xs uppercase tracking-[0.25em] text-mark-on-soft mb-3">
