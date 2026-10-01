@@ -19,7 +19,7 @@ export function Footer() {
             <p className="eyebrow">EXPLORAR</p>
             <Link href="/">Inicio</Link>
             <Link href="/sesiones">Sesiones 1:1</Link>
-            <Link href="/evaluacion">Autoevaluación</Link>
+            <Link href="/evaluacion">Primer contacto</Link>
             <Link href="/herramientas">Herramientas</Link>
             <Link href="/formaciones">Formaciones</Link>
           </nav>
@@ -32,8 +32,8 @@ export function Footer() {
             >
               WhatsApp · +34 692 627 353
             </a>
-            <a href="mailto:ainaracoachpnl@gmail.com">
-              ainaracoachpnl@gmail.com
+            <a href={`mailto:${CONTACT_LINKS.email}`}>
+              {CONTACT_LINKS.email}
             </a>
             <a
               href="https://www.instagram.com/ainaracoach/"

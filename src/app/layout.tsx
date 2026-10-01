@@ -26,6 +26,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico", sizes: "any" }] },
   title: {
     default: "Ainara · Claridad Emocional",
     template: "%s | Ainara · Claridad Emocional",

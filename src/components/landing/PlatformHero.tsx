@@ -56,7 +56,7 @@ export default function PlatformHero({
               target="_blank"
               rel="noopener noreferrer"
               id={ctaId}
-              className="inline-flex items-center justify-center gap-3 text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-band-ink rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
+              className="platform-cta inline-flex items-center justify-center gap-3 text-center px-6 sm:px-10 py-4 sm:py-5 bg-white text-band-ink rounded-full text-sm font-medium tracking-wide shadow-lg transition-all duration-300 hover:gap-4 hover:-translate-y-0.5"
             >
               {ctaLabel}
               <ArrowUpRight className="w-4 h-4 shrink-0" aria-hidden="true" />
