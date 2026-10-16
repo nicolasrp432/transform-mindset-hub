@@ -745,7 +745,10 @@ Me gustaría hablar contigo sobre esto.`;
   }, [screen, step]);
 
   return (
-    <div className="min-h-screen bg-[#F8F6F4] text-[#2E2B28] font-sans selection:bg-[#D0C4B0] selection:text-[#2E2B28] relative">
+    <div
+      style={{ colorScheme: "light" }}
+      className="min-h-screen bg-[#F8F6F4] text-[#2E2B28] font-sans selection:bg-[#D0C4B0] selection:text-[#2E2B28] relative"
+    >
       {/* Fondo editorial con atmósfera de luz */}
       <div
         className="fixed inset-0 pointer-events-none -z-10"
@@ -893,13 +896,17 @@ Me gustaría hablar contigo sobre esto.`;
 
                 <h2
                   ref={headingRef}
-                  className="font-serif text-2xl sm:text-3xl leading-snug text-[#2E2B28] mt-2 text-balance"
+                  style={{ color: "#111111" }}
+                  className="font-serif text-2xl sm:text-3xl leading-snug text-[#111111] font-medium mt-2 text-balance"
                 >
                   {PREGUNTAS[step].t}
                 </h2>
 
                 {PREGUNTAS[step].p && (
-                  <p className="text-sm text-[#8A8070] italic mt-2">
+                  <p
+                    style={{ color: "#4A4540" }}
+                    className="text-sm text-[#4A4540] font-medium italic mt-2"
+                  >
                     {PREGUNTAS[step].p}
                   </p>
                 )}
@@ -917,26 +924,31 @@ Me gustaría hablar contigo sobre esto.`;
                       role="radio"
                       aria-checked={isSelected}
                       onClick={() => handleSelectOption(opValor)}
-                      className={`w-full flex items-center gap-4 p-4 text-left rounded-xl border transition-all duration-200 cursor-pointer ${
+                      style={{ color: "#111111" }}
+                      className={`w-full flex items-center gap-4 p-4 text-left rounded-xl border-2 transition-all duration-200 cursor-pointer text-[#111111] ${
                         isSelected
-                          ? "bg-[#6F4E35] border-[#6F4E35] text-white shadow-md"
-                          : "bg-white border-[#E5DFD9] text-[#2E2B28] hover:border-[#D0C4B0] hover:bg-[#FAF8F5] shadow-xs"
+                          ? "bg-[#F5EFE9] border-[#6F4E35] shadow-md ring-2 ring-[#6F4E35]/25"
+                          : "bg-white border-[#D8D2CC] hover:border-[#6F4E35] hover:bg-[#FAF7F4] shadow-xs"
                       }`}
                     >
                       <span
-                        className={`w-7 h-7 rounded-lg text-xs font-bold flex items-center justify-center shrink-0 border ${
-                          isSelected
-                            ? "bg-white text-[#6F4E35] border-white"
-                            : "bg-[#F3EFEA] text-[#8A8070] border-[#E5DFD9]"
-                        }`}
+                        style={{
+                          backgroundColor: isSelected ? "#6F4E35" : "#EAE4DC",
+                          color: isSelected ? "#FFFFFF" : "#111111",
+                          borderColor: isSelected ? "#6F4E35" : "#C4B8AA",
+                        }}
+                        className="w-8 h-8 rounded-lg text-sm font-extrabold flex items-center justify-center shrink-0 border-2 transition-colors"
                       >
                         {isSelected ? (
-                          <Check className="w-4 h-4 stroke-[2.5]" />
+                          <Check className="w-4 h-4 stroke-[3] text-white" />
                         ) : (
                           LETRAS[idx]
                         )}
                       </span>
-                      <span className="text-base sm:text-lg leading-snug">
+                      <span
+                        style={{ color: "#111111" }}
+                        className="text-base sm:text-lg leading-snug font-semibold text-[#111111]"
+                      >
                         {opTexto}
                       </span>
                     </button>
