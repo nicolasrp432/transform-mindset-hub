@@ -13,6 +13,7 @@ import { FloatingContact } from "@/components/FloatingContact";
    ============================================================ */
 
 const FUNNEL_ROUTES = [
+  "/entre-tu-y-yo",
   "/re-conectate",
   "/emulsion-energetica",
   "/herramientas",
@@ -67,7 +68,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
           transform: none !important;
         }
       `}</style></noscript>
-      <div className={isSalesLanding ? "sales-landing" : undefined}>
+      <div className={isSalesLanding ? "sales-landing" : pathname === "/entre-tu-y-yo" ? "memory-book-shell" : undefined}>
         <CustomCursor />
         <EditorialMotion />
         <Navbar />

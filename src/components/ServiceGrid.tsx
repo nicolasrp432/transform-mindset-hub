@@ -5,7 +5,7 @@ import InteractiveSurface from "@/components/ui/InteractiveSurface";
 const services = [
  { title: "Sesiones 1:1", detail: "UNA CONVERSACIÓN CONTIGO", description: "Un espacio privado para explorar tus bloqueos, tus patrones y esas decisiones que sigues posponiendo.", href: "/sesiones", action: "Conocer las sesiones", image: "/images/ainara-seated.webp", alt: "Ainara en su espacio de trabajo" },
  { title: "Formaciones", detail: "APRENDE A TU RITMO", description: "Procesos guiados de autoconocimiento. Explora los programas y la plataforma MITRA.", href: "/formaciones", action: "Ver las formaciones" },
- { title: "Herramientas", detail: "PEQUEÑOS ESPACIOS PARA TI", description: "Una guía práctica, una agenda de reflexión, una historia. Recursos para llevar contigo.", href: "/herramientas", action: "Explorar los recursos", image: "/images/guide-mockup.webp", alt: "Guía práctica de Ainara" },
+ { title: "Herramientas", detail: "PEQUEÑOS ESPACIOS PARA TI", description: "Una guía, una agenda, una historia y un libro para conversar con mamá. Recursos para ti y para compartir.", href: "/herramientas", action: "Explorar los recursos", image: "/images/guide-mockup.webp", alt: "Guía práctica de Ainara" },
 ];
 export default function ServiceGrid() {
  return <section className="services-editorial" aria-labelledby="services-heading"><div className="editorial-wrap"><div className="services-heading"><p className="eyebrow">03 / CÓMO PUEDO ACOMPAÑARTE</p><h2 id="services-heading">Distintas formas de empezar.<br /><em>Un mismo espacio para ti.</em></h2></div>

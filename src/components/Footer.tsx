@@ -21,6 +21,7 @@ export function Footer() {
             <Link href="/sesiones">Sesiones 1:1</Link>
             <Link href="/evaluacion">Primer contacto</Link>
             <Link href="/herramientas">Herramientas</Link>
+            <Link href="/entre-tu-y-yo">Entre tú y yo · Mamá</Link>
             <Link href="/formaciones">Formaciones</Link>
           </nav>
           <div className="footer-contact">
