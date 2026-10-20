@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@media (max-width: 700px) {
+  .memory-book-shell .editorial-footer { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+}
+
 /* ============================================================
    AINARA COACHING — "Silencio Arquitectónico" Design System
    Tokens de diseño: colores, tipografía, espaciado, radios.

@@ -10,7 +10,7 @@ const links = [
   { name: "Herramientas", href: "/herramientas" },
   { name: "Formaciones", href: "/formaciones" },
 ];
-const resources = ["/herramientas", "/guia-practica", "/agenda-reflexion", "/libro-princesa"];
+const resources = ["/herramientas", "/guia-practica", "/agenda-reflexion", "/libro-princesa", "/entre-tu-y-yo"];
 const programs = ["/formaciones", "/re-conectate", "/emulsion-energetica"];
 export function Navbar() {
   const [open, setOpen] = useState(false);

@@ -8,6 +8,7 @@ import {
   CalendarHeart,
   FileText,
   Download,
+  BookOpen,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +16,7 @@ import { LeadMagnetSchema, type LeadMagnetInput } from "@/lib/validations";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import { submitLeadMagnet } from "@/app/actions/lead";
 import { PLATFORM_LOGIN_URL, PLATFORM_NAME, PRODUCTS } from "@/lib/products";
+import { MEMORY_BOOK } from "@/lib/memory-book";
 const ecosystemItems = [
   {
     title: "Guía Práctica",
@@ -25,6 +27,9 @@ const ecosystemItems = [
     href: PRODUCTS.GUIA_PRACTICA.href,
     price: `desde ${PRODUCTS.GUIA_PRACTICA.displayPrice}`,
     badge: "Más vendido",
+    image: "/images/guide-mockup.webp",
+    alt: "Guía práctica de Ainara",
+    category: "GUÍA PRÁCTICA",
   },
   {
     title: "Agenda de Reflexión",
@@ -35,9 +40,12 @@ const ecosystemItems = [
     href: PRODUCTS.AGENDA_REFLEXION.href,
     price: PRODUCTS.AGENDA_REFLEXION.displayPrice,
     badge: "Nuevo",
+    image: "/images/reflection-agenda.webp",
+    alt: "Visual ilustrativo de la agenda de reflexión",
+    category: "REFLEXIÓN DIARIA",
   },
   {
-    title: "Libro: La Princesa...",
+    title: "La Princesa que Perdió su Corona",
     description:
       "Un cuento inspirador sobre el empoderamiento femenino y la sanación de heridas del pasado.",
     icon: Crown,
@@ -45,6 +53,21 @@ const ecosystemItems = [
     href: PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.href,
     price: `desde ${PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.displayPrice}`,
     badge: "Edición física",
+    image: "/images/princess-mockup.webp",
+    alt: "La Princesa que perdió su corona",
+    category: "LECTURA",
+  },
+  {
+    title: MEMORY_BOOK.title,
+    description: "Mamá, quiero conocerte. Un libro para conversar y escribir entre dos: 48 preguntas, 8 encuentros y espacio para vuestras dos voces.",
+    icon: BookOpen,
+    action: "Descubrir el libro",
+    href: MEMORY_BOOK.href,
+    price: MEMORY_BOOK.status,
+    badge: "Próximamente",
+    image: "/images/entre-tu-y-yo/catalog.webp",
+    alt: "Portada de Entre tú y yo · Mamá, quiero conocerte, de Ainara Coach. Visualización digital.",
+    category: "CONVERSAR Y ESCRIBIR ENTRE DOS",
   },
 ];
 
@@ -102,24 +125,21 @@ export default function HerramientasPage() {
         aria-label="Recursos de Ainara"
       >
         {ecosystemItems.map((item, i) => (
-          <Link key={item.title} href={item.href} className="resource-card resource-card-link" aria-label={`${item.title}: ver contenido y opciones de compra`}>
+          <Link key={item.title} href={item.href} className="resource-card resource-card-link" aria-label={`${item.title}: ${item.action}`}>
             <div className={`resource-cover resource-cover-${i}`}>
-              <Image src={i === 0 ? "/images/guide-mockup.webp" : i === 1 ? "/images/reflection-agenda.webp" : "/images/princess-mockup.webp"}
-                alt={i === 0 ? "Guía práctica de Ainara" : i === 1 ? "Visual ilustrativo de la agenda de reflexión" : "La Princesa que perdió su corona"}
+              <Image src={item.image}
+                alt={item.alt}
                 fill sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 400px" />
               {i === 1 && <span className="resource-image-caption">Visual ilustrativo</span>}
+              {item.href === MEMORY_BOOK.href && <span className="resource-image-caption">Próximamente · Visualización digital</span>}
             </div>
             <div className="resource-card-body">
               <p className="eyebrow">
                 0{i + 1} /{" "}
-                {i === 1
-                  ? "REFLEXIÓN DIARIA"
-                  : i === 2
-                    ? "LECTURA"
-                    : "GUÍA PRÁCTICA"}
+                {item.category}
               </p>
               <h2>
-                {i === 2 ? "La Princesa que Perdió su Corona" : item.title}
+                {item.title}
               </h2>
               <p>{item.description}</p>
               <div className="resource-card-bottom">
