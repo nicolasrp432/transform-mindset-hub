@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Check, ChevronLeft, ChevronRight, Mail, Music2, RotateCcw } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, BookOpen, Check, ChevronLeft, Mail, Music2, RotateCcw } from "lucide-react";
 import { CONTACT_LINKS } from "@/lib/assistant-knowledge";
 import { BOOK_ENCOUNTERS, MEMORY_BOOK } from "@/lib/memory-book";
 import styles from "./memory-book.module.css";
+import BookPreview from "./BookPreview";
 
 const message = "Hola Ainara, me interesa el libro Entre tú y yo · Mamá, quiero conocerte. ¿Podrías avisarme por aquí cuando confirméis el precio y la fecha de lanzamiento? Gracias.";
 const whatsapp = `https://wa.me/${CONTACT_LINKS.whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -23,12 +24,7 @@ const faqs = [
 export default function MemoryBookLanding() {
   const [back, setBack] = useState(false);
   const [encounter, setEncounter] = useState(1);
-  const [spread, setSpread] = useState(0);
   const selected = BOOK_ENCOUNTERS[encounter];
-  const spreads = [
-    { images: ["page-040.webp", "page-041.webp"], name: "Una pregunta. Dos maneras de recordarla.", caption: "A la izquierda, la historia de mamá. A la derecha, lo que descubre quien escucha." },
-    { images: ["page-006.webp", "page-007.webp"], name: "Antes de empezar, podéis elegir.", caption: "Música si os apetece, permiso para pasar y un ritmo que os resulte cómodo." },
-  ];
   return <main className={styles.page}>
     <section className={styles.hero} aria-labelledby="book-title">
       <div className={styles.heroCopy}>
@@ -64,8 +60,7 @@ export default function MemoryBookLanding() {
 
     <section id="por-dentro" className={styles.inside} aria-labelledby="inside-heading">
       <div className={styles.sectionHead}><div><p className={styles.eyebrow}>01 / ASÍ SE VE POR DENTRO</p><h2 id="inside-heading">Su historia.<br /><em>Tu manera de escucharla.</em></h2></div><p>No tienes que improvisar una entrevista. Cada pregunta trae espacio para escribir, escuchar y seguir conversando.</p></div>
-      <div className={styles.spread} aria-label={spreads[spread].name}>{spreads[spread].images.map((src, i) => <Image key={src} src={`/images/entre-tu-y-yo/${src}`} alt={spread === 0 ? (i === 0 ? "Pregunta 09: ¿Qué versión de ti conocieron tus amistades de entonces que yo apenas conozco? Espacio para la historia de mamá." : "Página de quien escucha, con espacio para guardar una frase de mamá y seguir conversando.") : (i === 0 ? "Página de instrucciones: cómo conversar y escribir entre dos." : "Acuerdos para conversar: elegir, pasar y cuidar lo que compartimos.")} width={680} height={960} sizes="(max-width: 700px) 46vw, 430px" />)}</div>
-      <div className={styles.spreadControls}><button onClick={() => setSpread((spread + 1) % 2)} aria-label="Ver muestra anterior"><ChevronLeft /></button><p aria-live="polite">{spreads[spread].caption}<small>Muestra real de la maqueta · {spread + 1} / 2</small></p><button onClick={() => setSpread((spread + 1) % 2)} aria-label="Ver muestra siguiente"><ChevronRight /></button></div>
+      <BookPreview />
     </section>
 
     <section className={styles.questions} aria-labelledby="questions-heading">
