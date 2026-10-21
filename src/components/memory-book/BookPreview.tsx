@@ -73,9 +73,10 @@ export default function BookPreview() {
   }
   const target = index + (direction ?? 0);
   function page(sample: number, side: number, decorative = false) {
-    return <Image src={`/images/entre-tu-y-yo/${samples[sample].pages[side]}`} alt={decorative ? "" : samples[sample].descriptions[side]} fill sizes="(max-width: 700px) 46vw, 430px" draggable={false} />;
+    return <Image src={`/images/entre-tu-y-yo/${samples[sample].pages[side]}`} alt={decorative ? "" : samples[sample].descriptions[side]} fill unoptimized loading="eager" draggable={false} />;
   }
   return <div className={styles.preview}>
+    {samples.flatMap(sample => sample.pages).map(src => <link key={src} rel="preload" as="image" href={`/images/entre-tu-y-yo/${src}`} />)}
     <p className={styles.hint} id="book-gesture-help">Desliza una hoja desde el borde hacia el otro lado, o utiliza las flechas.</p>
     <div className={styles.openBook} tabIndex={0} role="group" aria-label="Muestra interactiva del interior del libro" aria-describedby="book-gesture-help" onKeyDown={event => {
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); turn(event.key === "ArrowRight" ? 1 : -1); }
