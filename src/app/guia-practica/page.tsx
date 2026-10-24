@@ -1,6 +1,8 @@
 import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
-import Image from "next/image";
+import BookShowcase from "@/components/products/BookShowcase";
+import BookPreview from "@/components/memory-book/BookPreview";
+import { GUIDE_SAMPLES } from "@/lib/product-samples";
 import {
   ArrowRight,
   BadgeCheck,
@@ -202,24 +204,16 @@ export default function GuiaPracticaPage() {
             </>
           }
           visual={
-            <div className="product-cover-stage guide-product-stage">
-              <div className="relative animate-book-float origin-center">
-                <Image
-                  width={1024}
-                  height={1536}
-                  sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1100px) 90vw, 550px"
-                  priority
-                  className="product-cover-image"
-                  alt="Portada de la Guía Práctica de Transformación Integral"
-                  src="/images/guide-mockup.webp"
-                />
-              </div>
-            </div>
+            <BookShowcase product="guide" priority />
           }
         />
       </LandingSection>
       <nav className="sales-section-nav container-editorial" aria-label="Secciones de este recurso"><a href="#contenido">Qué incluye</a><a href="#precios">Formatos y precio</a><a href="#preguntas">Preguntas frecuentes</a></nav>
       <ProductJourney kind="resource" />
+      <LandingSection>
+        <SectionHeading eyebrow="PÁGINAS REALES" title="Antes de elegirla, ábrela." />
+        <div className="max-w-4xl mx-auto"><BookPreview samples={GUIDE_SAMPLES} basePath="/images/products" aspectRatio="792 / 612" /></div>
+      </LandingSection>
 
       <LandingSection tone="surface">
         <SectionHeading

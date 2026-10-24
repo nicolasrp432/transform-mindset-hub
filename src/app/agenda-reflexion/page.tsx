@@ -171,6 +171,7 @@ const secondaryLink =
 export default function AgendaReflexionPage() {
   return (
     <main data-accent="verde" className="has-sticky-cta">
+      <div className="container-editorial text-sm text-text-muted pt-8 pb-4">Estás viendo la edición digital actual. <Link href="/agenda-2027" className="underline">Descubre también la nueva agenda anual 2027 →</Link></div>
       <OfferBanner>
         🌿 Oferta especial: acceso inmediato a la Agenda Digital —{" "}
         <strong>{AGENDA.displayPrice}</strong>

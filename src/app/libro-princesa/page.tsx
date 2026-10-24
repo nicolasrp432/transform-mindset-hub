@@ -1,6 +1,6 @@
 import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
-import Image from "next/image";
+import BookShowcase from "@/components/products/BookShowcase";
 import Link from "next/link";
 import {
   BadgeCheck,
@@ -29,8 +29,6 @@ import {
   type TrustItem,
 } from "@/components/landing";
 import { getProduct, PRODUCTS, type ProductKey } from "@/lib/products";
-
-const BOOK_IMAGE = "/images/princess-mockup.webp";
 
 const BLANDA = PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA;
 const DURA = PRODUCTS.LIBRO_PRINCESA_TAPA_DURA;
@@ -167,27 +165,7 @@ export default function LibroPrincesaPage() {
             </>
           }
           visual={
-            <div className="product-cover-stage princess-product-stage">
-              <div className="relative animate-book-float origin-center">
-                <Image
-                  width={1100}
-                  height={1375}
-                  sizes="(max-width: 760px) calc(100vw - 80px), (max-width: 1100px) 90vw, 550px"
-                  priority
-                  className="product-cover-image"
-                  alt="Portada de La Princesa que perdió su corona"
-                  src={BOOK_IMAGE}
-                />
-              </div>
-              <div className="product-cover-caption">
-                <span className="text-sm font-medium">
-                  La Princesa que perdió su corona
-                </span>
-                <span className="product-cover-format">
-                  Amazon
-                </span>
-              </div>
-            </div>
+            <BookShowcase product="princess" priority />
           }
         >
           <p className="text-sm text-text-muted">
