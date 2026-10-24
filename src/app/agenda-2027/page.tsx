@@ -18,7 +18,7 @@ const contact = `https://wa.me/${CONTACT_LINKS.whatsappNumber}?text=${encodeURIC
 const volumes = ["Enero — marzo", "Abril — junio", "Julio — septiembre", "Octubre — diciembre"];
 
 export default function Agenda2027Page() {
-  return <main className="sales-landing">
+  return <main data-accent="verde">
     <LandingSection className="relative overflow-hidden">
       <LandingHero badge="AGENDA 2027 · PRÓXIMAMENTE" title={<>Haz espacio para tus planes.<br /><em>Y para ti.</em></>}
         lead="No todo lo importante cabe en una lista de tareas. Una agenda para organizar lo cotidiano, observar cómo te sientes y reservar un momento para escucharte."

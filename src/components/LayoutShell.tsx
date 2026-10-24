@@ -21,6 +21,7 @@ const FUNNEL_ROUTES = [
   "/guia-practica",
   "/libro-princesa",
   "/agenda-reflexion",
+  "/agenda-2027",
 ];
 
 const SALES_LANDING_ROUTES = [
@@ -29,6 +30,7 @@ const SALES_LANDING_ROUTES = [
   "/guia-practica",
   "/libro-princesa",
   "/agenda-reflexion",
+  "/agenda-2027",
 ];
 
 const STANDALONE_ROUTES = ["/test", "/mapa", "/punto"];
