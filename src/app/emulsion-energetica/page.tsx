@@ -1,6 +1,6 @@
 import ProductJourney from "@/components/landing/ProductJourney";
 import type { Metadata } from "next";
-import Image from "next/image";
+import ProgramShowcase from "@/components/products/ProgramShowcase";
 import Link from "next/link";
 import {
   BadgeCheck,
@@ -87,16 +87,7 @@ export default function EmulsionEnergeticaPage() {
             </>
           }
           visual={
-            <div className="relative overflow-hidden rounded-[1.5rem] aspect-[4/5]">
-              <Image
-                src="/images/ainara-portrait.webp"
-                alt="Ainara, autora de la formación Emulsión Energética"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 32rem"
-                className="object-cover"
-              />
-            </div>
+            <ProgramShowcase title="Emulsión Energética" detail="8 lecciones para explorar una nueva mirada sobre ti." />
           }
         />
       </LandingSection>

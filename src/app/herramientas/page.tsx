@@ -10,7 +10,8 @@ import {
   Download,
   BookOpen,
 } from "lucide-react";
-import Image from "next/image";
+import BookShowcase from "@/components/products/BookShowcase";
+import type { BookVisualKey } from "@/lib/product-visuals";
 import Link from "next/link";
 import { LeadMagnetSchema, type LeadMagnetInput } from "@/lib/validations";
 import { FloatingInput } from "@/components/ui/FloatingInput";
@@ -19,28 +20,28 @@ import { PLATFORM_LOGIN_URL, PLATFORM_NAME, PRODUCTS } from "@/lib/products";
 import { MEMORY_BOOK } from "@/lib/memory-book";
 const ecosystemItems = [
   {
-    title: "Guía Práctica",
+    title: "Guía integral de transformación",
     description:
-      "Método de 21 días para reducir ansiedad, ordenar tus emociones y reconectar con tu poder interior.",
+      "Lecturas y ejercicios para explorar tu autoestima, tu bienestar y tu inteligencia emocional. Un espacio para pasar de la reflexión a la práctica.",
     icon: FileText,
     action: "Adquirir guía",
     href: PRODUCTS.GUIA_PRACTICA.href,
     price: `desde ${PRODUCTS.GUIA_PRACTICA.displayPrice}`,
     badge: "Más vendido",
-    image: "/images/guide-mockup.webp",
+    product: "guide",
     alt: "Guía práctica de Ainara",
     category: "GUÍA PRÁCTICA",
   },
   {
-    title: "Agenda de Reflexión",
+    title: "Agenda de reflexiones 2027",
     description:
-      "Un espacio diario íntimo de crecimiento personal para practicar gratitud y reconectar contigo misma.",
+      "Un año para organizarte y escucharte. Cuatro tomos trimestrales con fechas, reflexión diaria y un cuaderno de recursos.",
     icon: CalendarHeart,
     action: "Explorar agenda",
-    href: PRODUCTS.AGENDA_REFLEXION.href,
-    price: PRODUCTS.AGENDA_REFLEXION.displayPrice,
+    href: "/agenda-2027",
+    price: "Próximamente",
     badge: "Nuevo",
-    image: "/images/reflection-agenda.webp",
+    product: "agenda",
     alt: "Visual ilustrativo de la agenda de reflexión",
     category: "REFLEXIÓN DIARIA",
   },
@@ -53,7 +54,7 @@ const ecosystemItems = [
     href: PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.href,
     price: `desde ${PRODUCTS.LIBRO_PRINCESA_TAPA_BLANDA.displayPrice}`,
     badge: "Edición física",
-    image: "/images/princess-mockup.webp",
+    product: "princess",
     alt: "La Princesa que perdió su corona",
     category: "LECTURA",
   },
@@ -65,7 +66,7 @@ const ecosystemItems = [
     href: MEMORY_BOOK.href,
     price: MEMORY_BOOK.status,
     badge: "Próximamente",
-    image: "/images/entre-tu-y-yo/catalog.webp",
+    product: "memory",
     alt: "Portada de Entre tú y yo · Mamá, quiero conocerte, de Ainara Coach. Visualización digital.",
     category: "CONVERSAR Y ESCRIBIR ENTRE DOS",
   },
@@ -126,13 +127,7 @@ export default function HerramientasPage() {
       >
         {ecosystemItems.map((item, i) => (
           <Link key={item.title} href={item.href} className="resource-card resource-card-link" aria-label={`${item.title}: ${item.action}`}>
-            <div className={`resource-cover resource-cover-${i}`}>
-              <Image src={item.image}
-                alt={item.alt}
-                fill sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 400px" />
-              {i === 1 && <span className="resource-image-caption">Visual ilustrativo</span>}
-              {item.href === MEMORY_BOOK.href && <span className="resource-image-caption">Próximamente · Visualización digital</span>}
-            </div>
+            <BookShowcase product={item.product as BookVisualKey} compact priority={i < 2} />
             <div className="resource-card-body">
               <p className="eyebrow">
                 0{i + 1} /{" "}
@@ -150,6 +145,10 @@ export default function HerramientasPage() {
           </Link>
         ))}
       </section>
+      <div className="editorial-wrap pb-12 text-sm text-text-muted">
+        ¿Buscas la agenda digital actual? <Link href={PRODUCTS.AGENDA_REFLEXION.href} className="editorial-link">Agenda de Reflexión — {PRODUCTS.AGENDA_REFLEXION.displayPrice}</Link>
+        <p className="mt-2">Es una edición distinta de la agenda anual 2027, todavía en preparación.</p>
+      </div>
       <section className="resource-platform">
         <div className="editorial-wrap">
           <div>

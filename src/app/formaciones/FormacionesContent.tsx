@@ -13,6 +13,7 @@ import {
 import { fadeUp, stagger } from "@/lib/animations";
 import TextReveal from "@/components/ui/TextReveal";
 import PlatformHero from "@/components/landing/PlatformHero";
+import ProgramShowcase from "@/components/products/ProgramShowcase";
 import {
   getProduct,
   getValueStackTotal,
@@ -144,6 +145,7 @@ export default function FormacionesContent() {
                     aria-hidden="true"
                   />
 
+                  <ProgramShowcase title={product.shortName ?? product.name} detail={course.id === "reconectate" ? "6 semanas de contenido y materiales" : "8 lecciones para explorar a tu ritmo"} />
                   <div className="flex items-start justify-between">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center"

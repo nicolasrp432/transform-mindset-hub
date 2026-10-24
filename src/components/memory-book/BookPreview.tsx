@@ -1,19 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useId, useRef, useState, type PointerEvent } from "react";
 import Image from "next/image";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./book-preview.module.css";
 
-const samples = [
+const defaultSamples = [
   { pages: ["page-006.webp", "page-007.webp"], title: "Antes de empezar, podéis elegir.", caption: "Música si os apetece, permiso para pasar y un ritmo que os resulte cómodo.", descriptions: ["Cómo conversar y escribir entre dos", "Acuerdos para conversar y cuidar lo que compartimos"] },
   { pages: ["page-040.webp", "page-041.webp"], title: "Una pregunta. Dos maneras de recordarla.", caption: "A la izquierda, la historia de mamá. A la derecha, lo que descubre quien escucha.", descriptions: ["Pregunta 09: ¿Qué versión de ti conocieron tus amistades de entonces que yo apenas conozco?", "Espacio de quien escucha para guardar una frase de mamá y seguir conversando"] },
 ];
 type Direction = -1 | 1;
 type Gesture = { x: number; y: number; width: number; direction: Direction; progress: number; id: number };
 
-export default function BookPreview() {
+export type BookSample = { pages: string[]; title: string; caption: string; descriptions: string[] };
+export default function BookPreview({ samples = defaultSamples, basePath = "/images/entre-tu-y-yo", aspectRatio = "340 / 240" }: { samples?: BookSample[]; basePath?: string; aspectRatio?: string }) {
+  const helpId = useId();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<Direction | null>(null);
   const progress = useMotionValue(0);
@@ -73,12 +75,11 @@ export default function BookPreview() {
   }
   const target = index + (direction ?? 0);
   function page(sample: number, side: number, decorative = false) {
-    return <Image src={`/images/entre-tu-y-yo/${samples[sample].pages[side]}`} alt={decorative ? "" : samples[sample].descriptions[side]} fill unoptimized loading="eager" draggable={false} />;
+    return <Image src={`${basePath}/${samples[sample].pages[side]}`} alt={decorative ? "" : samples[sample].descriptions[side]} fill unoptimized loading="eager" draggable={false} />;
   }
   return <div className={styles.preview}>
-    {samples.flatMap(sample => sample.pages).map(src => <link key={src} rel="preload" as="image" href={`/images/entre-tu-y-yo/${src}`} />)}
-    <p className={styles.hint} id="book-gesture-help">Desliza una hoja desde el borde hacia el otro lado, o utiliza las flechas.</p>
-    <div className={styles.openBook} tabIndex={0} role="group" aria-label="Muestra interactiva del interior del libro" aria-describedby="book-gesture-help" onKeyDown={event => {
+    <p className={styles.hint} id={helpId}>Desliza una hoja desde el borde hacia el otro lado, o utiliza las flechas.</p>
+    <div className={styles.openBook} style={{ aspectRatio }} tabIndex={0} role="group" aria-label="Muestra interactiva del interior del libro" aria-describedby={helpId} onKeyDown={event => {
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); turn(event.key === "ArrowRight" ? 1 : -1); }
     }} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={cancel} onLostPointerCapture={cancel}>
       <div className={`${styles.fixedPage} ${styles.leftPage}`}>{page(direction === -1 && !reduceMotion ? target : index, 0)}</div>
