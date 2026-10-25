@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: { "/api/recursos/primer-paso": ["./private-resources/de-la-pausa-al-primer-paso.pdf"] },
   images: {
     remotePatterns: [
       {
