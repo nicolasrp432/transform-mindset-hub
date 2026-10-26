@@ -6,23 +6,25 @@ El usuario eligió Neon + Brevo. Se reutiliza el proyecto Neon `ainara` (`late-l
 
 El nuevo código del cuaderno utiliza `pg` y `@vercel/functions`, con `WORKBOOK_DATABASE_URL` exclusivamente de servidor. La evaluación general sigue usando InsForge y no está migrada. No borrar sus variables ni su SDK todavía.
 
-**Bloqueo de permisos:** el rol `ainara_capture`, creado por la API de Neon en preview, heredó `neon_superuser`, CREATEDB, CREATEROLE y BYPASSRLS. El intento de retirar esa pertenencia fue rechazado. No se conectó ese rol a la web ni se extrajeron sus credenciales; la transacción de migración se revirtió y se comprobó que `workbook_requests` no existe. El rol permanece sin utilizar en preview. No emplearlo como credencial de aplicación.
+El rol anterior `ainara_capture`, creado por la API de Neon en preview, heredó privilegios administrativos. Permanece sin utilizar; no emplearlo como credencial de aplicación.
 
-Siguiente paso, pendiente de autorización: crear mediante SQL un rol nuevo `ainara_ingest` limitado (sin pertenencia a neon_superuser, sin CREATEDB, CREATEROLE ni BYPASSRLS). La migración `db/neon/001_workbook_requests.sql` comprueba esa precondición y falla de forma cerrada. Probar INSERT autorizado y SELECT/UPDATE/DELETE denegados antes de configurar Vercel. No se ha aplicado a producción.
+Tras autorización explícita se creó por SQL `ainara_ingest`, sin pertenencia a neon_superuser y sin privilegios administrativos, y se aplicó `db/neon/001_workbook_requests.sql` a preview. El catálogo confirmó los atributos restringidos. No se ha aplicado a producción. La prueba de conexión local falló por DNS (`EAI_AGAIN`); la consola administradora no permite `SET LOCAL ROLE ainara_ingest`. No se ampliaron permisos para eludir esa restricción. Falta probar el INSERT desde la propia aplicación usando su conexión configurada.
 
-Configurar `WORKBOOK_DATABASE_URL` y `LEAD_DOWNLOAD_SECRET` por separado para Preview (solo rama git `feat/free-workbook-leads`) y Production. No sobrescribir una DATABASE_URL de otro flujo. La integración Brevo aún NO está programada ni activa: requiere una clave API restringida, listas, remitente validado y confirmación de correo; el usuario confirmó haber creado la cuenta. Guardar su clave como `BREVO_API_KEY` sensible en Vercel, nunca en git ni en el chat. No enviar campañas automáticamente por crear contactos.
+`WORKBOOK_DATABASE_URL` y `LEAD_DOWNLOAD_SECRET` están guardadas como secretos en Vercel Preview, solo para la rama git `feat/free-workbook-leads`. Producción sigue pendiente y deberá usar valores independientes. No se sobrescribió la configuración de otros flujos. `BREVO_API_KEY` existe como secreto; se amplió su destino de Production a Preview sin leer su valor. Su presencia NO acredita que la clave funcione. La integración Brevo aún NO está programada ni activa: faltan lista, plantilla de doble confirmación y remitente validado. No enviar campañas automáticamente por crear contactos.
+
+Preview del commit `a39127e`: despliegue `dpl_EMo8dVzYaTn8ew5TfZ89q6nwThdq`, estado READY, build 33 segundos. `/herramientas` devuelve HTTP 200. La herramienta de navegador agotó el tiempo de conexión; no se acreditó el recorrido formulario → INSERT → descarga. Los 13 tests locales pasan. No fusionar PR #15 ni anunciar activación en producción hasta completar esa prueba.
 
 La documentación de Brevo consultada el 26/10/2026 indica que una clave API sin llamadas correctas durante 90 días puede desactivarse, incluso sin caducidad. La descarga deberá seguir funcionando contra Neon aunque falle el proveedor de correo, con estado pendiente y reintento controlado.
 
 El resto de este documento recoge el plan anterior de InsForge y las comprobaciones generales; **no ejecutar la migración de InsForge sobre Neon**. Build y 13 tests locales correctos tras adaptar el controlador; integración real pendiente.
 
-## Estado y bloqueo de publicación
+## Antecedente: InsForge (no aplicar estas instrucciones a Neon)
 
 No fusionar hasta comprobar la base de datos. El 25/10/2026 la URL de InsForge configurada en Vercel respondió HTTP 503 con `No backend services available for app: duw9jjk8`. Las variables INSFORGE_URL e INSFORGE_SECRET_KEY existen; su presencia no demuestra que el servicio o la clave funcionen. No se modificaron credenciales ni se recuperó el servicio.
 
 El formulario anterior devolvía éxito incluso cuando fallaba el INSERT. Eso explica por qué se entregaba el recurso sin registrar el contacto. Los contactos cuyo INSERT falló no pueden recuperarse desde esta implementación.
 
-## Antes de publicar
+## Plan anterior de InsForge — sustituido por Neon
 
 1. Entrar en el proyecto existente de InsForge y resolver su indisponibilidad. No crear otro proyecto ni cambiar de proveedor sin decidir la migración.
 2. Confirmar roles `anon` y `authenticated`, y ejecutar `db/migrations/20261024_workbook_requests.sql` desde la consola administradora. Es aditiva y no modifica `leads`.
@@ -36,7 +38,7 @@ El formulario anterior devolvía éxito incluso cuando fallaba el INSERT. Eso ex
 
 ## Cómo trabajar los contactos
 
-La tabla privada `workbook_requests` conserva nombre, correo normalizado, recurso, origen, fecha y textos/versiones de los permisos. Se consulta desde la consola autenticada de InsForge; no existe un listado público.
+La tabla privada `workbook_requests` conserva nombre, correo normalizado, recurso, origen, fecha y textos/versiones de los permisos. En la nueva implementación se consulta desde la consola autenticada de Neon; no existe un listado público.
 
 - `resource_only`: solicitud del cuaderno, sin autorización para marketing. No añadir a campañas.
 - `permission_to_verify`: marcó voluntariamente seguimiento. Verificar la titularidad del correo mediante un proveedor con doble confirmación antes de activar campañas; esta integración todavía no está conectada.
@@ -51,4 +53,4 @@ PDF A5 original de 10 páginas: `private-resources/de-la-pausa-al-primer-paso.pd
 
 La ruta de descarga usa cookie firmada HttpOnly de una hora, emitida solo después de guardar, sin datos personales. El PDF se incluye en el paquete de la función mediante tracing de Next.js. Esto controla el recorrido de la web, no es DRM: un recurso gratuito puede compartirse y un repositorio público expone sus archivos.
 
-Pruebas locales: `node --test tests/*.test.mjs` (13 correctas), lint de archivos nuevos y `npm run build`. Estas pruebas no acreditan la integración real con InsForge. El aviso preexistente sobre metadataBase sigue pendiente fuera de este alcance.
+Pruebas locales: `node --test tests/*.test.mjs` (13 correctas), lint de archivos nuevos y `npm run build`. Estas pruebas no acreditan el registro real en Neon ni la integración con Brevo. El aviso preexistente sobre metadataBase sigue pendiente fuera de este alcance.
