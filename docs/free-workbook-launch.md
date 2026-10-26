@@ -1,5 +1,21 @@
 # Cuaderno gratuito: activación y seguimiento
 
+## Actualización 26/10/2026: migración elegida a Neon + Brevo
+
+El usuario eligió Neon + Brevo. Se reutiliza el proyecto Neon `ainara` (`late-lab-91371508`, Frankfurt). Se creó la rama aislada `preview-free-workbook` (`br-wandering-field-b9edp3p0`), partiendo de una producción sin tablas públicas.
+
+El nuevo código del cuaderno utiliza `pg` y `@vercel/functions`, con `WORKBOOK_DATABASE_URL` exclusivamente de servidor. La evaluación general sigue usando InsForge y no está migrada. No borrar sus variables ni su SDK todavía.
+
+**Bloqueo de permisos:** el rol `ainara_capture`, creado por la API de Neon en preview, heredó `neon_superuser`, CREATEDB, CREATEROLE y BYPASSRLS. El intento de retirar esa pertenencia fue rechazado. No se conectó ese rol a la web ni se extrajeron sus credenciales; la transacción de migración se revirtió y se comprobó que `workbook_requests` no existe. El rol permanece sin utilizar en preview. No emplearlo como credencial de aplicación.
+
+Siguiente paso, pendiente de autorización: crear mediante SQL un rol nuevo `ainara_ingest` limitado (sin pertenencia a neon_superuser, sin CREATEDB, CREATEROLE ni BYPASSRLS). La migración `db/neon/001_workbook_requests.sql` comprueba esa precondición y falla de forma cerrada. Probar INSERT autorizado y SELECT/UPDATE/DELETE denegados antes de configurar Vercel. No se ha aplicado a producción.
+
+Configurar `WORKBOOK_DATABASE_URL` y `LEAD_DOWNLOAD_SECRET` por separado para Preview (solo rama git `feat/free-workbook-leads`) y Production. No sobrescribir una DATABASE_URL de otro flujo. La integración Brevo aún NO está programada ni activa: requiere una clave API restringida, listas, remitente validado y confirmación de correo; el usuario confirmó haber creado la cuenta. Guardar su clave como `BREVO_API_KEY` sensible en Vercel, nunca en git ni en el chat. No enviar campañas automáticamente por crear contactos.
+
+La documentación de Brevo consultada el 26/10/2026 indica que una clave API sin llamadas correctas durante 90 días puede desactivarse, incluso sin caducidad. La descarga deberá seguir funcionando contra Neon aunque falle el proveedor de correo, con estado pendiente y reintento controlado.
+
+El resto de este documento recoge el plan anterior de InsForge y las comprobaciones generales; **no ejecutar la migración de InsForge sobre Neon**. Build y 13 tests locales correctos tras adaptar el controlador; integración real pendiente.
+
 ## Estado y bloqueo de publicación
 
 No fusionar hasta comprobar la base de datos. El 25/10/2026 la URL de InsForge configurada en Vercel respondió HTTP 503 con `No backend services available for app: duw9jjk8`. Las variables INSFORGE_URL e INSFORGE_SECRET_KEY existen; su presencia no demuestra que el servicio o la clave funcionen. No se modificaron credenciales ni se recuperó el servicio.
