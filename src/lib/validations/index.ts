@@ -1,11 +1,17 @@
 import { z } from "zod";
 
-export const LeadMagnetSchema = z.object({
-  name: z.string().min(2, "Me encantaría saber tu nombre para enviarte el material."),
-  email: z.string().email("Necesito un email válido para saber dónde enviar la guía."),
+const ContactSchema = z.object({
+  name: z.string().trim().min(2, "Escribe tu nombre.").max(100, "El nombre es demasiado largo."),
+  email: z.string().trim().toLowerCase().email("Escribe un correo electrónico válido.").max(254),
 });
 
-export const SessionBookingSchema = LeadMagnetSchema.extend({
+export const LeadMagnetSchema = ContactSchema.extend({
+  privacyAccepted: z.boolean().refine(value => value, "Necesitamos tu permiso para gestionar la solicitud."),
+  marketingConsent: z.boolean(),
+  website: z.string().max(0, "No hemos podido validar el formulario."),
+});
+
+export const SessionBookingSchema = ContactSchema.extend({
   phone: z.string().min(6, "Un teléfono de contacto, por si surge algún cambio.").optional(),
   reason: z.string().min(10, "¿Cuéntame brevemente qué te trae por aquí? Me ayudará a preparar nuestra sesión."),
 });
