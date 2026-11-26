@@ -23,6 +23,7 @@ export function Footer() {
             <Link href="/herramientas">Herramientas</Link>
             <Link href="/entre-tu-y-yo">Entre tú y yo · Mamá</Link>
             <Link href="/formaciones">Formaciones</Link>
+            <Link href="/black-friday">Black Friday · Pack 89 €</Link>
           </nav>
           <div className="footer-contact">
             <p className="eyebrow">HABLEMOS</p>

@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
         destination: '/test',
         permanent: false,
       },
+      {
+        source: '/pack',
+        destination: '/black-friday',
+        permanent: false,
+      },
+      {
+        source: '/bf',
+        destination: '/black-friday',
+        permanent: false,
+      },
     ];
   },
 };

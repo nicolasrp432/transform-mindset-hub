@@ -1,4 +1,5 @@
 import ApproachExplorer from "@/components/ApproachExplorer";
+import BlackFridayAnnouncement from "@/components/BlackFridayAnnouncement";
 import Hero from "@/components/Hero";
 import ServiceGrid from "@/components/ServiceGrid";
 import AboutMeSection from "@/components/AboutMeSection";
@@ -11,16 +12,18 @@ import EvaluationCTA from "@/components/EvaluationCTA";
    
    Estructura:
    1. Hero → Captura atención, nombra el dolor
-   2. ServiceGrid → Presenta las soluciones (3 caminos)
-   3. AboutMeSection → Construye autoridad (Perfil de Ainara)
-   4. Testimonials → Genera confianza y prueba social
-   5. EvaluationCTA → Bloque de alta conversión pre-footer
+   2. BlackFridayAnnouncement → Oferta especial Black Friday
+   3. ServiceGrid → Presenta las soluciones (3 caminos)
+   4. AboutMeSection → Construye autoridad (Perfil de Ainara)
+   5. Testimonials → Genera confianza y prueba social
+   6. EvaluationCTA → Bloque de alta conversión pre-footer
    ============================================================ */
 
 export default function HomePage() {
   return (
     <main>
       <Hero />
+      <BlackFridayAnnouncement />
       <StartingPoint />
       <AboutMeSection />
       <ApproachExplorer />

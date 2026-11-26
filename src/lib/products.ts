@@ -163,6 +163,23 @@ export const PRODUCTS = {
     cancelPath: "/libro-princesa",
     category: "recurso",
   },
+  PACK_BLACK_FRIDAY: {
+    key: "pack-empezar-por-dentro",
+    name: "Pack «Empezar por dentro» · Black Friday",
+    shortName: "Pack Black Friday",
+    description:
+      "Oferta Black Friday (27 al 30 de noviembre): Guía integral impresa (80 págs., envío a España) + Agenda de reflexión digital + Formación Emulsión Energética en Mitra (8 clases).",
+    currency: "eur",
+    unitAmount: 8900,
+    displayPrice: "89 €",
+    compareAtDisplayPrice: "159 €",
+    compareAtLabel: "precio habitual",
+    externalUrl: "https://buy.stripe.com/cNi7sL9Lp4kwfz02G33sI00",
+    href: "/black-friday",
+    successPath: "/black-friday/exito",
+    cancelPath: "/black-friday",
+    category: "programa",
+  },
 } as const satisfies Record<string, ProductDefinition>;
 
 export const PRODUCT_LIST = Object.values(PRODUCTS);

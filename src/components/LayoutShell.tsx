@@ -33,7 +33,15 @@ const SALES_LANDING_ROUTES = [
   "/agenda-2027",
 ];
 
-const STANDALONE_ROUTES = ["/test", "/mapa", "/punto"];
+const STANDALONE_ROUTES = [
+  "/test",
+  "/mapa",
+  "/punto",
+  "/black-friday",
+  "/black-friday/exito",
+  "/pack",
+  "/bf",
+];
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
