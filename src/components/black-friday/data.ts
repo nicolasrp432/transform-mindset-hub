@@ -47,9 +47,24 @@ export const PAIN_POINTS = [
   {
     tag: "03 · Teoría sin sistema",
     title: "Entiendes lo que te pasa, pero vuelves al mismo bucle",
-    body: "Has leído y probado cosas sueltas, pero cuando llega un mal día te falta una herramienta concreta para volver a tu centro.",
+    body: "Has leído y probado cosas sueltas, pero cuando llega un mal día te falta un protocolo concreto para volver a tu centro.",
   },
 ] as const;
+
+export const BEFORE_AFTER = {
+  before: [
+    "Reaccionar desde el cansancio, la ansiedad o la autoexigencia sin saber cómo frenar.",
+    "Empezar propósitos cada mes y abandonarlos a la semana porque no tienes estructura.",
+    "Acumular lecturas y vídeos sueltos que entiendes en teoría, pero no aplicas en un mal día.",
+    "Poner las necesidades de todo el mundo antes que tu propia calma mental.",
+  ],
+  after: [
+    "Detectar en minutos qué emoción estás sintiendo y qué acción concreta te devuelve al centro.",
+    "Sostener una pausa real de 10 minutos al día con preguntas guiadas que ordenan tu cabeza.",
+    "Tener un mapa físico en papel y 8 clases estructuradas a las que volver de por vida.",
+    "Tomar decisiones con más claridad, límites sanos y una voz interna más amable.",
+  ],
+} as const;
 
 export const PACK_PIECES = [
   {
@@ -57,14 +72,16 @@ export const PACK_PIECES = [
     role: "Entender en papel",
     title: "Guía integral de transformación",
     subtitle: "Edición impresa · 80 páginas · Envío a tu casa en España",
-    image: "/images/guide-mockup.webp",
-    imageAlt: "Portada de la Guía integral de transformación en edición impresa",
+    outcome:
+      "Para silenciar la mente crítica y ordenar tus emociones con ejercicios claros lejos de las pantallas.",
+    image: "/images/products/guide-front.webp",
+    imageAlt: "Portada oficial de la Guía integral de transformación (edición impresa)",
     description:
-      "El mapa en papel para leer despacio, subrayar y volver a él lejos de las pantallas. Inteligencia emocional, autoestima y ejercicios prácticos paso a paso.",
+      "El mapa físico para leer despacio, subrayar y conservar. Reúne inteligencia emocional aplicada, autoestima, rueda de la vida y prácticas paso a paso.",
     highlights: [
-      "80 páginas en edición física para leer, escribir y conservar",
-      "Rueda de la vida, mindfulness y prácticas contra el crítico interno",
-      "Envío físico directo a cualquier dirección en España",
+      "80 páginas en edición impresa para leer, escribir y volver a ellas",
+      "Rueda de la vida, mindfulness y ejercicios contra el crítico interno",
+      "Envío físico directo a cualquier dirección de España",
     ],
     badge: "Edición física · España",
   },
@@ -73,55 +90,73 @@ export const PACK_PIECES = [
     role: "Sostener cada día",
     title: "Agenda de reflexión para la sanación emocional",
     subtitle: "Formato digital · PDF interactivo e imprimible · Un rato al día",
+    outcome:
+      "Para convertir la claridad en un hábito amable de 10 minutos al día, sin exigirte perfección.",
     image: "/images/products/agenda-front.webp",
     imageAlt: "Portada oficial de la Agenda de reflexiones para la sanación emocional",
     description:
-      "Un espacio íntimo para bajar el ruido mental en 10 minutos. Preguntas guiadas, rituales de mañana y noche y ejercicios de autocompasión para sostener lo que aprendes.",
+      "Un espacio íntimo para bajar el ruido mental mañana y noche. Preguntas guiadas, diario de gratitud y prácticas breves de autocompasión.",
     highlights: [
-      "Rituales breves de mañana y noche sin exigirte perfección",
-      "Preguntas de claridad emocional y diario de gratitud guiado",
-      "Descarga inmediata para tablet, móvil o imprimir en casa",
+      "Rituales breves de mañana y noche adaptables a tu ritmo real",
+      "Preguntas de claridad emocional y seguimiento de autoestima",
+      "Descarga digital inmediata para tablet, móvil o imprimir en casa",
     ],
-    badge: "Acceso digital inmediato",
+    badge: "Acceso digital hoy",
   },
   {
     step: "03",
     role: "Transformar de raíz",
     title: "Emulsión Energética · Formación en Mitra",
     subtitle: "8 clases completas + 6 materiales tácticos · Acceso de por vida",
+    outcome:
+      "Para dejar de ir a remolque de tus emociones y tener un protocolo real en los días de bajón.",
     image: "/images/ainara-portrait.webp",
     imageAlt: "Ainara Unamunzaga, creadora de Emulsión Energética en Mitra",
     description:
-      "La formación que une neurociencia, psicología y las ocho leyes universales en un método claro de regulación emocional. Sin positivismo tóxico ni frases vacías.",
+      "La formación que une neurociencia, psicología y las ocho leyes universales en un sistema ordenado de regulación emocional. Sin positivismo tóxico ni promesas vacías.",
     highlights: [
-      "8 clases estructuradas dentro de la plataforma Mitra",
-      "Incluye 6 recursos descargables: Auditoría Mental, Reto de 9 Días y Termómetro Emocional",
-      "Protocolo de Anclaje + Audio terapéutico bonus con acceso de por vida",
+      "8 clases estructuradas dentro de la plataforma Mitra, para siempre",
+      "Incluye 6 materiales tácticos: Auditoría Mental, Reto de 9 Días y Termómetro Emocional",
+      "Protocolo de Anclaje de 5 pasos + Audio terapéutico bonus",
     ],
     badge: "Formación en Mitra",
   },
 ] as const;
 
+export const FIT_CHECK = {
+  yes: [
+    "Quieres llegar a enero con calma mental y un sistema práctico, no con otro propósito vacío.",
+    "Prefieres claridad, psicología aplicada y pasos concretos antes que frases motivadoras vacías.",
+    "Puedes dedicar un rato al día (10–15 minutos) a escucharte y avanzar a tu propio ritmo.",
+    "Vives en España (o quieres enviarlo como regalo a una dirección en España).",
+  ],
+  no: [
+    "Buscas una solución mágica de la noche a la mañana sin implicarte en tu proceso.",
+    "Quieres solo motivación pasajera en vez de herramientas que puedas sostener en los días difíciles.",
+    "Necesitas envío físico fuera de España en esta campaña (el envío impreso es solo para España).",
+  ],
+} as const;
+
 export const VALUE_STACK_ITEMS = [
   {
     name: "Guía integral de transformación (edición impresa · 80 págs.)",
-    detail: "Libro físico + envío incluido a toda España",
-    included: true,
+    detail: "Libro físico + envío a tu domicilio en España",
+    tag: "Físico · España",
   },
   {
     name: "Agenda de reflexión para la sanación emocional (digital)",
-    detail: "PDF interactivo + listo para imprimir · acceso inmediato",
-    included: true,
+    detail: "PDF interactivo + listo para imprimir · empieza hoy mismo",
+    tag: "Digital inmediato",
   },
   {
     name: "Formación Emulsión Energética en Mitra (8 clases)",
     detail: "Acceso de por vida desde móvil, tablet u ordenador",
-    included: true,
+    tag: "De por vida",
   },
   {
-    name: "Pack de 6 materiales tácticos + Audio terapéutico",
+    name: "Bonus · 6 materiales tácticos + Audio terapéutico",
     detail: "Auditoría Mental, Termómetro Emocional, Reto 9 Días y Protocolo de Anclaje",
-    included: true,
+    tag: "Bonus incluido",
   },
 ] as const;
 
@@ -130,36 +165,42 @@ export const PACK_TESTIMONIALS = [
     quote:
       "La estructura de la guía me ayudó a entender qué me estaba pasando y a sentirme mucho más en control.",
     name: "María G.",
+    result: "Recuperó claridad y autoestima",
     piece: "Guía integral",
   },
   {
     quote:
       "Esta agenda se ha convertido en mi momento favorito del día. Escribir me ayuda a bajar la ansiedad y a entenderme mejor.",
     name: "Sofía T.",
+    result: "Encontró su calma diaria",
     piece: "Agenda de reflexión",
   },
   {
     quote:
       "Es la primera formación que me da estructura de verdad. Dejé de buscar frases motivadoras y empecé a tener un protocolo para los días malos.",
     name: "Nuria B.",
+    result: "Completó las 8 clases en Mitra",
     piece: "Emulsión Energética",
   },
   {
     quote:
       "Dejé de vivir en piloto automático. Los ejercicios son simples pero muy profundos, y me siento mucho más conectada conmigo misma.",
     name: "Carolina M.",
+    result: "Mejoró su diálogo interno",
     piece: "Agenda de reflexión",
   },
   {
     quote:
       "El termómetro emocional lo tengo impreso en la nevera. Saber en qué grado estoy y qué acción toca me ha quitado muchísima ansiedad.",
     name: "Paula R.",
+    result: "Aplica el protocolo de anclaje",
     piece: "Emulsión Energética",
   },
   {
     quote:
       "Dejé de luchar contra mi ansiedad y empecé a escucharla. Eso cambió por completo mi forma de vivir el día a día.",
     name: "Carlos R.",
+    result: "Gestiona mejor su ansiedad",
     piece: "Guía integral",
   },
 ] as const;
@@ -171,9 +212,14 @@ export const PACK_FAQ = [
       "El Pack «Empezar por dentro» a 89 € (en lugar de 159 €) está disponible únicamente del 27 al 30 de noviembre hasta las 23:59 (hora peninsular española). Al terminar el plazo, la oferta se cierra y no se mantiene este precio.",
   },
   {
+    question: "¿Cuánto tiempo necesito al día para sacarle partido?",
+    answer:
+      "Está diseñado para vidas reales, no para acumular PDF. Con 10–15 minutos al día para tu Agenda de reflexión y una clase a tu ritmo en Mitra empezarás a notar orden mental desde la primera semana.",
+  },
+  {
     question: "¿Cómo y dónde se envía la Guía integral impresa?",
     answer:
-      "Realizamos envíos a toda España. Durante el pago en Stripe te pediremos tu dirección postal y teléfono de contacto para coordinar la entrega de tu ejemplar impreso de 80 páginas.",
+      "Realizamos envíos exclusivamente a España. Durante el pago en Stripe te pediremos tu dirección postal y teléfono de contacto para coordinar la entrega de tu ejemplar impreso de 80 páginas.",
   },
   {
     question: "¿Cuándo recibo la Agenda digital y el acceso a Emulsión Energética en Mitra?",
@@ -193,7 +239,7 @@ export const PACK_FAQ = [
   {
     question: "¿Qué pasa si lo pruebo y siento que no es para mí?",
     answer:
-      "Tienes 7 días de garantía. Si al entrar y revisar el material sientes que no es lo que necesitas en este momento, me escribes y revisamos la devolución con total tranquilidad.",
+      "Tienes 7 días de garantía sin preguntas. Si al entrar y revisar el material sientes que no es lo que necesitas en este momento, me escribes y gestionamos la devolución con total tranquilidad.",
   },
   {
     question: "¿El pago con Stripe es seguro?",

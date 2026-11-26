@@ -32,7 +32,7 @@ export default function BlackFridayExitoPage() {
           <em className="italic text-[#D89A7E]">empezar por dentro</em>!
         </h1>
 
-        <p className="mt-4 text-base text-[#C4D0C7] leading-relaxed">
+        <p className="mt-4 text-[16px] text-[#D0DBD3] leading-relaxed">
           Tu compra del <strong>Pack «Empezar por dentro»</strong> se ha
           procesado correctamente en Stripe. Aquí tienes exactamente cómo
           recibirás las tres piezas de tu pack:

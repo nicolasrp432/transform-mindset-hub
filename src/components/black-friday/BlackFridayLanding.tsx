@@ -19,12 +19,15 @@ import {
   Sparkles,
   Star,
   Truck,
+  X,
 } from "lucide-react";
 import { LESSONS, RESOURCES } from "@/components/emulsion/data";
 import BlackFridayCountdown from "./BlackFridayCountdown";
 import PackShowcase from "./PackShowcase";
 import {
+  BEFORE_AFTER,
   BLACK_FRIDAY_OFFER,
+  FIT_CHECK,
   PACK_FAQ,
   PACK_PIECES,
   PACK_TESTIMONIALS,
@@ -37,10 +40,16 @@ const SILK_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 interface StripeCtaButtonProps {
   label: string;
   size?: "md" | "lg";
-  variant?: "terracotta" | "light";
+  variant?: "terracotta" | "forest";
   className?: string;
 }
 
+/**
+ * Nota importante de Tailwind v4 en este repositorio:
+ * `--color-base: #ffffff` convierte `text-base` en `color: #fff`.
+ * Por eso aquí usamos tamaños explícitos (`text-[15px]`, `text-[16px]`, `text-[17px]`)
+ * en lugar de `text-base` para garantizar contraste WCAG AAA en todos los breakpoints.
+ */
 function StripeCtaButton({
   label,
   size = "lg",
@@ -51,13 +60,13 @@ function StripeCtaButton({
 
   const sizeStyles =
     size === "lg"
-      ? "px-7 sm:px-9 py-4 text-base"
+      ? "px-7 sm:px-9 py-4 text-[15px] sm:text-[16px]"
       : "px-5 py-2.5 text-xs sm:text-sm";
 
   const variantStyles =
     variant === "terracotta"
-      ? "bg-[#C98A6F] hover:bg-[#D7997E] text-[#141D17] shadow-[0_14px_34px_-10px_rgba(201,138,111,0.55)]"
-      : "bg-[#F6F2EA] hover:bg-white text-[#141D17] shadow-[0_14px_34px_-10px_rgba(0,0,0,0.45)]";
+      ? "bg-[#D39478] hover:bg-[#DF9F83] text-[#111914] shadow-[0_14px_34px_-10px_rgba(211,148,120,0.55)]"
+      : "bg-[#1D3B31] hover:bg-[#284B40] text-white shadow-[0_14px_32px_-12px_rgba(20,29,23,0.45)]";
 
   return (
     <motion.a
@@ -88,15 +97,6 @@ export default function BlackFridayLanding() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const revealProps = reduced
-    ? {}
-    : {
-        initial: { opacity: 0, y: 18 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-60px" },
-        transition: { duration: 0.55, ease: SILK_EASE },
-      };
-
   return (
     <div className="min-h-screen bg-[#FAF8F4] text-[#192820] pb-20 md:pb-0">
       {/* ============================================================
@@ -110,13 +110,13 @@ export default function BlackFridayLanding() {
             aria-label="Ainara Unamunzaga · Volver al inicio"
           >
             <span>ainara</span>
-            <span className="font-sans text-[10px] tracking-[0.26em] uppercase text-[#9FB0A4]">
+            <span className="font-sans text-[10px] tracking-[0.26em] uppercase text-[#A9B9AE]">
               UNAMUNZAGA
             </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-3">
-            <span className="rounded-sm bg-[#C98A6F] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#141D17]">
+            <span className="rounded-sm bg-[#D39478] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#111914]">
               {BLACK_FRIDAY_OFFER.badge}
             </span>
             <BlackFridayCountdown variant="compact" />
@@ -132,120 +132,129 @@ export default function BlackFridayLanding() {
 
       <main>
         {/* ============================================================
-            2. HERO — ESTÉTICA EXACTA DEL CARTEL + ANCLAJE INMEDIATO
+            2. HERO — TEST DE 5 SEGUNDOS + ECUACIÓN DE VALOR INMEDIATA
             ============================================================ */}
         <section className="relative overflow-hidden bg-[#141D17] text-[#F6F2EA] pt-10 pb-16 sm:pt-14 sm:pb-24">
-          {/* Iluminación orgánica sutil de fondo */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 70% 55% at 72% 35%, rgba(201,138,111,0.14) 0%, transparent 65%), radial-gradient(ellipse 60% 50% at 15% 80%, rgba(40,75,64,0.38) 0%, transparent 65%)",
+                "radial-gradient(ellipse 70% 55% at 72% 35%, rgba(211,148,120,0.16) 0%, transparent 65%), radial-gradient(ellipse 60% 50% at 15% 80%, rgba(40,75,64,0.40) 0%, transparent 65%)",
             }}
           />
 
           <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-              {/* Columna de valor + gatillos principales (payload sin delay) */}
+              {/* Columna izquierda: Mensaje directo + Precio anclado sin delay */}
               <div>
                 <div className="inline-flex flex-wrap items-center gap-2.5">
-                  <span className="inline-flex items-center rounded-sm bg-[#C98A6F] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#141D17]">
+                  <span className="inline-flex items-center rounded-sm bg-[#D39478] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#111914]">
                     {BLACK_FRIDAY_OFFER.badge}
                   </span>
-                  <span className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-[#DDE4DE]">
+                  <span className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-[#E6ECE7]">
                     {BLACK_FRIDAY_OFFER.dateRange}
                   </span>
                 </div>
 
                 <h1 className="mt-5 font-serif text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.02] tracking-tight text-white">
                   Pack{" "}
-                  <em className="italic font-normal text-[#D89A7E]">
+                  <em className="italic font-normal text-[#E2A58A]">
                     «Empezar por dentro»
                   </em>
                 </h1>
 
-                <p className="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-[#CFD9D2]">
-                  Las tres herramientas clave de Ainara juntas por primera vez:
-                  la <strong className="text-white font-medium">Guía integral impresa</strong> en
-                  tu casa, la{" "}
-                  <strong className="text-white font-medium">Agenda de reflexión digital</strong>{" "}
-                  para tu pausa diaria y la formación completa{" "}
-                  <strong className="text-white font-medium">Emulsión Energética</strong> en
+                <p className="mt-5 max-w-xl text-[16px] sm:text-[18px] leading-relaxed text-[#D8E1DB]">
+                  Ordena tu mente, baja la ansiedad y recupera tu calma diaria{" "}
+                  <strong className="text-white font-semibold">
+                    sin esperar a enero ni depender de la fuerza de voluntad
+                  </strong>
+                  . Las 3 herramientas clave de Ainara juntas por primera vez:
+                  Guía impresa en tu casa, Agenda digital y formación completa en
                   Mitra.
                 </p>
 
-                {/* Bloque de precio inmediato (sin delay de animación) */}
-                <div className="mt-7 rounded-2xl border border-white/12 bg-white/[0.04] p-5 sm:p-6">
+                {/* Micro-prueba social inmediata sobre el pliegue */}
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm text-[#C8D4CC]">
+                  <span className="inline-flex items-center gap-1 text-[#E2A58A]" aria-label="Valoración 5 estrellas">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
+                    ))}
+                  </span>
+                  <span>+80 págs. impresas · Agenda diaria · 8 clases + 6 materiales</span>
+                </div>
+
+                {/* Tarjeta de precio + CTA principal */}
+                <div className="mt-6 rounded-2xl border border-white/14 bg-white/[0.05] p-5 sm:p-6">
                   <div className="flex flex-wrap items-end justify-between gap-4">
                     <div>
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-[#A8B6AC]">
-                        Precio especial Black Friday · Pago único
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-[#B9C7BE]">
+                        Oferta única al año · Pago único
                       </p>
                       <div className="mt-1.5 flex items-baseline gap-3.5">
-                        <span className="relative font-serif text-2xl sm:text-3xl text-[#95A49A]">
+                        <span className="relative font-serif text-2xl sm:text-3xl text-[#A3B2A8]">
                           {BLACK_FRIDAY_OFFER.originalPrice} €
                           <span
                             aria-hidden="true"
-                            className="absolute left-[-4%] right-[-4%] top-1/2 h-[2.5px] -rotate-6 bg-[#C98A6F]"
+                            className="absolute left-[-4%] right-[-4%] top-1/2 h-[2.5px] -rotate-6 bg-[#D39478]"
                           />
                         </span>
-                        <span className="font-serif text-5xl sm:text-6xl font-medium leading-none text-[#D89A7E]">
+                        <span className="font-serif text-5xl sm:text-6xl font-medium leading-none text-[#E2A58A]">
                           {BLACK_FRIDAY_OFFER.salePrice} €
                         </span>
                       </div>
                     </div>
 
                     <div className="flex flex-col items-start sm:items-end gap-1.5">
-                      <span className="inline-flex items-center rounded-full bg-[#C98A6F]/18 border border-[#C98A6F]/40 px-3 py-1 text-xs font-semibold text-[#E8B29A]">
+                      <span className="inline-flex items-center rounded-full bg-[#D39478]/20 border border-[#D39478]/50 px-3 py-1 text-xs font-semibold text-[#F1C3AE]">
                         Ahorras {BLACK_FRIDAY_OFFER.savings} € (-{BLACK_FRIDAY_OFFER.discountPercent}%)
                       </span>
-                      <span className="text-xs text-[#A8B6AC]">
-                        IVA incluido · Sin suscripciones
+                      <span className="text-xs text-[#B9C7BE]">
+                        Menos de 30 € por herramienta · IVA incluido
                       </span>
                     </div>
                   </div>
 
-                  {/* Botones de acción directa + alternativa humana del cartel */}
+                  {/* CTAs: Acción principal en 1ª persona + alternativa humana del cartel */}
                   <div className="mt-6 flex flex-col sm:flex-row gap-3">
                     <StripeCtaButton
-                      label="Reservar mi Pack ahora — 89 €"
-                      className="w-full sm:w-auto flex-1"
+                      label="Quiero mi Pack por 89 €"
+                      className="w-full sm:w-auto flex-1 whitespace-nowrap"
                     />
                     <a
                       href={BLACK_FRIDAY_OFFER.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.1] px-6 py-4 text-sm font-medium text-[#F6F2EA] transition-colors"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/[0.05] hover:bg-white/[0.12] px-6 py-4 text-sm font-medium text-[#F6F2EA] transition-colors"
                     >
-                      <MessageCircle className="w-4 h-4 text-[#D89A7E]" aria-hidden="true" />
+                      <MessageCircle className="w-4 h-4 text-[#E2A58A]" aria-hidden="true" />
                       <span>Escríbeme PACK</span>
                     </a>
                   </div>
 
-                  {/* Señales de confianza inmediatas */}
-                  <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[11px] sm:text-xs text-[#C4D0C7]">
+                  {/* Micro-confianza bajo el botón */}
+                  <div className="mt-4 pt-4 border-t border-white/12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[11px] sm:text-xs text-[#D3DDD6]">
                     <span className="inline-flex items-center gap-1.5">
-                      <Lock className="w-3.5 h-3.5 text-[#D89A7E] shrink-0" aria-hidden="true" />
+                      <Lock className="w-3.5 h-3.5 text-[#E2A58A] shrink-0" aria-hidden="true" />
                       Pago seguro Stripe
                     </span>
                     <span className="inline-flex items-center gap-1.5">
-                      <Truck className="w-3.5 h-3.5 text-[#D89A7E] shrink-0" aria-hidden="true" />
+                      <Truck className="w-3.5 h-3.5 text-[#E2A58A] shrink-0" aria-hidden="true" />
                       Envío solo España
                     </span>
                     <span className="inline-flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#D89A7E] shrink-0" aria-hidden="true" />
-                      Digital inmediato
+                      <Sparkles className="w-3.5 h-3.5 text-[#E2A58A] shrink-0" aria-hidden="true" />
+                      Empiezas hoy mismo
                     </span>
                     <span className="inline-flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#D89A7E] shrink-0" aria-hidden="true" />
-                      7 días garantía
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#E2A58A] shrink-0" aria-hidden="true" />
+                      7 días de garantía
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Columna visual: Tríptico de los 3 productos + Cuenta atrás real */}
+              {/* Columna derecha: Tríptico real + Cuenta atrás sincronizada */}
               <div className="space-y-4">
                 <PackShowcase />
                 <BlackFridayCountdown variant="tiles" />
@@ -255,44 +264,33 @@ export default function BlackFridayLanding() {
         </section>
 
         {/* ============================================================
-            3. ESPEJO EMOCIONAL (IDENTIFICACIÓN DEL DOLOR)
+            3. ESPEJO EMOCIONAL + PUENTE ANTES / DESPUÉS (STORYBRAND / PAS)
             ============================================================ */}
         <section className="py-16 sm:py-24 bg-[#FAF8F4]">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <motion.div {...revealProps} className="max-w-3xl">
+            <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9E5B40]">
                 El momento en el que estás
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
                 No necesitas otro propósito vacío para enero.{" "}
                 <em className="italic text-[#284B40]">
-                  Necesitas volver a ti hoy.
+                  Necesitas un sistema sencillo para volver a ti hoy.
                 </em>
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-[#4D5E55] leading-relaxed">
-                Diciembre suele amplificar el cansancio de todo el año. Si te
-                reconoces en cualquiera de estas tres señales, este pack fue
-                creado exactamente para darte estructura y calma real.
+              <p className="mt-4 text-[16px] sm:text-[18px] text-[#3E4F46] leading-relaxed">
+                Diciembre suele amplificar el cansancio acumulado de todo el año.
+                Si te reconoces en estas tres señales, este pack fue diseñado
+                para darte claridad, estructura y alivio real desde el primer
+                día.
               </p>
-            </motion.div>
+            </div>
 
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {PAIN_POINTS.map((item, idx) => (
-                <motion.article
+              {PAIN_POINTS.map((item) => (
+                <article
                   key={item.tag}
-                  {...(reduced
-                    ? {}
-                    : {
-                        initial: { opacity: 0, y: 18 },
-                        whileInView: { opacity: 1, y: 0 },
-                        viewport: { once: true, margin: "-50px" },
-                        transition: {
-                          duration: 0.5,
-                          delay: idx * 0.08,
-                          ease: SILK_EASE,
-                        },
-                      })}
-                  className="rounded-[1.75rem] border border-[#DCE5DE] bg-white p-7 shadow-[0_6px_24px_-12px_rgba(25,40,32,0.08)]"
+                  className="rounded-[1.75rem] border border-[#DCE5DE] bg-white p-7 shadow-[0_8px_28px_-14px_rgba(25,40,32,0.09)]"
                 >
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9E5B40]">
                     {item.tag}
@@ -300,51 +298,88 @@ export default function BlackFridayLanding() {
                   <h3 className="mt-3 font-serif text-2xl leading-snug text-[#192820]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#52635B]">
+                  <p className="mt-3 text-[15px] leading-relaxed text-[#42534A]">
                     {item.body}
                   </p>
-                </motion.article>
+                </article>
               ))}
+            </div>
+
+            {/* Puente de transformación Antes -> Después */}
+            <div className="mt-10 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-[1.75rem] border border-[#E6DFD6] bg-[#F5F1EB] p-7 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8E523A]">
+                  Sin método · Seguir igual
+                </p>
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl text-[#192820]">
+                  Cerrar el año a remolque de tu mente
+                </h3>
+                <ul className="mt-5 space-y-3">
+                  {BEFORE_AFTER.before.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[#47554D]"
+                    >
+                      <X
+                        className="w-4 h-4 mt-1 text-[#A85A41] shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-[#284B40]/25 bg-[#E9F2EC] p-7 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#1F4236]">
+                  Con el Pack «Empezar por dentro»
+                </p>
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl text-[#14231C]">
+                  Entrar en diciembre con calma y protocolo
+                </h3>
+                <ul className="mt-5 space-y-3">
+                  {BEFORE_AFTER.after.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[#1F352B]"
+                    >
+                      <CheckCircle2
+                        className="w-4 h-4 mt-1 text-[#1F4236] shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            4. EL SISTEMA DE 3 CAPAS (QUÉ INCLUYE EL PACK Y POR QUÉ JUNTOS)
+            4. EL SISTEMA DE 3 CAPAS (UNBOXING ORIENTADO A RESULTADOS)
             ============================================================ */}
         <section id="que-incluye" className="py-16 sm:py-24 bg-[#F1F5F2] border-y border-[#DCE5DE]">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <motion.div {...revealProps} className="max-w-3xl">
+            <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#284B40]">
-                Un recorrido completo · 3 piezas que se potencian
+                El método completo · 3 piezas que se potencian
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
-                Todo lo que recibes dentro del Pack «Empezar por dentro»
+                Qué incluye exactamente tu Pack «Empezar por dentro»
               </h2>
-              <p className="mt-4 text-base sm:text-lg text-[#4D5E55] leading-relaxed">
-                Cada pieza cumple una función distinta: lees y ordenas en papel,
-                lo integras cada día en tu agenda y profundizas con método en
-                Mitra.
+              <p className="mt-4 text-[16px] sm:text-[18px] text-[#3E4F46] leading-relaxed">
+                No es una colección de archivos sueltos para acumular. Cada
+                pieza cumple un rol distinto: lees y ordenas en papel, lo
+                sostienes 10 minutos al día y transformas de raíz en Mitra.
               </p>
-            </motion.div>
+            </div>
 
             <div className="mt-12 space-y-6">
-              {PACK_PIECES.map((piece, idx) => (
-                <motion.article
+              {PACK_PIECES.map((piece) => (
+                <article
                   key={piece.step}
-                  {...(reduced
-                    ? {}
-                    : {
-                        initial: { opacity: 0, y: 20 },
-                        whileInView: { opacity: 1, y: 0 },
-                        viewport: { once: true, margin: "-60px" },
-                        transition: {
-                          duration: 0.55,
-                          delay: idx * 0.06,
-                          ease: SILK_EASE,
-                        },
-                      })}
-                  className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr] items-center rounded-[2rem] border border-[#DCE5DE] bg-white p-6 sm:p-8 lg:p-10 shadow-[0_12px_36px_-20px_rgba(25,40,32,0.12)]"
+                  className="grid gap-6 lg:grid-cols-[0.40fr_0.60fr] items-center rounded-[2rem] border border-[#DCE5DE] bg-white p-6 sm:p-8 lg:p-10 shadow-[0_12px_36px_-20px_rgba(25,40,32,0.12)]"
                 >
                   <div className="relative overflow-hidden rounded-[1.5rem] bg-[#F5F8F6] border border-[#E3EBE5] aspect-[4/3] flex items-center justify-center p-5">
                     <Image
@@ -358,7 +393,7 @@ export default function BlackFridayLanding() {
                           : "object-cover"
                       }
                     />
-                    <span className="absolute top-3.5 left-3.5 rounded-full bg-[#141D17]/90 px-3 py-1 text-[11px] font-medium tracking-wide text-[#F6F2EA] backdrop-blur-sm">
+                    <span className="absolute top-3.5 left-3.5 rounded-full bg-[#141D17] px-3 py-1 text-[11px] font-semibold tracking-wide text-[#F6F2EA] shadow-sm">
                       {piece.badge}
                     </span>
                   </div>
@@ -376,18 +411,21 @@ export default function BlackFridayLanding() {
                     <h3 className="mt-3 font-serif text-3xl sm:text-4xl leading-[1.12] text-[#192820]">
                       {piece.title}
                     </h3>
-                    <p className="mt-1.5 text-sm font-medium text-[#284B40]">
+                    <p className="mt-1.5 text-sm font-semibold text-[#284B40]">
                       {piece.subtitle}
                     </p>
-                    <p className="mt-4 text-base leading-relaxed text-[#4E5F56]">
+                    <p className="mt-3 rounded-xl bg-[#FAF8F4] border border-[#E7ECE8] px-4 py-3 text-[15px] font-medium text-[#1D3228]">
+                      {piece.outcome}
+                    </p>
+                    <p className="mt-3.5 text-[15px] leading-relaxed text-[#42534A]">
                       {piece.description}
                     </p>
 
-                    <ul className="mt-5 space-y-2.5">
+                    <ul className="mt-4 space-y-2.5">
                       {piece.highlights.map((h) => (
                         <li
                           key={h}
-                          className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#253A32]"
+                          className="flex items-start gap-2.5 text-[15px] text-[#22362D]"
                         >
                           <CheckCircle2
                             className="w-4 h-4 mt-1 text-[#284B40] shrink-0"
@@ -398,11 +436,11 @@ export default function BlackFridayLanding() {
                       ))}
                     </ul>
                   </div>
-                </motion.article>
+                </article>
               ))}
             </div>
 
-            {/* Desplegable con el temario real de las 8 clases + 6 materiales de Emulsión Energética */}
+            {/* Desplegable con el temario completo de Emulsión Energética */}
             <div className="mt-8 rounded-[1.75rem] border border-[#DCE5DE] bg-white overflow-hidden">
               <button
                 type="button"
@@ -448,7 +486,7 @@ export default function BlackFridayLanding() {
                             <h4 className="mt-1 font-serif text-lg text-[#192820]">
                               {lesson.title}
                             </h4>
-                            <p className="mt-1.5 text-sm text-[#52635B] leading-relaxed">
+                            <p className="mt-1.5 text-sm text-[#42534A] leading-relaxed">
                               {lesson.focus}
                             </p>
                           </div>
@@ -470,10 +508,10 @@ export default function BlackFridayLanding() {
                                 aria-hidden="true"
                               />
                               <div>
-                                <p className="text-sm font-medium text-[#192820]">
+                                <p className="text-sm font-semibold text-[#192820]">
                                   {res.title}
                                 </p>
-                                <p className="text-xs text-[#5A6B62] mt-0.5">
+                                <p className="text-xs text-[#4C5E55] mt-0.5">
                                   {res.text}
                                 </p>
                               </div>
@@ -486,11 +524,89 @@ export default function BlackFridayLanding() {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* CTA intermedio para lectoras decididas tras ver el contenido */}
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[1.75rem] bg-[#141D17] px-6 sm:px-8 py-6 text-[#F6F2EA]">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#E2A58A] font-semibold">
+                  Todo incluido · Pago único
+                </p>
+                <p className="mt-1 font-serif text-2xl sm:text-3xl text-white">
+                  Las 3 herramientas por{" "}
+                  <span className="text-[#E2A58A]">89 €</span>{" "}
+                  <span className="text-lg text-[#95A49A] line-through">159 €</span>
+                </p>
+              </div>
+              <StripeCtaButton
+                label="Reservar mi Pack ahora"
+                className="w-full sm:w-auto shrink-0"
+              />
+            </div>
           </div>
         </section>
 
         {/* ============================================================
-            5. BLOQUE CENTRAL DE OFERTA Y ANCLAJE DE VALOR (CONVERSIÓN)
+            5. CUALIFICACIÓN HONESTA (PARA QUIÉN SÍ / PARA QUIÉN NO)
+            ============================================================ */}
+        <section className="py-16 sm:py-20 bg-[#FAF8F4]">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9E5B40]">
+                Honestidad ante todo
+              </p>
+              <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
+                ¿Es este pack para ti en este momento?
+              </h2>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-[1.75rem] border border-[#284B40]/20 bg-white p-7 sm:p-8 shadow-sm">
+                <p className="inline-flex items-center gap-2 rounded-full bg-[#E9F2EC] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#1D3B31]">
+                  <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                  Sí es para ti si…
+                </p>
+                <ul className="mt-5 space-y-3.5">
+                  {FIT_CHECK.yes.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[#22362D]"
+                    >
+                      <CheckCircle2
+                        className="w-4 h-4 mt-1 text-[#284B40] shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-[#DCE5DE] bg-[#F5F7F5] p-7 sm:p-8">
+                <p className="inline-flex items-center gap-2 rounded-full bg-[#ECE7E0] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#7B4530]">
+                  <X className="w-3.5 h-3.5" aria-hidden="true" />
+                  Mejor no entrar si…
+                </p>
+                <ul className="mt-5 space-y-3.5">
+                  {FIT_CHECK.no.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-[15px] leading-relaxed text-[#42534A]"
+                    >
+                      <X
+                        className="w-4 h-4 mt-1 text-[#9E5B40] shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            6. BLOQUE CENTRAL DE OFERTA Y ANCLAJE DE VALOR (CONVERSIÓN)
             ============================================================ */}
         <section id="oferta" className="py-16 sm:py-24 bg-[#141D17] text-[#F6F2EA] relative overflow-hidden">
           <div
@@ -498,37 +614,37 @@ export default function BlackFridayLanding() {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(circle at 50% 0%, rgba(201,138,111,0.16) 0%, transparent 55%)",
+                "radial-gradient(circle at 50% 0%, rgba(211,148,120,0.18) 0%, transparent 55%)",
             }}
           />
 
           <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
             <div className="text-center max-w-2xl mx-auto">
-              <span className="inline-flex items-center rounded-sm bg-[#C98A6F] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#141D17]">
+              <span className="inline-flex items-center rounded-sm bg-[#D39478] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#111914]">
                 Solo del 27 al 30 de noviembre
               </span>
               <h2 className="mt-4 font-serif text-4xl sm:text-5xl leading-[1.08] text-white">
                 Todo el sistema completo por{" "}
-                <em className="italic text-[#D89A7E]">70 € menos</em>
+                <em className="italic text-[#E2A58A]">70 € menos</em>
               </h2>
-              <p className="mt-3 text-base text-[#C4D0C7]">
+              <p className="mt-3 text-[16px] text-[#D0DBD3]">
                 Edición física preparada para envío en España. El lunes 30 a las
                 23:59 esta oferta se cierra definitivamente.
               </p>
             </div>
 
-            <div className="mt-10 rounded-[2rem] border border-[#C98A6F]/35 bg-[#19241D] p-6 sm:p-10 shadow-[0_30px_90px_-24px_rgba(0,0,0,0.7)]">
+            <div className="mt-10 rounded-[2rem] border border-[#D39478]/40 bg-[#19241D] p-6 sm:p-10 shadow-[0_30px_90px_-24px_rgba(0,0,0,0.7)]">
               <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-white/12">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#D89A7E] font-semibold">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[#E2A58A] font-semibold">
                     Resumen de tu Pack Black Friday
                   </p>
                   <h3 className="mt-1 font-serif text-2xl sm:text-3xl text-white">
                     {BLACK_FRIDAY_OFFER.packName}
                   </h3>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-3.5 py-1.5 text-xs text-[#DDE4DE]">
-                  <MapPin className="w-3.5 h-3.5 text-[#D89A7E]" aria-hidden="true" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs text-[#E6ECE7]">
+                  <MapPin className="w-3.5 h-3.5 text-[#E2A58A]" aria-hidden="true" />
                   Envío exclusivo España
                 </span>
               </div>
@@ -540,45 +656,49 @@ export default function BlackFridayLanding() {
                     className="py-4 flex items-start justify-between gap-4"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#C98A6F]/20 text-[#E3A98F] shrink-0">
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#D39478]/20 text-[#F1C3AE] shrink-0">
                         <Check className="w-3.5 h-3.5" aria-hidden="true" />
                       </span>
                       <div>
-                        <p className="font-medium text-white text-sm sm:text-base">
+                        <p className="font-medium text-white text-[15px]">
                           {item.name}
                         </p>
-                        <p className="text-xs sm:text-sm text-[#A7B5AB] mt-0.5">
+                        <p className="text-xs sm:text-sm text-[#B8C6BD] mt-0.5">
                           {item.detail}
                         </p>
                       </div>
                     </div>
-                    <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-[#D89A7E]">
-                      Incluido
+                    <span className="shrink-0 rounded-full border border-[#D39478]/35 bg-[#D39478]/12 px-2.5 py-0.5 text-[11px] font-semibold text-[#F1C3AE]">
+                      {item.tag}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              {/* Anclaje de precio final */}
-              <div className="mt-6 rounded-2xl bg-[#101813] border border-white/10 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+              {/* Anclaje de precio final + matemática tangible */}
+              <div className="mt-6 rounded-2xl bg-[#101813] border border-white/12 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-[#9FB0A4]">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#A9B9AE]">
                     Precio habitual: <span className="line-through">159 €</span>
                   </p>
                   <div className="mt-1 flex items-baseline gap-3">
-                    <span className="font-serif text-5xl sm:text-6xl font-medium text-[#D89A7E] leading-none">
+                    <span className="font-serif text-5xl sm:text-6xl font-medium text-[#E2A58A] leading-none">
                       89 €
                     </span>
-                    <span className="text-sm text-[#C4D0C7]">
+                    <span className="text-sm text-[#D0DBD3]">
                       pago único · IVA incluido
                     </span>
                   </div>
+                  <p className="mt-2 text-xs text-[#B8C6BD]">
+                    Equivale a menos de 30 € por pieza (incluyendo libro físico
+                    en España + formación de por vida).
+                  </p>
                 </div>
-                <div className="sm:text-right">
-                  <p className="inline-flex items-center rounded-full bg-[#C98A6F] px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#141D17]">
+                <div className="sm:text-right shrink-0">
+                  <p className="inline-flex items-center rounded-full bg-[#D39478] px-3.5 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#111914]">
                     Ahorras 70 € hoy
                   </p>
-                  <p className="mt-2 text-xs text-[#9FB0A4]">
+                  <p className="mt-2 text-xs text-[#B8C6BD]">
                     {BLACK_FRIDAY_OFFER.deadlineLabel}
                   </p>
                 </div>
@@ -586,20 +706,20 @@ export default function BlackFridayLanding() {
 
               <div className="mt-7 flex flex-col gap-3">
                 <StripeCtaButton
-                  label="Quiero mi Pack «Empezar por dentro» — 89 €"
-                  className="w-full py-4.5 text-base sm:text-lg"
+                  label="Sí, quiero mi Pack «Empezar por dentro» — 89 €"
+                  className="w-full py-4 text-[16px] sm:text-[17px]"
                 />
-                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2 text-xs text-[#A8B6AC]">
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-2 text-xs text-[#B9C7BE]">
                   <span className="inline-flex items-center gap-1.5">
-                    <Lock className="w-3.5 h-3.5 text-[#D89A7E]" aria-hidden="true" />
+                    <Lock className="w-3.5 h-3.5 text-[#E2A58A]" aria-hidden="true" />
                     Checkout oficial de Stripe (SSL)
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#D89A7E]" aria-hidden="true" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#E2A58A]" aria-hidden="true" />
                     7 días de garantía sin preguntas
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <BookOpenText className="w-3.5 h-3.5 text-[#D89A7E]" aria-hidden="true" />
+                    <BookOpenText className="w-3.5 h-3.5 text-[#E2A58A]" aria-hidden="true" />
                     Tarjeta · Apple Pay · Google Pay
                   </span>
                 </div>
@@ -609,18 +729,18 @@ export default function BlackFridayLanding() {
         </section>
 
         {/* ============================================================
-            6. QUÉ PASA TRAS EL PAGO + GARANTÍA (ELIMINACIÓN DE FRICCIÓN)
+            7. QUÉ PASA TRAS EL PAGO + AUTORIDAD + GARANTÍA (CONTRASTE AAA)
             ============================================================ */}
         <section className="py-16 sm:py-24 bg-[#FAF8F4]">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <motion.div {...revealProps} className="max-w-3xl">
+            <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9E5B40]">
                 Sin sorpresas · Proceso claro
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
                 Qué ocurre en cuanto completas tu pedido
               </h2>
-            </motion.div>
+            </div>
 
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {[
@@ -647,7 +767,7 @@ export default function BlackFridayLanding() {
                 return (
                   <div
                     key={step.step}
-                    className="rounded-[1.75rem] border border-[#DCE5DE] bg-white p-7"
+                    className="rounded-[1.75rem] border border-[#DCE5DE] bg-white p-7 shadow-[0_8px_24px_-14px_rgba(25,40,32,0.08)]"
                   >
                     <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ECF3ED] text-[#284B40]">
                       <Icon className="w-5 h-5" aria-hidden="true" />
@@ -658,7 +778,7 @@ export default function BlackFridayLanding() {
                     <h3 className="mt-2 font-serif text-2xl text-[#192820]">
                       {step.title}
                     </h3>
-                    <p className="mt-2.5 text-sm sm:text-base text-[#52635B] leading-relaxed">
+                    <p className="mt-2.5 text-[15px] text-[#3F5148] leading-relaxed">
                       {step.text}
                     </p>
                   </div>
@@ -666,9 +786,9 @@ export default function BlackFridayLanding() {
               })}
             </div>
 
-            {/* Bloque de Autoridad + Garantía humana */}
+            {/* Bloque de Autoridad + Garantía humana con contraste máximo */}
             <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] items-stretch">
-              <div className="rounded-[2rem] border border-[#DCE5DE] bg-white p-7 sm:p-9 flex flex-col sm:flex-row gap-6 items-center">
+              <div className="rounded-[2rem] border border-[#DCE5DE] bg-white p-7 sm:p-9 flex flex-col sm:flex-row gap-6 items-center shadow-sm">
                 <div className="relative w-32 h-40 sm:w-36 sm:h-44 shrink-0 rounded-2xl overflow-hidden border border-[#DCE5DE]">
                   <Image
                     src="/images/ainara-portrait.webp"
@@ -685,7 +805,7 @@ export default function BlackFridayLanding() {
                   <h3 className="mt-1.5 font-serif text-2xl sm:text-3xl text-[#192820]">
                     Soy Ainara Unamunzaga
                   </h3>
-                  <p className="mt-3 text-sm sm:text-base text-[#52635B] leading-relaxed">
+                  <p className="mt-3 text-[15px] text-[#3F5148] leading-relaxed">
                     Mentora en autoconfianza, inteligencia emocional y PNL.
                     Diseñé este pack porque entender un patrón en la cabeza no
                     basta: hace falta un mapa claro, una pausa diaria y un
@@ -695,43 +815,49 @@ export default function BlackFridayLanding() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-[#284B40]/20 bg-[#ECF3ED] p-7 sm:p-9 flex flex-col justify-between">
+              <div className="rounded-[2rem] border-2 border-[#284B40]/30 bg-[#E6F0E9] p-7 sm:p-9 flex flex-col justify-between shadow-sm">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-[#284B40] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                    <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
-                    Garantía de tranquilidad · 7 días
+                  <div className="inline-flex items-center gap-2 rounded-full bg-[#1C3A30] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#F6F2EA]">
+                    <ShieldCheck className="w-4 h-4 text-[#E2A58A]" aria-hidden="true" />
+                    <span>Garantía «Empieza sin miedo» · 7 días</span>
                   </div>
-                  <h3 className="mt-4 font-serif text-2xl sm:text-3xl text-[#192820]">
+                  <h3 className="mt-4 font-serif text-2xl sm:text-3xl text-[#111E18]">
                     Pruébalo sin presión ni riesgo
                   </h3>
-                  <p className="mt-3 text-sm sm:text-base text-[#364A40] leading-relaxed">
+                  <p className="mt-3 text-[15px] sm:text-[16px] text-[#1D3128] leading-relaxed">
                     Quiero que entres porque sientes que te suma, no por impulso.
-                    Tienes 7 días desde la compra para entrar en los materiales y
-                    comprobar si este enfoque encaja contigo. Si no es para ti,
-                    me escribes y gestionamos la devolución. Sin juicios.
+                    Tienes <strong>7 días completos</strong> desde tu compra para
+                    revisar los materiales y comprobar si este enfoque encaja
+                    contigo. Si sientes que no es para ti, me escribes un correo
+                    y gestionamos la devolución. Sin preguntas y sin juicios.
                   </p>
                 </div>
-                <p className="mt-5 font-serif italic text-xl text-[#284B40]">
-                  — Ainara · @ainaracoach
-                </p>
+                <div className="mt-6 pt-4 border-t border-[#284B40]/15 flex items-center justify-between gap-3">
+                  <p className="font-serif italic text-xl text-[#1C3A30]">
+                    — Ainara · @ainaracoach
+                  </p>
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#284B40]">
+                    Riesgo cero
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            7. PRUEBA SOCIAL REAL (LAS 3 PIEZAS VALIDADAS)
+            8. PRUEBA SOCIAL REAL (LAS 3 PIEZAS VALIDADAS)
             ============================================================ */}
         <section className="py-16 sm:py-24 bg-[#F1F5F2] border-y border-[#DCE5DE]">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <motion.div {...revealProps} className="max-w-3xl">
+            <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#284B40]">
                 Experiencias reales
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
                 Lo que ya han vivido quienes usan estas herramientas
               </h2>
-            </motion.div>
+            </div>
 
             <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {PACK_TESTIMONIALS.map((t) => (
@@ -750,17 +876,20 @@ export default function BlackFridayLanding() {
                           />
                         ))}
                       </div>
-                      <span className="rounded-full bg-[#ECF3ED] px-2.5 py-0.5 text-[11px] font-medium text-[#284B40]">
+                      <span className="rounded-full bg-[#ECF3ED] px-2.5 py-0.5 text-[11px] font-semibold text-[#1F4236]">
                         {t.piece}
                       </span>
                     </div>
-                    <p className="mt-4 text-sm sm:text-[15px] leading-relaxed text-[#253A32]">
+                    <p className="mt-4 text-[15px] leading-relaxed text-[#22362D]">
                       “{t.quote}”
                     </p>
                   </div>
-                  <p className="mt-5 pt-4 border-t border-[#EDF2EE] text-xs font-semibold uppercase tracking-[0.18em] text-[#5D6F65]">
-                    {t.name}
-                  </p>
+                  <div className="mt-5 pt-4 border-t border-[#EDF2EE]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#192820]">
+                      {t.name}
+                    </p>
+                    <p className="mt-0.5 text-xs text-[#4C5E55]">{t.result}</p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -768,18 +897,18 @@ export default function BlackFridayLanding() {
         </section>
 
         {/* ============================================================
-            8. PREGUNTAS FRECUENTES (OBJECIONES RESUELTAS)
+            9. PREGUNTAS FRECUENTES (OBJECIONES RESUELTAS)
             ============================================================ */}
         <section id="preguntas" className="py-16 sm:py-24 bg-[#FAF8F4]">
           <div className="mx-auto max-w-3xl px-4 sm:px-6">
-            <motion.div {...revealProps} className="text-center">
+            <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#9E5B40]">
                 Preguntas frecuentes
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-5xl leading-[1.1] text-[#192820]">
                 Resolvemos tus dudas antes de entrar
               </h2>
-            </motion.div>
+            </div>
 
             <div className="mt-10 divide-y divide-[#DCE5DE] rounded-[1.75rem] border border-[#DCE5DE] bg-white px-6 sm:px-8">
               {PACK_FAQ.map((item, idx) => {
@@ -814,7 +943,7 @@ export default function BlackFridayLanding() {
                           }}
                           className="overflow-hidden"
                         >
-                          <p className="pt-3 pr-6 text-sm sm:text-base leading-relaxed text-[#52635B]">
+                          <p className="pt-3 pr-6 text-[15px] leading-relaxed text-[#3F5148]">
                             {item.answer}
                           </p>
                         </motion.div>
@@ -828,34 +957,34 @@ export default function BlackFridayLanding() {
         </section>
 
         {/* ============================================================
-            9. CIERRE FINAL DE ALTA CONVERSIÓN
+            10. CIERRE FINAL DE ALTA CONVERSIÓN
             ============================================================ */}
         <section className="py-16 sm:py-24 bg-[#141D17] text-[#F6F2EA]">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-            <span className="inline-flex items-center rounded-sm bg-[#C98A6F] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#141D17]">
+            <span className="inline-flex items-center rounded-sm bg-[#D39478] px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] text-[#111914]">
               {BLACK_FRIDAY_OFFER.badge} · {BLACK_FRIDAY_OFFER.dateRange}
             </span>
 
             <h2 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.06] text-white">
               Empieza diciembre con{" "}
-              <em className="italic text-[#D89A7E]">calma, orden y método</em>
+              <em className="italic text-[#E2A58A]">calma, orden y método</em>
             </h2>
 
-            <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-[#C4D0C7] leading-relaxed">
+            <p className="mt-4 max-w-2xl mx-auto text-[16px] sm:text-[18px] text-[#D0DBD3] leading-relaxed">
               Guía integral impresa (80 págs., envío a España) + Agenda de
               reflexión digital + Formación Emulsión Energética en Mitra (8
-              clases).
+              clases + 6 materiales).
             </p>
 
             <div className="mt-7 flex items-baseline justify-center gap-4">
-              <span className="relative font-serif text-3xl text-[#95A49A]">
+              <span className="relative font-serif text-3xl text-[#A3B2A8]">
                 {BLACK_FRIDAY_OFFER.originalPrice} €
                 <span
                   aria-hidden="true"
-                  className="absolute left-[-4%] right-[-4%] top-1/2 h-[2.5px] -rotate-6 bg-[#C98A6F]"
+                  className="absolute left-[-4%] right-[-4%] top-1/2 h-[2.5px] -rotate-6 bg-[#D39478]"
                 />
               </span>
-              <span className="font-serif text-6xl sm:text-7xl font-medium leading-none text-[#D89A7E]">
+              <span className="font-serif text-6xl sm:text-7xl font-medium leading-none text-[#E2A58A]">
                 {BLACK_FRIDAY_OFFER.salePrice} €
               </span>
             </div>
@@ -866,21 +995,21 @@ export default function BlackFridayLanding() {
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
               <StripeCtaButton
-                label="Acceder al Pack por 89 €"
+                label="Sí, quiero mi Pack por 89 €"
                 className="w-full sm:w-auto min-w-[280px]"
               />
               <a
                 href={BLACK_FRIDAY_OFFER.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.1] px-7 py-4 text-sm font-medium text-[#F6F2EA] transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/[0.05] hover:bg-white/[0.12] px-7 py-4 text-sm font-medium text-[#F6F2EA] transition-colors"
               >
-                <MessageCircle className="w-4 h-4 text-[#D89A7E]" aria-hidden="true" />
+                <MessageCircle className="w-4 h-4 text-[#E2A58A]" aria-hidden="true" />
                 ¿Dudas? Escríbeme PACK
               </a>
             </div>
 
-            <p className="mt-5 text-xs text-[#9FB0A4]">
+            <p className="mt-5 text-xs text-[#B2C1B7]">
               Pago 100% seguro con Stripe · Envío físico a España · 7 días de
               garantía · {BLACK_FRIDAY_OFFER.deadlineLabel}
             </p>
@@ -889,19 +1018,19 @@ export default function BlackFridayLanding() {
       </main>
 
       {/* Footer minimalista fiel al cierre del cartel */}
-      <footer className="bg-[#0F1612] border-t border-white/10 py-8 text-center text-xs text-[#95A49A]">
+      <footer className="bg-[#0F1612] border-t border-white/10 py-8 text-center text-xs text-[#A3B2A8]">
         <div className="mx-auto max-w-6xl px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="tracking-[0.22em] uppercase">
             <a
               href={BLACK_FRIDAY_OFFER.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D89A7E] transition-colors"
+              className="hover:text-[#E2A58A] transition-colors"
             >
               @AINARACOACH
             </a>{" "}
             ·{" "}
-            <Link href="/" className="hover:text-[#D89A7E] transition-colors">
+            <Link href="/" className="hover:text-[#E2A58A] transition-colors">
               AINARACOACHING.COM
             </Link>
           </p>
@@ -910,7 +1039,7 @@ export default function BlackFridayLanding() {
       </footer>
 
       {/* ============================================================
-          10. BARRA STICKY DE CONVERSIÓN EN MÓVIL
+          11. BARRA STICKY DE CONVERSIÓN EN MÓVIL
           ============================================================ */}
       <div
         aria-hidden={!showStickyMobile}
@@ -922,11 +1051,11 @@ export default function BlackFridayLanding() {
       >
         <div className="flex items-center justify-between gap-3">
           <div className="leading-tight">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#D89A7E] font-semibold">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#E2A58A] font-semibold">
               Lunes 30 · 23:59
             </p>
             <div className="mt-0.5 flex items-baseline gap-2">
-              <span className="text-xs text-[#95A49A] line-through">159 €</span>
+              <span className="text-xs text-[#A3B2A8] line-through">159 €</span>
               <span className="font-serif text-2xl font-medium text-white leading-none">
                 89 €
               </span>
