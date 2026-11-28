@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock } from "lucide-react";
 import { BLACK_FRIDAY_OFFER } from "./data";
+import s from "./landing.module.css";
 
 interface TimeLeft {
   days: number;
@@ -17,107 +17,103 @@ function getTimeLeft(deadlineIso: string): TimeLeft {
   if (diff <= 0) {
     return { days: 0, hours: 0, minutes: 0, seconds: 0, expired: true };
   }
-  const totalSeconds = Math.floor(diff / 1000);
+  const total = Math.floor(diff / 1000);
   return {
-    days: Math.floor(totalSeconds / 86400),
-    hours: Math.floor((totalSeconds % 86400) / 3600),
-    minutes: Math.floor((totalSeconds % 3600) / 60),
-    seconds: totalSeconds % 60,
+    days: Math.floor(total / 86400),
+    hours: Math.floor((total % 86400) / 3600),
+    minutes: Math.floor((total % 3600) / 60),
+    seconds: total % 60,
     expired: false,
   };
 }
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-interface BlackFridayCountdownProps {
-  variant?: "compact" | "tiles";
-}
-
-export default function BlackFridayCountdown({
-  variant = "tiles",
-}: BlackFridayCountdownProps) {
+function useTimeLeft() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-
   useEffect(() => {
     const update = () => setTimeLeft(getTimeLeft(BLACK_FRIDAY_OFFER.deadlineIso));
     update();
     const id = window.setInterval(update, 1000);
     return () => window.clearInterval(id);
   }, []);
+  return timeLeft;
+}
+
+interface Props {
+  variant?: "compact" | "tiles";
+  tone?: "light" | "dark";
+}
+
+export default function BlackFridayCountdown({ variant = "tiles", tone = "light" }: Props) {
+  const t = useTimeLeft();
+  const dark = tone === "dark";
 
   if (variant === "compact") {
     return (
-      <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium tracking-wide text-[#F6F2EA]">
-        <Clock className="w-3.5 h-3.5 text-[#D89A7E] shrink-0" aria-hidden="true" />
-        <span className="hidden sm:inline text-[#C9D3CB]">Cierra el lunes 30 ·</span>
-        <span className="font-mono tabular-nums font-semibold text-[#F6F2EA]">
-          {timeLeft === null
-            ? "27–30 NOV"
-            : timeLeft.expired
-              ? "Oferta cerrada"
-              : `${timeLeft.days > 0 ? `${timeLeft.days}d ` : ""}${pad(timeLeft.hours)}:${pad(timeLeft.minutes)}:${pad(timeLeft.seconds)}`}
+      <span
+        className={`inline-flex items-center gap-2 text-[13px] font-medium tabular-nums ${
+          dark ? "text-white" : "text-[#0E1311]"
+        }`}
+      >
+        <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B65F3A] opacity-70" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#B65F3A]" />
         </span>
+        {t === null
+          ? "27–30 nov"
+          : t.expired
+            ? "Oferta cerrada"
+            : `Cierra en ${t.days > 0 ? `${t.days}d ` : ""}${pad(t.hours)}:${pad(t.minutes)}:${pad(t.seconds)}`}
       </span>
     );
   }
 
-  const units = timeLeft
-    ? [
-        { value: pad(timeLeft.days), label: "Días" },
-        { value: pad(timeLeft.hours), label: "Horas" },
-        { value: pad(timeLeft.minutes), label: "Min" },
-        { value: pad(timeLeft.seconds), label: "Seg" },
-      ]
-    : [
-        { value: "—", label: "Días" },
-        { value: "—", label: "Horas" },
-        { value: "—", label: "Min" },
-        { value: "—", label: "Seg" },
-      ];
-
-  if (timeLeft?.expired) {
+  if (t?.expired) {
     return (
-      <div className="rounded-2xl border border-[#C98A6F]/30 bg-[#1B2720] px-5 py-4 text-center">
-        <p className="text-xs uppercase tracking-[0.22em] text-[#D89A7E] font-semibold">
-          Ventana de Black Friday finalizada
-        </p>
-        <p className="mt-1 text-sm text-[#D6DDD7]">
-          Escríbeme por WhatsApp si quieres consultar disponibilidad del pack.
-        </p>
-      </div>
+      <p className={`text-[14px] ${dark ? "text-white/80" : "text-[#5C6560]"}`}>
+        La ventana de Black Friday ha terminado. Escríbeme por WhatsApp para consultar disponibilidad.
+      </p>
     );
   }
 
+  const units = [
+    { value: t ? pad(t.days) : "--", label: "días" },
+    { value: t ? pad(t.hours) : "--", label: "horas" },
+    { value: t ? pad(t.minutes) : "--", label: "min" },
+    { value: t ? pad(t.seconds) : "--", label: "seg" },
+  ];
+
   return (
-    <div
-      className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5"
-      aria-label="Cuenta atrás de la oferta de Black Friday"
-    >
-      <div className="flex items-center justify-between gap-2 mb-3">
-        <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#D89A7E] font-semibold">
-          <span className="relative flex h-2 w-2" aria-hidden="true">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D89A7E] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D89A7E]" />
-          </span>
-          Cierra el lunes 30 · 23:59
-        </span>
-        <span className="text-[11px] text-[#A8B5AC]">Hora España (CET)</span>
-      </div>
-      <div className="grid grid-cols-4 gap-2 sm:gap-3">
-        {units.map((u) => (
-          <div
-            key={u.label}
-            className="rounded-xl bg-[#0F1712]/80 border border-white/10 py-2.5 px-2 text-center"
-          >
-            <div className="font-mono text-xl sm:text-2xl font-semibold tabular-nums text-[#F6F2EA] leading-none">
+    <div role="timer" aria-label="Tiempo restante de la oferta" className="flex items-end gap-1.5 sm:gap-2.5">
+      {units.map((u, i) => (
+        <div key={u.label} className="flex items-end gap-1.5 sm:gap-2.5">
+          <div className="text-center">
+            <div
+              className={`${s.num} min-w-[2.1ch] text-[40px] sm:text-[52px] ${
+                dark ? "text-white" : "text-[#0E1311]"
+              }`}
+            >
               {u.value}
             </div>
-            <div className="mt-1.5 text-[10px] uppercase tracking-[0.18em] text-[#9EAD9F]">
+            <div
+              className={`mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] ${
+                dark ? "text-white/60" : "text-[#5C6560]"
+              }`}
+            >
               {u.label}
             </div>
           </div>
-        ))}
-      </div>
+          {i < units.length - 1 && (
+            <span
+              aria-hidden="true"
+              className={`${s.num} pb-6 text-[28px] sm:text-[36px] ${dark ? "text-white/30" : "text-[#0E1311]/25"}`}
+            >
+              :
+            </span>
+          )}
+        </div>
+      ))}
     </div>
   );
 }

@@ -1,0 +1,204 @@
+/* ============================================================
+   Black Friday · Pack «Empezar por dentro»
+   Tipografía y piezas visuales que Tailwind no puede ganar:
+   globals.css define h1–h4 y p fuera de @layer, así que esas
+   reglas vencen a cualquier utilidad. Aquí usamos clases de
+   módulo (especificidad de clase) para recuperar el control.
+   ============================================================ */
+
+.root {
+  --ink: #0e1311;
+  --ink-2: #2a312d;
+  --muted: #5c6560;
+  --line: #e8e5df;
+  --mist: #f5f3ef;
+  --forest: #284b40;
+  --clay: #b65f3a;
+  --clay-soft: #f7ebe3;
+
+  font-family: var(--bf-sans), system-ui, sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+  letter-spacing: -0.012em;
+  overflow-x: clip;
+}
+
+.root :where(p) {
+  max-width: none;
+  line-height: 1.5;
+}
+
+/* --- Display ------------------------------------------------ */
+.d1,
+.d2,
+.d3,
+.num {
+  font-family: var(--bf-display), system-ui, sans-serif;
+  font-weight: 600;
+  font-variation-settings: "opsz" 96;
+}
+
+.d1 {
+  font-size: clamp(3.1rem, 11vw + 0.5rem, 7.25rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+.d2 {
+  font-size: clamp(2.1rem, 5.5vw + 0.6rem, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.d3 {
+  font-size: clamp(1.35rem, 1.6vw + 0.9rem, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+}
+
+/* Acento editorial: serif itálica, como el cartel */
+.serif {
+  font-family: var(--bf-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* --- Precio tachado con trazo inclinado ---------------------- */
+.strike {
+  position: relative;
+  display: inline-block;
+}
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  top: 52%;
+  height: 2px;
+  background: var(--clay);
+  transform: rotate(-12deg);
+}
+
+/* --- Ticker superior ---------------------------------------- */
+.ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 38s linear infinite;
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Sello giratorio −44 % ---------------------------------- */
+.seal {
+  animation: spin 22s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Carriles horizontales (páginas, testimonios) ----------- */
+.rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  padding-inline: 16px;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+@media (min-width: 640px) {
+  .rail {
+    gap: 20px;
+    padding-inline: max(24px, calc((100vw - 72rem) / 2 + 24px));
+    scroll-padding-inline: max(24px, calc((100vw - 72rem) / 2 + 24px));
+  }
+}
+
+/* --- Ticket de compra con muescas --------------------------- */
+.ticket {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.perforation {
+  position: relative;
+  border-top: 1.5px dashed var(--line);
+}
+.perforation::before,
+.perforation::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--mist);
+  border: 1px solid var(--line);
+}
+.perforation::before {
+  left: -12px;
+  clip-path: inset(0 0 0 50%);
+}
+.perforation::after {
+  right: -12px;
+  clip-path: inset(0 50% 0 0);
+}
+
+/* --- Sombra de libro físico --------------------------------- */
+.book {
+  box-shadow:
+    0 1px 1px rgba(14, 19, 17, 0.06),
+    0 18px 30px -12px rgba(14, 19, 17, 0.35),
+    0 40px 60px -30px rgba(14, 19, 17, 0.3);
+}
+.spine::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 10px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.18) 45%, transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.page {
+  box-shadow:
+    0 1px 2px rgba(14, 19, 17, 0.06),
+    0 14px 28px -16px rgba(14, 19, 17, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker,
+  .seal {
+    animation: none;
+  }
+}

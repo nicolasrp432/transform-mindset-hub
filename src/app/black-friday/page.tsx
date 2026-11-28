@@ -1,5 +1,27 @@
 import type { Metadata } from "next";
+import { Bricolage_Grotesque, Geist, Instrument_Serif } from "next/font/google";
 import BlackFridayLanding from "@/components/black-friday/BlackFridayLanding";
+
+const display = Bricolage_Grotesque({
+  variable: "--bf-display",
+  subsets: ["latin", "latin-ext"],
+  axes: ["opsz"],
+  display: "swap",
+});
+
+const serif = Instrument_Serif({
+  variable: "--bf-serif",
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const sans = Geist({
+  variable: "--bf-sans",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Black Friday · Pack «Empezar por dentro» (89 €) | Ainara Unamunzaga",
@@ -30,5 +52,9 @@ export const metadata: Metadata = {
 };
 
 export default function BlackFridayPage() {
-  return <BlackFridayLanding />;
+  return (
+    <div className={`${display.variable} ${serif.variable} ${sans.variable}`}>
+      <BlackFridayLanding />
+    </div>
+  );
 }
